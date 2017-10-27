@@ -1,0 +1,205 @@
+//
+//  BraceletKitLogHelper.m
+//  BraceletKit
+//
+//  Created by xaoxuu on 26/10/2017.
+//  Copyright © 2017 xaoxuu. All rights reserved.
+//
+
+#import "BraceletKitLogHelper.h"
+#import <BLE3Framework/BLE3Framework.h>
+
+@implementation ZeronerBlePeripheral (BKLogExtension)
+
+- (NSString *)description{
+    NSMutableString *str = [NSMutableString string];
+    [str appendFormat:@"%@:{\n",self.class];
+    [str appendFormat:@"deviceName: '%@'\n", self.deviceName];
+    [str appendFormat:@"uuidString: '%@'\n", self.uuidString];
+    [str appendFormat:@"mediaAC: '%@'\n", self.mediaAC];
+    [str appendFormat:@"cbDevice: '%@'\n", self.cbDevice];
+    [str appendFormat:@"}"];
+    return str;
+}
+
+@end
+
+@implementation ZeronerDeviceInfo (BKLogExtension)
+
+- (NSString *)description{
+    NSMutableString *str = [NSMutableString string];
+    [str appendFormat:@"%@:{\n",self.class];
+    [str appendFormat:@"protocolVer: '%@'\n", self.protocolVer];
+    [str appendFormat:@"model: '%@'\n", self.model];
+    [str appendFormat:@"version: '%@'\n", self.version];
+    [str appendFormat:@"versionValue: %ld\n", (long)self.versionValue];
+    [str appendFormat:@"oadMode: %ld\n", (long)self.oadMode];
+    [str appendFormat:@"batLevel: %ld\n", (long)self.batLevel];
+    [str appendFormat:@"seriesNo: '%@'\n", self.seriesNo];
+    [str appendFormat:@"bleAddr: '%@'\n", self.bleAddr];
+    [str appendFormat:@"hwVersion: %ld\n", (long)self.hwVersion];
+    [str appendFormat:@"hrVersion: '%@'\n", self.hrVersion];
+    [str appendFormat:@"hrVersionValue: %ld\n", (long)self.hrVersionValue];
+    [str appendFormat:@"fontSupport: '%@'\n", self.fontSupport];
+    [str appendFormat:@"protocalMap: %ld\n", (long)self.protocalMap];
+    [str appendFormat:@"protocolVer: '%@'\n", self.protocolVer];
+    [str appendFormat:@"isDialogDFU: %d\n", self.isDialogDFU];
+    [str appendFormat:@"}"];
+    return str;
+}
+
+@end
+
+@implementation ZeronerClock (BKLogExtension)
+
+- (NSString *)description{
+    NSMutableString *str = [NSMutableString string];
+    [str appendFormat:@"%@:{\n",self.class];
+    [str appendFormat:@"switchStatus: %d\n", self.switchStatus];
+    [str appendFormat:@"viable: %d\n", self.viable];
+    [str appendFormat:@"clockId: %ld\n", (long)self.clockId];
+    [str appendFormat:@"clockType: %ld\n", (long)self.clockType];
+    [str appendFormat:@"weekRepeat: %ld\n", (long)self.weekRepeat];
+    [str appendFormat:@"clockHour: %ld\n", (long)self.clockHour];
+    [str appendFormat:@"clockMinute: %ld\n", (long)self.clockMinute];
+    [str appendFormat:@"clockTipsLenth: %ld\n", (long)self.clockTipsLenth];
+    [str appendFormat:@"clockTips: '%@'\n", self.clockTips];
+    [str appendFormat:@"}"];
+    return str;
+}
+
+@end
+
+@implementation ZeronerSedentary (BKLogExtension)
+
+- (NSString *)description{
+    NSMutableString *str = [NSMutableString string];
+    [str appendFormat:@"%@:{\n",self.class];
+    [str appendFormat:@"switchStatus: %d\n", self.switchStatus];
+    [str appendFormat:@"sedentaryId: %ld\n", (long)self.sedentaryId];
+    [str appendFormat:@"weekRepeat: %ld\n", (long)self.weekRepeat];
+    [str appendFormat:@"startHour: %ld\n", (long)self.startHour];
+    [str appendFormat:@"endHour: %ld\n", (long)self.endHour];
+    [str appendFormat:@"sedentaryDuration: %ld\n", (long)self.sedentaryDuration];
+    [str appendFormat:@"sedentaryThreshold: %ld\n", (long)self.sedentaryThreshold];
+    [str appendFormat:@"noDisturbing: %d\n", self.noDisturbing];
+    [str appendFormat:@"}"];
+    return str;
+}
+
+@end
+
+@implementation ZeronerHWOption (BKLogExtension)
+
+- (NSString *)description{
+    NSMutableString *str = [NSMutableString string];
+    [str appendFormat:@"%@:{\n",self.class];
+    [str appendFormat:@"ledSwitch: %d\n", self.ledSwitch];
+    [str appendFormat:@"wristSwitch: %d\n", self.wristSwitch];
+    [str appendFormat:@"unitType: %d\n", self.unitType];
+    [str appendFormat:@"timeFlag: %d\n", self.timeFlag];
+    [str appendFormat:@"autoSleep: %d\n", self.autoSleep];
+    [str appendFormat:@"advertisementSwitch: %d\n", self.advertisementSwitch];
+    [str appendFormat:@"backlightStart: %ld\n", (long)self.backlightStart];
+    [str appendFormat:@"backlightEnd: %ld\n", (long)self.backlightEnd];
+    [str appendFormat:@"backColor: %d\n", self.backColor];
+    [str appendFormat:@"language: %d\n", self.language];
+    [str appendFormat:@"disConnectTip: %d\n", self.disConnectTip];
+    [str appendFormat:@"dateFormatter: %ld\n", (long)self.dateFormatter];
+    [str appendFormat:@"wristBlightStart: %ld\n", (long)self.wristBlightStart];
+    [str appendFormat:@"wristBlightEnd: %ld\n", (long)self.wristBlightEnd];
+    [str appendFormat:@"autoHeartRate: %d\n", self.autoHeartRate];
+    [str appendFormat:@"findPhoneSwitch: %d\n", self.findPhoneSwitch];
+    [str appendFormat:@"}"];
+    return str;
+}
+
+@end
+
+@implementation ZeronerSportTarget (BKLogExtension)
+
+- (NSString *)description{
+    NSMutableString *str = [NSMutableString string];
+    [str appendFormat:@"%@:{\n",self.class];
+    [str appendFormat:@"day: %ld\n", (long)self.day];
+    [str appendFormat:@"sportArr: '%@'\n", self.sportArr.description];
+    [str appendFormat:@"}"];
+    return str;
+}
+
+@end
+
+@implementation ZeronerDNDModel (BKLogExtension)
+
+- (NSString *)description{
+    NSMutableString *str = [NSMutableString string];
+    [str appendFormat:@"%@:{\n",self.class];
+    [str appendFormat:@"dndType: %ld\n", (long)self.dndType];
+    [str appendFormat:@"startHour: %ld\n", (long)self.startHour];
+    [str appendFormat:@"startMinute: %ld\n", (long)self.startMinute];
+    [str appendFormat:@"endHour: %ld\n", (long)self.endHour];
+    [str appendFormat:@"endMinute: %ld\n", (long)self.endMinute];
+    [str appendFormat:@"}"];
+    return str;
+}
+
+@end
+
+@implementation ZeronerPersonal (BKLogExtension)
+
+- (NSString *)description{
+    NSMutableString *str = [NSMutableString string];
+    [str appendFormat:@"%@:{\n",self.class];
+    [str appendFormat:@"height: %ld\n", (long)self.height];
+    [str appendFormat:@"weight: %ld\n", (long)self.weight];
+    [str appendFormat:@"gender: %ld\n", (long)self.gender];
+    [str appendFormat:@"age: %ld\n", (long)self.age];
+    [str appendFormat:@"target: %ld\n", (long)self.target];
+    [str appendFormat:@"}"];
+    return str;
+}
+
+@end
+
+@implementation ZeronerCOption (BKLogExtension)
+
+- (NSString *)description{
+    NSMutableString *str = [NSMutableString string];
+    [str appendFormat:@"%@:{\n",self.class];
+    [str appendFormat:@"findPhoneSwitch: %ld\n", (long)self.findPhoneSwitch];
+    [str appendFormat:@"wristDelicacy: %ld\n", (long)self.wristDelicacy];
+    [str appendFormat:@"}"];
+    return str;
+}
+
+@end
+
+@implementation ZeronerGPSPoint (BKLogExtension)
+
+- (NSString *)description{
+    NSMutableString *str = [NSMutableString string];
+    [str appendFormat:@"%@:{\n",self.class];
+    [str appendFormat:@"timeZone: %ld\n", (long)self.timeZone];
+    [str appendFormat:@"latitude: %lf\n", self.latitude];
+    [str appendFormat:@"longitude: %lf\n", self.longitude];
+    [str appendFormat:@"altitude: %ld\n", (long)self.altitude];
+    [str appendFormat:@"}"];
+    return str;
+}
+
+@end
+@implementation ZeronerRoll (BKLogExtension)
+
+- (NSString *)description{
+    NSMutableString *str = [NSMutableString string];
+    [str appendFormat:@"%@:{\n",self.class];
+    [str appendFormat:@"rId: %ld\n", (long)self.rId];
+    [str appendFormat:@"rollName: '%@'\n", self.rollName];
+    [str appendFormat:@"}"];
+    return str;
+}
+
+@end
+@implementation BraceletKitLogHelper
+
+@end
