@@ -8,6 +8,7 @@
 
 #import "ScanTableViewCell.h"
 #import <AXKit/AXKit.h>
+#import <BraceletKit/BraceletKit.h>
 
 @interface ScanTableViewCell ()
 
@@ -29,7 +30,7 @@
     // Initialization code
     self.height = 136;
     
-    
+    self.lb_uuid.adjustsFontSizeToFitWidth = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -58,13 +59,30 @@
         self.lb_status.text = @"正在连接";
         self.switch_bind.on = NO;
         self.switch_bind.enabled = NO;
-    } else if (model.cbDevice.state == CBPeripheralStateDisconnecting) {
-        self.lb_status.text = @"正在断开连接";
-        self.switch_bind.on = YES;
-        self.switch_bind.enabled = NO;
+    }
+    if (@available(iOS 9.0, *)) {
+        // on newer versions
+        if (model.cbDevice.state == CBPeripheralStateDisconnecting) {
+            self.lb_status.text = @"正在断开连接";
+            self.switch_bind.on = YES;
+            self.switch_bind.enabled = NO;
+        }
+    } else {
+        // Fallback on earlier versions
+        
     }
     
     
+    
+}
+
+- (IBAction)connect:(UISwitch *)sender {
+    sender.enabled = NO;
+    if (sender.on) {
+        [[BraceletManager sharedInstance] connectDevice:self.model];
+    } else {
+        [[BraceletManager sharedInstance] disConnectDevice];
+    }
     
 }
 

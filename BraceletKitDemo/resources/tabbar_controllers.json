@@ -12,7 +12,7 @@
       "icon_sel":"",
     },
      {
-     "vc":"ScanViewController",
+     "vc":"DeviceVC",
      "title":"设备",
      "icon":"tabbar_debug",
      "icon_sel":"",

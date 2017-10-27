@@ -43,4 +43,6 @@
 @property (strong, nonatomic) NSMutableArray<__kindof BaseTableModelRow *> *rows;
 
 
+- (void)addRow:(void (^)(BaseTableModelRow *row))row;
+
 @end

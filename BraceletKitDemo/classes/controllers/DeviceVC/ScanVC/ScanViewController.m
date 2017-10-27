@@ -65,7 +65,7 @@
 }
 
 - (CGRect)initContentFrame:(CGRect)frame{
-    frame.size.height -= 49 + 64;
+    frame.size.height -= 64;
     return frame;
 }
 

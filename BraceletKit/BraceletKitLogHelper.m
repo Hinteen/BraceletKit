@@ -42,7 +42,6 @@
     [str appendFormat:@"hrVersionValue: %ld\n", (long)self.hrVersionValue];
     [str appendFormat:@"fontSupport: '%@'\n", self.fontSupport];
     [str appendFormat:@"protocalMap: %ld\n", (long)self.protocalMap];
-    [str appendFormat:@"protocolVer: '%@'\n", self.protocolVer];
     [str appendFormat:@"isDialogDFU: %d\n", self.isDialogDFU];
     [str appendFormat:@"}"];
     return str;

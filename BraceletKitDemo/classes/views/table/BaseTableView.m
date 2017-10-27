@@ -60,6 +60,14 @@ static NSTimeInterval loadingTimeout = 20;
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [self initWithFrame:frame style:UITableViewStyleGrouped]) {
+        
+        
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
+    if (self = [super initWithFrame:frame style:style]) {
         if ([self respondsToSelector:@selector(setupCustomTableViewCell)]) {
             _cellName = NSStringFromClass([self setupCustomTableViewCell].class);
         } else {
@@ -71,7 +79,6 @@ static NSTimeInterval loadingTimeout = 20;
         [self _base_setupTableView];
         
         [self _base_setupDelegates];
-        
         
     }
     return self;
@@ -89,7 +96,7 @@ static NSTimeInterval loadingTimeout = 20;
     self.estimatedSectionHeaderHeight = 0;
     
     self.tableHeaderView = UIViewWithHeight(1);
-    self.tableFooterView = services.app.randomTableFooter;
+//    self.tableFooterView = services.app.randomTableFooter;
     // @xaoxuu: 指示器
     self.indicator = [UIActivityIndicatorView defaultIndicatorWithLoading];
     [self.indicator addToView:self withLoading:YES];
@@ -133,7 +140,7 @@ static NSTimeInterval loadingTimeout = 20;
 //                        
 //                    }];
                     // @xaoxuu: 重载界面
-//                    [weakSelf reloadTableViewWithDataSource:sections];
+                    [weakSelf reloadTableViewWithDataSource:sections];
                     _dataList = sections;
                 }];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(loadingTimeout * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

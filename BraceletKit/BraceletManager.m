@@ -15,7 +15,10 @@ static BraceletManager *braceletManager = nil;
 
 @interface BraceletManager () 
 
-@property (strong, nonatomic) ZeronerDeviceInfo *currentDeviceInfo;
+
+
+// @xaoxuu: arr
+@property (strong, nonatomic) NSMutableArray<ZeronerBlePeripheral *> *bindDevices;
 
 @end
 
@@ -45,6 +48,7 @@ static BraceletManager *braceletManager = nil;
         
     }
     self.delegates = [NSMutableArray array];
+    self.bindDevices = [NSMutableArray array];
     // @xaoxuu: delegate
     self.bleSDK = [BLELib3 shareInstance];
     self.bleSDK.discoverDelegate = self;
@@ -93,6 +97,50 @@ static BraceletManager *braceletManager = nil;
 }
 
 
+- (void)connectDevice:(ZeronerBlePeripheral *)device{
+    [self.bleSDK connectDevice:device];
+    AXLogToCachePath(@"调用了连接方法");
+}
+- (void)disConnectDevice{
+    for (int i = 0; i < self.bindDevices.count; i++) {
+        ZeronerBlePeripheral *tmp = self.bindDevices[i];
+        if ([tmp.cbDevice isEqual:self.bleSDK.peripheral]) {
+            [self.bindDevices removeObjectAtIndex:i];
+            i--;
+        }
+    }
+    [self.bleSDK unConnectDevice];
+    AXLogToCachePath(@"调用了断开连接方法");
+}
+
+
+- (void)didConnectDevice:(ZeronerBlePeripheral *)device{
+    BOOL added = NO;
+    for (ZeronerBlePeripheral *tmp in self.bindDevices) {
+        if ([tmp.uuidString isEqualToString:device.uuidString]) {
+            added = YES;
+            break;
+        }
+    }
+    if (!added) {
+        [self.bindDevices addObject:device];
+    }
+    
+    
+}
+
+
+- (void)setCameraMode:(BOOL)cameraMode{
+    _cameraMode = cameraMode;
+    [self.bleSDK setKeyNotify:cameraMode];
+}
+
+
+
+
+
+
+
 #pragma mark - discover delegate
 #pragma mark required
 
@@ -129,6 +177,7 @@ static BraceletManager *braceletManager = nil;
  *  @param device the device did connected
  */
 - (void)IWBLEDidConnectDevice:(ZeronerBlePeripheral *)device{
+    [self didConnectDevice:device];
     AXLogToCachePath(device);
     
 }
@@ -141,6 +190,7 @@ static BraceletManager *braceletManager = nil;
 - (BLEParamSign)bleParamSignSetting{
     AXLogToCachePath(@"设置蓝牙参数，默认 BLEParamSignConnect");
     return BLEParamSignConnect;
+//    return BLEParamSignMSGOption;
 }
 
 
@@ -209,6 +259,10 @@ static BraceletManager *braceletManager = nil;
  *  like ZeronerHWOption, ZeronerPersonal
  */
 - (void)setBLEParameterAfterConnect{
+    BraceletType type = self.bleSDK.deviceType;
+    NSString *alias = self.bleSDK.getDeivceAlias;
+    
+    
     AXLogToCachePath(@"setBLEParameterAfterConnect");
 }
 
@@ -262,6 +316,11 @@ static BraceletManager *braceletManager = nil;
  *      需要做拍照保护，拍照在未保存完成前不要开启第二次拍照。
  */
 - (void)notifyToTakePicture{
+    [self allDelegates:^(NSObject<BraceletManager> *delegate) {
+        if ([delegate respondsToSelector:@selector(braceletDidTakePicture)]) {
+            [delegate braceletDidTakePicture];
+        }
+    }];
     AXLogToCachePath(@"notifyToTakePicture");
 }
 
@@ -276,9 +335,21 @@ static BraceletManager *braceletManager = nil;
 #pragma mark - ble delegate -> device Info
 
 - (void)updateDeviceInfo:(ZeronerDeviceInfo *)deviceInfo{
+    _currentDeviceInfo = deviceInfo;
+    [self allDelegates:^(NSObject<BraceletManager> *delegate) {
+        if ([delegate respondsToSelector:@selector(braceletDidUpdateDeviceInfo:)]) {
+            [delegate braceletDidUpdateDeviceInfo:deviceInfo];
+        }
+    }];
     AXLogToCachePath(deviceInfo);
 }
 - (void)updateBattery:(ZeronerDeviceInfo *)deviceInfo{
+    [_currentDeviceInfo updateBattery:NSStringFromNSInteger(deviceInfo.batLevel)];
+    [self allDelegates:^(NSObject<BraceletManager> *delegate) {
+        if ([delegate respondsToSelector:@selector(braceletDidUpdateDeviceInfo:)]) {
+            [delegate braceletDidUpdateDeviceInfo:_currentDeviceInfo];
+        }
+    }];
     AXLogToCachePath(deviceInfo);
 }
 

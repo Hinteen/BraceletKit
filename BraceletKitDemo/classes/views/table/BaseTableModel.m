@@ -86,4 +86,12 @@
     return self;
 }
 
+- (void)addRow:(void (^)(BaseTableModelRow *row))row{
+    BaseTableModelRow *model = [BaseTableModelRow new];
+    if (row) {
+        row(model);
+    }
+    [self.rows addObject:model];
+}
+
 @end

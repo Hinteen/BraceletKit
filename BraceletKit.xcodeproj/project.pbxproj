@@ -106,6 +106,8 @@
 		CD3FC1C71FA213F50054B26B /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1C51FA213F50054B26B /* ScanViewController.m */; };
 		CD3FC1CF1FA223A20054B26B /* ScanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1CD1FA223A20054B26B /* ScanTableViewCell.m */; };
 		CD3FC1D01FA223A20054B26B /* ScanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC1CE1FA223A20054B26B /* ScanTableViewCell.xib */; };
+		CD7753291FA2D3010009C8F0 /* DeviceSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7753281FA2D3010009C8F0 /* DeviceSettingVC.m */; };
+		CD77532C1FA2D31F0009C8F0 /* DeviceSettingTV.m in Sources */ = {isa = PBXBuildFile; fileRef = CD77532B1FA2D31F0009C8F0 /* DeviceSettingTV.m */; };
 		DEF70E632A2776ACEB30913A /* libPods-BraceletKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D14689FFFFCA37F6DE88DC /* libPods-BraceletKit.a */; };
 /* End PBXBuildFile section */
 
@@ -312,6 +314,10 @@
 		CD3FC1CC1FA223A20054B26B /* ScanTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScanTableViewCell.h; sourceTree = "<group>"; };
 		CD3FC1CD1FA223A20054B26B /* ScanTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScanTableViewCell.m; sourceTree = "<group>"; };
 		CD3FC1CE1FA223A20054B26B /* ScanTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScanTableViewCell.xib; sourceTree = "<group>"; };
+		CD7753271FA2D3010009C8F0 /* DeviceSettingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceSettingVC.h; sourceTree = "<group>"; };
+		CD7753281FA2D3010009C8F0 /* DeviceSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceSettingVC.m; sourceTree = "<group>"; };
+		CD77532A1FA2D31F0009C8F0 /* DeviceSettingTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceSettingTV.h; sourceTree = "<group>"; };
+		CD77532B1FA2D31F0009C8F0 /* DeviceSettingTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceSettingTV.m; sourceTree = "<group>"; };
 		DB1E183FFB52344948ECBE59 /* Pods-BraceletKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKit/Pods-BraceletKit.debug.xcconfig"; sourceTree = "<group>"; };
 		E6EFBFB819873C01F3CF1024 /* Pods-BraceletKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKitDemo/Pods-BraceletKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		FAB7368B52D73BF363A9199C /* Pods-BraceletKitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKitDemo/Pods-BraceletKitDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -840,6 +846,7 @@
 				CD3FC1C01FA210EF0054B26B /* DeviceCollectionViewCell.xib */,
 				CD3FC1BB1FA210CE0054B26B /* DeviceTableView.h */,
 				CD3FC1BC1FA210CE0054B26B /* DeviceTableView.m */,
+				CD7753261FA2D2DF0009C8F0 /* DeviceSettingVC */,
 				CD3FC1C31FA213E30054B26B /* ScanVC */,
 			);
 			path = DeviceVC;
@@ -855,6 +862,17 @@
 				CD3FC1CE1FA223A20054B26B /* ScanTableViewCell.xib */,
 			);
 			path = ScanVC;
+			sourceTree = "<group>";
+		};
+		CD7753261FA2D2DF0009C8F0 /* DeviceSettingVC */ = {
+			isa = PBXGroup;
+			children = (
+				CD7753271FA2D3010009C8F0 /* DeviceSettingVC.h */,
+				CD7753281FA2D3010009C8F0 /* DeviceSettingVC.m */,
+				CD77532A1FA2D31F0009C8F0 /* DeviceSettingTV.h */,
+				CD77532B1FA2D31F0009C8F0 /* DeviceSettingTV.m */,
+			);
+			path = DeviceSettingVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1044,6 +1062,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BraceletKitDemo/Pods-BraceletKitDemo-resources.sh",
 				"${PODS_ROOT}/AXKit/AXKit/AXKit.bundle",
+				"${PODS_ROOT}/AXCameraKit/AXCameraKit/AXCameraKit.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -1082,6 +1101,7 @@
 				CD3FC19C1FA20B730054B26B /* MJRefreshConst.m in Sources */,
 				CD3FC19A1FA20B730054B26B /* UIViewController+AXMailWrapper.m in Sources */,
 				CD3FC1941FA20B730054B26B /* MJExtensionConst.m in Sources */,
+				CD7753291FA2D3010009C8F0 /* DeviceSettingVC.m in Sources */,
 				CD2E79211FA0C53300012CDB /* ViewController.m in Sources */,
 				CD3FC1241FA20A0B0054B26B /* HTMacros.m in Sources */,
 				CD3FC11D1FA20A0B0054B26B /* DeveloperDataAccess.m in Sources */,
@@ -1154,6 +1174,7 @@
 				CD3FC1961FA20B730054B26B /* NSObject+MJClass.m in Sources */,
 				CD3FC1271FA20A0B0054B26B /* AppVersionInfoModel.m in Sources */,
 				CD3FC11E1FA20A0B0054B26B /* BaseServices.m in Sources */,
+				CD77532C1FA2D31F0009C8F0 /* DeviceSettingTV.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1244,7 +1265,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1293,7 +1314,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

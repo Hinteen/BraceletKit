@@ -16,6 +16,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)braceletDidDiscoverDeviceWithMAC:(ZeronerBlePeripheral *)iwDevice;
 
+- (void)braceletDidUpdateDeviceInfo:(ZeronerDeviceInfo *)deviceInfo;
+
+- (void)braceletDidUpdateDeviceBattery:(ZeronerDeviceInfo *)deviceInfo;
+
+
+- (void)braceletDidTakePicture;
+
 @end
 
 @interface BraceletManager : NSObject <BleDiscoverDelegate, BleConnectDelegate, BLELib3Delegate>
@@ -26,11 +33,32 @@ NS_ASSUME_NONNULL_BEGIN
 // @xaoxuu: delegates
 @property (strong, nonatomic) NSMutableArray *delegates;
 
+@property (strong, readonly, nonatomic) ZeronerDeviceInfo *currentDeviceInfo;
+
+// @xaoxuu: camera mode
+@property (assign, nonatomic) BOOL cameraMode;
+
+- (NSMutableArray<ZeronerBlePeripheral *> *)bindDevices;
+
+
 + (instancetype)defaultManager;
 
 + (instancetype)sharedInstance;
 
 - (void)scanDevice;
+
+- (void)connectDevice:(ZeronerBlePeripheral *)device;
+
+- (void)disConnectDevice;
+
+
+
+
+
+
+
+
+
 
 /**
  注册代理
@@ -48,9 +76,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-
-
-- (void)scan;
 
 
 @end

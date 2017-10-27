@@ -83,7 +83,7 @@
  *  提醒手环和系统解绑
  ** Remind smartband debind with system
  */
-- (void)debindFromSystem;
+- (void) debindFromSystem;
 
 /**
  *  调用这些方法可以得到连接的设备信息和电量信息，可以在
