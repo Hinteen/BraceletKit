@@ -9,14 +9,15 @@
 #import "DeviceCollectionViewCell.h"
 #import <AXKit/AXKit.h>
 #import "DeviceSettingTV.h"
+#import <BraceletKit/BraceletKit.h>
 
-@interface DeviceCollectionViewCell ()
+@interface DeviceCollectionViewCell () <BraceletManager>
 
 @property (weak, nonatomic) IBOutlet UIView *deviceSettingView;
 
 @property (weak, nonatomic) IBOutlet UIButton *addBtn;
 
-@property (strong, nonatomic) DeviceSettingTV *tv;
+@property (strong, nonatomic) DeviceSettingTV *tableView;
 @end
 
 @implementation DeviceCollectionViewCell
@@ -28,11 +29,15 @@
     self.deviceSettingView.backgroundColor = [UIColor randomColor];
     CGRect frame = CGRectFromScreen();
     frame.size.height -= (kTopBarHeight + kTabBarHeight);
-    DeviceSettingTV *tv = [[DeviceSettingTV alloc] initWithFrame:frame style:UITableViewStyleGrouped];
-    [self.deviceSettingView addSubview:tv];
-    self.tv = tv;
+    DeviceSettingTV *tableView = [[DeviceSettingTV alloc] initWithFrame:frame style:UITableViewStyleGrouped];
+    [self.deviceSettingView addSubview:tableView];
+    self.tableView = tableView;
+    [[BraceletManager sharedInstance] registerDelegate:self];
 }
 
+- (void)dealloc{
+    [[BraceletManager sharedInstance] unRegisterDelegate:self];
+}
 
 - (IBAction)add:(UIButton *)sender {
     [self.controller.navigationController ax_pushViewControllerNamed:@"ScanViewController"];
@@ -47,7 +52,16 @@
     } else {
         self.deviceSettingView.hidden = YES;
     }
-    [self.tv reloadDataSourceAndTableView];
+    [self.tableView reloadDataSourceAndTableView];
 }
+
+- (void)braceletDidUpdateDeviceInfo:(ZeronerDeviceInfo *)deviceInfo{
+    [self.tableView reloadDataSourceAndTableView];
+}
+
+- (void)braceletDidUpdateDeviceBattery:(ZeronerDeviceInfo *)deviceInfo{
+    [self.tableView reloadDataSourceAndTableView];
+}
+
 
 @end

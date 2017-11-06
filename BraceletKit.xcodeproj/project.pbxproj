@@ -108,6 +108,7 @@
 		CD3FC1D01FA223A20054B26B /* ScanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC1CE1FA223A20054B26B /* ScanTableViewCell.xib */; };
 		CD7753291FA2D3010009C8F0 /* DeviceSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7753281FA2D3010009C8F0 /* DeviceSettingVC.m */; };
 		CD77532C1FA2D31F0009C8F0 /* DeviceSettingTV.m in Sources */ = {isa = PBXBuildFile; fileRef = CD77532B1FA2D31F0009C8F0 /* DeviceSettingTV.m */; };
+		CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD944E881FB0B44600373636 /* FindPhoneManager.m */; };
 		DEF70E632A2776ACEB30913A /* libPods-BraceletKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D14689FFFFCA37F6DE88DC /* libPods-BraceletKit.a */; };
 /* End PBXBuildFile section */
 
@@ -318,6 +319,8 @@
 		CD7753281FA2D3010009C8F0 /* DeviceSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceSettingVC.m; sourceTree = "<group>"; };
 		CD77532A1FA2D31F0009C8F0 /* DeviceSettingTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceSettingTV.h; sourceTree = "<group>"; };
 		CD77532B1FA2D31F0009C8F0 /* DeviceSettingTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceSettingTV.m; sourceTree = "<group>"; };
+		CD944E871FB0B44600373636 /* FindPhoneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindPhoneManager.h; sourceTree = "<group>"; };
+		CD944E881FB0B44600373636 /* FindPhoneManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindPhoneManager.m; sourceTree = "<group>"; };
 		DB1E183FFB52344948ECBE59 /* Pods-BraceletKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKit/Pods-BraceletKit.debug.xcconfig"; sourceTree = "<group>"; };
 		E6EFBFB819873C01F3CF1024 /* Pods-BraceletKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKitDemo/Pods-BraceletKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		FAB7368B52D73BF363A9199C /* Pods-BraceletKitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKitDemo/Pods-BraceletKitDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -498,6 +501,8 @@
 			children = (
 				CD3FC0D91FA20A0B0054B26B /* UITableView+Creator.m */,
 				CD3FC0DA1FA20A0B0054B26B /* UITableView+Creator.h */,
+				CD944E871FB0B44600373636 /* FindPhoneManager.h */,
+				CD944E881FB0B44600373636 /* FindPhoneManager.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -1113,6 +1118,7 @@
 				CD3FC1A41FA20B730054B26B /* MJRefreshAutoStateFooter.m in Sources */,
 				CD3FC1371FA20A0B0054B26B /* DefaultIndicatorView.m in Sources */,
 				CD3FC1351FA20A0B0054B26B /* BaseTabBarController.m in Sources */,
+				CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */,
 				CD3FC1A21FA20B730054B26B /* MJRefreshBackStateFooter.m in Sources */,
 				CD3FC1301FA20A0B0054B26B /* MineVC.m in Sources */,
 				CD3FC1971FA20B730054B26B /* NSString+MJExtension.m in Sources */,

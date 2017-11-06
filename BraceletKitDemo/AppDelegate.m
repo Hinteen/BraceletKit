@@ -27,7 +27,7 @@
     // @xaoxuu: 启动服务
     [ServicesLayer sharedInstance];
     [[UIColorManager sharedInstance] configColorManager:^(UIColorManager * _Nonnull manager) {
-        manager.theme = [UIColor md_red];
+        manager.theme = [UIColor md_blue];
         manager.accent = [UIColor md_lime];
     }];
     

@@ -28,6 +28,7 @@
         
         self.dataSource = self;
         self.delegate = self;
+        
     }
     return self;
 }
@@ -186,7 +187,7 @@
             
         }];
     } else if ([model.target isEqualToString:@"pushstring"]) {
-        [[BraceletManager sharedInstance].bleSDK pushStr:@"这是一条消息"];
+        [[BraceletManager sharedInstance].bleSDK pushStr:@"DID YOU MISS ME"];
     } else if ([model.target isEqualToString:@"noti_unbind"]) {
         [[BraceletManager sharedInstance].bleSDK debindFromSystem];
     }
@@ -200,15 +201,6 @@
     }
 }
 
-
-
-- (void)braceletDidUpdateDeviceInfo:(ZeronerDeviceInfo *)deviceInfo{
-    [self reloadDataSourceAndTableView];
-}
-
-- (void)braceletDidUpdateDeviceBattery:(ZeronerDeviceInfo *)deviceInfo{
-    [self reloadDataSourceAndTableView];
-}
 
 
 

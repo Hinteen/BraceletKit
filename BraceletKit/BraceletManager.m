@@ -8,10 +8,37 @@
 
 #import "BraceletManager.h"
 #import <AXKit/AXKit.h>
-
+#import <AVFoundation/AVFoundation.h>
 
 static BraceletManager *braceletManager = nil;
 
+
+static inline void showMessage(NSString *msg, NSTimeInterval duration){
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // @xaoxuu: in main queue
+        [UIApplication ax_showStatusBarMessage:msg textColor:[UIColor whiteColor] backgroundColor:[UIColor md_blue] duration:duration];
+    });
+}
+
+static inline void showAlert(NSString *msg){
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // @xaoxuu: in main queue
+        [UIApplication ax_showStatusBarMessage:msg textColor:[UIColor blackColor] backgroundColor:[UIColor md_yellow] duration:5];
+    });
+}
+static inline void showError(NSString *msg){
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // @xaoxuu: in main queue
+        [UIApplication ax_showStatusBarMessage:msg textColor:[UIColor whiteColor] backgroundColor:[UIColor md_red] duration:10];
+    });
+}
+
+static inline void showSuccess(NSString *msg){
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // @xaoxuu: in main queue
+        [UIApplication ax_showStatusBarMessage:msg textColor:[UIColor whiteColor] backgroundColor:[UIColor md_green] duration:5];
+    });
+}
 
 @interface BraceletManager () 
 
@@ -179,6 +206,24 @@ static BraceletManager *braceletManager = nil;
 - (void)IWBLEDidConnectDevice:(ZeronerBlePeripheral *)device{
     [self didConnectDevice:device];
     AXLogToCachePath(device);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        ZeronerHWOption *model = [ZeronerHWOption defaultHWOption];
+        model.ledSwitch = YES;
+        model.unitType = UnitTypeInternational;
+        model.backColor = YES;
+        model.language = braceletLanguageSimpleChinese;
+        model.disConnectTip = YES;
+        model.autoHeartRate = YES;
+        model.autoSleep = YES;
+        model.findPhoneSwitch = YES;
+        
+        [self.bleSDK setFirmwareOption:model];
+    });
+    showSuccess(@"连接成功");
+    
+    
+    
     
 }
 
@@ -202,6 +247,7 @@ static BraceletManager *braceletManager = nil;
 - (void)IWBLEDidDisConnectWithDevice:(ZeronerBlePeripheral *)device andError:(NSError *)error{
     AXLogToCachePath(device);
     AXLogToCachePath(error);
+    showError([NSString stringWithFormat:@"已与设备[%@]断开连接，错误信息：[%@]", device.deviceName, error]);
 }
 
 /**
@@ -212,6 +258,7 @@ static BraceletManager *braceletManager = nil;
 - (void)IWBLEDidFailToConnectDevice:(ZeronerBlePeripheral *)device andError:(NSError *)error{
     AXLogToCachePath(device);
     AXLogToCachePath(error);
+    showError([NSString stringWithFormat:@"与设备[%@]连接失败，错误信息：[%@]", device.deviceName, error]);
 }
 
 /**
@@ -219,6 +266,7 @@ static BraceletManager *braceletManager = nil;
  */
 - (void)IWBLEConnectTimeOut{
     AXLogToCachePath(@"连接超时");
+    showError(@"连接超时");
 }
 
 /**
@@ -245,9 +293,11 @@ static BraceletManager *braceletManager = nil;
  */
 - (void)centralManagerStatePoweredOff{
     AXLogToCachePath(@"蓝牙关");
+    showError(@"蓝牙已关闭");
 }
 - (void)centralManagerStatePoweredOn{
     AXLogToCachePath(@"蓝牙开");
+    showSuccess(@"蓝牙已打开");
 }
 
 
@@ -322,6 +372,7 @@ static BraceletManager *braceletManager = nil;
         }
     }];
     AXLogToCachePath(@"notifyToTakePicture");
+    showMessage(@"点击了拍照", 5);
 }
 
 /*!
@@ -330,11 +381,27 @@ static BraceletManager *braceletManager = nil;
  */
 - (void)notifyToSearchPhone{
     AXLogToCachePath(@"notifyToSearchPhone");
+    showAlert(@"正在寻找手机...");
+    AudioServicesPlayAlertSound(1008);
 }
 
 #pragma mark - ble delegate -> device Info
 
 - (void)updateDeviceInfo:(ZeronerDeviceInfo *)deviceInfo{
+    _currentDeviceInfo = deviceInfo;
+    NSString *bat = [NSUserDefaults ax_readStringForKey:deviceInfo.seriesNo.extension(@"deviceInfo.batLevel")];
+    [_currentDeviceInfo updateBattery:bat];
+    [self allDelegates:^(NSObject<BraceletManager> *delegate) {
+        if ([delegate respondsToSelector:@selector(braceletDidUpdateDeviceInfo:)]) {
+            [delegate braceletDidUpdateDeviceInfo:deviceInfo];
+        }
+    }];
+    AXLogToCachePath(deviceInfo);
+    NSString *msg = [NSString stringWithFormat:@"获取到设备信息：%@", deviceInfo];
+    msg = [msg stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    showMessage(msg, 10);
+}
+- (void)updateBattery:(ZeronerDeviceInfo *)deviceInfo{
     _currentDeviceInfo = deviceInfo;
     [self allDelegates:^(NSObject<BraceletManager> *delegate) {
         if ([delegate respondsToSelector:@selector(braceletDidUpdateDeviceInfo:)]) {
@@ -342,15 +409,10 @@ static BraceletManager *braceletManager = nil;
         }
     }];
     AXLogToCachePath(deviceInfo);
-}
-- (void)updateBattery:(ZeronerDeviceInfo *)deviceInfo{
-    [_currentDeviceInfo updateBattery:NSStringFromNSInteger(deviceInfo.batLevel)];
-    [self allDelegates:^(NSObject<BraceletManager> *delegate) {
-        if ([delegate respondsToSelector:@selector(braceletDidUpdateDeviceInfo:)]) {
-            [delegate braceletDidUpdateDeviceInfo:_currentDeviceInfo];
-        }
-    }];
-    AXLogToCachePath(deviceInfo);
+    [NSUserDefaults ax_setInteger:deviceInfo.batLevel forKey:deviceInfo.seriesNo.extension(@"deviceInfo.batLevel")];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        showMessage([NSString stringWithFormat:@"获取到设备电量信息：%ld%%", deviceInfo.batLevel], 5);
+    });
 }
 
 /**
