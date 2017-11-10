@@ -109,6 +109,8 @@
 		CD7753291FA2D3010009C8F0 /* DeviceSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7753281FA2D3010009C8F0 /* DeviceSettingVC.m */; };
 		CD77532C1FA2D31F0009C8F0 /* DeviceSettingTV.m in Sources */ = {isa = PBXBuildFile; fileRef = CD77532B1FA2D31F0009C8F0 /* DeviceSettingTV.m */; };
 		CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD944E881FB0B44600373636 /* FindPhoneManager.m */; };
+		CDDFA3AB1FB5BAC8004C99D5 /* HomeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFA3AA1FB5BAC8004C99D5 /* HomeTableView.m */; };
+		CDDFA3AD1FB5BADB004C99D5 /* HomeTableView.json in Resources */ = {isa = PBXBuildFile; fileRef = CDDFA3AC1FB5BADB004C99D5 /* HomeTableView.json */; };
 		DEF70E632A2776ACEB30913A /* libPods-BraceletKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D14689FFFFCA37F6DE88DC /* libPods-BraceletKit.a */; };
 /* End PBXBuildFile section */
 
@@ -321,6 +323,9 @@
 		CD77532B1FA2D31F0009C8F0 /* DeviceSettingTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceSettingTV.m; sourceTree = "<group>"; };
 		CD944E871FB0B44600373636 /* FindPhoneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindPhoneManager.h; sourceTree = "<group>"; };
 		CD944E881FB0B44600373636 /* FindPhoneManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindPhoneManager.m; sourceTree = "<group>"; };
+		CDDFA3A91FB5BAC8004C99D5 /* HomeTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTableView.h; sourceTree = "<group>"; };
+		CDDFA3AA1FB5BAC8004C99D5 /* HomeTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTableView.m; sourceTree = "<group>"; };
+		CDDFA3AC1FB5BADB004C99D5 /* HomeTableView.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HomeTableView.json; sourceTree = "<group>"; };
 		DB1E183FFB52344948ECBE59 /* Pods-BraceletKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKit/Pods-BraceletKit.debug.xcconfig"; sourceTree = "<group>"; };
 		E6EFBFB819873C01F3CF1024 /* Pods-BraceletKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKitDemo/Pods-BraceletKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		FAB7368B52D73BF363A9199C /* Pods-BraceletKitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKitDemo/Pods-BraceletKitDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -578,6 +583,9 @@
 				CD3FC0F01FA20A0B0054B26B /* HomeVC.m */,
 				CD3FC0F11FA20A0B0054B26B /* HomeVC.xib */,
 				CD3FC0F21FA20A0B0054B26B /* HomeVC.h */,
+				CDDFA3A91FB5BAC8004C99D5 /* HomeTableView.h */,
+				CDDFA3AA1FB5BAC8004C99D5 /* HomeTableView.m */,
+				CDDFA3AC1FB5BADB004C99D5 /* HomeTableView.json */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -992,6 +1000,7 @@
 				CD3FC1D01FA223A20054B26B /* ScanTableViewCell.xib in Resources */,
 				CD2E79261FA0C53300012CDB /* Assets.xcassets in Resources */,
 				CD2E79241FA0C53300012CDB /* Main.storyboard in Resources */,
+				CDDFA3AD1FB5BADB004C99D5 /* HomeTableView.json in Resources */,
 				CD3FC1B71FA2104B0054B26B /* DeviceVC.xib in Resources */,
 				CD3FC19D1FA20B730054B26B /* MJRefresh.bundle in Resources */,
 			);
@@ -1148,6 +1157,7 @@
 				CD3FC1381FA20A0B0054B26B /* BaseSettingSwitch.m in Sources */,
 				CD3FC1901FA20B730054B26B /* MJPropertyType.m in Sources */,
 				CD3FC1A01FA20B730054B26B /* UIView+MJExtension.m in Sources */,
+				CDDFA3AB1FB5BAC8004C99D5 /* HomeTableView.m in Sources */,
 				CD3FC1451FA20ABF0054B26B /* BaseTableModel.m in Sources */,
 				CD3FC1AC1FA20B730054B26B /* MJRefreshBackFooter.m in Sources */,
 				CD3FC1291FA20A0B0054B26B /* ThemeColorModel.m in Sources */,

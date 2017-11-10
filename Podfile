@@ -10,6 +10,7 @@ end
 target 'BraceletKitDemo' do
     
     pod 'AXKit'
+    pod 'AXTableKit'
     pod 'AXCameraKit'
     pod 'YYKit'
     

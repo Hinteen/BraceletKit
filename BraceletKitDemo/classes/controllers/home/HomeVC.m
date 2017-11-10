@@ -7,6 +7,8 @@
 //
 
 #import "HomeVC.h"
+#import "HomeTableView.h"
+
 
 @interface HomeVC ()
 
@@ -17,6 +19,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    HomeTableView *tableView = [[HomeTableView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:tableView];
+    
 }
 
 - (void)didReceiveMemoryWarning {
