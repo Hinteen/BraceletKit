@@ -8,6 +8,6 @@
 
 #import "BaseTableView.h"
 
-@interface DeviceSettingTV : BaseTableView
+@interface DeviceSettingTV : AXTableView
 
 @end

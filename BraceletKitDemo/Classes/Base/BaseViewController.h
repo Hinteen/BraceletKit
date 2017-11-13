@@ -50,19 +50,19 @@ typedef NS_ENUM(NSUInteger, ContentViewStyle) {
 
  @return table view
  */
-- (UITableView<BaseTableView> *)installTableView;
+- (AXTableViewType *)installTableView;
 
 
 /**
  安装完tableview
  */
-- (void)didTableViewInstalled:(UITableView<BaseTableView> *)tableView;
+- (void)didTableViewInstalled:(AXTableViewType *)tableView;
 
 @end
 
 @interface BaseViewController : UIViewController <BaseVC,AXModuleKit>
 
 // @xaoxuu: table view
-@property (strong, nonatomic) UITableView<BaseTableView> *tableView;
+@property (strong, nonatomic) AXTableView *tableView;
 
 @end

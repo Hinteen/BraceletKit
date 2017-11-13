@@ -148,9 +148,9 @@
     if ([self respondsToSelector:@selector(installTableView)]) {
         [self.view addSubview:UIViewWithHeight(1)];
         self.tableView = [self installTableView];
-        // init and add to superview
-        self.tableView.dataSource = self.tableView;
-        self.tableView.delegate = self.tableView;
+//        // init and add to superview
+//        self.tableView.dataSource = self.tableView;
+//        self.tableView.delegate = self.tableView;
         self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
         [self.tableView setAutoresizesSubviews:NO];
         [self.view addSubview:self.tableView];

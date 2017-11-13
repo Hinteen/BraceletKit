@@ -1,0 +1,106 @@
+{
+    "title":"设备",
+    "headerTitle":"this is table header",
+    "headerHeight":0,
+    "footerTitle":"this is table footer",
+    "footerHeight":0,
+    "sections":[
+        {
+            "headerTitle":"基本信息1",
+            "headerHeight":44,
+            "footerTitle":"",
+            "footerHeight":0,
+            "rowHeight":50,
+            "rows":[
+                {
+                    "title":"根控制器",
+                    "detail":"about axkit",
+                    "icon":"setting_about",
+                    "target":"RootViewController"
+                },
+                {
+                    "title":"博客",
+                    "detail":"xaoxuu's blog",
+                    "icon":"https://xaoxuu.com/images/avatar.png",
+                    "target":"https://blog.xaoxuu.com"
+                },
+                {
+                    "title":"主页",
+                    "detail":"xaoxuu",
+                    "icon":"http://xaoxuu.com",
+                    "target":"http://xaoxuu.com"
+                },
+                {
+                    "title":"new vc",
+                    "detail":"xaoxuu's proj",
+                    "icon":"help",
+                    "target":"NewViewController"
+                }
+            ]
+        },
+        {
+            "headerTitle":"基本信息2",
+            "headerHeight":44,
+            "footerTitle":"",
+            "footerHeight":0,
+            "rowHeight":80,
+            "rows":[
+                {
+                    "title":"关sfadfsadfasdf于",
+                    "detail":"about axkit dsa fafds fsd fas dfs sd ",
+                    "icon":"setting_about",
+                    "target":""
+                },
+                {
+                    "title":"博客防守打法ad发多少发送dsa d但是",
+                    "detail":"xaoxuu's blog 史蒂芬s",
+                    "icon":"https://xaoxuu.com/images/avatar.png",
+                    "target":""
+                }
+            ]
+        },
+        {
+            "headerTitle":"基本信息2",
+            "headerHeight":44,
+            "footerTitle":"",
+            "footerHeight":0,
+            "rowHeight":80,
+            "rows":[
+                {
+                    "title":"关sfadfsadfasdf于",
+                    "detail":"about axkit dsa fafds fsd fas dfs sd ",
+                    "icon":"setting_about",
+                    "target":"AboutVC"
+                },
+                {
+                    "title":"博客防守打法ad发多少发送dsa d但是",
+                    "detail":"xaoxuu's blog 史蒂芬s",
+                    "icon":"https://xaoxuu.com/images/avatar.png",
+                    "target":"BlogVC"
+                }
+            ]
+        },
+        {
+            "headerTitle":"基本信息2",
+            "headerHeight":44,
+            "footerTitle":"",
+            "footerHeight":0,
+            "rowHeight":80,
+            "rows":[
+                {
+                    "title":"关sfadfsadfasdf于",
+                    "detail":"about axkit dsa fafds fsd fas dfs sd ",
+                    "icon":"setting_about",
+                    "target":"AboutVC"
+                },
+                {
+                    "title":"博客防守打法ad发多少发送dsa d但是",
+                    "detail":"xaoxuu's blog 史蒂芬s",
+                    "icon":"https://xaoxuu.com/images/avatar.png",
+                    "target":"BlogVC"
+                }
+            ]
+        }
+    ]
+}
+

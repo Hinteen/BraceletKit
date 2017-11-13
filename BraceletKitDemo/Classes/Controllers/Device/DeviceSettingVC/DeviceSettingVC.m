@@ -39,14 +39,14 @@
 }
 
 
-
-- (void)braceletDidUpdateDeviceInfo:(ZeronerDeviceInfo *)deviceInfo{
-    [self.tableView reloadDataSourceAndTableView];
-}
-
-- (void)braceletDidUpdateDeviceBattery:(ZeronerDeviceInfo *)deviceInfo{
-    [self.tableView reloadDataSourceAndTableView];
-}
+//
+//- (void)braceletDidUpdateDeviceInfo:(ZeronerDeviceInfo *)deviceInfo{
+//    [self.tableView reloadDataSourceAndTableView];
+//}
+//
+//- (void)braceletDidUpdateDeviceBattery:(ZeronerDeviceInfo *)deviceInfo{
+//    [self.tableView reloadDataSourceAndTableView];
+//}
 
 
 

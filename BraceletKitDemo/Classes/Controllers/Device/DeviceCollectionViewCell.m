@@ -52,16 +52,16 @@
     } else {
         self.deviceSettingView.hidden = YES;
     }
-    [self.tableView reloadDataSourceAndTableView];
+//    [self.tableView reloadDataSourceAndTableView];
 }
 
-- (void)braceletDidUpdateDeviceInfo:(ZeronerDeviceInfo *)deviceInfo{
-    [self.tableView reloadDataSourceAndTableView];
-}
-
-- (void)braceletDidUpdateDeviceBattery:(ZeronerDeviceInfo *)deviceInfo{
-    [self.tableView reloadDataSourceAndTableView];
-}
+//- (void)braceletDidUpdateDeviceInfo:(ZeronerDeviceInfo *)deviceInfo{
+//    [self.tableView reloadDataSourceAndTableView];
+//}
+//
+//- (void)braceletDidUpdateDeviceBattery:(ZeronerDeviceInfo *)deviceInfo{
+//    [self.tableView reloadDataSourceAndTableView];
+//}
 
 
 @end

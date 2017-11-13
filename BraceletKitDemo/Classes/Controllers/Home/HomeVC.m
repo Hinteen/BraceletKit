@@ -9,8 +9,17 @@
 #import "HomeVC.h"
 #import "HomeTableView.h"
 #import <AXKit/AXKit.h>
+#import "DeviceSettingTV.h"
+#import <AXCameraKit/AXCameraKit.h>
 
-@interface HomeVC ()
+static inline CGSize contentSize(){
+    return CGSizeMake(kScreenW, kScreenH - kTopBarHeight - kTabBarHeight);
+}
+
+@interface HomeVC () <BraceletManager>
+
+
+//@property (strong, nonatomic) DeviceSettingTV *tableView;
 
 @end
 
@@ -22,9 +31,10 @@
     
     self.view.width = kScreenW;
     self.view.height -= kTabBarHeight;
-    HomeTableView *tableView = [[HomeTableView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:tableView];
     
+    [self loadCameraKit];
+    
+    [[BraceletManager sharedInstance] registerDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,14 +42,36 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)dealloc{
+    [[BraceletManager sharedInstance] unRegisterDelegate:self];
 }
-*/
+
+
+- (AXTableViewType *)installTableView{
+    return [[DeviceSettingTV alloc] initWithFrame:CGRectMake(0, 0, contentSize().width, contentSize().height) style:UITableViewStyleGrouped];
+}
+
+
+- (void)braceletDidUpdateDeviceInfo:(ZeronerDeviceInfo *)deviceInfo{
+    [self.tableView reloadDataSourceAndTableView];
+}
+
+- (void)braceletDidUpdateDeviceBattery:(ZeronerDeviceInfo *)deviceInfo{
+    [self.tableView reloadDataSourceAndTableView];
+}
+
+- (void)cameraDidDismissed{
+    [BraceletManager sharedInstance].cameraMode = NO;
+}
+
+- (void)cameraDidPresented{
+    [BraceletManager sharedInstance].cameraMode = YES;
+}
+
+- (void)braceletDidTakePicture{
+    [self takePicture];
+}
+
+
 
 @end

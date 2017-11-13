@@ -106,6 +106,7 @@
 		CD616CA91FB9E0B300E38244 /* BaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616CA41FB9E0B300E38244 /* BaseTabBarController.m */; };
 		CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = CD616CAA1FB9E16D00E38244 /* PrefixHeader.pch */; };
 		CD616CAD1FB9E2FC00E38244 /* BaseTabBarController.json in Resources */ = {isa = PBXBuildFile; fileRef = CD616CAC1FB9E2FC00E38244 /* BaseTabBarController.json */; };
+		CD616CAF1FB9E92D00E38244 /* DeviceSettingTV.json in Resources */ = {isa = PBXBuildFile; fileRef = CD616CAE1FB9E92C00E38244 /* DeviceSettingTV.json */; };
 		CD7753291FA2D3010009C8F0 /* DeviceSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7753281FA2D3010009C8F0 /* DeviceSettingVC.m */; };
 		CD77532C1FA2D31F0009C8F0 /* DeviceSettingTV.m in Sources */ = {isa = PBXBuildFile; fileRef = CD77532B1FA2D31F0009C8F0 /* DeviceSettingTV.m */; };
 		CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD944E881FB0B44600373636 /* FindPhoneManager.m */; };
@@ -316,6 +317,7 @@
 		CD616CA51FB9E0B300E38244 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		CD616CAA1FB9E16D00E38244 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		CD616CAC1FB9E2FC00E38244 /* BaseTabBarController.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BaseTabBarController.json; sourceTree = "<group>"; };
+		CD616CAE1FB9E92C00E38244 /* DeviceSettingTV.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DeviceSettingTV.json; sourceTree = "<group>"; };
 		CD7753271FA2D3010009C8F0 /* DeviceSettingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceSettingVC.h; sourceTree = "<group>"; };
 		CD7753281FA2D3010009C8F0 /* DeviceSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceSettingVC.m; sourceTree = "<group>"; };
 		CD77532A1FA2D31F0009C8F0 /* DeviceSettingTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceSettingTV.h; sourceTree = "<group>"; };
@@ -874,6 +876,7 @@
 				CD7753281FA2D3010009C8F0 /* DeviceSettingVC.m */,
 				CD77532A1FA2D31F0009C8F0 /* DeviceSettingTV.h */,
 				CD77532B1FA2D31F0009C8F0 /* DeviceSettingTV.m */,
+				CD616CAE1FB9E92C00E38244 /* DeviceSettingTV.json */,
 			);
 			path = DeviceSettingVC;
 			sourceTree = "<group>";
@@ -980,6 +983,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD616CAF1FB9E92D00E38244 /* DeviceSettingTV.json in Resources */,
 				CD3FC12E1FA20A0B0054B26B /* DefaultViewController.xib in Resources */,
 				CD3FC12C1FA20A0B0054B26B /* ActivityVC.xib in Resources */,
 				CD2E79291FA0C53300012CDB /* LaunchScreen.storyboard in Resources */,

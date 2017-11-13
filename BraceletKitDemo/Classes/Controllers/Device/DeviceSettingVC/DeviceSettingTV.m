@@ -23,165 +23,157 @@
 @implementation DeviceSettingTV
 
 
-- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
-    if (self = [super initWithFrame:frame style:style]) {
-        
-        self.dataSource = self;
-        self.delegate = self;
-        
-    }
-    return self;
-}
-
-- (void)setupTableViewDataSource:(void (^)(NSMutableArray<BaseTableModelSection *> *))dataSource{
+- (void)ax_tableViewDataSource:(void (^)(AXTableModelType *))dataSource{
     ZeronerBlePeripheral *peripheral = [BraceletManager sharedInstance].bindDevices.firstObject;
     ZeronerDeviceInfo *deviceInfo = [BraceletManager sharedInstance].currentDeviceInfo;
-    NSMutableArray<BaseTableModelSection *> *sections = [NSMutableArray array];
-    BaseTableModelSection *sec0 = [BaseTableModelSection new];
-    [sections addObject:sec0];
-    sec0.header_title = @"基本信息";
-    sec0.rowHeight = @"50";
     
-    [sec0 addRow:^(BaseTableModelRow *row) {
-        row.title = @"手环名";
-        row.desc = peripheral.deviceName;
-        row.target = @"BraceletNameVC";
-    }];
-    [sec0 addRow:^(BaseTableModelRow *row) {
-        row.title = @"UUID";
-        row.desc = peripheral.uuidString;
-        row.target = @"UUIDVC";
-    }];
-    [sec0 addRow:^(BaseTableModelRow *row) {
-        row.title = @"电量";
-        row.desc = [NSString stringWithFormat:@"%d%%", (int)deviceInfo.batLevel];
-    }];
-    [sec0 addRow:^(BaseTableModelRow *row) {
-        row.title = @"model";
-        row.desc = deviceInfo.model;
-    }];
-    [sec0 addRow:^(BaseTableModelRow *row) {
-        row.title = @"协议版本";
-        row.desc = deviceInfo.protocolVer;
-    }];
-    [sec0 addRow:^(BaseTableModelRow *row) {
-        row.title = @"版本";
-        row.desc = deviceInfo.version;
-        row.target = @"version";
-    }];
-    [sec0 addRow:^(BaseTableModelRow *row) {
-        row.title = @"OAD";
-        row.desc = NSStringFromNSInteger(deviceInfo.oadMode);
-    }];
-    [sec0 addRow:^(BaseTableModelRow *row) {
-        row.title = @"序列号";
-        row.desc = deviceInfo.seriesNo;
-        row.target = @"seriesNo";
-    }];
-    [sec0 addRow:^(BaseTableModelRow *row) {
-        row.title = @"蓝牙地址";
-        row.desc = deviceInfo.bleAddr;
-        row.target = @"bleAddr";
-    }];
-    [sec0 addRow:^(BaseTableModelRow *row) {
-        row.title = @"hw版本";
-        row.desc = NSStringFromNSInteger(deviceInfo.hwVersion);
-    }];
-    
-    BaseTableModelSection *sec1 = [BaseTableModelSection new];
-    [sections addObject:sec1];
-    sec1.header_title = @"功能";
-    sec1.rowHeight = @"50";
-    [sec1 addRow:^(BaseTableModelRow *row) {
-        row.title = @"推送消息";
-        row.target = @"pushstring";
-    }];
-    [sec1 addRow:^(BaseTableModelRow *row) {
-        row.title = @"1.智拍";
-        row.target = @"zhipai";
-    }];
-    if ([BraceletManager sharedInstance].bleSDK.hasHeartFunction) {
-        [sec1 addRow:^(BaseTableModelRow *row) {
-            row.title = @"2.心率";
-            row.target = @"xinlv";
+    AXTableModel *dataList = [[AXTableModel alloc] init];
+    [dataList addSection:^(AXTableSectionModel *section) {
+        section.headerTitle = @"基本信息";
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"手环名";
+            row.detail = peripheral.deviceName;
+            row.target = @"BraceletNameVC";
         }];
-    }
-    if ([BraceletManager sharedInstance].bleSDK.hasScheduleFunction) {
-        [sec1 addRow:^(BaseTableModelRow *row) {
-            row.title = @"3.schedule";
-            row.target = @"schedule";
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"UUID";
+            row.detail = peripheral.uuidString;
+            row.target = @"UUIDVC";
         }];
-    }
-    if ([BraceletManager sharedInstance].bleSDK.hasWeatherFunction) {
-        [sec1 addRow:^(BaseTableModelRow *row) {
-            row.title = @"4.天气";
-            row.target = @"weather";
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"电量";
+            row.detail = [NSString stringWithFormat:@"%d%%", (int)deviceInfo.batLevel];
         }];
-    }
-    if ([BraceletManager sharedInstance].bleSDK.hasMotorControlFunction) {
-        [sec1 addRow:^(BaseTableModelRow *row) {
-            row.title = @"5.振动";
-            row.target = @"motor";
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"model";
+            row.detail = deviceInfo.model;
         }];
-    }
-    if ([BraceletManager sharedInstance].bleSDK.hasBackgroundLightFunction) {
-        [sec1 addRow:^(BaseTableModelRow *row) {
-            row.title = @"6.hasBackgroundLightFunction";
-            row.target = @"hasBackgroundLightFunction";
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"协议版本";
+            row.detail = deviceInfo.protocolVer;
         }];
-    }
-    if ([BraceletManager sharedInstance].bleSDK.hasLedLightFunction) {
-        [sec1 addRow:^(BaseTableModelRow *row) {
-            row.title = @"7.hasLedLightFunction";
-            row.target = @"hasLedLightFunction";
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"版本";
+            row.detail = deviceInfo.version;
+            row.target = @"version";
         }];
-    }
-    if ([BraceletManager sharedInstance].bleSDK.hasAutoHeartRateFunction) {
-        [sec1 addRow:^(BaseTableModelRow *row) {
-            row.title = @"8.hasAutoHeartRateFunction";
-            row.target = @"hasAutoHeartRateFunction";
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"OAD";
+            row.detail = NSStringFromNSInteger(deviceInfo.oadMode);
         }];
-    }
-    if ([BraceletManager sharedInstance].bleSDK.hasWristBlightFunction) {
-        [sec1 addRow:^(BaseTableModelRow *row) {
-            row.title = @"9.hasWristBlightFunction";
-            row.target = @"hasWristBlightFunction";
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"序列号";
+            row.detail = deviceInfo.seriesNo;
+            row.target = @"seriesNo";
         }];
-    }
-    if ([BraceletManager sharedInstance].bleSDK.hasExerciseHRWarningFunction) {
-        [sec1 addRow:^(BaseTableModelRow *row) {
-            row.title = @"10.hasExerciseHRWarningFunction";
-            row.target = @"hasExerciseHRWarningFunction";
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"蓝牙地址";
+            row.detail = deviceInfo.bleAddr;
+            row.target = @"bleAddr";
         }];
-    }
-    if ([BraceletManager sharedInstance].bleSDK.hasSimpleLanguage) {
-        [sec1 addRow:^(BaseTableModelRow *row) {
-            row.title = @"11.hasSimpleLanguage";
-            row.target = @"hasSimpleLanguage";
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"hw版本";
+            row.detail = NSStringFromNSInteger(deviceInfo.hwVersion);
         }];
-    }
-    if ([BraceletManager sharedInstance].bleSDK.hasJapaneseLanguage) {
-        [sec1 addRow:^(BaseTableModelRow *row) {
-            row.title = @"12.hasJapaneseLanguage";
-            row.target = @"hasJapaneseLanguage";
-        }];
-    }
-    if ([BraceletManager sharedInstance].bleSDK.hasItalianLanguage) {
-        [sec1 addRow:^(BaseTableModelRow *row) {
-            row.title = @"13.hasItalianLanguage";
-            row.target = @"hasItalianLanguage";
-        }];
-    }
-    [sec1 addRow:^(BaseTableModelRow *row) {
-        row.title = @"提醒手环和系统解绑";
-        row.target = @"noti_unbind";
     }];
     
-    dataSource(sections);
+    [dataList addSection:^(AXTableSectionModel *section) {
+        section.headerTitle = @"功能";
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"推送消息";
+            row.target = @"pushstring";
+        }];
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"1.智拍";
+            row.target = @"zhipai";
+        }];
+        if ([BraceletManager sharedInstance].bleSDK.hasHeartFunction) {
+            [section addRow:^(AXTableRowModel *row) {
+                row.title = @"2.心率";
+                row.target = @"xinlv";
+            }];
+        }
+        if ([BraceletManager sharedInstance].bleSDK.hasScheduleFunction) {
+            [section addRow:^(AXTableRowModel *row) {
+                row.title = @"3.schedule";
+                row.target = @"schedule";
+            }];
+        }
+        if ([BraceletManager sharedInstance].bleSDK.hasWeatherFunction) {
+            [section addRow:^(AXTableRowModel *row) {
+                row.title = @"4.天气";
+                row.target = @"weather";
+            }];
+        }
+        if ([BraceletManager sharedInstance].bleSDK.hasMotorControlFunction) {
+            [section addRow:^(AXTableRowModel *row) {
+                row.title = @"5.振动";
+                row.target = @"motor";
+            }];
+        }
+        if ([BraceletManager sharedInstance].bleSDK.hasBackgroundLightFunction) {
+            [section addRow:^(AXTableRowModel *row) {
+                row.title = @"6.hasBackgroundLightFunction";
+                row.target = @"hasBackgroundLightFunction";
+            }];
+        }
+        if ([BraceletManager sharedInstance].bleSDK.hasLedLightFunction) {
+            [section addRow:^(AXTableRowModel *row) {
+                row.title = @"7.hasLedLightFunction";
+                row.target = @"hasLedLightFunction";
+            }];
+        }
+        if ([BraceletManager sharedInstance].bleSDK.hasAutoHeartRateFunction) {
+            [section addRow:^(AXTableRowModel *row) {
+                row.title = @"8.hasAutoHeartRateFunction";
+                row.target = @"hasAutoHeartRateFunction";
+            }];
+        }
+        if ([BraceletManager sharedInstance].bleSDK.hasWristBlightFunction) {
+            [section addRow:^(AXTableRowModel *row) {
+                row.title = @"9.hasWristBlightFunction";
+                row.target = @"hasWristBlightFunction";
+            }];
+        }
+        if ([BraceletManager sharedInstance].bleSDK.hasExerciseHRWarningFunction) {
+            [section addRow:^(AXTableRowModel *row) {
+                row.title = @"10.hasExerciseHRWarningFunction";
+                row.target = @"hasExerciseHRWarningFunction";
+            }];
+        }
+        if ([BraceletManager sharedInstance].bleSDK.hasSimpleLanguage) {
+            [section addRow:^(AXTableRowModel *row) {
+                row.title = @"11.hasSimpleLanguage";
+                row.target = @"hasSimpleLanguage";
+            }];
+        }
+        if ([BraceletManager sharedInstance].bleSDK.hasJapaneseLanguage) {
+            [section addRow:^(AXTableRowModel *row) {
+                row.title = @"12.hasJapaneseLanguage";
+                row.target = @"hasJapaneseLanguage";
+            }];
+        }
+        if ([BraceletManager sharedInstance].bleSDK.hasItalianLanguage) {
+            [section addRow:^(AXTableRowModel *row) {
+                row.title = @"13.hasItalianLanguage";
+                row.target = @"hasItalianLanguage";
+            }];
+        }
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"提醒手环和系统解绑";
+            row.target = @"noti_unbind";
+        }];
+        
+        
+    }];
+    
+    dataSource(dataList);
+    
 }
 
 
-- (void)indexPath:(NSIndexPath *)indexPath didSelected:(__kindof BaseTableModelRow *)model{
+- (void)ax_tableViewDidSelectedRowAtIndexPath:(NSIndexPath *)indexPath{
+    AXTableRowModelType *model = [self ax_rowModelForIndexPath:indexPath];
     if ([model.target isEqualToString:@"zhipai"]) {
         [self.controller presentCameraVC:^{
             
@@ -198,14 +190,26 @@
     
     
     
+    
     else if (model.target.length) {
         // @xaoxuu: push default vc
-        DefaultViewController *vc = [DefaultViewController defaultVCWithTitle:NSLocalizedString(model.title, nil) detail:NSLocalizedString(model.desc, nil)];
+        DefaultViewController *vc = [DefaultViewController defaultVCWithTitle:NSLocalizedString(model.title, nil) detail:NSLocalizedString(model.detail, nil)];
         [self.controller.navigationController pushViewController:vc animated:YES];
     }
+    
+    
 }
 
 
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return self.dataList.sections[section].headerTitle;
+}
+
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return self.dataList.sections[section].footerHeight;
+}
 
 @end

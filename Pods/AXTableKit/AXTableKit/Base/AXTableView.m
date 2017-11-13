@@ -102,12 +102,22 @@ static CGFloat defaultRowHeight = 44;
 
 #pragma mark - func
 
+
 - (void)reloadData{
     dispatch_async(dispatch_get_main_queue(), ^{
         // @xaoxuu: in main queue
         
         [super reloadData];
     });
+}
+
+- (void)reloadDataSourceAndTableView{
+    if ([self respondsToSelector:@selector(ax_tableViewDataSource:)]) {
+        [self ax_tableViewDataSource:^(NSObject<AXTableModel> *dataSource) {
+            _dataList = dataSource;
+            [self reloadData];
+        }];
+    }
 }
 
 - (AXTableSectionModelType *)ax_sectionModelForIndexPath:(NSIndexPath *)indexPath{
@@ -139,12 +149,7 @@ static CGFloat defaultRowHeight = 44;
         if ([self respondsToSelector:@selector(ax_tableViewPreloadDataSource)]) {
             _dataList = [self ax_tableViewPreloadDataSource];
         }
-        if ([self respondsToSelector:@selector(ax_tableViewDataSource:)]) {
-            [self ax_tableViewDataSource:^(NSObject<AXTableModel> *dataSource) {
-                _dataList = dataSource;
-                [self reloadData];
-            }];
-        }
+        [self reloadDataSourceAndTableView];
     }
     return _dataList;
 }
