@@ -107,6 +107,7 @@
 		CD616CA81FB9E0B300E38244 /* BaseNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616CA31FB9E0B300E38244 /* BaseNavController.m */; };
 		CD616CA91FB9E0B300E38244 /* BaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616CA41FB9E0B300E38244 /* BaseTabBarController.m */; };
 		CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = CD616CAA1FB9E16D00E38244 /* PrefixHeader.pch */; };
+		CD616CAD1FB9E2FC00E38244 /* BaseTabBarController.json in Resources */ = {isa = PBXBuildFile; fileRef = CD616CAC1FB9E2FC00E38244 /* BaseTabBarController.json */; };
 		CD7753291FA2D3010009C8F0 /* DeviceSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7753281FA2D3010009C8F0 /* DeviceSettingVC.m */; };
 		CD77532C1FA2D31F0009C8F0 /* DeviceSettingTV.m in Sources */ = {isa = PBXBuildFile; fileRef = CD77532B1FA2D31F0009C8F0 /* DeviceSettingTV.m */; };
 		CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD944E881FB0B44600373636 /* FindPhoneManager.m */; };
@@ -318,6 +319,7 @@
 		CD616CA41FB9E0B300E38244 /* BaseTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTabBarController.m; sourceTree = "<group>"; };
 		CD616CA51FB9E0B300E38244 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		CD616CAA1FB9E16D00E38244 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		CD616CAC1FB9E2FC00E38244 /* BaseTabBarController.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BaseTabBarController.json; sourceTree = "<group>"; };
 		CD7753271FA2D3010009C8F0 /* DeviceSettingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceSettingVC.h; sourceTree = "<group>"; };
 		CD7753281FA2D3010009C8F0 /* DeviceSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceSettingVC.m; sourceTree = "<group>"; };
 		CD77532A1FA2D31F0009C8F0 /* DeviceSettingTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceSettingTV.h; sourceTree = "<group>"; };
@@ -870,6 +872,7 @@
 				CD616C9E1FB9E0B300E38244 /* RootViewController.m */,
 				CD616CA01FB9E0B300E38244 /* BaseTabBarController.h */,
 				CD616CA41FB9E0B300E38244 /* BaseTabBarController.m */,
+				CD616CAC1FB9E2FC00E38244 /* BaseTabBarController.json */,
 				CD616CA11FB9E0B300E38244 /* BaseNavController.h */,
 				CD616CA31FB9E0B300E38244 /* BaseNavController.m */,
 				CD616CA51FB9E0B300E38244 /* BaseViewController.h */,
@@ -999,6 +1002,7 @@
 				CD3FC1311FA20A0B0054B26B /* MineVC.xib in Resources */,
 				CD3FC1441FA20ABF0054B26B /* BaseTableViewCell.xib in Resources */,
 				CD3FC12B1FA20A0B0054B26B /* HomeVC.xib in Resources */,
+				CD616CAD1FB9E2FC00E38244 /* BaseTabBarController.json in Resources */,
 				CD3FC1D01FA223A20054B26B /* ScanTableViewCell.xib in Resources */,
 				CD2E79261FA0C53300012CDB /* Assets.xcassets in Resources */,
 				CD2E79241FA0C53300012CDB /* Main.storyboard in Resources */,

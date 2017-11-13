@@ -1,0 +1,26 @@
+[
+    {
+      "vc":"HomeVC",
+      "title":"主页",
+      "icon":"tabbar_home",
+      "icon_sel":"",
+    },
+    {
+      "vc":"ActivityVC",
+      "title":"活动",
+      "icon":"tabbar_debug",
+      "icon_sel":"",
+    },
+     {
+     "vc":"DeviceVC",
+     "title":"设备",
+     "icon":"tabbar_debug",
+     "icon_sel":"",
+     },
+    {
+      "vc":"MineVC",
+      "title":"我的",
+      "icon":"tabbar_setting",
+      "icon_sel":"",
+    }
+]
