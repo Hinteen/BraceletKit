@@ -50,25 +50,25 @@ static CGFloat maxImageWidth = 40;
 
 - (void)_init{
     if (self.frame.size.width) {
-        cellWidth = self.frame.size.width;
+        cellWidth = self.contentView.frame.size.width;
     }
     if (self.frame.size.height) {
-        cellHeight = self.frame.size.height;
+        cellHeight = self.contentView.frame.size.height;
     }
     
     _icon = [[UIImageView alloc] initWithFrame:CGRectMake(2 * margin, margin, cellHeight - 2 * margin, cellHeight - 2 * margin)];
-    [self addSubview:self.icon];
+    [self.contentView addSubview:self.icon];
     
     self.title = [[UILabel alloc] initWithFrame:CGRectMake(cellHeight, 0, cellWidth - 2*cellHeight, cellHeight)];
     self.title.textAlignment = NSTextAlignmentLeft;
     self.title.font = [UIFont systemFontOfSize:15];
-    [self addSubview:self.title];
+    [self.contentView addSubview:self.title];
     
     self.detail = [[UILabel alloc] initWithFrame:CGRectMake(cellWidth - cellHeight, 0, cellHeight, cellHeight)];
     self.detail.textAlignment = NSTextAlignmentRight;
     self.detail.font = [UIFont systemFontOfSize:13];
     self.detail.textColor = [UIColor darkGrayColor];
-    [self addSubview:self.detail];
+    [self.contentView addSubview:self.detail];
     
 }
 
@@ -94,6 +94,7 @@ static CGFloat maxImageWidth = 40;
 - (void)updateFrame{
     CGRect frame;
     CGFloat imageWidth = 0;
+    cellWidth = self.contentView.frame.size.width;
     static CGFloat titleWidth = 0;
     static CGFloat detailWidth = 0;
     if (self.icon.image) {
@@ -102,6 +103,7 @@ static CGFloat maxImageWidth = 40;
             imageWidth = maxImageWidth;
         }
         self.icon.frame = CGRectMake(2 * margin, (cellHeight - imageWidth)/2, imageWidth, imageWidth);
+        imageWidth += margin;
     } else {
         imageWidth = 0;
     }
@@ -109,29 +111,18 @@ static CGFloat maxImageWidth = 40;
     NSDictionary *dict = @{NSFontAttributeName: self.detail.font};
     detailWidth = [self.detail.text boundingRectWithSize:CGSizeMake(0.4*cellWidth - imageWidth, cellHeight) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dict context:nil].size.width;
     frame.size.width = detailWidth;
-    frame.origin.x = cellWidth - detailWidth + 2 * margin;
-    if (self.accessoryView) {
-        frame.origin.x = cellWidth - detailWidth - self.accessoryView.frame.size.width;
-    } else {
-        if (self.accessoryType == UITableViewCellAccessoryNone) {
-            frame.origin.x += 28;
-        } else if (self.accessoryType == UITableViewCellAccessoryDetailButton) {
-            frame.origin.x -= 1 * margin;
-        } else if (self.accessoryType == UITableViewCellAccessoryDetailDisclosureButton) {
-            frame.origin.x -= 3.5 * margin;
-        }
+    frame.origin.x = cellWidth - detailWidth;
+    if (self.accessoryView == nil && self.accessoryType == UITableViewCellAccessoryNone) {
+        frame.origin.x -= 2 * margin;
     }
     
     self.detail.frame = frame;
     
-    
-
-    
     frame = self.title.frame;
     dict = @{NSFontAttributeName: self.title.font};
-    titleWidth = [self.title.text boundingRectWithSize:CGSizeMake(cellWidth - imageWidth - detailWidth - 2 * margin, cellHeight) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dict context:nil].size.width;
+    frame.origin.x = 2 * margin + imageWidth;
+    titleWidth = [self.title.text boundingRectWithSize:CGSizeMake(self.detail.frame.origin.x - frame.origin.x - margin, cellHeight) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dict context:nil].size.width;
     frame.size.width = titleWidth;
-    frame.origin.x = 2 * margin + imageWidth + margin;
     self.title.frame = frame;
     
 }
@@ -143,7 +134,9 @@ static CGFloat maxImageWidth = 40;
         image = [UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
     }
     if (!image) {
+#if DEBUG
         NSLog(@"本地找不到图片，需要从网络加载");
+#endif
         
     }
     return image;

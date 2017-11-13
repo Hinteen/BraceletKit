@@ -8,7 +8,7 @@
 
 #import "HomeVC.h"
 #import "HomeTableView.h"
-
+#import <AXKit/AXKit.h>
 
 @interface HomeVC ()
 
@@ -20,6 +20,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.view.width = kScreenW;
+    self.view.height -= kTabBarHeight;
     HomeTableView *tableView = [[HomeTableView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:tableView];
     

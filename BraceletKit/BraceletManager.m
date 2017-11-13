@@ -9,6 +9,8 @@
 #import "BraceletManager.h"
 #import <AXKit/AXKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <CoreBluetooth/CoreBluetooth.h>
+
 
 static BraceletManager *braceletManager = nil;
 
@@ -40,12 +42,16 @@ static inline void showSuccess(NSString *msg){
     });
 }
 
-@interface BraceletManager () 
+@interface BraceletManager () <CBCentralManagerDelegate, CBPeripheralDelegate>
 
 
 
 // @xaoxuu: arr
 @property (strong, nonatomic) NSMutableArray<ZeronerBlePeripheral *> *bindDevices;
+
+@property (strong, nonatomic) CBCentralManager *central;
+
+@property (strong, nonatomic) CBPeripheral *peripheral;
 
 @end
 
@@ -82,6 +88,7 @@ static inline void showSuccess(NSString *msg){
     self.bleSDK.connectDelegate = self;
     self.bleSDK.delegate = self;
     
+    self.central = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     
     return self;
 }
@@ -137,6 +144,7 @@ static inline void showSuccess(NSString *msg){
         }
     }
     [self.bleSDK unConnectDevice];
+    [self.bleSDK debindFromSystem];
     AXLogToCachePath(@"调用了断开连接方法");
 }
 
@@ -205,6 +213,9 @@ static inline void showSuccess(NSString *msg){
  */
 - (void)IWBLEDidConnectDevice:(ZeronerBlePeripheral *)device{
     [self didConnectDevice:device];
+    self.peripheral = device.cbDevice;
+    [self.central connectPeripheral:self.peripheral options:nil];
+    
     AXLogToCachePath(device);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
@@ -247,6 +258,8 @@ static inline void showSuccess(NSString *msg){
 - (void)IWBLEDidDisConnectWithDevice:(ZeronerBlePeripheral *)device andError:(NSError *)error{
     AXLogToCachePath(device);
     AXLogToCachePath(error);
+    
+    [self.central cancelPeripheralConnection:self.peripheral];
     showError([NSString stringWithFormat:@"已与设备[%@]断开连接，错误信息：[%@]", device.deviceName, error]);
 }
 
@@ -633,5 +646,15 @@ static inline void showSuccess(NSString *msg){
     AXLogToCachePath(zRoll);
     
 }
+
+
+
+#pragma mark - system cb delegate
+
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central{
+    
+}
+
+
 
 @end

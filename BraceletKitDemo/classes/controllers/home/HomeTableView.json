@@ -51,16 +51,60 @@
                     "title":"关sfadfsadfasdf于",
                     "detail":"about axkit dsa fafds fsd fas dfs sd ",
                     "icon":"setting_about",
-                    "target":"AboutVC"
+                    "target":""
                 },
                 {
                     "title":"博客防守打法ad发多少发送dsa d但是",
                     "detail":"xaoxuu's blog 史蒂芬s",
                     "icon":"https://xaoxuu.com/images/avatar.png",
-                    "target":"BlogVC"
+                    "target":""
                 }
                 
             ]
-        }
+                },
+                {
+                "headerTitle":"基本信息2",
+                "headerHeight":44,
+                "footerTitle":"",
+                "footerHeight":0,
+                "rowHeight":80,
+                "rows":[
+                        {
+                        "title":"关sfadfsadfasdf于",
+                        "detail":"about axkit dsa fafds fsd fas dfs sd ",
+                        "icon":"setting_about",
+                        "target":"AboutVC"
+                        },
+                        {
+                        "title":"博客防守打法ad发多少发送dsa d但是",
+                        "detail":"xaoxuu's blog 史蒂芬s",
+                        "icon":"https://xaoxuu.com/images/avatar.png",
+                        "target":"BlogVC"
+                        }
+                        
+                        ]
+                },
+                {
+                "headerTitle":"基本信息2",
+                "headerHeight":44,
+                "footerTitle":"",
+                "footerHeight":0,
+                "rowHeight":80,
+                "rows":[
+                        {
+                        "title":"关sfadfsadfasdf于",
+                        "detail":"about axkit dsa fafds fsd fas dfs sd ",
+                        "icon":"setting_about",
+                        "target":"AboutVC"
+                        },
+                        {
+                        "title":"博客防守打法ad发多少发送dsa d但是",
+                        "detail":"xaoxuu's blog 史蒂芬s",
+                        "icon":"https://xaoxuu.com/images/avatar.png",
+                        "target":"BlogVC"
+                        }
+                        
+                        ]
+                }
     ]
 }

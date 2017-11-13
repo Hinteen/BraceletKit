@@ -189,7 +189,11 @@
     } else if ([model.target isEqualToString:@"pushstring"]) {
         [[BraceletManager sharedInstance].bleSDK pushStr:@"DID YOU MISS ME"];
     } else if ([model.target isEqualToString:@"noti_unbind"]) {
-        [[BraceletManager sharedInstance].bleSDK debindFromSystem];
+        [[BraceletManager sharedInstance] disConnectDevice];
+        
+        
+        
+        
     }
     
     
