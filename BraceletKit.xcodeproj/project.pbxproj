@@ -106,6 +106,7 @@
 		CD616CA71FB9E0B300E38244 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616C9F1FB9E0B300E38244 /* BaseViewController.m */; };
 		CD616CA81FB9E0B300E38244 /* BaseNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616CA31FB9E0B300E38244 /* BaseNavController.m */; };
 		CD616CA91FB9E0B300E38244 /* BaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616CA41FB9E0B300E38244 /* BaseTabBarController.m */; };
+		CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = CD616CAA1FB9E16D00E38244 /* PrefixHeader.pch */; };
 		CD7753291FA2D3010009C8F0 /* DeviceSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7753281FA2D3010009C8F0 /* DeviceSettingVC.m */; };
 		CD77532C1FA2D31F0009C8F0 /* DeviceSettingTV.m in Sources */ = {isa = PBXBuildFile; fileRef = CD77532B1FA2D31F0009C8F0 /* DeviceSettingTV.m */; };
 		CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD944E881FB0B44600373636 /* FindPhoneManager.m */; };
@@ -214,7 +215,6 @@
 		CD3FC0FC1FA20A0B0054B26B /* MineVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineVC.m; sourceTree = "<group>"; };
 		CD3FC0FD1FA20A0B0054B26B /* MineVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineVC.xib; sourceTree = "<group>"; };
 		CD3FC0FE1FA20A0B0054B26B /* MineVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineVC.h; sourceTree = "<group>"; };
-		CD3FC1091FA20A0B0054B26B /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		CD3FC10C1FA20A0B0054B26B /* BaseLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLoadingView.h; sourceTree = "<group>"; };
 		CD3FC10D1FA20A0B0054B26B /* DefaultIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultIndicatorView.h; sourceTree = "<group>"; };
 		CD3FC10E1FA20A0B0054B26B /* BaseLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseLoadingView.m; sourceTree = "<group>"; };
@@ -317,6 +317,7 @@
 		CD616CA31FB9E0B300E38244 /* BaseNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavController.m; sourceTree = "<group>"; };
 		CD616CA41FB9E0B300E38244 /* BaseTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTabBarController.m; sourceTree = "<group>"; };
 		CD616CA51FB9E0B300E38244 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		CD616CAA1FB9E16D00E38244 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		CD7753271FA2D3010009C8F0 /* DeviceSettingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceSettingVC.h; sourceTree = "<group>"; };
 		CD7753281FA2D3010009C8F0 /* DeviceSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceSettingVC.m; sourceTree = "<group>"; };
 		CD77532A1FA2D31F0009C8F0 /* DeviceSettingTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceSettingTV.h; sourceTree = "<group>"; };
@@ -392,6 +393,7 @@
 				CD3FC0B91FA20A0B0054B26B /* Classes */,
 				CD2E791C1FA0C53300012CDB /* AppDelegate.h */,
 				CD2E791D1FA0C53300012CDB /* AppDelegate.m */,
+				CD616CAA1FB9E16D00E38244 /* PrefixHeader.pch */,
 				CD3FC1AF1FA20F8F0054B26B /* resources */,
 				CD2E791F1FA0C53300012CDB /* ViewController.h */,
 				CD2E79201FA0C53300012CDB /* ViewController.m */,
@@ -439,7 +441,6 @@
 				CD3FC0ED1FA20A0B0054B26B /* modules */,
 				CD616C9D1FB9E0B300E38244 /* Base */,
 				CD3FC0EE1FA20A0B0054B26B /* Controllers */,
-				CD3FC1091FA20A0B0054B26B /* PrefixHeader.pch */,
 				CD3FC10A1FA20A0B0054B26B /* views */,
 			);
 			path = Classes;
@@ -895,6 +896,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */,
 				CD2E794B1FA0C89F00012CDB /* BraceletManager.h in Headers */,
 				CD2E793B1FA0C54200012CDB /* BraceletKit.h in Headers */,
 				CD0BE39D1FA196FA00BC6192 /* BraceletKitLogHelper.h in Headers */,
@@ -1348,6 +1350,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/BraceletKit",
 				);
+				GCC_PREFIX_HEADER = BraceletKitDemo/PrefixHeader.pch;
 				INFOPLIST_FILE = BraceletKitDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xaoxuu.BraceletKitDemo;
@@ -1367,6 +1370,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/BraceletKit",
 				);
+				GCC_PREFIX_HEADER = BraceletKitDemo/PrefixHeader.pch;
 				INFOPLIST_FILE = BraceletKitDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xaoxuu.BraceletKitDemo;
@@ -1391,7 +1395,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/BraceletKit",
 				);
-				GCC_PREFIX_HEADER = BraceletKitDemo/classes/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = BraceletKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1420,7 +1424,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/BraceletKit",
 				);
-				GCC_PREFIX_HEADER = BraceletKitDemo/classes/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = BraceletKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
