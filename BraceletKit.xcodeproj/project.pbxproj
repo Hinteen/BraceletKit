@@ -46,7 +46,6 @@
 		CD3FC1281FA20A0B0054B26B /* GitHubInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0E91FA20A0B0054B26B /* GitHubInfoModel.m */; };
 		CD3FC1291FA20A0B0054B26B /* ThemeColorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0EC1FA20A0B0054B26B /* ThemeColorModel.m */; };
 		CD3FC12A1FA20A0B0054B26B /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0F01FA20A0B0054B26B /* HomeVC.m */; };
-		CD3FC12B1FA20A0B0054B26B /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC0F11FA20A0B0054B26B /* HomeVC.xib */; };
 		CD3FC12C1FA20A0B0054B26B /* ActivityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC0F41FA20A0B0054B26B /* ActivityVC.xib */; };
 		CD3FC12D1FA20A0B0054B26B /* ActivityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0F61FA20A0B0054B26B /* ActivityVC.m */; };
 		CD3FC12E1FA20A0B0054B26B /* DefaultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC0F91FA20A0B0054B26B /* DefaultViewController.xib */; };
@@ -94,7 +93,6 @@
 		CD3FC1AE1FA20B730054B26B /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC18D1FA20B720054B26B /* MJRefreshComponent.m */; };
 		CD3FC1B11FA20F8F0054B26B /* tabbar_controllers.json in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC1B01FA20F8F0054B26B /* tabbar_controllers.json */; };
 		CD3FC1B61FA2104B0054B26B /* DeviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1B41FA2104B0054B26B /* DeviceVC.m */; };
-		CD3FC1B71FA2104B0054B26B /* DeviceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC1B51FA2104B0054B26B /* DeviceVC.xib */; };
 		CD3FC1BA1FA210B30054B26B /* DeviceCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1B91FA210B30054B26B /* DeviceCollectionView.m */; };
 		CD3FC1BD1FA210CE0054B26B /* DeviceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1BC1FA210CE0054B26B /* DeviceTableView.m */; };
 		CD3FC1C11FA210EF0054B26B /* DeviceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1BF1FA210EF0054B26B /* DeviceCollectionViewCell.m */; };
@@ -205,7 +203,6 @@
 		CD3FC0EB1FA20A0B0054B26B /* ThemeColorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeColorModel.h; sourceTree = "<group>"; };
 		CD3FC0EC1FA20A0B0054B26B /* ThemeColorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeColorModel.m; sourceTree = "<group>"; };
 		CD3FC0F01FA20A0B0054B26B /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
-		CD3FC0F11FA20A0B0054B26B /* HomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
 		CD3FC0F21FA20A0B0054B26B /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
 		CD3FC0F41FA20A0B0054B26B /* ActivityVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityVC.xib; sourceTree = "<group>"; };
 		CD3FC0F51FA20A0B0054B26B /* ActivityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityVC.h; sourceTree = "<group>"; };
@@ -297,7 +294,6 @@
 		CD3FC1B01FA20F8F0054B26B /* tabbar_controllers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tabbar_controllers.json; sourceTree = "<group>"; };
 		CD3FC1B31FA2104B0054B26B /* DeviceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceVC.h; sourceTree = "<group>"; };
 		CD3FC1B41FA2104B0054B26B /* DeviceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceVC.m; sourceTree = "<group>"; };
-		CD3FC1B51FA2104B0054B26B /* DeviceVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceVC.xib; sourceTree = "<group>"; };
 		CD3FC1B81FA210B30054B26B /* DeviceCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceCollectionView.h; sourceTree = "<group>"; };
 		CD3FC1B91FA210B30054B26B /* DeviceCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceCollectionView.m; sourceTree = "<group>"; };
 		CD3FC1BB1FA210CE0054B26B /* DeviceTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceTableView.h; sourceTree = "<group>"; };
@@ -570,64 +566,55 @@
 		CD3FC0EE1FA20A0B0054B26B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CD3FC1B21FA2103C0054B26B /* DeviceVC */,
-				CD3FC0EF1FA20A0B0054B26B /* home */,
-				CD3FC0F31FA20A0B0054B26B /* activity */,
-				CD3FC0F71FA20A0B0054B26B /* default */,
-				CD3FC0FB1FA20A0B0054B26B /* mine */,
-				CD3FC0FF1FA20A0B0054B26B /* root */,
+				CD3FC0F71FA20A0B0054B26B /* Default */,
+				CD3FC0EF1FA20A0B0054B26B /* Home */,
+				CD3FC1B21FA2103C0054B26B /* Device */,
+				CD3FC0F31FA20A0B0054B26B /* Activity */,
+				CD3FC0FB1FA20A0B0054B26B /* Mine */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		CD3FC0EF1FA20A0B0054B26B /* home */ = {
+		CD3FC0EF1FA20A0B0054B26B /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				CD3FC0F01FA20A0B0054B26B /* HomeVC.m */,
-				CD3FC0F11FA20A0B0054B26B /* HomeVC.xib */,
 				CD3FC0F21FA20A0B0054B26B /* HomeVC.h */,
+				CD3FC0F01FA20A0B0054B26B /* HomeVC.m */,
 				CDDFA3A91FB5BAC8004C99D5 /* HomeTableView.h */,
 				CDDFA3AA1FB5BAC8004C99D5 /* HomeTableView.m */,
 				CDDFA3AC1FB5BADB004C99D5 /* HomeTableView.json */,
 			);
-			path = home;
+			path = Home;
 			sourceTree = "<group>";
 		};
-		CD3FC0F31FA20A0B0054B26B /* activity */ = {
+		CD3FC0F31FA20A0B0054B26B /* Activity */ = {
 			isa = PBXGroup;
 			children = (
 				CD3FC0F41FA20A0B0054B26B /* ActivityVC.xib */,
 				CD3FC0F51FA20A0B0054B26B /* ActivityVC.h */,
 				CD3FC0F61FA20A0B0054B26B /* ActivityVC.m */,
 			);
-			path = activity;
+			path = Activity;
 			sourceTree = "<group>";
 		};
-		CD3FC0F71FA20A0B0054B26B /* default */ = {
+		CD3FC0F71FA20A0B0054B26B /* Default */ = {
 			isa = PBXGroup;
 			children = (
 				CD3FC0F81FA20A0B0054B26B /* DefaultViewController.h */,
 				CD3FC0F91FA20A0B0054B26B /* DefaultViewController.xib */,
 				CD3FC0FA1FA20A0B0054B26B /* DefaultViewController.m */,
 			);
-			path = default;
+			path = Default;
 			sourceTree = "<group>";
 		};
-		CD3FC0FB1FA20A0B0054B26B /* mine */ = {
+		CD3FC0FB1FA20A0B0054B26B /* Mine */ = {
 			isa = PBXGroup;
 			children = (
 				CD3FC0FC1FA20A0B0054B26B /* MineVC.m */,
 				CD3FC0FD1FA20A0B0054B26B /* MineVC.xib */,
 				CD3FC0FE1FA20A0B0054B26B /* MineVC.h */,
 			);
-			path = mine;
-			sourceTree = "<group>";
-		};
-		CD3FC0FF1FA20A0B0054B26B /* root */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = root;
+			path = Mine;
 			sourceTree = "<group>";
 		};
 		CD3FC10A1FA20A0B0054B26B /* views */ = {
@@ -834,12 +821,11 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
-		CD3FC1B21FA2103C0054B26B /* DeviceVC */ = {
+		CD3FC1B21FA2103C0054B26B /* Device */ = {
 			isa = PBXGroup;
 			children = (
 				CD3FC1B31FA2104B0054B26B /* DeviceVC.h */,
 				CD3FC1B41FA2104B0054B26B /* DeviceVC.m */,
-				CD3FC1B51FA2104B0054B26B /* DeviceVC.xib */,
 				CD3FC1B81FA210B30054B26B /* DeviceCollectionView.h */,
 				CD3FC1B91FA210B30054B26B /* DeviceCollectionView.m */,
 				CD3FC1BE1FA210EF0054B26B /* DeviceCollectionViewCell.h */,
@@ -850,7 +836,7 @@
 				CD7753261FA2D2DF0009C8F0 /* DeviceSettingVC */,
 				CD3FC1C31FA213E30054B26B /* ScanVC */,
 			);
-			path = DeviceVC;
+			path = Device;
 			sourceTree = "<group>";
 		};
 		CD3FC1C31FA213E30054B26B /* ScanVC */ = {
@@ -1001,13 +987,11 @@
 				CD3FC1C21FA210EF0054B26B /* DeviceCollectionViewCell.xib in Resources */,
 				CD3FC1311FA20A0B0054B26B /* MineVC.xib in Resources */,
 				CD3FC1441FA20ABF0054B26B /* BaseTableViewCell.xib in Resources */,
-				CD3FC12B1FA20A0B0054B26B /* HomeVC.xib in Resources */,
 				CD616CAD1FB9E2FC00E38244 /* BaseTabBarController.json in Resources */,
 				CD3FC1D01FA223A20054B26B /* ScanTableViewCell.xib in Resources */,
 				CD2E79261FA0C53300012CDB /* Assets.xcassets in Resources */,
 				CD2E79241FA0C53300012CDB /* Main.storyboard in Resources */,
 				CDDFA3AD1FB5BADB004C99D5 /* HomeTableView.json in Resources */,
-				CD3FC1B71FA2104B0054B26B /* DeviceVC.xib in Resources */,
 				CD3FC19D1FA20B730054B26B /* MJRefresh.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
