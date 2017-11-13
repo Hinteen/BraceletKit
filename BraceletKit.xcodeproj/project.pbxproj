@@ -53,10 +53,6 @@
 		CD3FC12F1FA20A0B0054B26B /* DefaultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0FA1FA20A0B0054B26B /* DefaultViewController.m */; };
 		CD3FC1301FA20A0B0054B26B /* MineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0FC1FA20A0B0054B26B /* MineVC.m */; };
 		CD3FC1311FA20A0B0054B26B /* MineVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC0FD1FA20A0B0054B26B /* MineVC.xib */; };
-		CD3FC1321FA20A0B0054B26B /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1011FA20A0B0054B26B /* RootViewController.m */; };
-		CD3FC1331FA20A0B0054B26B /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1021FA20A0B0054B26B /* BaseViewController.m */; };
-		CD3FC1341FA20A0B0054B26B /* BaseNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1061FA20A0B0054B26B /* BaseNavController.m */; };
-		CD3FC1351FA20A0B0054B26B /* BaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1071FA20A0B0054B26B /* BaseTabBarController.m */; };
 		CD3FC1361FA20A0B0054B26B /* BaseLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC10E1FA20A0B0054B26B /* BaseLoadingView.m */; };
 		CD3FC1371FA20A0B0054B26B /* DefaultIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC10F1FA20A0B0054B26B /* DefaultIndicatorView.m */; };
 		CD3FC1381FA20A0B0054B26B /* BaseSettingSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1131FA20A0B0054B26B /* BaseSettingSwitch.m */; };
@@ -106,6 +102,10 @@
 		CD3FC1C71FA213F50054B26B /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1C51FA213F50054B26B /* ScanViewController.m */; };
 		CD3FC1CF1FA223A20054B26B /* ScanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1CD1FA223A20054B26B /* ScanTableViewCell.m */; };
 		CD3FC1D01FA223A20054B26B /* ScanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC1CE1FA223A20054B26B /* ScanTableViewCell.xib */; };
+		CD616CA61FB9E0B300E38244 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616C9E1FB9E0B300E38244 /* RootViewController.m */; };
+		CD616CA71FB9E0B300E38244 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616C9F1FB9E0B300E38244 /* BaseViewController.m */; };
+		CD616CA81FB9E0B300E38244 /* BaseNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616CA31FB9E0B300E38244 /* BaseNavController.m */; };
+		CD616CA91FB9E0B300E38244 /* BaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616CA41FB9E0B300E38244 /* BaseTabBarController.m */; };
 		CD7753291FA2D3010009C8F0 /* DeviceSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7753281FA2D3010009C8F0 /* DeviceSettingVC.m */; };
 		CD77532C1FA2D31F0009C8F0 /* DeviceSettingTV.m in Sources */ = {isa = PBXBuildFile; fileRef = CD77532B1FA2D31F0009C8F0 /* DeviceSettingTV.m */; };
 		CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD944E881FB0B44600373636 /* FindPhoneManager.m */; };
@@ -214,14 +214,6 @@
 		CD3FC0FC1FA20A0B0054B26B /* MineVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineVC.m; sourceTree = "<group>"; };
 		CD3FC0FD1FA20A0B0054B26B /* MineVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineVC.xib; sourceTree = "<group>"; };
 		CD3FC0FE1FA20A0B0054B26B /* MineVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineVC.h; sourceTree = "<group>"; };
-		CD3FC1011FA20A0B0054B26B /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		CD3FC1021FA20A0B0054B26B /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		CD3FC1031FA20A0B0054B26B /* BaseTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTabBarController.h; sourceTree = "<group>"; };
-		CD3FC1041FA20A0B0054B26B /* BaseNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavController.h; sourceTree = "<group>"; };
-		CD3FC1051FA20A0B0054B26B /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		CD3FC1061FA20A0B0054B26B /* BaseNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavController.m; sourceTree = "<group>"; };
-		CD3FC1071FA20A0B0054B26B /* BaseTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTabBarController.m; sourceTree = "<group>"; };
-		CD3FC1081FA20A0B0054B26B /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		CD3FC1091FA20A0B0054B26B /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		CD3FC10C1FA20A0B0054B26B /* BaseLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLoadingView.h; sourceTree = "<group>"; };
 		CD3FC10D1FA20A0B0054B26B /* DefaultIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultIndicatorView.h; sourceTree = "<group>"; };
@@ -317,6 +309,14 @@
 		CD3FC1CC1FA223A20054B26B /* ScanTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScanTableViewCell.h; sourceTree = "<group>"; };
 		CD3FC1CD1FA223A20054B26B /* ScanTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScanTableViewCell.m; sourceTree = "<group>"; };
 		CD3FC1CE1FA223A20054B26B /* ScanTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScanTableViewCell.xib; sourceTree = "<group>"; };
+		CD616C9E1FB9E0B300E38244 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		CD616C9F1FB9E0B300E38244 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		CD616CA01FB9E0B300E38244 /* BaseTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTabBarController.h; sourceTree = "<group>"; };
+		CD616CA11FB9E0B300E38244 /* BaseNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavController.h; sourceTree = "<group>"; };
+		CD616CA21FB9E0B300E38244 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		CD616CA31FB9E0B300E38244 /* BaseNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavController.m; sourceTree = "<group>"; };
+		CD616CA41FB9E0B300E38244 /* BaseTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTabBarController.m; sourceTree = "<group>"; };
+		CD616CA51FB9E0B300E38244 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		CD7753271FA2D3010009C8F0 /* DeviceSettingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceSettingVC.h; sourceTree = "<group>"; };
 		CD7753281FA2D3010009C8F0 /* DeviceSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceSettingVC.m; sourceTree = "<group>"; };
 		CD77532A1FA2D31F0009C8F0 /* DeviceSettingTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceSettingTV.h; sourceTree = "<group>"; };
@@ -389,7 +389,7 @@
 		CD2E791B1FA0C53300012CDB /* BraceletKitDemo */ = {
 			isa = PBXGroup;
 			children = (
-				CD3FC0B91FA20A0B0054B26B /* classes */,
+				CD3FC0B91FA20A0B0054B26B /* Classes */,
 				CD2E791C1FA0C53300012CDB /* AppDelegate.h */,
 				CD2E791D1FA0C53300012CDB /* AppDelegate.m */,
 				CD3FC1AF1FA20F8F0054B26B /* resources */,
@@ -428,7 +428,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CD3FC0B91FA20A0B0054B26B /* classes */ = {
+		CD3FC0B91FA20A0B0054B26B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				CD3FC1461FA20B720054B26B /* vendor */,
@@ -437,11 +437,12 @@
 				CD3FC0DB1FA20A0B0054B26B /* config */,
 				CD3FC0E21FA20A0B0054B26B /* models */,
 				CD3FC0ED1FA20A0B0054B26B /* modules */,
-				CD3FC0EE1FA20A0B0054B26B /* controllers */,
+				CD616C9D1FB9E0B300E38244 /* Base */,
+				CD3FC0EE1FA20A0B0054B26B /* Controllers */,
 				CD3FC1091FA20A0B0054B26B /* PrefixHeader.pch */,
 				CD3FC10A1FA20A0B0054B26B /* views */,
 			);
-			path = classes;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		CD3FC0BA1FA20A0B0054B26B /* layers */ = {
@@ -563,7 +564,7 @@
 			path = modules;
 			sourceTree = "<group>";
 		};
-		CD3FC0EE1FA20A0B0054B26B /* controllers */ = {
+		CD3FC0EE1FA20A0B0054B26B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				CD3FC1B21FA2103C0054B26B /* DeviceVC */,
@@ -572,9 +573,8 @@
 				CD3FC0F71FA20A0B0054B26B /* default */,
 				CD3FC0FB1FA20A0B0054B26B /* mine */,
 				CD3FC0FF1FA20A0B0054B26B /* root */,
-				CD3FC1001FA20A0B0054B26B /* base */,
 			);
-			path = controllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		CD3FC0EF1FA20A0B0054B26B /* home */ = {
@@ -625,21 +625,6 @@
 			children = (
 			);
 			path = root;
-			sourceTree = "<group>";
-		};
-		CD3FC1001FA20A0B0054B26B /* base */ = {
-			isa = PBXGroup;
-			children = (
-				CD3FC1011FA20A0B0054B26B /* RootViewController.m */,
-				CD3FC1021FA20A0B0054B26B /* BaseViewController.m */,
-				CD3FC1031FA20A0B0054B26B /* BaseTabBarController.h */,
-				CD3FC1041FA20A0B0054B26B /* BaseNavController.h */,
-				CD3FC1051FA20A0B0054B26B /* RootViewController.h */,
-				CD3FC1061FA20A0B0054B26B /* BaseNavController.m */,
-				CD3FC1071FA20A0B0054B26B /* BaseTabBarController.m */,
-				CD3FC1081FA20A0B0054B26B /* BaseViewController.h */,
-			);
-			path = base;
 			sourceTree = "<group>";
 		};
 		CD3FC10A1FA20A0B0054B26B /* views */ = {
@@ -875,6 +860,21 @@
 				CD3FC1CE1FA223A20054B26B /* ScanTableViewCell.xib */,
 			);
 			path = ScanVC;
+			sourceTree = "<group>";
+		};
+		CD616C9D1FB9E0B300E38244 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				CD616CA21FB9E0B300E38244 /* RootViewController.h */,
+				CD616C9E1FB9E0B300E38244 /* RootViewController.m */,
+				CD616CA01FB9E0B300E38244 /* BaseTabBarController.h */,
+				CD616CA41FB9E0B300E38244 /* BaseTabBarController.m */,
+				CD616CA11FB9E0B300E38244 /* BaseNavController.h */,
+				CD616CA31FB9E0B300E38244 /* BaseNavController.m */,
+				CD616CA51FB9E0B300E38244 /* BaseViewController.h */,
+				CD616C9F1FB9E0B300E38244 /* BaseViewController.m */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		CD7753261FA2D2DF0009C8F0 /* DeviceSettingVC */ = {
@@ -1126,19 +1126,16 @@
 				CD3FC1911FA20B730054B26B /* NSObject+MJKeyValue.m in Sources */,
 				CD3FC1A41FA20B730054B26B /* MJRefreshAutoStateFooter.m in Sources */,
 				CD3FC1371FA20A0B0054B26B /* DefaultIndicatorView.m in Sources */,
-				CD3FC1351FA20A0B0054B26B /* BaseTabBarController.m in Sources */,
 				CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */,
 				CD3FC1A21FA20B730054B26B /* MJRefreshBackStateFooter.m in Sources */,
 				CD3FC1301FA20A0B0054B26B /* MineVC.m in Sources */,
 				CD3FC1971FA20B730054B26B /* NSString+MJExtension.m in Sources */,
 				CD3FC1261FA20A0B0054B26B /* AppInfoModel.m in Sources */,
-				CD3FC1331FA20A0B0054B26B /* BaseViewController.m in Sources */,
 				CD3FC1281FA20A0B0054B26B /* GitHubInfoModel.m in Sources */,
 				CD3FC1A31FA20B730054B26B /* MJRefreshBackNormalFooter.m in Sources */,
 				CD3FC1431FA20ABF0054B26B /* BaseTableView.m in Sources */,
 				CD3FC1361FA20A0B0054B26B /* BaseLoadingView.m in Sources */,
 				CD3FC1161FA20A0B0054B26B /* ServicesLayer.m in Sources */,
-				CD3FC1341FA20A0B0054B26B /* BaseNavController.m in Sources */,
 				CD3FC11A1FA20A0B0054B26B /* BaseDataAccess.m in Sources */,
 				CD2E792C1FA0C53300012CDB /* main.m in Sources */,
 				CD3FC11C1FA20A0B0054B26B /* AssetsDataAccess.m in Sources */,
@@ -1173,16 +1170,19 @@
 				CD3FC1AD1FA20B730054B26B /* MJRefreshAutoFooter.m in Sources */,
 				CD3FC1201FA20A0B0054B26B /* CacheServices.m in Sources */,
 				CD3FC12A1FA20A0B0054B26B /* HomeVC.m in Sources */,
+				CD616CA61FB9E0B300E38244 /* RootViewController.m in Sources */,
+				CD616CA91FB9E0B300E38244 /* BaseTabBarController.m in Sources */,
 				CD3FC1951FA20B730054B26B /* NSObject+MJProperty.m in Sources */,
 				CD3FC12F1FA20A0B0054B26B /* DefaultViewController.m in Sources */,
 				CD3FC1B61FA2104B0054B26B /* DeviceVC.m in Sources */,
+				CD616CA81FB9E0B300E38244 /* BaseNavController.m in Sources */,
 				CD3FC1171FA20A0B0054B26B /* NetworkDataAccess.m in Sources */,
 				CD3FC1A91FA20B730054B26B /* MJRefreshGifHeader.m in Sources */,
 				CD3FC19E1FA20B730054B26B /* UIScrollView+MJExtension.m in Sources */,
 				CD3FC1921FA20B730054B26B /* MJProperty.m in Sources */,
 				CD3FC19B1FA20B730054B26B /* UIScrollView+MJRefresh.m in Sources */,
 				CD3FC1991FA20B730054B26B /* MJFoundation.m in Sources */,
-				CD3FC1321FA20A0B0054B26B /* RootViewController.m in Sources */,
+				CD616CA71FB9E0B300E38244 /* BaseViewController.m in Sources */,
 				CD2E791E1FA0C53300012CDB /* AppDelegate.m in Sources */,
 				CD3FC1CF1FA223A20054B26B /* ScanTableViewCell.m in Sources */,
 				CD3FC1A81FA20B730054B26B /* MJRefreshStateHeader.m in Sources */,

@@ -246,7 +246,6 @@ static inline void showSuccess(NSString *msg){
 - (BLEParamSign)bleParamSignSetting{
     AXLogToCachePath(@"设置蓝牙参数，默认 BLEParamSignConnect");
     return BLEParamSignConnect;
-//    return BLEParamSignMSGOption;
 }
 
 
