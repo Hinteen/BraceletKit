@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseTableView.h"
 
 
 typedef NS_ENUM(NSUInteger, ContentViewStyle) {

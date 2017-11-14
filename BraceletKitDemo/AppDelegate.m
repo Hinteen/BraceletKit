@@ -39,6 +39,22 @@
     // 显示窗口
     [self.window makeKeyAndVisible];
     
+    
+    
+    [UINavigationBar appearance].barStyle = UIBarStyleDefault;
+    [UINavigationBar appearance].translucent = NO;
+    [UINavigationBar appearance].opaque = YES;
+    [UINavigationBar appearance].barTintColor = axColor.theme;
+    [UINavigationBar appearance].tintColor = axColor.white;
+    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName:axColor.white};
+    
+    
+    [UITabBar appearance].barStyle = UIBarStyleDefault;
+    [UITabBar appearance].translucent = NO;
+    [UITabBar appearance].opaque = YES;
+    [UITabBar appearance].barTintColor = axColor.white;
+    [UITabBar appearance].tintColor = axColor.theme;
+    
     return YES;
 }
 

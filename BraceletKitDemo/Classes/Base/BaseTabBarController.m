@@ -33,7 +33,7 @@
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     [self.tabBar ax_hideSeparator];
-    [services.app applyTheme];
+    
 }
 
 - (NSString *)classNameForBaseNavigationController{

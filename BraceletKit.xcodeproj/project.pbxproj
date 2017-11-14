@@ -26,25 +26,12 @@
 		CD2E794C1FA0C89F00012CDB /* BraceletManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2E794A1FA0C89F00012CDB /* BraceletManager.m */; };
 		CD3FC1151FA20A0B0054B26B /* DataAccessLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0BD1FA20A0B0054B26B /* DataAccessLayer.m */; };
 		CD3FC1161FA20A0B0054B26B /* ServicesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0BE1FA20A0B0054B26B /* ServicesLayer.m */; };
-		CD3FC1171FA20A0B0054B26B /* NetworkDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0C21FA20A0B0054B26B /* NetworkDataAccess.m */; };
-		CD3FC1181FA20A0B0054B26B /* AppDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0C41FA20A0B0054B26B /* AppDataAccess.m */; };
-		CD3FC1191FA20A0B0054B26B /* CacheDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0C51FA20A0B0054B26B /* CacheDataAccess.m */; };
 		CD3FC11A1FA20A0B0054B26B /* BaseDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0C81FA20A0B0054B26B /* BaseDataAccess.m */; };
-		CD3FC11B1FA20A0B0054B26B /* GitHubApiDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0CB1FA20A0B0054B26B /* GitHubApiDataAccess.m */; };
-		CD3FC11C1FA20A0B0054B26B /* AssetsDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0CD1FA20A0B0054B26B /* AssetsDataAccess.m */; };
-		CD3FC11D1FA20A0B0054B26B /* DeveloperDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0CE1FA20A0B0054B26B /* DeveloperDataAccess.m */; };
 		CD3FC11E1FA20A0B0054B26B /* BaseServices.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0D11FA20A0B0054B26B /* BaseServices.m */; };
-		CD3FC11F1FA20A0B0054B26B /* AlertServices.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0D21FA20A0B0054B26B /* AlertServices.m */; };
-		CD3FC1201FA20A0B0054B26B /* CacheServices.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0D51FA20A0B0054B26B /* CacheServices.m */; };
-		CD3FC1211FA20A0B0054B26B /* AppServices.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0D61FA20A0B0054B26B /* AppServices.m */; };
 		CD3FC1221FA20A0B0054B26B /* UITableView+Creator.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0D91FA20A0B0054B26B /* UITableView+Creator.m */; };
 		CD3FC1231FA20A0B0054B26B /* HTConst.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0DF1FA20A0B0054B26B /* HTConst.m */; };
 		CD3FC1241FA20A0B0054B26B /* HTMacros.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0E01FA20A0B0054B26B /* HTMacros.m */; };
 		CD3FC1251FA20A0B0054B26B /* HTStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0E11FA20A0B0054B26B /* HTStrings.m */; };
-		CD3FC1261FA20A0B0054B26B /* AppInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0E71FA20A0B0054B26B /* AppInfoModel.m */; };
-		CD3FC1271FA20A0B0054B26B /* AppVersionInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0E81FA20A0B0054B26B /* AppVersionInfoModel.m */; };
-		CD3FC1281FA20A0B0054B26B /* GitHubInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0E91FA20A0B0054B26B /* GitHubInfoModel.m */; };
-		CD3FC1291FA20A0B0054B26B /* ThemeColorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0EC1FA20A0B0054B26B /* ThemeColorModel.m */; };
 		CD3FC12A1FA20A0B0054B26B /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0F01FA20A0B0054B26B /* HomeVC.m */; };
 		CD3FC12C1FA20A0B0054B26B /* ActivityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC0F41FA20A0B0054B26B /* ActivityVC.xib */; };
 		CD3FC12D1FA20A0B0054B26B /* ActivityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0F61FA20A0B0054B26B /* ActivityVC.m */; };
@@ -52,14 +39,6 @@
 		CD3FC12F1FA20A0B0054B26B /* DefaultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0FA1FA20A0B0054B26B /* DefaultViewController.m */; };
 		CD3FC1301FA20A0B0054B26B /* MineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0FC1FA20A0B0054B26B /* MineVC.m */; };
 		CD3FC1311FA20A0B0054B26B /* MineVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC0FD1FA20A0B0054B26B /* MineVC.xib */; };
-		CD3FC1361FA20A0B0054B26B /* BaseLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC10E1FA20A0B0054B26B /* BaseLoadingView.m */; };
-		CD3FC1371FA20A0B0054B26B /* DefaultIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC10F1FA20A0B0054B26B /* DefaultIndicatorView.m */; };
-		CD3FC1381FA20A0B0054B26B /* BaseSettingSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1131FA20A0B0054B26B /* BaseSettingSwitch.m */; };
-		CD3FC1391FA20A0B0054B26B /* BaseSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1141FA20A0B0054B26B /* BaseSwitch.m */; };
-		CD3FC1421FA20ABF0054B26B /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC13B1FA20ABF0054B26B /* BaseTableViewCell.m */; };
-		CD3FC1431FA20ABF0054B26B /* BaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC13D1FA20ABF0054B26B /* BaseTableView.m */; };
-		CD3FC1441FA20ABF0054B26B /* BaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC13F1FA20ABF0054B26B /* BaseTableViewCell.xib */; };
-		CD3FC1451FA20ABF0054B26B /* BaseTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1401FA20ABF0054B26B /* BaseTableModel.m */; };
 		CD3FC1901FA20B730054B26B /* MJPropertyType.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC14B1FA20B720054B26B /* MJPropertyType.m */; };
 		CD3FC1911FA20B730054B26B /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC14E1FA20B720054B26B /* NSObject+MJKeyValue.m */; };
 		CD3FC1921FA20B730054B26B /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC14F1FA20B720054B26B /* MJProperty.m */; };
@@ -92,11 +71,6 @@
 		CD3FC1AD1FA20B730054B26B /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC18B1FA20B720054B26B /* MJRefreshAutoFooter.m */; };
 		CD3FC1AE1FA20B730054B26B /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC18D1FA20B720054B26B /* MJRefreshComponent.m */; };
 		CD3FC1B11FA20F8F0054B26B /* tabbar_controllers.json in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC1B01FA20F8F0054B26B /* tabbar_controllers.json */; };
-		CD3FC1B61FA2104B0054B26B /* DeviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1B41FA2104B0054B26B /* DeviceVC.m */; };
-		CD3FC1BA1FA210B30054B26B /* DeviceCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1B91FA210B30054B26B /* DeviceCollectionView.m */; };
-		CD3FC1BD1FA210CE0054B26B /* DeviceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1BC1FA210CE0054B26B /* DeviceTableView.m */; };
-		CD3FC1C11FA210EF0054B26B /* DeviceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1BF1FA210EF0054B26B /* DeviceCollectionViewCell.m */; };
-		CD3FC1C21FA210EF0054B26B /* DeviceCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC1C01FA210EF0054B26B /* DeviceCollectionViewCell.xib */; };
 		CD3FC1C71FA213F50054B26B /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1C51FA213F50054B26B /* ScanViewController.m */; };
 		CD3FC1CF1FA223A20054B26B /* ScanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1CD1FA223A20054B26B /* ScanTableViewCell.m */; };
 		CD3FC1D01FA223A20054B26B /* ScanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC1CE1FA223A20054B26B /* ScanTableViewCell.xib */; };
@@ -106,9 +80,8 @@
 		CD616CA91FB9E0B300E38244 /* BaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616CA41FB9E0B300E38244 /* BaseTabBarController.m */; };
 		CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = CD616CAA1FB9E16D00E38244 /* PrefixHeader.pch */; };
 		CD616CAD1FB9E2FC00E38244 /* BaseTabBarController.json in Resources */ = {isa = PBXBuildFile; fileRef = CD616CAC1FB9E2FC00E38244 /* BaseTabBarController.json */; };
-		CD616CAF1FB9E92D00E38244 /* DeviceSettingTV.json in Resources */ = {isa = PBXBuildFile; fileRef = CD616CAE1FB9E92C00E38244 /* DeviceSettingTV.json */; };
-		CD7753291FA2D3010009C8F0 /* DeviceSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7753281FA2D3010009C8F0 /* DeviceSettingVC.m */; };
-		CD77532C1FA2D31F0009C8F0 /* DeviceSettingTV.m in Sources */ = {isa = PBXBuildFile; fileRef = CD77532B1FA2D31F0009C8F0 /* DeviceSettingTV.m */; };
+		CD828DBF1FBA909B0071C9D8 /* DeviceSettingTV.m in Sources */ = {isa = PBXBuildFile; fileRef = CD828DBC1FBA909A0071C9D8 /* DeviceSettingTV.m */; };
+		CD828DC01FBA909B0071C9D8 /* DeviceSettingTV.json in Resources */ = {isa = PBXBuildFile; fileRef = CD828DBD1FBA909A0071C9D8 /* DeviceSettingTV.json */; };
 		CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD944E881FB0B44600373636 /* FindPhoneManager.m */; };
 		CDDFA3AB1FB5BAC8004C99D5 /* HomeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFA3AA1FB5BAC8004C99D5 /* HomeTableView.m */; };
 		CDDFA3AD1FB5BADB004C99D5 /* HomeTableView.json in Resources */ = {isa = PBXBuildFile; fileRef = CDDFA3AC1FB5BADB004C99D5 /* HomeTableView.json */; };
@@ -165,28 +138,10 @@
 		CD3FC0BD1FA20A0B0054B26B /* DataAccessLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAccessLayer.m; sourceTree = "<group>"; };
 		CD3FC0BE1FA20A0B0054B26B /* ServicesLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServicesLayer.m; sourceTree = "<group>"; };
 		CD3FC0BF1FA20A0B0054B26B /* DataAccessLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataAccessLayer.h; sourceTree = "<group>"; };
-		CD3FC0C11FA20A0B0054B26B /* AssetsDataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetsDataAccess.h; sourceTree = "<group>"; };
-		CD3FC0C21FA20A0B0054B26B /* NetworkDataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkDataAccess.m; sourceTree = "<group>"; };
-		CD3FC0C31FA20A0B0054B26B /* GitHubApiDataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GitHubApiDataAccess.h; sourceTree = "<group>"; };
-		CD3FC0C41FA20A0B0054B26B /* AppDataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDataAccess.m; sourceTree = "<group>"; };
-		CD3FC0C51FA20A0B0054B26B /* CacheDataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheDataAccess.m; sourceTree = "<group>"; };
 		CD3FC0C61FA20A0B0054B26B /* BaseDataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDataAccess.h; sourceTree = "<group>"; };
-		CD3FC0C71FA20A0B0054B26B /* DeveloperDataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeveloperDataAccess.h; sourceTree = "<group>"; };
 		CD3FC0C81FA20A0B0054B26B /* BaseDataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDataAccess.m; sourceTree = "<group>"; };
-		CD3FC0C91FA20A0B0054B26B /* CacheDataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheDataAccess.h; sourceTree = "<group>"; };
-		CD3FC0CA1FA20A0B0054B26B /* AppDataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDataAccess.h; sourceTree = "<group>"; };
-		CD3FC0CB1FA20A0B0054B26B /* GitHubApiDataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GitHubApiDataAccess.m; sourceTree = "<group>"; };
-		CD3FC0CC1FA20A0B0054B26B /* NetworkDataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkDataAccess.h; sourceTree = "<group>"; };
-		CD3FC0CD1FA20A0B0054B26B /* AssetsDataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetsDataAccess.m; sourceTree = "<group>"; };
-		CD3FC0CE1FA20A0B0054B26B /* DeveloperDataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeveloperDataAccess.m; sourceTree = "<group>"; };
-		CD3FC0D01FA20A0B0054B26B /* CacheServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheServices.h; sourceTree = "<group>"; };
 		CD3FC0D11FA20A0B0054B26B /* BaseServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseServices.m; sourceTree = "<group>"; };
-		CD3FC0D21FA20A0B0054B26B /* AlertServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertServices.m; sourceTree = "<group>"; };
-		CD3FC0D31FA20A0B0054B26B /* AppServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppServices.h; sourceTree = "<group>"; };
 		CD3FC0D41FA20A0B0054B26B /* BaseServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseServices.h; sourceTree = "<group>"; };
-		CD3FC0D51FA20A0B0054B26B /* CacheServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheServices.m; sourceTree = "<group>"; };
-		CD3FC0D61FA20A0B0054B26B /* AppServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppServices.m; sourceTree = "<group>"; };
-		CD3FC0D71FA20A0B0054B26B /* AlertServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertServices.h; sourceTree = "<group>"; };
 		CD3FC0D91FA20A0B0054B26B /* UITableView+Creator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Creator.m"; sourceTree = "<group>"; };
 		CD3FC0DA1FA20A0B0054B26B /* UITableView+Creator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Creator.h"; sourceTree = "<group>"; };
 		CD3FC0DC1FA20A0B0054B26B /* HTConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTConst.h; sourceTree = "<group>"; };
@@ -195,14 +150,6 @@
 		CD3FC0DF1FA20A0B0054B26B /* HTConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTConst.m; sourceTree = "<group>"; };
 		CD3FC0E01FA20A0B0054B26B /* HTMacros.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMacros.m; sourceTree = "<group>"; };
 		CD3FC0E11FA20A0B0054B26B /* HTStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTStrings.m; sourceTree = "<group>"; };
-		CD3FC0E41FA20A0B0054B26B /* AppInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppInfoModel.h; sourceTree = "<group>"; };
-		CD3FC0E51FA20A0B0054B26B /* AppVersionInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppVersionInfoModel.h; sourceTree = "<group>"; };
-		CD3FC0E61FA20A0B0054B26B /* GitHubInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GitHubInfoModel.h; sourceTree = "<group>"; };
-		CD3FC0E71FA20A0B0054B26B /* AppInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppInfoModel.m; sourceTree = "<group>"; };
-		CD3FC0E81FA20A0B0054B26B /* AppVersionInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppVersionInfoModel.m; sourceTree = "<group>"; };
-		CD3FC0E91FA20A0B0054B26B /* GitHubInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GitHubInfoModel.m; sourceTree = "<group>"; };
-		CD3FC0EB1FA20A0B0054B26B /* ThemeColorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeColorModel.h; sourceTree = "<group>"; };
-		CD3FC0EC1FA20A0B0054B26B /* ThemeColorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeColorModel.m; sourceTree = "<group>"; };
 		CD3FC0F01FA20A0B0054B26B /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
 		CD3FC0F21FA20A0B0054B26B /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
 		CD3FC0F41FA20A0B0054B26B /* ActivityVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityVC.xib; sourceTree = "<group>"; };
@@ -214,21 +161,6 @@
 		CD3FC0FC1FA20A0B0054B26B /* MineVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineVC.m; sourceTree = "<group>"; };
 		CD3FC0FD1FA20A0B0054B26B /* MineVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineVC.xib; sourceTree = "<group>"; };
 		CD3FC0FE1FA20A0B0054B26B /* MineVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineVC.h; sourceTree = "<group>"; };
-		CD3FC10C1FA20A0B0054B26B /* BaseLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLoadingView.h; sourceTree = "<group>"; };
-		CD3FC10D1FA20A0B0054B26B /* DefaultIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultIndicatorView.h; sourceTree = "<group>"; };
-		CD3FC10E1FA20A0B0054B26B /* BaseLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseLoadingView.m; sourceTree = "<group>"; };
-		CD3FC10F1FA20A0B0054B26B /* DefaultIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultIndicatorView.m; sourceTree = "<group>"; };
-		CD3FC1111FA20A0B0054B26B /* BaseSettingSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSettingSwitch.h; sourceTree = "<group>"; };
-		CD3FC1121FA20A0B0054B26B /* BaseSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSwitch.h; sourceTree = "<group>"; };
-		CD3FC1131FA20A0B0054B26B /* BaseSettingSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSettingSwitch.m; sourceTree = "<group>"; };
-		CD3FC1141FA20A0B0054B26B /* BaseSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSwitch.m; sourceTree = "<group>"; };
-		CD3FC13B1FA20ABF0054B26B /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
-		CD3FC13C1FA20ABF0054B26B /* BaseTableModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableModel.h; sourceTree = "<group>"; };
-		CD3FC13D1FA20ABF0054B26B /* BaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableView.m; sourceTree = "<group>"; };
-		CD3FC13E1FA20ABF0054B26B /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
-		CD3FC13F1FA20ABF0054B26B /* BaseTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseTableViewCell.xib; sourceTree = "<group>"; };
-		CD3FC1401FA20ABF0054B26B /* BaseTableModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableModel.m; sourceTree = "<group>"; };
-		CD3FC1411FA20ABF0054B26B /* BaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableView.h; sourceTree = "<group>"; };
 		CD3FC1481FA20B720054B26B /* MJPropertyKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPropertyKey.h; sourceTree = "<group>"; };
 		CD3FC1491FA20B720054B26B /* NSObject+MJClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJClass.h"; sourceTree = "<group>"; };
 		CD3FC14A1FA20B720054B26B /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
@@ -293,15 +225,6 @@
 		CD3FC18E1FA20B720054B26B /* MJRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooter.h; sourceTree = "<group>"; };
 		CD3FC18F1FA20B720054B26B /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
 		CD3FC1B01FA20F8F0054B26B /* tabbar_controllers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tabbar_controllers.json; sourceTree = "<group>"; };
-		CD3FC1B31FA2104B0054B26B /* DeviceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceVC.h; sourceTree = "<group>"; };
-		CD3FC1B41FA2104B0054B26B /* DeviceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceVC.m; sourceTree = "<group>"; };
-		CD3FC1B81FA210B30054B26B /* DeviceCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceCollectionView.h; sourceTree = "<group>"; };
-		CD3FC1B91FA210B30054B26B /* DeviceCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceCollectionView.m; sourceTree = "<group>"; };
-		CD3FC1BB1FA210CE0054B26B /* DeviceTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceTableView.h; sourceTree = "<group>"; };
-		CD3FC1BC1FA210CE0054B26B /* DeviceTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceTableView.m; sourceTree = "<group>"; };
-		CD3FC1BE1FA210EF0054B26B /* DeviceCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceCollectionViewCell.h; sourceTree = "<group>"; };
-		CD3FC1BF1FA210EF0054B26B /* DeviceCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceCollectionViewCell.m; sourceTree = "<group>"; };
-		CD3FC1C01FA210EF0054B26B /* DeviceCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceCollectionViewCell.xib; sourceTree = "<group>"; };
 		CD3FC1C41FA213F50054B26B /* ScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScanViewController.h; sourceTree = "<group>"; };
 		CD3FC1C51FA213F50054B26B /* ScanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScanViewController.m; sourceTree = "<group>"; };
 		CD3FC1CC1FA223A20054B26B /* ScanTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScanTableViewCell.h; sourceTree = "<group>"; };
@@ -317,11 +240,9 @@
 		CD616CA51FB9E0B300E38244 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		CD616CAA1FB9E16D00E38244 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		CD616CAC1FB9E2FC00E38244 /* BaseTabBarController.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BaseTabBarController.json; sourceTree = "<group>"; };
-		CD616CAE1FB9E92C00E38244 /* DeviceSettingTV.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DeviceSettingTV.json; sourceTree = "<group>"; };
-		CD7753271FA2D3010009C8F0 /* DeviceSettingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceSettingVC.h; sourceTree = "<group>"; };
-		CD7753281FA2D3010009C8F0 /* DeviceSettingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceSettingVC.m; sourceTree = "<group>"; };
-		CD77532A1FA2D31F0009C8F0 /* DeviceSettingTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceSettingTV.h; sourceTree = "<group>"; };
-		CD77532B1FA2D31F0009C8F0 /* DeviceSettingTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceSettingTV.m; sourceTree = "<group>"; };
+		CD828DBC1FBA909A0071C9D8 /* DeviceSettingTV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceSettingTV.m; sourceTree = "<group>"; };
+		CD828DBD1FBA909A0071C9D8 /* DeviceSettingTV.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DeviceSettingTV.json; sourceTree = "<group>"; };
+		CD828DBE1FBA909A0071C9D8 /* DeviceSettingTV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceSettingTV.h; sourceTree = "<group>"; };
 		CD944E871FB0B44600373636 /* FindPhoneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindPhoneManager.h; sourceTree = "<group>"; };
 		CD944E881FB0B44600373636 /* FindPhoneManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindPhoneManager.m; sourceTree = "<group>"; };
 		CDDFA3A91FB5BAC8004C99D5 /* HomeTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTableView.h; sourceTree = "<group>"; };
@@ -433,77 +354,59 @@
 		CD3FC0B91FA20A0B0054B26B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				CD3FC1461FA20B720054B26B /* vendor */,
-				CD3FC0BA1FA20A0B0054B26B /* layers */,
-				CD3FC0D81FA20A0B0054B26B /* util */,
-				CD3FC0DB1FA20A0B0054B26B /* config */,
-				CD3FC0E21FA20A0B0054B26B /* models */,
-				CD3FC0ED1FA20A0B0054B26B /* modules */,
+				CD3FC1461FA20B720054B26B /* Vendor */,
+				CD3FC0BA1FA20A0B0054B26B /* Layers */,
+				CD3FC0D81FA20A0B0054B26B /* Util */,
+				CD3FC0DB1FA20A0B0054B26B /* Config */,
+				CD3FC0E21FA20A0B0054B26B /* Models */,
+				CD3FC0ED1FA20A0B0054B26B /* Modules */,
 				CD616C9D1FB9E0B300E38244 /* Base */,
 				CD3FC0EE1FA20A0B0054B26B /* Controllers */,
-				CD3FC10A1FA20A0B0054B26B /* views */,
+				CD3FC10A1FA20A0B0054B26B /* Views */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		CD3FC0BA1FA20A0B0054B26B /* layers */ = {
+		CD3FC0BA1FA20A0B0054B26B /* Layers */ = {
 			isa = PBXGroup;
 			children = (
-				CD3FC0BB1FA20A0B0054B26B /* layers */,
-				CD3FC0C01FA20A0B0054B26B /* data_access */,
-				CD3FC0CF1FA20A0B0054B26B /* services */,
+				CD3FC0BB1FA20A0B0054B26B /* Layers */,
+				CD3FC0C01FA20A0B0054B26B /* DataAccess */,
+				CD3FC0CF1FA20A0B0054B26B /* Services */,
 			);
-			path = layers;
+			path = Layers;
 			sourceTree = "<group>";
 		};
-		CD3FC0BB1FA20A0B0054B26B /* layers */ = {
+		CD3FC0BB1FA20A0B0054B26B /* Layers */ = {
 			isa = PBXGroup;
 			children = (
-				CD3FC0BC1FA20A0B0054B26B /* ServicesLayer.h */,
-				CD3FC0BD1FA20A0B0054B26B /* DataAccessLayer.m */,
-				CD3FC0BE1FA20A0B0054B26B /* ServicesLayer.m */,
 				CD3FC0BF1FA20A0B0054B26B /* DataAccessLayer.h */,
+				CD3FC0BD1FA20A0B0054B26B /* DataAccessLayer.m */,
+				CD3FC0BC1FA20A0B0054B26B /* ServicesLayer.h */,
+				CD3FC0BE1FA20A0B0054B26B /* ServicesLayer.m */,
 			);
-			path = layers;
+			path = Layers;
 			sourceTree = "<group>";
 		};
-		CD3FC0C01FA20A0B0054B26B /* data_access */ = {
+		CD3FC0C01FA20A0B0054B26B /* DataAccess */ = {
 			isa = PBXGroup;
 			children = (
-				CD3FC0C11FA20A0B0054B26B /* AssetsDataAccess.h */,
-				CD3FC0C21FA20A0B0054B26B /* NetworkDataAccess.m */,
-				CD3FC0C31FA20A0B0054B26B /* GitHubApiDataAccess.h */,
-				CD3FC0C41FA20A0B0054B26B /* AppDataAccess.m */,
-				CD3FC0C51FA20A0B0054B26B /* CacheDataAccess.m */,
 				CD3FC0C61FA20A0B0054B26B /* BaseDataAccess.h */,
-				CD3FC0C71FA20A0B0054B26B /* DeveloperDataAccess.h */,
 				CD3FC0C81FA20A0B0054B26B /* BaseDataAccess.m */,
-				CD3FC0C91FA20A0B0054B26B /* CacheDataAccess.h */,
-				CD3FC0CA1FA20A0B0054B26B /* AppDataAccess.h */,
-				CD3FC0CB1FA20A0B0054B26B /* GitHubApiDataAccess.m */,
-				CD3FC0CC1FA20A0B0054B26B /* NetworkDataAccess.h */,
-				CD3FC0CD1FA20A0B0054B26B /* AssetsDataAccess.m */,
-				CD3FC0CE1FA20A0B0054B26B /* DeveloperDataAccess.m */,
 			);
-			path = data_access;
+			path = DataAccess;
 			sourceTree = "<group>";
 		};
-		CD3FC0CF1FA20A0B0054B26B /* services */ = {
+		CD3FC0CF1FA20A0B0054B26B /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				CD3FC0D01FA20A0B0054B26B /* CacheServices.h */,
-				CD3FC0D11FA20A0B0054B26B /* BaseServices.m */,
-				CD3FC0D21FA20A0B0054B26B /* AlertServices.m */,
-				CD3FC0D31FA20A0B0054B26B /* AppServices.h */,
 				CD3FC0D41FA20A0B0054B26B /* BaseServices.h */,
-				CD3FC0D51FA20A0B0054B26B /* CacheServices.m */,
-				CD3FC0D61FA20A0B0054B26B /* AppServices.m */,
-				CD3FC0D71FA20A0B0054B26B /* AlertServices.h */,
+				CD3FC0D11FA20A0B0054B26B /* BaseServices.m */,
 			);
-			path = services;
+			path = Services;
 			sourceTree = "<group>";
 		};
-		CD3FC0D81FA20A0B0054B26B /* util */ = {
+		CD3FC0D81FA20A0B0054B26B /* Util */ = {
 			isa = PBXGroup;
 			children = (
 				CD3FC0D91FA20A0B0054B26B /* UITableView+Creator.m */,
@@ -511,10 +414,10 @@
 				CD944E871FB0B44600373636 /* FindPhoneManager.h */,
 				CD944E881FB0B44600373636 /* FindPhoneManager.m */,
 			);
-			path = util;
+			path = Util;
 			sourceTree = "<group>";
 		};
-		CD3FC0DB1FA20A0B0054B26B /* config */ = {
+		CD3FC0DB1FA20A0B0054B26B /* Config */ = {
 			isa = PBXGroup;
 			children = (
 				CD3FC0DC1FA20A0B0054B26B /* HTConst.h */,
@@ -524,45 +427,21 @@
 				CD3FC0E01FA20A0B0054B26B /* HTMacros.m */,
 				CD3FC0E11FA20A0B0054B26B /* HTStrings.m */,
 			);
-			path = config;
+			path = Config;
 			sourceTree = "<group>";
 		};
-		CD3FC0E21FA20A0B0054B26B /* models */ = {
-			isa = PBXGroup;
-			children = (
-				CD3FC0E31FA20A0B0054B26B /* AppModels */,
-				CD3FC0EA1FA20A0B0054B26B /* ThemeModels */,
-			);
-			path = models;
-			sourceTree = "<group>";
-		};
-		CD3FC0E31FA20A0B0054B26B /* AppModels */ = {
-			isa = PBXGroup;
-			children = (
-				CD3FC0E41FA20A0B0054B26B /* AppInfoModel.h */,
-				CD3FC0E51FA20A0B0054B26B /* AppVersionInfoModel.h */,
-				CD3FC0E61FA20A0B0054B26B /* GitHubInfoModel.h */,
-				CD3FC0E71FA20A0B0054B26B /* AppInfoModel.m */,
-				CD3FC0E81FA20A0B0054B26B /* AppVersionInfoModel.m */,
-				CD3FC0E91FA20A0B0054B26B /* GitHubInfoModel.m */,
-			);
-			path = AppModels;
-			sourceTree = "<group>";
-		};
-		CD3FC0EA1FA20A0B0054B26B /* ThemeModels */ = {
-			isa = PBXGroup;
-			children = (
-				CD3FC0EB1FA20A0B0054B26B /* ThemeColorModel.h */,
-				CD3FC0EC1FA20A0B0054B26B /* ThemeColorModel.m */,
-			);
-			path = ThemeModels;
-			sourceTree = "<group>";
-		};
-		CD3FC0ED1FA20A0B0054B26B /* modules */ = {
+		CD3FC0E21FA20A0B0054B26B /* Models */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = modules;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CD3FC0ED1FA20A0B0054B26B /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		CD3FC0EE1FA20A0B0054B26B /* Controllers */ = {
@@ -570,7 +449,6 @@
 			children = (
 				CD3FC0F71FA20A0B0054B26B /* Default */,
 				CD3FC0EF1FA20A0B0054B26B /* Home */,
-				CD3FC1B21FA2103C0054B26B /* Device */,
 				CD3FC0F31FA20A0B0054B26B /* Activity */,
 				CD3FC0FB1FA20A0B0054B26B /* Mine */,
 			);
@@ -585,6 +463,8 @@
 				CDDFA3A91FB5BAC8004C99D5 /* HomeTableView.h */,
 				CDDFA3AA1FB5BAC8004C99D5 /* HomeTableView.m */,
 				CDDFA3AC1FB5BADB004C99D5 /* HomeTableView.json */,
+				CD828DBB1FBA909A0071C9D8 /* DeviceSetting */,
+				CD3FC1C31FA213E30054B26B /* ScanVC */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -592,9 +472,9 @@
 		CD3FC0F31FA20A0B0054B26B /* Activity */ = {
 			isa = PBXGroup;
 			children = (
-				CD3FC0F41FA20A0B0054B26B /* ActivityVC.xib */,
 				CD3FC0F51FA20A0B0054B26B /* ActivityVC.h */,
 				CD3FC0F61FA20A0B0054B26B /* ActivityVC.m */,
+				CD3FC0F41FA20A0B0054B26B /* ActivityVC.xib */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -612,67 +492,28 @@
 		CD3FC0FB1FA20A0B0054B26B /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				CD3FC0FE1FA20A0B0054B26B /* MineVC.h */,
 				CD3FC0FC1FA20A0B0054B26B /* MineVC.m */,
 				CD3FC0FD1FA20A0B0054B26B /* MineVC.xib */,
-				CD3FC0FE1FA20A0B0054B26B /* MineVC.h */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
 		};
-		CD3FC10A1FA20A0B0054B26B /* views */ = {
+		CD3FC10A1FA20A0B0054B26B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CD3FC13A1FA20ABF0054B26B /* table */,
-				CD3FC10B1FA20A0B0054B26B /* loading */,
-				CD3FC1101FA20A0B0054B26B /* switch */,
 			);
-			path = views;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		CD3FC10B1FA20A0B0054B26B /* loading */ = {
-			isa = PBXGroup;
-			children = (
-				CD3FC10C1FA20A0B0054B26B /* BaseLoadingView.h */,
-				CD3FC10D1FA20A0B0054B26B /* DefaultIndicatorView.h */,
-				CD3FC10E1FA20A0B0054B26B /* BaseLoadingView.m */,
-				CD3FC10F1FA20A0B0054B26B /* DefaultIndicatorView.m */,
-			);
-			path = loading;
-			sourceTree = "<group>";
-		};
-		CD3FC1101FA20A0B0054B26B /* switch */ = {
-			isa = PBXGroup;
-			children = (
-				CD3FC1111FA20A0B0054B26B /* BaseSettingSwitch.h */,
-				CD3FC1121FA20A0B0054B26B /* BaseSwitch.h */,
-				CD3FC1131FA20A0B0054B26B /* BaseSettingSwitch.m */,
-				CD3FC1141FA20A0B0054B26B /* BaseSwitch.m */,
-			);
-			path = switch;
-			sourceTree = "<group>";
-		};
-		CD3FC13A1FA20ABF0054B26B /* table */ = {
-			isa = PBXGroup;
-			children = (
-				CD3FC13B1FA20ABF0054B26B /* BaseTableViewCell.m */,
-				CD3FC13C1FA20ABF0054B26B /* BaseTableModel.h */,
-				CD3FC13D1FA20ABF0054B26B /* BaseTableView.m */,
-				CD3FC13E1FA20ABF0054B26B /* BaseTableViewCell.h */,
-				CD3FC13F1FA20ABF0054B26B /* BaseTableViewCell.xib */,
-				CD3FC1401FA20ABF0054B26B /* BaseTableModel.m */,
-				CD3FC1411FA20ABF0054B26B /* BaseTableView.h */,
-			);
-			path = table;
-			sourceTree = "<group>";
-		};
-		CD3FC1461FA20B720054B26B /* vendor */ = {
+		CD3FC1461FA20B720054B26B /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
 				CD3FC1471FA20B720054B26B /* MJExtension */,
 				CD3FC15D1FA20B720054B26B /* AXModule */,
 				CD3FC1611FA20B720054B26B /* MJRefresh */,
 			);
-			path = vendor;
+			path = Vendor;
 			sourceTree = "<group>";
 		};
 		CD3FC1471FA20B720054B26B /* MJExtension */ = {
@@ -823,24 +664,6 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
-		CD3FC1B21FA2103C0054B26B /* Device */ = {
-			isa = PBXGroup;
-			children = (
-				CD3FC1B31FA2104B0054B26B /* DeviceVC.h */,
-				CD3FC1B41FA2104B0054B26B /* DeviceVC.m */,
-				CD3FC1B81FA210B30054B26B /* DeviceCollectionView.h */,
-				CD3FC1B91FA210B30054B26B /* DeviceCollectionView.m */,
-				CD3FC1BE1FA210EF0054B26B /* DeviceCollectionViewCell.h */,
-				CD3FC1BF1FA210EF0054B26B /* DeviceCollectionViewCell.m */,
-				CD3FC1C01FA210EF0054B26B /* DeviceCollectionViewCell.xib */,
-				CD3FC1BB1FA210CE0054B26B /* DeviceTableView.h */,
-				CD3FC1BC1FA210CE0054B26B /* DeviceTableView.m */,
-				CD7753261FA2D2DF0009C8F0 /* DeviceSettingVC */,
-				CD3FC1C31FA213E30054B26B /* ScanVC */,
-			);
-			path = Device;
-			sourceTree = "<group>";
-		};
 		CD3FC1C31FA213E30054B26B /* ScanVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -869,16 +692,14 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		CD7753261FA2D2DF0009C8F0 /* DeviceSettingVC */ = {
+		CD828DBB1FBA909A0071C9D8 /* DeviceSetting */ = {
 			isa = PBXGroup;
 			children = (
-				CD7753271FA2D3010009C8F0 /* DeviceSettingVC.h */,
-				CD7753281FA2D3010009C8F0 /* DeviceSettingVC.m */,
-				CD77532A1FA2D31F0009C8F0 /* DeviceSettingTV.h */,
-				CD77532B1FA2D31F0009C8F0 /* DeviceSettingTV.m */,
-				CD616CAE1FB9E92C00E38244 /* DeviceSettingTV.json */,
+				CD828DBC1FBA909A0071C9D8 /* DeviceSettingTV.m */,
+				CD828DBD1FBA909A0071C9D8 /* DeviceSettingTV.json */,
+				CD828DBE1FBA909A0071C9D8 /* DeviceSettingTV.h */,
 			);
-			path = DeviceSettingVC;
+			path = DeviceSetting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -983,14 +804,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD616CAF1FB9E92D00E38244 /* DeviceSettingTV.json in Resources */,
+				CD828DC01FBA909B0071C9D8 /* DeviceSettingTV.json in Resources */,
 				CD3FC12E1FA20A0B0054B26B /* DefaultViewController.xib in Resources */,
 				CD3FC12C1FA20A0B0054B26B /* ActivityVC.xib in Resources */,
 				CD2E79291FA0C53300012CDB /* LaunchScreen.storyboard in Resources */,
 				CD3FC1B11FA20F8F0054B26B /* tabbar_controllers.json in Resources */,
-				CD3FC1C21FA210EF0054B26B /* DeviceCollectionViewCell.xib in Resources */,
 				CD3FC1311FA20A0B0054B26B /* MineVC.xib in Resources */,
-				CD3FC1441FA20ABF0054B26B /* BaseTableViewCell.xib in Resources */,
 				CD616CAD1FB9E2FC00E38244 /* BaseTabBarController.json in Resources */,
 				CD3FC1D01FA223A20054B26B /* ScanTableViewCell.xib in Resources */,
 				CD2E79261FA0C53300012CDB /* Assets.xcassets in Resources */,
@@ -1109,82 +928,57 @@
 				CD3FC19C1FA20B730054B26B /* MJRefreshConst.m in Sources */,
 				CD3FC19A1FA20B730054B26B /* UIViewController+AXMailWrapper.m in Sources */,
 				CD3FC1941FA20B730054B26B /* MJExtensionConst.m in Sources */,
-				CD7753291FA2D3010009C8F0 /* DeviceSettingVC.m in Sources */,
 				CD2E79211FA0C53300012CDB /* ViewController.m in Sources */,
 				CD3FC1241FA20A0B0054B26B /* HTMacros.m in Sources */,
-				CD3FC11D1FA20A0B0054B26B /* DeveloperDataAccess.m in Sources */,
-				CD3FC1391FA20A0B0054B26B /* BaseSwitch.m in Sources */,
 				CD3FC1A51FA20B730054B26B /* MJRefreshAutoGifFooter.m in Sources */,
 				CD3FC1AE1FA20B730054B26B /* MJRefreshComponent.m in Sources */,
 				CD3FC1A11FA20B730054B26B /* MJRefreshBackGifFooter.m in Sources */,
 				CD3FC1911FA20B730054B26B /* NSObject+MJKeyValue.m in Sources */,
 				CD3FC1A41FA20B730054B26B /* MJRefreshAutoStateFooter.m in Sources */,
-				CD3FC1371FA20A0B0054B26B /* DefaultIndicatorView.m in Sources */,
 				CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */,
 				CD3FC1A21FA20B730054B26B /* MJRefreshBackStateFooter.m in Sources */,
 				CD3FC1301FA20A0B0054B26B /* MineVC.m in Sources */,
 				CD3FC1971FA20B730054B26B /* NSString+MJExtension.m in Sources */,
-				CD3FC1261FA20A0B0054B26B /* AppInfoModel.m in Sources */,
-				CD3FC1281FA20A0B0054B26B /* GitHubInfoModel.m in Sources */,
 				CD3FC1A31FA20B730054B26B /* MJRefreshBackNormalFooter.m in Sources */,
-				CD3FC1431FA20ABF0054B26B /* BaseTableView.m in Sources */,
-				CD3FC1361FA20A0B0054B26B /* BaseLoadingView.m in Sources */,
 				CD3FC1161FA20A0B0054B26B /* ServicesLayer.m in Sources */,
 				CD3FC11A1FA20A0B0054B26B /* BaseDataAccess.m in Sources */,
 				CD2E792C1FA0C53300012CDB /* main.m in Sources */,
-				CD3FC11C1FA20A0B0054B26B /* AssetsDataAccess.m in Sources */,
 				CD3FC1151FA20A0B0054B26B /* DataAccessLayer.m in Sources */,
 				CD3FC1C71FA213F50054B26B /* ScanViewController.m in Sources */,
 				CD3FC1221FA20A0B0054B26B /* UITableView+Creator.m in Sources */,
 				CD3FC1251FA20A0B0054B26B /* HTStrings.m in Sources */,
-				CD3FC1C11FA210EF0054B26B /* DeviceCollectionViewCell.m in Sources */,
-				CD3FC1BD1FA210CE0054B26B /* DeviceTableView.m in Sources */,
-				CD3FC1181FA20A0B0054B26B /* AppDataAccess.m in Sources */,
 				CD3FC1A61FA20B730054B26B /* MJRefreshAutoNormalFooter.m in Sources */,
-				CD3FC11B1FA20A0B0054B26B /* GitHubApiDataAccess.m in Sources */,
-				CD3FC1191FA20A0B0054B26B /* CacheDataAccess.m in Sources */,
 				CD3FC1AA1FA20B730054B26B /* MJRefreshFooter.m in Sources */,
-				CD3FC1211FA20A0B0054B26B /* AppServices.m in Sources */,
-				CD3FC1381FA20A0B0054B26B /* BaseSettingSwitch.m in Sources */,
 				CD3FC1901FA20B730054B26B /* MJPropertyType.m in Sources */,
 				CD3FC1A01FA20B730054B26B /* UIView+MJExtension.m in Sources */,
 				CDDFA3AB1FB5BAC8004C99D5 /* HomeTableView.m in Sources */,
-				CD3FC1451FA20ABF0054B26B /* BaseTableModel.m in Sources */,
 				CD3FC1AC1FA20B730054B26B /* MJRefreshBackFooter.m in Sources */,
-				CD3FC1291FA20A0B0054B26B /* ThemeColorModel.m in Sources */,
 				CD3FC1981FA20B730054B26B /* MJPropertyKey.m in Sources */,
 				CD3FC12D1FA20A0B0054B26B /* ActivityVC.m in Sources */,
 				CD3FC1AB1FA20B730054B26B /* MJRefreshHeader.m in Sources */,
 				CD3FC1931FA20B730054B26B /* NSObject+MJCoding.m in Sources */,
-				CD3FC11F1FA20A0B0054B26B /* AlertServices.m in Sources */,
 				CD3FC19F1FA20B730054B26B /* NSBundle+MJRefresh.m in Sources */,
 				CD3FC1231FA20A0B0054B26B /* HTConst.m in Sources */,
-				CD3FC1421FA20ABF0054B26B /* BaseTableViewCell.m in Sources */,
-				CD3FC1BA1FA210B30054B26B /* DeviceCollectionView.m in Sources */,
 				CD3FC1AD1FA20B730054B26B /* MJRefreshAutoFooter.m in Sources */,
-				CD3FC1201FA20A0B0054B26B /* CacheServices.m in Sources */,
 				CD3FC12A1FA20A0B0054B26B /* HomeVC.m in Sources */,
 				CD616CA61FB9E0B300E38244 /* RootViewController.m in Sources */,
 				CD616CA91FB9E0B300E38244 /* BaseTabBarController.m in Sources */,
 				CD3FC1951FA20B730054B26B /* NSObject+MJProperty.m in Sources */,
 				CD3FC12F1FA20A0B0054B26B /* DefaultViewController.m in Sources */,
-				CD3FC1B61FA2104B0054B26B /* DeviceVC.m in Sources */,
 				CD616CA81FB9E0B300E38244 /* BaseNavController.m in Sources */,
-				CD3FC1171FA20A0B0054B26B /* NetworkDataAccess.m in Sources */,
 				CD3FC1A91FA20B730054B26B /* MJRefreshGifHeader.m in Sources */,
 				CD3FC19E1FA20B730054B26B /* UIScrollView+MJExtension.m in Sources */,
 				CD3FC1921FA20B730054B26B /* MJProperty.m in Sources */,
 				CD3FC19B1FA20B730054B26B /* UIScrollView+MJRefresh.m in Sources */,
 				CD3FC1991FA20B730054B26B /* MJFoundation.m in Sources */,
+				CD828DBF1FBA909B0071C9D8 /* DeviceSettingTV.m in Sources */,
 				CD616CA71FB9E0B300E38244 /* BaseViewController.m in Sources */,
 				CD2E791E1FA0C53300012CDB /* AppDelegate.m in Sources */,
 				CD3FC1CF1FA223A20054B26B /* ScanTableViewCell.m in Sources */,
 				CD3FC1A81FA20B730054B26B /* MJRefreshStateHeader.m in Sources */,
 				CD3FC1A71FA20B730054B26B /* MJRefreshNormalHeader.m in Sources */,
 				CD3FC1961FA20B730054B26B /* NSObject+MJClass.m in Sources */,
-				CD3FC1271FA20A0B0054B26B /* AppVersionInfoModel.m in Sources */,
 				CD3FC11E1FA20A0B0054B26B /* BaseServices.m in Sources */,
-				CD77532C1FA2D31F0009C8F0 /* DeviceSettingTV.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

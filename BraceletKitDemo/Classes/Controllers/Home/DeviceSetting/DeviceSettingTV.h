@@ -1,13 +1,13 @@
 //
-//  DeviceSettingVC.h
+//  DeviceSettingTV.h
 //  BraceletKitDemo
 //
 //  Created by xaoxuu on 27/10/2017.
 //  Copyright © 2017 xaoxuu. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface DeviceSettingVC : BaseViewController
+@interface DeviceSettingTV : AXTableView
 
 @end

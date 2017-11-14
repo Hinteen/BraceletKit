@@ -8,18 +8,6 @@
 
 #import "RootViewController.h"
 
-// =============== 第三方库
-#import <YYKit/YYKit.h>
-#import <AXKit/AXKit.h>
-
-// =============== 内部
-// @xaoxuu: 常量
-#import "HTConst.h"
-#import "HTMacros.h"
-#import "HTStrings.h"
-// @xaoxuu: 服务层
-#import "ServicesLayer.h"
-
 
 
 @interface RootViewController ()
@@ -36,7 +24,7 @@
     self.mainTabBarVC = [[BaseTabBarController alloc] init];
     [self addChildViewController:self.mainTabBarVC];
     [self.view addSubview:self.mainTabBarVC.view];
-    [services.app applyTheme];
+    
 }
 
 - (void)didReceiveMemoryWarning {

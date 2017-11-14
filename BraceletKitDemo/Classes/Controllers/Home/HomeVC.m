@@ -9,8 +9,8 @@
 #import "HomeVC.h"
 #import "HomeTableView.h"
 #import <AXKit/AXKit.h>
-#import "DeviceSettingTV.h"
 #import <AXCameraKit/AXCameraKit.h>
+#import "DeviceSettingTV.h"
 
 static inline CGSize contentSize(){
     return CGSizeMake(kScreenW, kScreenH - kTopBarHeight - kTabBarHeight);

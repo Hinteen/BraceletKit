@@ -37,9 +37,6 @@ ServicesLayer *services = nil;
         });
     }
     
-    _app = [AppServices new];
-    _cache = [CacheServices new];
-    _alert = [AlertServices new];
     
     
     return services;

@@ -321,10 +321,6 @@ static inline void showSuccess(NSString *msg){
  *  like ZeronerHWOption, ZeronerPersonal
  */
 - (void)setBLEParameterAfterConnect{
-    BraceletType type = self.bleSDK.deviceType;
-    NSString *alias = self.bleSDK.getDeivceAlias;
-    
-    
     AXLogToCachePath(@"setBLEParameterAfterConnect");
 }
 
