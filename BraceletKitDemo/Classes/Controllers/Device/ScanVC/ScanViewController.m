@@ -28,7 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    
+    self.title = @"扫描设备";
     self.devices = [NSMutableArray array];
     
     CGRect frame = self.view.bounds;
@@ -39,7 +39,7 @@
     [self.tableView2 registerNib:[UINib nibWithNibName:@"ScanTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ScanTableViewCell"];
     [self.view addSubview:self.tableView2];
     
-    self.tableView2.rowHeight = 136;
+    self.tableView2.rowHeight = 102;
     self.tableView2.sectionHeaderHeight = 16;
     self.tableView2.sectionFooterHeight = 0;
     

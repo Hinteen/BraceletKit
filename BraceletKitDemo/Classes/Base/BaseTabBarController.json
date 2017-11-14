@@ -11,12 +11,7 @@
       "icon":"tabbar_debug",
       "icon_sel":"",
     },
-     {
-     "vc":"ScanViewController",
-     "title":"设备",
-     "icon":"tabbar_debug",
-     "icon_sel":"",
-     },
+     
     {
       "vc":"MineVC",
       "title":"我的",

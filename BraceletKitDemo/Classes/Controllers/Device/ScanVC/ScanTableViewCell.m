@@ -28,8 +28,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.height = 136;
     
+    self.lb_name.font = [UIFont fontWithName:@"DIN Condensed" size:24];
+    [self.lb_name sizeToFit];
     self.lb_uuid.adjustsFontSizeToFitWidth = YES;
 }
 

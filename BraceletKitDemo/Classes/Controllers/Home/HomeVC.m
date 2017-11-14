@@ -35,6 +35,12 @@ static inline CGSize contentSize(){
     [self loadCameraKit];
     
     [[BraceletManager sharedInstance] registerDelegate:self];
+    
+    __weak typeof(self) weakSelf = self;
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem ax_itemWithImageName:@"band" action:^(UIBarButtonItem * _Nonnull sender) {
+        [weakSelf.navigationController ax_pushViewControllerNamed:@"ScanViewController"];
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,11 +59,11 @@ static inline CGSize contentSize(){
 
 
 - (void)braceletDidUpdateDeviceInfo:(ZeronerDeviceInfo *)deviceInfo{
-    [self.tableView reloadDataSourceAndTableView];
+    [self.tableView reloadDataSourceAndRefreshTableView];
 }
 
 - (void)braceletDidUpdateDeviceBattery:(ZeronerDeviceInfo *)deviceInfo{
-    [self.tableView reloadDataSourceAndTableView];
+    [self.tableView reloadDataSourceAndRefreshTableView];
 }
 
 - (void)cameraDidDismissed{

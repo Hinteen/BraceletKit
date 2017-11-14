@@ -173,7 +173,7 @@
 
 
 - (void)ax_tableViewDidSelectedRowAtIndexPath:(NSIndexPath *)indexPath{
-    AXTableRowModelType *model = [self ax_rowModelForIndexPath:indexPath];
+    AXTableRowModelType *model = [self tableViewRowModelForIndexPath:indexPath];
     if ([model.target isEqualToString:@"zhipai"]) {
         [self.controller presentCameraVC:^{
             
