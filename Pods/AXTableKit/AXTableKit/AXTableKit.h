@@ -17,7 +17,5 @@ FOUNDATION_EXPORT const unsigned char AXTableKitVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <AXTableKit/PublicHeader.h>
 
 #import "AXTableView.h"
-#import "AXTableViewCell.h"
-#import "AXTableModel.h"
 
 

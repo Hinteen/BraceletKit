@@ -7,10 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AXTableKitProtocol.h"
+#import "AXTableModel.h"
 
 
-@interface AXTableViewCell : UITableViewCell <AXTableViewCell>
+@protocol AXTableViewCell <NSObject>
+@required
+/**
+ cell必须要有数据模型
+ 
+ @param model 数据模型
+ */
+- (void)setModel:(AXTableRowModelType *)model;
+- (AXTableRowModelType *)model;
+
+@optional
+- (UIImageView *)icon;
+
+
+@end
+typedef UITableViewCell<AXTableViewCell> AXTableViewCellType;
+
+@interface AXTableViewCell : AXTableViewCellType
 
 // @xaoxuu: model
 @property (strong, readwrite, nonatomic) NSObject<AXTableRowModel> *model;

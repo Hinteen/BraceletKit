@@ -7,9 +7,64 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AXTableKitProtocol.h"
 
 @class AXTableSectionModel,AXTableRowModel;
+
+@protocol AXTableRowModel <NSObject>
+@required
+- (NSString *)title;
+
+- (NSString *)detail;
+
+- (NSString *)icon;
+
+- (NSString *)target;
++ (instancetype)modelWithDictionary:(NSDictionary *)dict;
+
+@optional
+- (CGFloat)rowHeight;
+- (UITableViewCellAccessoryType)accessoryType;
+- (void)setAccessoryType:(UITableViewCellAccessoryType)accessoryType;
+
+@end
+
+typedef NSObject<AXTableRowModel> AXTableRowModelType;
+
+@protocol AXTableSectionModel <NSObject>
+@required
+
+- (NSMutableArray<AXTableRowModelType *> *)rows;
++ (instancetype)modelWithDictionary:(NSDictionary *)dict;
+
+@optional
+- (NSString *)headerTitle;
+- (CGFloat)headerHeight;
+
+- (NSString *)footerTitle;
+- (CGFloat)footerHeight;
+
+- (CGFloat)rowHeight;
+
+@end
+typedef NSObject<AXTableSectionModel> AXTableSectionModelType;
+
+@protocol AXTableModel <NSObject>
+@required
+
+- (NSMutableArray<AXTableSectionModelType *> *)sections;
++ (instancetype)modelWithDictionary:(NSDictionary *)dict;
+
+@optional
+- (NSString *)headerTitle;
+- (CGFloat)headerHeight;
+
+- (NSString *)footerTitle;
+- (CGFloat)footerHeight;
+
+
+@end
+typedef NSObject<AXTableModel> AXTableModelType;
+
 
 @interface AXTableModel : NSObject <AXTableModel>
 
