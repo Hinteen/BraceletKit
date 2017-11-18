@@ -258,8 +258,12 @@ static inline void showSuccess(NSString *msg){
     AXLogToCachePath(device);
     AXLogToCachePath(error);
     
-    [self.central cancelPeripheralConnection:self.peripheral];
-    showError([NSString stringWithFormat:@"已与设备[%@]断开连接，错误信息：[%@]", device.deviceName, error]);
+    if (self.peripheral) {
+        [self.central cancelPeripheralConnection:self.peripheral];
+    }
+    if (device) {
+        showError([NSString stringWithFormat:@"已与设备[%@]断开连接，错误信息：[%@]", device.deviceName, error]);
+    }
 }
 
 /**
