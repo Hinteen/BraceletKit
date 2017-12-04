@@ -1,7 +1,6 @@
 PODS:
-  - AXCameraKit (0.0.9)
-  - AXKit (0.1.0)
-  - AXTableKit (0.0.2)
+  - AXCameraKit (0.1.3)
+  - AXKit (0.1.3)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -9,15 +8,13 @@ PODS:
 DEPENDENCIES:
   - AXCameraKit
   - AXKit
-  - AXTableKit
   - YYKit
 
 SPEC CHECKSUMS:
-  AXCameraKit: 1ba615adcc6d4a41385e9b87791dece8c11d6434
-  AXKit: dbcf4aef344788a6ba9e7b9f1e96451e5636799c
-  AXTableKit: 099953577d4550c10409554849dfa4a855e6b84f
+  AXCameraKit: 1476a0278f217693cb3ce9ebb2293aaf42cd63ed
+  AXKit: dcf3dc867a912c2714e12b0cdecd2b8ededb71db
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 8b8045ca442b39e3b87d84ea68c1e0986918e9df
+PODFILE CHECKSUM: 8e64f42f6d2d91d1f17f5be6283a34fb9ed58a4e
 
 COCOAPODS: 1.3.1

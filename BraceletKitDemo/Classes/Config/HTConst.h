@@ -9,13 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-// @xaoxuu: 状态栏高度
-CG_EXTERN const CGFloat kStatusBarHeight;
-// @xaoxuu: 导航栏高度
-CG_EXTERN const CGFloat kNavBarHeight;
-// @xaoxuu: tabbar高度
-CG_EXTERN const CGFloat kTabBarHeight;
-
 
 // @xaoxuu: 窄 margin = 4
 CG_EXTERN const CGFloat kMargin4;

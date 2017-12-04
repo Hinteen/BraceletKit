@@ -1,1 +1,1 @@
-../../../AXKit/AXKit/UIKit/UIApplication+AXExtension.h
+../../../AXKit/AXKit/Foundation/UIApplication+AXExtension.h

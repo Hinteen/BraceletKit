@@ -13,13 +13,11 @@
 #import "DeviceSettingTV.h"
 
 static inline CGSize contentSize(){
-    return CGSizeMake(kScreenW, kScreenH - kTopBarHeight - kTabBarHeight);
+    return CGSizeMake(kScreenW, kScreenH - kTopBarHeight() - kTabBarHeight());
 }
 
 @interface HomeVC () <BraceletManager>
 
-
-//@property (strong, nonatomic) DeviceSettingTV *tableView;
 
 @end
 
@@ -30,9 +28,8 @@ static inline CGSize contentSize(){
     // Do any additional setup after loading the view from its nib.
     
     self.view.width = kScreenW;
-    self.view.height -= kTabBarHeight;
+    self.view.height -= kTabBarHeight();
     
-    [self loadCameraKit];
     
     [[BraceletManager sharedInstance] registerDelegate:self];
     
@@ -42,7 +39,10 @@ static inline CGSize contentSize(){
     }];
     
 }
-
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+//    [UIAlertController ax_showAlertWithTitle:nil message:@"haha" actions:nil];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -65,19 +65,6 @@ static inline CGSize contentSize(){
 - (void)braceletDidUpdateDeviceBattery:(ZeronerDeviceInfo *)deviceInfo{
     [self.tableView reloadDataSourceAndRefreshTableView];
 }
-
-- (void)cameraDidDismissed{
-    [BraceletManager sharedInstance].cameraMode = NO;
-}
-
-- (void)cameraDidPresented{
-    [BraceletManager sharedInstance].cameraMode = YES;
-}
-
-- (void)braceletDidTakePicture{
-    [self takePicture];
-}
-
 
 
 @end

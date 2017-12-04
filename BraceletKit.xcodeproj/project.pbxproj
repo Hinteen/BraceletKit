@@ -49,7 +49,6 @@
 		CD3FC1971FA20B730054B26B /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1571FA20B720054B26B /* NSString+MJExtension.m */; };
 		CD3FC1981FA20B730054B26B /* MJPropertyKey.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1581FA20B720054B26B /* MJPropertyKey.m */; };
 		CD3FC1991FA20B730054B26B /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC15C1FA20B720054B26B /* MJFoundation.m */; };
-		CD3FC19A1FA20B730054B26B /* UIViewController+AXMailWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC15F1FA20B720054B26B /* UIViewController+AXMailWrapper.m */; };
 		CD3FC19B1FA20B730054B26B /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1621FA20B720054B26B /* UIScrollView+MJRefresh.m */; };
 		CD3FC19C1FA20B730054B26B /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1631FA20B720054B26B /* MJRefreshConst.m */; };
 		CD3FC19D1FA20B730054B26B /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC1671FA20B720054B26B /* MJRefresh.bundle */; };
@@ -82,6 +81,7 @@
 		CD616CAD1FB9E2FC00E38244 /* BaseTabBarController.json in Resources */ = {isa = PBXBuildFile; fileRef = CD616CAC1FB9E2FC00E38244 /* BaseTabBarController.json */; };
 		CD828DBF1FBA909B0071C9D8 /* DeviceSettingTV.m in Sources */ = {isa = PBXBuildFile; fileRef = CD828DBC1FBA909A0071C9D8 /* DeviceSettingTV.m */; };
 		CD828DC01FBA909B0071C9D8 /* DeviceSettingTV.json in Resources */ = {isa = PBXBuildFile; fileRef = CD828DBD1FBA909A0071C9D8 /* DeviceSettingTV.json */; };
+		CD8F66CF1FD4F62F00B4C6DD /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8F66CE1FD4F62F00B4C6DD /* CameraViewController.m */; };
 		CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD944E881FB0B44600373636 /* FindPhoneManager.m */; };
 		CDDFA3AB1FB5BAC8004C99D5 /* HomeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFA3AA1FB5BAC8004C99D5 /* HomeTableView.m */; };
 		CDDFA3AD1FB5BADB004C99D5 /* HomeTableView.json in Resources */ = {isa = PBXBuildFile; fileRef = CDDFA3AC1FB5BADB004C99D5 /* HomeTableView.json */; };
@@ -182,8 +182,6 @@
 		CD3FC15A1FA20B720054B26B /* NSObject+MJKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJKeyValue.h"; sourceTree = "<group>"; };
 		CD3FC15B1FA20B720054B26B /* NSObject+MJCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJCoding.h"; sourceTree = "<group>"; };
 		CD3FC15C1FA20B720054B26B /* MJFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFoundation.m; sourceTree = "<group>"; };
-		CD3FC15F1FA20B720054B26B /* UIViewController+AXMailWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AXMailWrapper.m"; sourceTree = "<group>"; };
-		CD3FC1601FA20B720054B26B /* UIViewController+AXMailWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AXMailWrapper.h"; sourceTree = "<group>"; };
 		CD3FC1621FA20B720054B26B /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		CD3FC1631FA20B720054B26B /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
 		CD3FC1641FA20B720054B26B /* UIScrollView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJExtension.h"; sourceTree = "<group>"; };
@@ -243,6 +241,8 @@
 		CD828DBC1FBA909A0071C9D8 /* DeviceSettingTV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceSettingTV.m; sourceTree = "<group>"; };
 		CD828DBD1FBA909A0071C9D8 /* DeviceSettingTV.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DeviceSettingTV.json; sourceTree = "<group>"; };
 		CD828DBE1FBA909A0071C9D8 /* DeviceSettingTV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceSettingTV.h; sourceTree = "<group>"; };
+		CD8F66CD1FD4F62F00B4C6DD /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		CD8F66CE1FD4F62F00B4C6DD /* CameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		CD944E871FB0B44600373636 /* FindPhoneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindPhoneManager.h; sourceTree = "<group>"; };
 		CD944E881FB0B44600373636 /* FindPhoneManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindPhoneManager.m; sourceTree = "<group>"; };
 		CDDFA3A91FB5BAC8004C99D5 /* HomeTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTableView.h; sourceTree = "<group>"; };
@@ -547,18 +547,8 @@
 		CD3FC15D1FA20B720054B26B /* AXModule */ = {
 			isa = PBXGroup;
 			children = (
-				CD3FC15E1FA20B720054B26B /* Mail */,
 			);
 			path = AXModule;
-			sourceTree = "<group>";
-		};
-		CD3FC15E1FA20B720054B26B /* Mail */ = {
-			isa = PBXGroup;
-			children = (
-				CD3FC15F1FA20B720054B26B /* UIViewController+AXMailWrapper.m */,
-				CD3FC1601FA20B720054B26B /* UIViewController+AXMailWrapper.h */,
-			);
-			path = Mail;
 			sourceTree = "<group>";
 		};
 		CD3FC1611FA20B720054B26B /* MJRefresh */ = {
@@ -698,8 +688,18 @@
 				CD828DBC1FBA909A0071C9D8 /* DeviceSettingTV.m */,
 				CD828DBD1FBA909A0071C9D8 /* DeviceSettingTV.json */,
 				CD828DBE1FBA909A0071C9D8 /* DeviceSettingTV.h */,
+				CD8F66D01FD4F63D00B4C6DD /* CameraViewController */,
 			);
 			path = DeviceSetting;
+			sourceTree = "<group>";
+		};
+		CD8F66D01FD4F63D00B4C6DD /* CameraViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CD8F66CD1FD4F62F00B4C6DD /* CameraViewController.h */,
+				CD8F66CE1FD4F62F00B4C6DD /* CameraViewController.m */,
+			);
+			path = CameraViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -926,7 +926,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD3FC19C1FA20B730054B26B /* MJRefreshConst.m in Sources */,
-				CD3FC19A1FA20B730054B26B /* UIViewController+AXMailWrapper.m in Sources */,
 				CD3FC1941FA20B730054B26B /* MJExtensionConst.m in Sources */,
 				CD2E79211FA0C53300012CDB /* ViewController.m in Sources */,
 				CD3FC1241FA20A0B0054B26B /* HTMacros.m in Sources */,
@@ -977,6 +976,7 @@
 				CD3FC1CF1FA223A20054B26B /* ScanTableViewCell.m in Sources */,
 				CD3FC1A81FA20B730054B26B /* MJRefreshStateHeader.m in Sources */,
 				CD3FC1A71FA20B730054B26B /* MJRefreshNormalHeader.m in Sources */,
+				CD8F66CF1FD4F62F00B4C6DD /* CameraViewController.m in Sources */,
 				CD3FC1961FA20B730054B26B /* NSObject+MJClass.m in Sources */,
 				CD3FC11E1FA20A0B0054B26B /* BaseServices.m in Sources */,
 			);
@@ -1135,6 +1135,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BraceletKit",
+					"$(PROJECT_DIR)/BraceletKitDemo",
 				);
 				GCC_PREFIX_HEADER = BraceletKitDemo/PrefixHeader.pch;
 				INFOPLIST_FILE = BraceletKitDemo/Info.plist;
@@ -1155,6 +1156,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BraceletKit",
+					"$(PROJECT_DIR)/BraceletKitDemo",
 				);
 				GCC_PREFIX_HEADER = BraceletKitDemo/PrefixHeader.pch;
 				INFOPLIST_FILE = BraceletKitDemo/Info.plist;
@@ -1180,6 +1182,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BraceletKit",
+					"$(PROJECT_DIR)/BraceletKitDemo",
 				);
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = BraceletKit/Info.plist;
@@ -1209,6 +1212,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BraceletKit",
+					"$(PROJECT_DIR)/BraceletKitDemo",
 				);
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = BraceletKit/Info.plist;

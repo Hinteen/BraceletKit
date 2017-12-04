@@ -1,1 +1,1 @@
-../../../AXKit/AXKit/UIKit/AXTabBarController.h
+../../../AXKit/AXKit/TabKit/AXTabBarController.h

@@ -10,11 +10,16 @@
 #import "NSString+AXFileStreamChainedWrapper.h"
 #import "NSDate+AXExtension.h"
 
-
-// 日志存放的文件夹名
-static NSString *logFileDir = @"log";
+// 日志版本
+static CGFloat logFileVersion = 1.0;
 // 日志文件扩展名
 static NSString *logFileExtension = @"md";
+
+// 日志存放的文件夹名
+static NSString *logFileDir(){
+    return [NSString stringWithFormat:@"log%.1f", logFileVersion];
+}
+
 static NSDateFormatter *formatter;
 
 static inline dispatch_queue_t logQueue(){
@@ -41,15 +46,19 @@ static inline NSString *logPath(){
     dispatch_once(&onceToken, ^{
         NSDate *today = [NSDate date];
         NSString *fileName = [NSString stringWithFormat:@"%@.%@", [dateFormatter(@"yyyy-MM-dd") stringFromDate:today], logFileExtension];
-        path = [[@"com.xaoxuu.AXKit" stringByAppendingPathComponent:logFileDir] stringByAppendingPathComponent:fileName].cachePath;
+        path = [[@"com.xaoxuu.AXKit" stringByAppendingPathComponent:logFileDir()] stringByAppendingPathComponent:fileName].cachePath;
         // 写入第一行，文件标题
-        path.saveStringByAppendingToEndOfFile([NSString stringWithFormat:@"## %@\n", [dateFormatter(@"yyyy-MM-dd HH:mm:ss") stringFromDate:today]]);
+        path.saveStringByAppendingToEndOfFile([NSString stringWithFormat:@"## app launch: %@\n", [dateFormatter(@"yyyy-MM-dd HH:mm:ss") stringFromDate:today]]);
     });
     return path;
 }
 
 
 @implementation AXLog
+
++ (void)configLogVersion:(CGFloat)version{
+    logFileVersion = version;
+}
 
 /**
  获取所有的日志路径
@@ -119,7 +128,8 @@ static inline NSString *logPath(){
     }
     dispatch_async(logQueue(), ^{
         // @xaoxuu: in log queue
-        NSString *str = [NSString stringWithFormat:@"%@\n```\n%@\n```\n\n", func, input.description];
+        NSString *dateString = [dateFormatter(@"yyyy-MM-dd HH:mm:ss Z") stringFromDate:[NSDate date]];
+        NSString *str = [NSString stringWithFormat:@"##### [%@] func:%@\n```\n%@\n```\n\n", dateString, func, input.description];
 #ifdef DEBUG
         NSLog(@"%@",str);
 #endif

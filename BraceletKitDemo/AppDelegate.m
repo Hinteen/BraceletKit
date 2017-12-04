@@ -23,12 +23,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     AXLogToCachePath(@"启动");
+    
     [[BLELib3 shareInstance] applicationDidFinishLaunchingWithOptions];
     // @xaoxuu: 启动服务
     [ServicesLayer sharedInstance];
-    [[UIColorManager sharedInstance] configColorManager:^(UIColorManager * _Nonnull manager) {
-        manager.theme = [UIColor md_blue];
-        manager.accent = [UIColor md_lime];
+    [[UIThemeManager sharedInstance] configDefaultTheme:^(UIThemeManager *theme) {
+        theme.color.theme = [UIColor md_blue];
+        theme.color.accent = [UIColor md_lime];
     }];
     
     // 创建窗口
@@ -44,16 +45,16 @@
     [UINavigationBar appearance].barStyle = UIBarStyleDefault;
     [UINavigationBar appearance].translucent = NO;
     [UINavigationBar appearance].opaque = YES;
-    [UINavigationBar appearance].barTintColor = axColor.theme;
-    [UINavigationBar appearance].tintColor = axColor.white;
-    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName:axColor.white};
+    [UINavigationBar appearance].barTintColor = axThemeManager.color.theme;
+    [UINavigationBar appearance].tintColor = UIColor.whiteColor;
+    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName:UIColor.whiteColor};
     
     
     [UITabBar appearance].barStyle = UIBarStyleDefault;
     [UITabBar appearance].translucent = NO;
     [UITabBar appearance].opaque = YES;
-    [UITabBar appearance].barTintColor = axColor.white;
-    [UITabBar appearance].tintColor = axColor.theme;
+    [UITabBar appearance].barTintColor = UIColor.whiteColor;
+    [UITabBar appearance].tintColor = axThemeManager.color.theme;
     
     return YES;
 }

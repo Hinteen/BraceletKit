@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "UIDevice+AXExtension.h"
+#import "UIApplication+AXExtension.h"
 #import "AXDebugHelper.h"
 // @xaoxuu: NSString类的扩展（随机字符串等）
 #import "NSString+AXExtension.h"
@@ -40,7 +42,7 @@
 
 #import "NSDate+AXExtension.h"
 
-FOUNDATION_EXTERN void axkit_active(void);
+#import "NSDictionary+AXExtension.h"
 
 
 @interface AXKitFoundationHeader : NSObject

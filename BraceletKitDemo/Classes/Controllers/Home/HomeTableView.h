@@ -6,7 +6,7 @@
 //  Copyright © 2017 xaoxuu. All rights reserved.
 //
 
-#import <AXTableKit/AXTableKit.h>
+#import <AXKit/TableKit.h>
 
 @interface HomeTableView : AXTableView
 

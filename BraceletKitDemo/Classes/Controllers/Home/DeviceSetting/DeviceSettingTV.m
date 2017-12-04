@@ -11,6 +11,7 @@
 #import <AXKit/AXKit.h>
 #import "DefaultViewController.h"
 #import <AXCameraKit/AXCameraKit.h>
+#import "CameraViewController.h"
 
 @interface DeviceSettingTV ()
 
@@ -18,9 +19,12 @@
 
 @property (strong, nonatomic) ZeronerDeviceInfo *deviceInfo;
 
+
+
 @end
 
 @implementation DeviceSettingTV
+
 
 
 - (void)ax_tableViewDataSource:(void (^)(AXTableModelType *))dataSource{
@@ -74,6 +78,23 @@
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"hw版本";
             row.detail = NSStringFromNSInteger(deviceInfo.hwVersion);
+        }];
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"更新时间";
+            row.detail = @"time";
+        }];
+    }];
+    
+    [dataList addSection:^(AXTableSectionModel *section) {
+        section.headerTitle = @"测试";
+        
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"12";
+            row.target = @"12";
+        }];
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"24";
+            row.target = @"24";
         }];
     }];
     
@@ -175,22 +196,33 @@
 - (void)ax_tableViewDidSelectedRowAtIndexPath:(NSIndexPath *)indexPath{
     AXTableRowModelType *model = [self tableViewRowModelForIndexPath:indexPath];
     if ([model.target isEqualToString:@"zhipai"]) {
-        [self.controller presentCameraVC:^{
-            
-        }];
+        CameraViewController *vc = [[CameraViewController alloc] init];
+        [self.controller presentViewController:vc animated:YES completion:nil];
+        
     } else if ([model.target isEqualToString:@"pushstring"]) {
         [[BraceletManager sharedInstance].bleSDK pushStr:@"DID YOU MISS ME"];
     } else if ([model.target isEqualToString:@"noti_unbind"]) {
         [[BraceletManager sharedInstance] disConnectDevice];
         
+    }
+    else if ([model.target isEqualToString:@"12"]) {
         
+        [[BraceletManager sharedInstance] updateDeviceSetting:^(ZeronerHWOption * _Nonnull setting) {
+            setting.timeFlag = TimeFlag12Hour;
+        }];
         
-        
+        [[BraceletManager sharedInstance].bleSDK readFirmwareOption];
+    }
+    else if ([model.target isEqualToString:@"24"]) {
+        [[BraceletManager sharedInstance] updateDeviceSetting:^(ZeronerHWOption * _Nonnull setting) {
+            setting.timeFlag = TimeFlag24Hour;
+        }];
+        [[BraceletManager sharedInstance].bleSDK readFirmwareOption];
     }
     
-    
-    
-    
+    else if ([model.target isEqualToString:@"time"]) {
+        [[BraceletManager sharedInstance].bleSDK syscTimeAtOnce];
+    }
     else if (model.target.length) {
         // @xaoxuu: push default vc
         DefaultViewController *vc = [DefaultViewController defaultVCWithTitle:NSLocalizedString(model.title, nil) detail:NSLocalizedString(model.detail, nil)];
@@ -199,7 +231,6 @@
     
     
 }
-
 
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{

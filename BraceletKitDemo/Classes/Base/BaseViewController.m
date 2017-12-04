@@ -88,7 +88,7 @@
 // @xaoxuu: 基类 初始化 内容区域
 - (void)baseInitContentView{
     // @xaoxuu: color
-    self.view.backgroundColor = axColor.background;
+    self.view.backgroundColor = axThemeManager.color.background;
     // @xaoxuu: frame
     self.view.frame = CGRectFromScreen();
     if ([self respondsToSelector:@selector(initContentFrame:)]) {
@@ -171,8 +171,8 @@
 #pragma mark - delegate
 
 - (CGRect)initContentFrame:(CGRect)frame{
-    frame.origin.y = kTopBarHeight;
-    frame.size.height = kScreenH - kTopBarHeight;
+    frame.origin.y = kTopBarHeight();
+    frame.size.height = kScreenH - kTopBarHeight();
     return frame;
 }
 

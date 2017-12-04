@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AXKit/TableKit.h>
 
 @interface DeviceSettingTV : AXTableView
 

@@ -10,7 +10,7 @@
 #import <AXKit/AXKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-
+#import <AXKit/StatusKit.h>
 
 static BraceletManager *braceletManager = nil;
 
@@ -18,27 +18,27 @@ static BraceletManager *braceletManager = nil;
 static inline void showMessage(NSString *msg, NSTimeInterval duration){
     dispatch_async(dispatch_get_main_queue(), ^{
         // @xaoxuu: in main queue
-        [UIApplication ax_showStatusBarMessage:msg textColor:[UIColor whiteColor] backgroundColor:[UIColor md_blue] duration:duration];
+        [AXStatusBar showStatusBarMessage:msg textColor:[UIColor whiteColor] backgroundColor:[UIColor md_blue] duration:duration];
     });
 }
 
 static inline void showAlert(NSString *msg){
     dispatch_async(dispatch_get_main_queue(), ^{
         // @xaoxuu: in main queue
-        [UIApplication ax_showStatusBarMessage:msg textColor:[UIColor blackColor] backgroundColor:[UIColor md_yellow] duration:5];
+        [AXStatusBar showStatusBarMessage:msg textColor:[UIColor blackColor] backgroundColor:[UIColor md_yellow] duration:5];
     });
 }
 static inline void showError(NSString *msg){
     dispatch_async(dispatch_get_main_queue(), ^{
         // @xaoxuu: in main queue
-        [UIApplication ax_showStatusBarMessage:msg textColor:[UIColor whiteColor] backgroundColor:[UIColor md_red] duration:10];
+        [AXStatusBar showStatusBarMessage:msg textColor:[UIColor whiteColor] backgroundColor:[UIColor md_red] duration:10];
     });
 }
 
 static inline void showSuccess(NSString *msg){
     dispatch_async(dispatch_get_main_queue(), ^{
         // @xaoxuu: in main queue
-        [UIApplication ax_showStatusBarMessage:msg textColor:[UIColor whiteColor] backgroundColor:[UIColor md_green] duration:5];
+        [AXStatusBar showStatusBarMessage:msg textColor:[UIColor whiteColor] backgroundColor:[UIColor md_green] duration:5];
     });
 }
 
@@ -146,6 +146,14 @@ static inline void showSuccess(NSString *msg){
     [self.bleSDK unConnectDevice];
     [self.bleSDK debindFromSystem];
     AXLogToCachePath(@"调用了断开连接方法");
+}
+
+- (void)updateDeviceSetting:(void (^)(ZeronerHWOption *setting))setting{
+    if (setting) {
+        setting(self.currentDeviceSetting);
+        [self.bleSDK setFirmwareOption:self.currentDeviceSetting];
+    }
+    
 }
 
 
@@ -412,6 +420,7 @@ static inline void showSuccess(NSString *msg){
     NSString *msg = [NSString stringWithFormat:@"获取到设备信息：%@", deviceInfo];
     msg = [msg stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     showMessage(msg, 10);
+    [self.bleSDK readFirmwareOption];
 }
 - (void)updateBattery:(ZeronerDeviceInfo *)deviceInfo{
     _currentDeviceInfo = deviceInfo;
@@ -469,6 +478,7 @@ static inline void showSuccess(NSString *msg){
  @param hwOption hwOption
  */
 - (void)responseOfGetHWOption:(ZeronerHWOption *)hwOption{
+    _currentDeviceSetting = hwOption;
     AXLogToCachePath(hwOption);
 }
 

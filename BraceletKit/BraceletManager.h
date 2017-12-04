@@ -34,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSMutableArray *delegates;
 
 @property (strong, readonly, nonatomic) ZeronerDeviceInfo *currentDeviceInfo;
+@property (strong, readonly, nonatomic) ZeronerHWOption *currentDeviceSetting;
 
 // @xaoxuu: camera mode
 @property (assign, nonatomic) BOOL cameraMode;
@@ -53,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-
+- (void)updateDeviceSetting:(void (^)(ZeronerHWOption *setting))setting;
 
 
 

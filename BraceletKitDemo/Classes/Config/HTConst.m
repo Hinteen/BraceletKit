@@ -9,11 +9,6 @@
 #import "HTConst.h"
 
 
-const CGFloat kStatusBarHeight = 20;
-
-const CGFloat kNavBarHeight = 44;
-
-const CGFloat kTabBarHeight = 49;
 
 const CGFloat kMargin4 = 4;
 
