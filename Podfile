@@ -4,6 +4,7 @@ target 'BraceletKit' do
 
     pod 'AXKit'
     pod 'YYKit'
+    pod 'BLE3Framework'
 
 end
 
@@ -12,7 +13,8 @@ target 'BraceletKitDemo' do
     pod 'AXKit'
     pod 'AXCameraKit'
     pod 'YYKit'
-    
+    pod 'MJRefresh'
+
 end
 
 #pod install --verbose --no-repo-update      #安装命令
