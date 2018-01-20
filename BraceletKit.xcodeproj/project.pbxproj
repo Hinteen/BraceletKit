@@ -7,21 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CD25EA1720132FD4009BEFC1 /* BKDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA1520132FD4009BEFC1 /* BKDefines.h */; };
+		CD25EA1720132FD4009BEFC1 /* BKDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA1520132FD4009BEFC1 /* BKDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD25EA1820132FD4009BEFC1 /* BKDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA1620132FD4009BEFC1 /* BKDefines.m */; };
-		CD25EA1B2013301E009BEFC1 /* BKServices.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA192013301E009BEFC1 /* BKServices.h */; };
+		CD25EA1B2013301E009BEFC1 /* BKServices.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA192013301E009BEFC1 /* BKServices.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD25EA1C2013301E009BEFC1 /* BKServices.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA1A2013301E009BEFC1 /* BKServices.m */; };
-		CD25EA1F20133037009BEFC1 /* BKConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA1D20133037009BEFC1 /* BKConnect.h */; };
+		CD25EA1F20133037009BEFC1 /* BKConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA1D20133037009BEFC1 /* BKConnect.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD25EA2020133037009BEFC1 /* BKConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA1E20133037009BEFC1 /* BKConnect.m */; };
-		CD25EA232013306E009BEFC1 /* BKDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA212013306E009BEFC1 /* BKDatabase.h */; };
+		CD25EA232013306E009BEFC1 /* BKDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA212013306E009BEFC1 /* BKDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD25EA242013306E009BEFC1 /* BKDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA222013306E009BEFC1 /* BKDatabase.m */; };
-		CD25EA2720133083009BEFC1 /* BKLogHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA2520133083009BEFC1 /* BKLogHelper.h */; };
+		CD25EA2720133083009BEFC1 /* BKLogHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA2520133083009BEFC1 /* BKLogHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD25EA2820133083009BEFC1 /* BKLogHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA2620133083009BEFC1 /* BKLogHelper.m */; };
-		CD25EA2B201330EC009BEFC1 /* BKSummary.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA29201330EC009BEFC1 /* BKSummary.h */; };
+		CD25EA2B201330EC009BEFC1 /* BKSummary.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA29201330EC009BEFC1 /* BKSummary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD25EA2C201330EC009BEFC1 /* BKSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA2A201330EC009BEFC1 /* BKSummary.m */; };
-		CD25EA342013330F009BEFC1 /* BKUser.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA322013330F009BEFC1 /* BKUser.h */; };
+		CD25EA342013330F009BEFC1 /* BKUser.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA322013330F009BEFC1 /* BKUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD25EA352013330F009BEFC1 /* BKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA332013330F009BEFC1 /* BKUser.m */; };
-		CD25EA382013331D009BEFC1 /* BKDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA362013331D009BEFC1 /* BKDevice.h */; };
+		CD25EA382013331D009BEFC1 /* BKDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA362013331D009BEFC1 /* BKDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD25EA392013331D009BEFC1 /* BKDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA372013331D009BEFC1 /* BKDevice.m */; };
 		CD2E791E1FA0C53300012CDB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2E791D1FA0C53300012CDB /* AppDelegate.m */; };
 		CD2E79211FA0C53300012CDB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2E79201FA0C53300012CDB /* ViewController.m */; };
@@ -67,14 +67,15 @@
 		CD616CA71FB9E0B300E38244 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616C9F1FB9E0B300E38244 /* BaseViewController.m */; };
 		CD616CA81FB9E0B300E38244 /* BaseNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616CA31FB9E0B300E38244 /* BaseNavController.m */; };
 		CD616CA91FB9E0B300E38244 /* BaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616CA41FB9E0B300E38244 /* BaseTabBarController.m */; };
-		CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = CD616CAA1FB9E16D00E38244 /* PrefixHeader.pch */; };
+		CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = CD616CAA1FB9E16D00E38244 /* PrefixHeader.pch */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD616CAD1FB9E2FC00E38244 /* BaseTabBarController.json in Resources */ = {isa = PBXBuildFile; fileRef = CD616CAC1FB9E2FC00E38244 /* BaseTabBarController.json */; };
 		CD828DBF1FBA909B0071C9D8 /* DeviceSettingTV.m in Sources */ = {isa = PBXBuildFile; fileRef = CD828DBC1FBA909A0071C9D8 /* DeviceSettingTV.m */; };
 		CD828DC01FBA909B0071C9D8 /* DeviceSettingTV.json in Resources */ = {isa = PBXBuildFile; fileRef = CD828DBD1FBA909A0071C9D8 /* DeviceSettingTV.json */; };
 		CD8F66CF1FD4F62F00B4C6DD /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8F66CE1FD4F62F00B4C6DD /* CameraViewController.m */; };
 		CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD944E881FB0B44600373636 /* FindPhoneManager.m */; };
+		CDA003FC20136A6F00E572A7 /* Calibri.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDA003FB20136A6F00E572A7 /* Calibri.ttf */; };
 		CDA527931FECB269009C39EC /* BraceletKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD2E79441FA0C55800012CDB /* BraceletKit.bundle */; };
-		CDB94C6620133A0400CB588C /* _BKModelHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB94C6420133A0400CB588C /* _BKModelHelper.h */; };
+		CDB94C6620133A0400CB588C /* _BKModelHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB94C6420133A0400CB588C /* _BKModelHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDB94C6720133A0400CB588C /* _BKModelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB94C6520133A0400CB588C /* _BKModelHelper.m */; };
 		CDDFA3AB1FB5BAC8004C99D5 /* HomeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFA3AA1FB5BAC8004C99D5 /* HomeTableView.m */; };
 		CDDFA3AD1FB5BADB004C99D5 /* HomeTableView.json in Resources */ = {isa = PBXBuildFile; fileRef = CDDFA3AC1FB5BADB004C99D5 /* HomeTableView.json */; };
@@ -212,6 +213,7 @@
 		CD8F66CE1FD4F62F00B4C6DD /* CameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		CD944E871FB0B44600373636 /* FindPhoneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindPhoneManager.h; sourceTree = "<group>"; };
 		CD944E881FB0B44600373636 /* FindPhoneManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindPhoneManager.m; sourceTree = "<group>"; };
+		CDA003FB20136A6F00E572A7 /* Calibri.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Calibri.ttf; sourceTree = "<group>"; };
 		CDB94C6420133A0400CB588C /* _BKModelHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _BKModelHelper.h; sourceTree = "<group>"; };
 		CDB94C6520133A0400CB588C /* _BKModelHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _BKModelHelper.m; sourceTree = "<group>"; };
 		CDDFA3A91FB5BAC8004C99D5 /* HomeTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTableView.h; sourceTree = "<group>"; };
@@ -535,6 +537,7 @@
 		CD3FC1AF1FA20F8F0054B26B /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				CDA003FB20136A6F00E572A7 /* Calibri.ttf */,
 				CD3FC1B01FA20F8F0054B26B /* tabbar_controllers.json */,
 			);
 			path = resources;
@@ -699,6 +702,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD828DC01FBA909B0071C9D8 /* DeviceSettingTV.json in Resources */,
+				CDA003FC20136A6F00E572A7 /* Calibri.ttf in Resources */,
 				CD3FC12E1FA20A0B0054B26B /* DefaultViewController.xib in Resources */,
 				CD3FC12C1FA20A0B0054B26B /* ActivityVC.xib in Resources */,
 				CD2E79291FA0C53300012CDB /* LaunchScreen.storyboard in Resources */,

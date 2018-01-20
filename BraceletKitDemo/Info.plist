@@ -28,6 +28,10 @@
 	<string>photo</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>photo</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Calibri.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

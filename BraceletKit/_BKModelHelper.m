@@ -21,6 +21,7 @@
     bk.uuid = self.uuidString;
     bk.peripheral = self.cbDevice;
     bk.rssi = self.RSSI;
+    bk.zeronerBlePeripheral = self;
     return bk;
 }
 

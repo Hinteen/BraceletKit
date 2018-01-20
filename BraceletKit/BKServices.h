@@ -7,7 +7,37 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BKConnect.h"
+
+
 
 @interface BKServices : NSObject
+
+/**
+ connect manager
+ */
+@property (strong, nonatomic) BKConnect *connect;
+
+
+
+
++ (instancetype)sharedInstance;
+
+/**
+ 注册代理
+ 
+ @param delegate 代理
+ */
+- (void)registerConnectDelegate:(NSObject<BKConnectDelegate> *)delegate;
+
+/**
+ 取消注册代理
+ 
+ @param delegate 代理
+ */
+- (void)unRegisterConnectDelegate:(NSObject<BKConnectDelegate> *)delegate;
+
+
+
 
 @end

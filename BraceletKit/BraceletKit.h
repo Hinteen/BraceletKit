@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "BraceletManager.h"
-
+#import "BKDevice.h"
+#import "BKServices.h"
 
 //! Project version number for BraceletKit.
 FOUNDATION_EXPORT double BraceletKitVersionNumber;

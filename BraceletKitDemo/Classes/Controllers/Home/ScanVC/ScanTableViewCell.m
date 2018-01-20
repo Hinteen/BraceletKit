@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *switch_bind;
 
 
+
 @end
 
 @implementation ScanTableViewCell
@@ -29,9 +30,12 @@
     [super awakeFromNib];
     // Initialization code
     
-    self.lb_name.font = [UIFont fontWithName:@"DIN Condensed" size:24];
+//    self.lb_name.font = [UIFont fontWithName:@"DIN Condensed" size:24];
+    self.lb_name.font = [UIFont fontWithName:@"Calibri" size:24];
     [self.lb_name sizeToFit];
     self.lb_uuid.adjustsFontSizeToFitWidth = YES;
+    self.lb_uuid.font = [UIFont fontWithName:@"Calibri" size:14];
+    self.lb_mac.font = [UIFont fontWithName:@"Calibri" size:14];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -40,30 +44,30 @@
     // Configure the view for the selected state
 }
 
-- (void)setModel:(ZeronerBlePeripheral *)model{
+- (void)setModel:(BKDevice *)model{
     _model = model;
     
-    self.lb_name.text = model.deviceName;
-    self.lb_uuid.text = model.uuidString;
-    self.lb_mac.text = model.mediaAC;
+    self.lb_name.text = model.name;
+    self.lb_uuid.text = model.uuid;
+    self.lb_mac.text = model.mac;
     
     
-    if (model.cbDevice.state == CBPeripheralStateDisconnected) {
+    if (model.peripheral.state == CBPeripheralStateDisconnected) {
         self.lb_status.text = @"未连接";
         self.switch_bind.on = NO;
         self.switch_bind.enabled = YES;
-    } else if (model.cbDevice.state == CBPeripheralStateConnected) {
+    } else if (model.peripheral.state == CBPeripheralStateConnected) {
         self.lb_status.text = @"已连接";
         self.switch_bind.on = YES;
         self.switch_bind.enabled = YES;
-    } else if (model.cbDevice.state == CBPeripheralStateConnecting) {
+    } else if (model.peripheral.state == CBPeripheralStateConnecting) {
         self.lb_status.text = @"正在连接";
         self.switch_bind.on = NO;
         self.switch_bind.enabled = NO;
     }
     if (@available(iOS 9.0, *)) {
         // on newer versions
-        if (model.cbDevice.state == CBPeripheralStateDisconnecting) {
+        if (model.peripheral.state == CBPeripheralStateDisconnecting) {
             self.lb_status.text = @"正在断开连接";
             self.switch_bind.on = YES;
             self.switch_bind.enabled = NO;
@@ -80,9 +84,9 @@
 - (IBAction)connect:(UISwitch *)sender {
     sender.enabled = NO;
     if (sender.on) {
-        [[BraceletManager sharedInstance] connectDevice:self.model];
+        [[BKServices sharedInstance].connect connectDevice:self.model];
     } else {
-        [[BraceletManager sharedInstance] disConnectDevice];
+        [[BKServices sharedInstance].connect disConnectDevice];
     }
     
 }

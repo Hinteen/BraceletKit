@@ -10,15 +10,13 @@
 #import <BraceletKit/BraceletKit.h>
 #import "ScanTableViewCell.h"
 #import "MJRefresh.h"
+#import "BKServices.h"
 
-
-@interface ScanViewController () <UITableViewDataSource, UITableViewDelegate, BraceletManager>
+@interface ScanViewController () <UITableViewDataSource, UITableViewDelegate, BKConnectDelegate>
 
 @property (strong, nonatomic) UITableView *tableView2;
 
-@property (strong, nonatomic) NSMutableArray<ZeronerBlePeripheral *> *devices;
-
-
+@property (strong, nonatomic) NSMutableArray<BKDevice *> *devices;
 
 @end
 
@@ -71,15 +69,15 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [[BraceletManager sharedInstance] registerDelegate:self];
-    [[BraceletManager sharedInstance] scanDevice];
+    [[BKServices sharedInstance] registerConnectDelegate:self];
+    [[BKServices sharedInstance].connect scanDevice];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.devices removeAllObjects];
-    [[BLELib3 shareInstance] stopScan];
-    [[BraceletManager sharedInstance] unRegisterDelegate:self];
+    [[BKServices sharedInstance].connect stopScan];
+    [[BKServices sharedInstance] unRegisterConnectDelegate:self];
 }
 
 
@@ -102,12 +100,13 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)braceletDidDiscoverDeviceWithMAC:(ZeronerBlePeripheral *)iwDevice{
-    [self.devices addObject:iwDevice];
+- (void)bkDiscoverDevice:(BKDevice *)device{
+    [self.devices addObject:device];
     dispatch_async(dispatch_get_main_queue(), ^{
         // @xaoxuu: in main queue
         [self.tableView2 reloadData];
     });
 }
+
 
 @end

@@ -12,15 +12,17 @@
 
 @protocol BKConnectDelegate <NSObject>
 
-- (void)didDiscoverDevice:(BKDevice *)device;
+@optional;
 
-- (void)didConnectedDevice:(BKDevice *)device;
+- (void)bkDiscoverDevice:(BKDevice *)device;
 
-- (void)didUnconnectedDevice:(BKDevice *)device;
+- (void)bkConnectedDevice:(BKDevice *)device;
 
-- (void)didFailToConnectDevice:(BKDevice *)device;
+- (void)bkUnconnectedDevice:(BKDevice *)device;
 
-- (void)didConnectTimeout;
+- (void)bkFailToConnectDevice:(BKDevice *)device;
+
+- (void)bkConnectTimeout;
 
 @end
 
@@ -35,9 +37,13 @@
  */
 @property (strong, readonly, nonatomic) BKDevice *device;
 
+
+
 - (instancetype)initWithDelegate:(NSObject<BKConnectDelegate> *)delegate;
 
 - (void)scanDevice;
+
+- (void)stopScan;
 
 - (void)connectDevice:(BKDevice *)device;
 

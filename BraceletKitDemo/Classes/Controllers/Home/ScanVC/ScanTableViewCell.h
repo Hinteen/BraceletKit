@@ -13,6 +13,6 @@
 @interface ScanTableViewCell : UITableViewCell
 
 // @xaoxuu: model
-@property (strong, nonatomic) ZeronerBlePeripheral *model;
+@property (strong, nonatomic) BKDevice *model;
 
 @end

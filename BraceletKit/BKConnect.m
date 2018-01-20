@@ -38,7 +38,6 @@
         self.bleSDK = [BLELib3 shareInstance];
         self.bleSDK.discoverDelegate = self;
         self.bleSDK.connectDelegate = self;
-        self.bleSDK.delegate = self.device;
     }
     return self;
 }
@@ -54,6 +53,11 @@
 - (void)scanDevice{
     [self.bleSDK scanDevice];
     AXCachedLogOBJ(@"开始扫描");
+}
+
+- (void)stopScan{
+    [self.bleSDK stopScan];
+    AXCachedLogOBJ(@"停止扫描");
 }
 
 - (void)connectDevice:(BKDevice *)device{
@@ -81,8 +85,8 @@
  */
 - (void)IWBLEDidDiscoverDeviceWithMAC:(ZeronerBlePeripheral *)iwDevice{
     AXCachedLogOBJ(iwDevice);
-    if ([self.delegate respondsToSelector:@selector(didDiscoverDevice:)]) {
-        [self.delegate didDiscoverDevice:iwDevice.transformToBKDevice];
+    if ([self.delegate respondsToSelector:@selector(bkDiscoverDevice:)]) {
+        [self.delegate bkDiscoverDevice:iwDevice.transformToBKDevice];
     }
 }
 
@@ -107,9 +111,10 @@
     AXCachedLogOBJ(device);
     self.peripheral = device.cbDevice;
     _device = device.transformToBKDevice;
+    [BLELib3 shareInstance].delegate = self.device;
     [self.central connectPeripheral:self.peripheral options:nil];
-    if ([self.delegate respondsToSelector:@selector(didConnectedDevice:)]) {
-        [self.delegate didConnectedDevice:device.transformToBKDevice];
+    if ([self.delegate respondsToSelector:@selector(bkConnectedDevice:)]) {
+        [self.delegate bkConnectedDevice:device.transformToBKDevice];
     }
 }
 
@@ -136,8 +141,8 @@
     if (self.peripheral) {
         [self.central cancelPeripheralConnection:self.peripheral];
     }
-    if ([self.delegate respondsToSelector:@selector(didUnconnectedDevice:)]) {
-        [self.delegate didUnconnectedDevice:device.transformToBKDevice];
+    if ([self.delegate respondsToSelector:@selector(bkUnconnectedDevice:)]) {
+        [self.delegate bkUnconnectedDevice:device.transformToBKDevice];
     }
 }
 
@@ -149,8 +154,8 @@
 - (void)IWBLEDidFailToConnectDevice:(ZeronerBlePeripheral *)device andError:(NSError *)error{
     AXCachedLogOBJ(device);
     AXCachedLogError(error);
-    if ([self.delegate respondsToSelector:@selector(didFailToConnectDevice:)]) {
-        [self.delegate didFailToConnectDevice:device.transformToBKDevice];
+    if ([self.delegate respondsToSelector:@selector(bkFailToConnectDevice:)]) {
+        [self.delegate bkFailToConnectDevice:device.transformToBKDevice];
     }
 }
 
@@ -159,8 +164,8 @@
  */
 - (void)IWBLEConnectTimeOut{
     AXCachedLogError(@"连接超时");
-    if ([self.delegate respondsToSelector:@selector(didConnectTimeout)]) {
-        [self.delegate didConnectTimeout];
+    if ([self.delegate respondsToSelector:@selector(bkConnectTimeout)]) {
+        [self.delegate bkConnectTimeout];
     }
 }
 
