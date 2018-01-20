@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <BLE3Framework/BLE3Framework.h>
-
+#import <MobileCoreServices/MobileCoreServices.h>
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol BraceletManager

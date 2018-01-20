@@ -1,12 +1,13 @@
 //
-//  BraceletKitLogHelper.m
+//  BKLogHelper.m
 //  BraceletKit
 //
-//  Created by xaoxuu on 26/10/2017.
-//  Copyright © 2017 xaoxuu. All rights reserved.
+//  Created by xaoxuu on 20/01/2018.
+//  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BraceletKitLogHelper.h"
+#import "BKLogHelper.h"
+
 #import <BLE3Framework/BLE3Framework.h>
 
 @implementation ZeronerBlePeripheral (BKLogExtension)
@@ -199,6 +200,58 @@
 }
 
 @end
-@implementation BraceletKitLogHelper
+
+
+@implementation BKLogHelper
+//typedef enum{
+//    KSyscDataStateBegin = 0, //同步开始
+//    KSyscDataState29End,     //29结束
+//    KSyscDataStateSleepEnd , //28结束
+//    KSyscDataStateHeartRateEnd , //51结束
+//    KSyscDataStateInFinished , //全部结束
+//    KSyscDataState61End,     //61结束
+//    KSyscDataState62End,     //62结束
+//    KSyscDataState64End,     //64结束
+//    KSyscDataStateStartSyscF1Data,     //64结束
+//}KSyscDataState;
+
++ (NSString *)descriptionForSyncState:(int)state{
+    NSMutableString *str = [NSMutableString string];
+    [str appendFormat:@"KSyscDataState:{\n"];
+    switch (state) {
+        case KSyscDataStateBegin:
+            [str appendFormat:@"KSyscDataStateBegin\n"];
+            break;
+        case KSyscDataState29End:
+            [str appendFormat:@"KSyscDataState29End\n"];
+            break;
+        case KSyscDataStateSleepEnd:
+            [str appendFormat:@"KSyscDataStateSleepEnd\n"];
+            break;
+        case KSyscDataStateHeartRateEnd:
+            [str appendFormat:@"KSyscDataStateHeartRateEnd\n"];
+            break;
+        case KSyscDataStateInFinished:
+            [str appendFormat:@"KSyscDataStateInFinished\n"];
+            break;
+        case KSyscDataState61End:
+            [str appendFormat:@"KSyscDataState61End\n"];
+            break;
+        case KSyscDataState62End:
+            [str appendFormat:@"KSyscDataState62End\n"];
+            break;
+        case KSyscDataState64End:
+            [str appendFormat:@"KSyscDataState64End\n"];
+            break;
+        case KSyscDataStateStartSyscF1Data:
+            [str appendFormat:@"KSyscDataStateStartSyscF1Data\n"];
+            break;
+        default:
+            [str appendFormat:@"unknown\n"];
+            break;
+    }
+    [str appendFormat:@"}"];
+    return str;
+}
 
 @end
