@@ -22,7 +22,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    AXLogToCachePath(@"启动");
+    AXCachedLogOBJ(@"启动");
     
     [[BLELib3 shareInstance] applicationDidFinishLaunchingWithOptions];
     // @xaoxuu: 启动服务
@@ -63,7 +63,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-    AXLogToCachePath(@"即将Resign Active");
+    AXCachedLogOBJ(@"即将Resign Active");
 //    [[BLELib3 shareInstance] application];
     
 }
@@ -72,25 +72,25 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    AXLogToCachePath(@"已经进入后台");
+    AXCachedLogOBJ(@"已经进入后台");
 }
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    AXLogToCachePath(@"即将进入前台");
+    AXCachedLogOBJ(@"即将进入前台");
 }
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    AXLogToCachePath(@"已经Become Active");
+    AXCachedLogOBJ(@"已经Become Active");
 }
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    AXLogToCachePath(@"即将terminate");
+    AXCachedLogOBJ(@"即将terminate");
 }
 
 

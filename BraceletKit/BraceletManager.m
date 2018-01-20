@@ -127,13 +127,13 @@ static inline void showSuccess(NSString *msg){
 
 - (void)scanDevice{
     [self.bleSDK scanDevice];
-    AXLogToCachePath(@"开始扫描");
+    AXCachedLogOBJ(@"开始扫描");
 }
 
 
 - (void)connectDevice:(ZeronerBlePeripheral *)device{
     [self.bleSDK connectDevice:device];
-    AXLogToCachePath(@"调用了连接方法");
+    AXCachedLogOBJ(@"调用了连接方法");
 }
 - (void)disConnectDevice{
     for (int i = 0; i < self.bindDevices.count; i++) {
@@ -145,7 +145,7 @@ static inline void showSuccess(NSString *msg){
     }
     [self.bleSDK unConnectDevice];
     [self.bleSDK debindFromSystem];
-    AXLogToCachePath(@"调用了断开连接方法");
+    AXCachedLogOBJ(@"调用了断开连接方法");
 }
 
 - (void)updateDeviceSetting:(void (^)(ZeronerHWOption *setting))setting{
@@ -193,7 +193,7 @@ static inline void showSuccess(NSString *msg){
  @param iwDevice Instance contain a CBPeripheral object and the device's MAC address
  */
 - (void)IWBLEDidDiscoverDeviceWithMAC:(ZeronerBlePeripheral *)iwDevice{
-    AXLogToCachePath(iwDevice);
+    AXCachedLogOBJ(iwDevice);
     [self allDelegates:^(NSObject<BraceletManager> * delegate) {
         if ([delegate respondsToSelector:@selector(braceletDidDiscoverDeviceWithMAC:)]) {
             [delegate braceletDidDiscoverDeviceWithMAC:iwDevice];
@@ -224,7 +224,7 @@ static inline void showSuccess(NSString *msg){
     self.peripheral = device.cbDevice;
     [self.central connectPeripheral:self.peripheral options:nil];
     
-    AXLogToCachePath(device);
+    AXCachedLogOBJ(device);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         ZeronerHWOption *model = [ZeronerHWOption defaultHWOption];
@@ -252,7 +252,7 @@ static inline void showSuccess(NSString *msg){
  *   设置蓝牙参数，默认 BLEParamSignConnect
  */
 - (BLEParamSign)bleParamSignSetting{
-    AXLogToCachePath(@"设置蓝牙参数，默认 BLEParamSignConnect");
+    AXCachedLogOBJ(@"设置蓝牙参数，默认 BLEParamSignConnect");
     return BLEParamSignConnect;
 }
 
@@ -263,8 +263,8 @@ static inline void showSuccess(NSString *msg){
  *  @param device the device whom the centeral was connected
  */
 - (void)IWBLEDidDisConnectWithDevice:(ZeronerBlePeripheral *)device andError:(NSError *)error{
-    AXLogToCachePath(device);
-    AXLogToCachePath(error);
+    AXCachedLogOBJ(device);
+    AXCachedLogError(error);
     
     if (self.peripheral) {
         [self.central cancelPeripheralConnection:self.peripheral];
@@ -280,8 +280,8 @@ static inline void showSuccess(NSString *msg){
  *  @param device the device whom the centeral want to be connected
  */
 - (void)IWBLEDidFailToConnectDevice:(ZeronerBlePeripheral *)device andError:(NSError *)error{
-    AXLogToCachePath(device);
-    AXLogToCachePath(error);
+    AXCachedLogOBJ(device);
+    AXCachedLogError(error);
     showError([NSString stringWithFormat:@"与设备[%@]连接失败，错误信息：[%@]", device.deviceName, error]);
 }
 
@@ -289,7 +289,7 @@ static inline void showSuccess(NSString *msg){
  *  invoked when connect more than 10 second.
  */
 - (void)IWBLEConnectTimeOut{
-    AXLogToCachePath(@"连接超时");
+    AXCachedLogError(@"连接超时");
     showError(@"连接超时");
 }
 
@@ -300,7 +300,7 @@ static inline void showSuccess(NSString *msg){
  *  @param deviceName the Device Name
  */
 - (void)deviceDidDisConnectedWithSystem:(NSString *)deviceName{
-    AXLogToCachePath(deviceName);
+    AXCachedLogOBJ(deviceName);
 }
 
 /**
@@ -308,7 +308,7 @@ static inline void showSuccess(NSString *msg){
  *  当前手环是2.0协议的手环是调用这个方法。
  */
 - (void)didConnectProtocolNum2_0{
-    AXLogToCachePath(@"当前手环是2.0协议的手环");
+    AXCachedLogOBJ(@"当前手环是2.0协议的手环");
 }
 
 /**
@@ -316,11 +316,11 @@ static inline void showSuccess(NSString *msg){
  *  检测到蓝牙状态变化
  */
 - (void)centralManagerStatePoweredOff{
-    AXLogToCachePath(@"蓝牙关");
+    AXCachedLogOBJ(@"蓝牙关");
     showError(@"蓝牙已关闭");
 }
 - (void)centralManagerStatePoweredOn{
-    AXLogToCachePath(@"蓝牙开");
+    AXCachedLogOBJ(@"蓝牙开");
     showSuccess(@"蓝牙已打开");
 }
 
@@ -333,7 +333,7 @@ static inline void showSuccess(NSString *msg){
  *  like ZeronerHWOption, ZeronerPersonal
  */
 - (void)setBLEParameterAfterConnect{
-    AXLogToCachePath(@"setBLEParameterAfterConnect");
+    AXCachedLogOBJ(@"setBLEParameterAfterConnect");
 }
 
 #pragma mark - ble delegate -> device function
@@ -346,7 +346,7 @@ static inline void showSuccess(NSString *msg){
  * NOTE: You should set bracelet parameter in method @CODE{setBLEParameterAfterConnect} ,if you need lot of setting in there. You will be suggested return YES in finally.
  */
 - (BOOL)doNotSyscHealthAtTimes{
-    AXLogToCachePath(@"doNotSyscHealthAtTimes = YES");
+    AXCachedLogOBJ(@"doNotSyscHealthAtTimes = YES");
     return YES;
 }
 
@@ -391,7 +391,7 @@ static inline void showSuccess(NSString *msg){
             [delegate braceletDidTakePicture];
         }
     }];
-    AXLogToCachePath(@"notifyToTakePicture");
+    AXCachedLogOBJ(@"notifyToTakePicture");
     showMessage(@"点击了拍照", 5);
 }
 
@@ -400,7 +400,7 @@ static inline void showSuccess(NSString *msg){
  *       接下来App可以播放寻找手机的音乐或者其他操作
  */
 - (void)notifyToSearchPhone{
-    AXLogToCachePath(@"notifyToSearchPhone");
+    AXCachedLogOBJ(@"notifyToSearchPhone");
     showAlert(@"正在寻找手机...");
     AudioServicesPlayAlertSound(1008);
 }
@@ -416,7 +416,7 @@ static inline void showSuccess(NSString *msg){
             [delegate braceletDidUpdateDeviceInfo:deviceInfo];
         }
     }];
-    AXLogToCachePath(deviceInfo);
+    AXCachedLogOBJ(deviceInfo);
     NSString *msg = [NSString stringWithFormat:@"获取到设备信息：%@", deviceInfo];
     msg = [msg stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     showMessage(msg, 10);
@@ -429,7 +429,7 @@ static inline void showSuccess(NSString *msg){
             [delegate braceletDidUpdateDeviceInfo:deviceInfo];
         }
     }];
-    AXLogToCachePath(deviceInfo);
+    AXCachedLogOBJ(deviceInfo);
     [NSUserDefaults ax_setInteger:deviceInfo.batLevel forKey:deviceInfo.seriesNo.extension(@"deviceInfo.batLevel")];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         showMessage([NSString stringWithFormat:@"获取到设备电量信息：%ld%%", deviceInfo.batLevel], 5);
@@ -442,7 +442,7 @@ static inline void showSuccess(NSString *msg){
  @param ssList ssList
  */
 - (void)notifySupportSportsList:(NSDictionary *)ssList{
-    AXLogToCachePath(ssList);
+    AXCachedLogOBJ(ssList);
 }
 
 /**
@@ -451,7 +451,7 @@ static inline void showSuccess(NSString *msg){
  *  @param date (year month day hour minute second)
  */
 - (void)responseOfGetTime:(NSDate *)date{
-    AXLogToCachePath(date);
+    AXCachedLogOBJ(date);
 }
 
 /**
@@ -460,7 +460,7 @@ static inline void showSuccess(NSString *msg){
  @param clock clock
  */
 - (void)responseOfGetClock:(ZeronerClock *)clock{
-    AXLogToCachePath(clock);
+    AXCachedLogOBJ(clock);
 }
 
 /**
@@ -469,7 +469,7 @@ static inline void showSuccess(NSString *msg){
  @param sedentarys sedentarys
  */
 - (void)responseOfGetSedentary:(NSArray<ZeronerSedentary *>*)sedentarys{
-    AXLogToCachePath(sedentarys);
+    AXCachedLogOBJ(sedentarys);
 }
 
 /**
@@ -479,31 +479,31 @@ static inline void showSuccess(NSString *msg){
  */
 - (void)responseOfGetHWOption:(ZeronerHWOption *)hwOption{
     _currentDeviceSetting = hwOption;
-    AXLogToCachePath(hwOption);
+    AXCachedLogOBJ(hwOption);
 }
 
 - (void)responseOfGetSprotTarget:(ZeronerSportTarget *)spModel{
-    AXLogToCachePath(spModel);
+    AXCachedLogOBJ(spModel);
 }
 
 - (void)responseOfDNDSetting:(ZeronerDNDModel *)dndModel{
-    AXLogToCachePath(dndModel);
+    AXCachedLogOBJ(dndModel);
 }
 
 - (void)responseOfPersonalInfo:(ZeronerPersonal *)pModel{
-    AXLogToCachePath(pModel);
+    AXCachedLogOBJ(pModel);
 }
 
 - (void)responseOfMotoControl:(NSUInteger)countsOn{
-    AXLogToCachePath(@(countsOn));
+    AXCachedLogOBJ(@(countsOn));
 }
 
 - (void)responseOfCustomOption:(ZeronerCOption *)cOption{
-    AXLogToCachePath(cOption);
+    AXCachedLogOBJ(cOption);
 }
 
 - (void)responseOfGPSPoint:(ZeronerGPSPoint *)pModel{
-    AXLogToCachePath(pModel);
+    AXCachedLogOBJ(pModel);
 }
 
 #pragma mark - ble delegate -> device data
@@ -516,7 +516,7 @@ static inline void showSuccess(NSString *msg){
  */
 - (void)syscDataFinishedStateChange:(KSyscDataState)ksdState{
     NSString *log = [NSString stringWithFormat:@"=============== syscDataFinishedStateChange:%d ===============",ksdState];
-    AXLogToCachePath(log);
+    AXCachedLogOBJ(log);
 }
 
 /**
@@ -525,7 +525,7 @@ static inline void showSuccess(NSString *msg){
  @param dict dict
  */
 - (void)updateSleepData:(NSDictionary *)dict{
-    AXLogToCachePath(dict);
+    AXCachedLogData(dict);
 }
 
 /**
@@ -534,7 +534,7 @@ static inline void showSuccess(NSString *msg){
  @param dict dict
  */
 - (void)updateSportData:(NSDictionary *)dict{
-    AXLogToCachePath(dict);
+    AXCachedLogData(dict);
 }
 
 /**
@@ -543,7 +543,7 @@ static inline void showSuccess(NSString *msg){
  @param dict ：Dictionary object contains accurate timestamp provided by smartband.
  */
 - (void)updateWholeDaySportData:(NSDictionary *)dict{
-    AXLogToCachePath(dict);
+    AXCachedLogData(dict);
 }
 
 /**
@@ -552,7 +552,7 @@ static inline void showSuccess(NSString *msg){
  @param dict ：Dictionary object without accurate timestamp provided by smartband. SDK use [NSDate date] replace it.
  */
 - (void)updateCurrentWholeDaySportData:(NSDictionary *)dict{
-    AXLogToCachePath(dict);
+    AXCachedLogData(dict);
 }
 
 /**
@@ -561,7 +561,7 @@ static inline void showSuccess(NSString *msg){
  @param dict dict[detail_data], @{type,开始时间，结束时间，消耗能量，5个心率区间的时间分段、能量消耗、平均心率值},]
  */
 - (void)updateHeartRateData:(NSDictionary *)dict{
-    AXLogToCachePath(dict);
+    AXCachedLogData(dict);
 }
 
 /**
@@ -572,7 +572,7 @@ static inline void showSuccess(NSString *msg){
  * dict[@"detail_data"], 一个小时内@[每分钟平均心率值]
  */
 - (void)updateHeartRateData_hours:(NSDictionary *)dict{
-    AXLogToCachePath(dict);
+    AXCachedLogData(dict);
 }
 
 /**
@@ -581,7 +581,7 @@ static inline void showSuccess(NSString *msg){
  * jsonStr equal = @"{\"total\":%d,\"start\":%d,\"end\":%d}"; total =cicle num of seq, start=start of seq; end =end of seq
  */
 - (void)updateNormalHealthData:(NSDictionary *)dict{
-    AXLogToCachePath(dict);
+    AXCachedLogData(dict);
 }
 
 
@@ -599,16 +599,16 @@ static inline void showSuccess(NSString *msg){
  *
  */
 - (void)allHealthDataDidUploadSport{
-    AXLogToCachePath(@"");
+    AXCachedLogOBJ(@"");
 }
 - (void)allHealthDataDidUpload28{
-    AXLogToCachePath(@"");
+    AXCachedLogOBJ(@"");
 }
 - (void)allHealthDataDidUploadHeartRate{
-    AXLogToCachePath(@"");
+    AXCachedLogOBJ(@"");
 }
 - (void)allHealthDataDidUploadHeartRateHours{
-    AXLogToCachePath(@"");
+    AXCachedLogOBJ(@"");
 }
 
 /**
@@ -618,7 +618,7 @@ static inline void showSuccess(NSString *msg){
  */
 - (void)responseOfScheduleSetting:(BOOL)success{
     NSString *log = [NSString stringWithFormat:@"设置日程的应答:%d",success];
-    AXLogToCachePath(log);
+    AXCachedLogOBJ(log);
 }
 
 /**
@@ -628,7 +628,7 @@ static inline void showSuccess(NSString *msg){
  */
 - (void)responseOfScheduleGetting:(BOOL)exist{
     NSString *log = [NSString stringWithFormat:@"读取某个日程的应答:%d",exist];
-    AXLogToCachePath(log);
+    AXCachedLogOBJ(log);
 }
 
 /**
@@ -643,16 +643,16 @@ static inline void showSuccess(NSString *msg){
  max number of schedule could  be configured for one day.
  */
 - (void)responseOfScheduleInfoGetting:(NSDictionary *)dict{
-    AXLogToCachePath(dict);
+    AXCachedLogData(dict);
     
 }
 
 - (void)responseSplecialListsInfo:(NSDictionary *)dict{
-    AXLogToCachePath(dict);
+    AXCachedLogData(dict);
     
 }
 - (void)responseSplecialRoll:(ZeronerRoll *)zRoll{
-    AXLogToCachePath(zRoll);
+    AXCachedLogOBJ(zRoll);
     
 }
 

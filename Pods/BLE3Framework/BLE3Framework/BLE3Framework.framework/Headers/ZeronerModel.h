@@ -168,7 +168,7 @@ typedef enum{
  */
 @property (nonatomic ,assign) BOOL ledSwitch;
 
-//惯用手 默认左手
+//惯用手 默认@YES，右手
 @property (nonatomic,assign)BOOL  leftHand;
 
 /**
@@ -237,7 +237,7 @@ typedef enum{
 
 
 /**
- * Switch used for control search phone feature
+ * Switch used for control search phone feature/Switch used for control Motion recognition
  * 找手机功能的开关 ,自动运动识别 （同一个字段，不同协议固件支持内容不同，findPhoneSwitch仅少量固件支持）
  */
 @property (nonatomic ,assign) BOOL autoSport;

@@ -13,7 +13,7 @@
 #import "DeviceSettingTV.h"
 
 static inline CGSize contentSize(){
-    return CGSizeMake(kScreenW, kScreenH - kTopBarHeight() - kTabBarHeight());
+    return CGSizeMake(kScreenW, kScreenH - kTopBarHeight - kTabBarHeight);
 }
 
 @interface HomeVC () <BraceletManager>
@@ -28,7 +28,7 @@ static inline CGSize contentSize(){
     // Do any additional setup after loading the view from its nib.
     
     self.view.width = kScreenW;
-    self.view.height -= kTabBarHeight();
+    self.view.height -= kTabBarHeight;
     
     
     [[BraceletManager sharedInstance] registerDelegate:self];
