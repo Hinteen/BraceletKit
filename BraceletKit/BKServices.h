@@ -8,15 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import "BKConnect.h"
-
+#import "BKUser.h"
 
 
 @interface BKServices : NSObject
 
+
+/**
+ user manager
+ */
+@property (strong, readonly, nonatomic) BKUser *user;
+
 /**
  connect manager
  */
-@property (strong, nonatomic) BKConnect *connect;
+@property (strong, readonly, nonatomic) BKConnect *connect;
 
 
 
@@ -24,14 +30,22 @@
 + (instancetype)sharedInstance;
 
 /**
- 注册代理
+ 注册服务
+
+ @param user 用户
+ */
+- (BOOL)registerServiceWithUser:(BKUser *)user;
+
+
+/**
+ 注册连接代理
  
  @param delegate 代理
  */
 - (void)registerConnectDelegate:(NSObject<BKConnectDelegate> *)delegate;
 
 /**
- 取消注册代理
+ 取消注册连接代理
  
  @param delegate 代理
  */

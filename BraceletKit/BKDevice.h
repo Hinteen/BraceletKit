@@ -6,8 +6,8 @@
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <Realm/Realm.h>
+#import "BKBaseTable.h"
+#import <BLE3Framework/BLE3Framework.h>
 
 @class CBPeripheral, ZeronerBlePeripheral;
 
@@ -29,20 +29,20 @@
 @end
 
 
-@interface BKDevice : RLMObject
+@interface BKDevice : BKBaseTable
 
 /**
  mac
  */
 @property (copy, nonatomic) NSString *mac;
 /**
- name
- */
-@property (copy, nonatomic) NSString *name;
-/**
  uuid
  */
 @property (copy, nonatomic) NSString *uuid;
+/**
+ name
+ */
+@property (copy, nonatomic) NSString *name;
 /**
  model
  */
@@ -51,7 +51,10 @@
  version
  */
 @property (copy, nonatomic) NSString *version;
-
+/**
+ battery percent
+ */
+@property (assign, nonatomic) CGFloat battery;
 /**
  peripheral
  */
@@ -73,8 +76,11 @@
  */
 @property (weak, nonatomic) NSObject<BKDeviceDelegate> *delegate;
 
++ (instancetype)currentDevice;
+
+
 @end
-RLM_ARRAY_TYPE(BKDevice)
+
 
 @interface BKDevice (BKCachedExtension)
 

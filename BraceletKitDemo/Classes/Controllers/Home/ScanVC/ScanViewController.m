@@ -43,9 +43,9 @@
     
     __weak typeof(self) weakSelf = self;
     self.tableView2.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [[BLELib3 shareInstance] stopScan];
         [weakSelf.devices removeAllObjects];
-        [[BraceletManager sharedInstance] scanDevice];
+        [[BKServices sharedInstance].connect stopScan];
+        [[BKServices sharedInstance].connect scanDevice];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf.tableView2.mj_header endRefreshing];
         });

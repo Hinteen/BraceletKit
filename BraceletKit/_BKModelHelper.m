@@ -7,6 +7,8 @@
 //
 
 #import "_BKModelHelper.h"
+#import "BKDatabase.h"
+
 
 @implementation _BKModelHelper
 
@@ -22,6 +24,9 @@
     bk.peripheral = self.cbDevice;
     bk.rssi = self.RSSI;
     bk.zeronerBlePeripheral = self;
+    if ([bk.mac isEqualToString:@"advertisementData.length is less than 6"]) {
+        bk.mac = bk.restoreMac;
+    }
     return bk;
 }
 

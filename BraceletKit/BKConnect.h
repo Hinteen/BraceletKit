@@ -37,7 +37,7 @@
  */
 @property (strong, readonly, nonatomic) BKDevice *device;
 
-
++ (instancetype)currentConnect;
 
 - (instancetype)initWithDelegate:(NSObject<BKConnectDelegate> *)delegate;
 

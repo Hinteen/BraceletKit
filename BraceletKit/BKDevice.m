@@ -10,8 +10,11 @@
 #import "_BKModelHelper.h"
 #import "BKLogHelper.h"
 #import <AVFoundation/AVFoundation.h>
-
-
+#import "BKServices.h"
+#import "BKDataIndex.h"
+#import "BKDataDay.h"
+#import "BKDataSport.h"
+#import "BKDataHR.h"
 
 @interface BKDevice() <BLELib3Delegate>
 
@@ -24,8 +27,9 @@
 @implementation BKDevice
 
 
-
-
++ (instancetype)currentDevice{
+    return [BKConnect currentConnect].device;
+}
 
 
 
@@ -68,11 +72,11 @@
  * @code NSString *documentsPath =[NSString stringWithFormat:@"%@/Documents", NSHomeDirectory()];
  NSString *testPath = [documentsPath stringByAppendingPathComponent:@"BLE.txt"]; @/code
  */
-- (NSString *)bleLogPath{
-    NSString *path = [@"com.xaoxuu.AXKit" stringByAppendingPathComponent:@"log"];
-    path = [path stringByAppendingPathComponent:@"ZeronerBleLog.txt"].cachePath;
-    return path;
-}
+//- (NSString *)bleLogPath{
+//    NSString *path = [@"com.xaoxuu.AXKit" stringByAppendingPathComponent:@"log"];
+//    path = [path stringByAppendingPathComponent:@"ZeronerBleLog.txt"].cachePath;
+//    return path;
+//}
 
 - (NSString *)currentUserUid{
     return @"123456";
@@ -107,9 +111,13 @@
 
 - (void)updateDeviceInfo:(ZeronerDeviceInfo *)deviceInfo{
     _deviceInfo = deviceInfo;
+    _mac = deviceInfo.bleAddr;
+    _model = deviceInfo.model;
+    _version = deviceInfo.version;
     if ([self.delegate respondsToSelector:@selector(didUpdateDeviceInfo)]) {
         [self.delegate didUpdateDeviceInfo];
     }
+    [self saveToDatabase];
     AXCachedLogOBJ(deviceInfo);
     // 获取设置信息
     [[BLELib3 shareInstance] readFirmwareOption];
@@ -117,10 +125,11 @@
 
 - (void)updateBattery:(ZeronerDeviceInfo *)deviceInfo{
     _deviceInfo = deviceInfo;
+    _battery = AXMakeNumberInRange(@(deviceInfo.batLevel), @0, @100).doubleValue / 100.0f;
     if ([self.delegate respondsToSelector:@selector(didUpdateDeviceBatteryLevel:)]) {
-        CGFloat percent = AXMakeNumberInRange(@(deviceInfo.batLevel), @0, @100).doubleValue / 100.0f;
-        [self.delegate didUpdateDeviceBatteryLevel:percent];
+        [self.delegate didUpdateDeviceBatteryLevel:self.battery];
     }
+    [self saveToDatabase];
     AXCachedLogOBJ(deviceInfo);
 #warning 缓存设备电量
     [NSUserDefaults ax_setInteger:deviceInfo.batLevel forKey:deviceInfo.seriesNo.extension(@"deviceInfo.batLevel")];
@@ -225,6 +234,8 @@
  */
 - (void)updateSportData:(NSDictionary *)dict{
     AXCachedLogData(dict);
+    BKDataSport *model = [BKDataSport modelWithDict:dict];
+    [model saveToDatabase];
 }
 
 /**
@@ -234,6 +245,8 @@
  */
 - (void)updateWholeDaySportData:(NSDictionary *)dict{
     AXCachedLogData(dict);
+    BKDataDay *model = [BKDataDay modelWithDict:dict];
+    [model saveToDatabase];
 }
 
 /**
@@ -243,6 +256,8 @@
  */
 - (void)updateCurrentWholeDaySportData:(NSDictionary *)dict{
     AXCachedLogData(dict);
+    BKDataDay *model = [BKDataDay modelWithDict:dict];
+    [model saveToDatabase];
 }
 
 /**
@@ -252,6 +267,8 @@
  */
 - (void)updateHeartRateData:(NSDictionary *)dict{
     AXCachedLogData(dict);
+    BKDataHR *model = [BKDataHR modelWithDict:dict];
+    [model saveToDatabase];
 }
 
 /**
@@ -272,6 +289,14 @@
  */
 - (void)updateNormalHealthData:(NSDictionary *)dict{
     AXCachedLogData(dict);
+    [dict.allKeys enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *tmp = [dict stringValueForKey:obj];
+        NSData *data = [tmp dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        BKDataIndex *model = [BKDataIndex modelWithDict:dic];
+        model.dataType = obj;
+        [model saveToDatabase];
+    }];
 }
 
 

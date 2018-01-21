@@ -23,7 +23,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     AXCachedLogOBJ(@"启动");
-    
+    // 加载数据库
+    [BKDatabase loadDatabase];
     [[BLELib3 shareInstance] applicationDidFinishLaunchingWithOptions];
     // @xaoxuu: 启动服务
     [ServicesLayer sharedInstance];
@@ -40,7 +41,18 @@
     // 显示窗口
     [self.window makeKeyAndVisible];
     
-    
+    // 注册和登录用户
+    BKUser *user = [BKUser registerWithEmail:@"xaoxuu@gmail.com" password:@"123456"];
+    NSString *log = [NSString stringWithFormat:@"注册用户xaoxuu@gmail.com,密码123456.结果：%@", user ? @"成功":@"失败"];
+    AXCachedLogOBJ(log);
+    user = [BKUser loginWithEmail:@"xaoxuu@gmail.com" password:@"123456"];
+    log = [NSString stringWithFormat:@"登录用户xaoxuu@gmail.com,密码123456.结果：%@", user ? @"成功":@"失败"];
+    AXCachedLogOBJ(log);
+    if (user) {
+        BOOL ret = [[BKServices sharedInstance] registerServiceWithUser:user];
+        log = [NSString stringWithFormat:@"使用用户<%@>注册服务，结果：%@", user.email, ret ? @"成功":@"失败"];
+        AXCachedLogOBJ(log);
+    }
     
     [UINavigationBar appearance].barStyle = UIBarStyleDefault;
     [UINavigationBar appearance].translucent = NO;

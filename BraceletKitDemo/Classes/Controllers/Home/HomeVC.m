@@ -31,7 +31,7 @@ static inline CGSize contentSize(){
     self.view.height -= kTabBarHeight;
     
     
-    [[BraceletManager sharedInstance] registerDelegate:self];
+//    [[BraceletManager sharedInstance] registerDelegate:self];
     
     __weak typeof(self) weakSelf = self;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem ax_itemWithImageName:@"band" action:^(UIBarButtonItem * _Nonnull sender) {
@@ -49,7 +49,7 @@ static inline CGSize contentSize(){
 }
 
 - (void)dealloc{
-    [[BraceletManager sharedInstance] unRegisterDelegate:self];
+//    [[BraceletManager sharedInstance] unRegisterDelegate:self];
 }
 
 

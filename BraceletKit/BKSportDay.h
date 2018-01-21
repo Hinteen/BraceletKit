@@ -6,12 +6,11 @@
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import <Realm/Realm.h>
 #import "BKDevice.h"
 #import "BKUser.h"
 
 
-@interface BKSportDay : RLMObject
+@interface BKSportDay : NSObject
 
 /**
  device
@@ -61,4 +60,4 @@
 
 
 @end
-RLM_ARRAY_TYPE(BKSportDay)
+

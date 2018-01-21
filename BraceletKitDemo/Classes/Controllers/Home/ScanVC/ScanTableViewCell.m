@@ -46,25 +46,35 @@
 
 - (void)setModel:(BKDevice *)model{
     _model = model;
-    
+    if ([model.mac isEqualToString:@"advertisementData.length is less than 6"]) {
+        if ([model.uuid isEqualToString:[BKDevice currentDevice].uuid]) {
+            _model.mac = [BKDevice currentDevice].mac;
+        }
+    }
     self.lb_name.text = model.name;
     self.lb_uuid.text = model.uuid;
     self.lb_mac.text = model.mac;
     
-    
-    if (model.peripheral.state == CBPeripheralStateDisconnected) {
-        self.lb_status.text = @"未连接";
-        self.switch_bind.on = NO;
-        self.switch_bind.enabled = YES;
-    } else if (model.peripheral.state == CBPeripheralStateConnected) {
+    if ([_model.mac isEqualToString:[BKDevice currentDevice].mac]) {
         self.lb_status.text = @"已连接";
         self.switch_bind.on = YES;
         self.switch_bind.enabled = YES;
-    } else if (model.peripheral.state == CBPeripheralStateConnecting) {
-        self.lb_status.text = @"正在连接";
-        self.switch_bind.on = NO;
-        self.switch_bind.enabled = NO;
+    } else {
+        if (model.peripheral.state == CBPeripheralStateDisconnected) {
+            self.lb_status.text = @"未连接";
+            self.switch_bind.on = NO;
+            self.switch_bind.enabled = YES;
+        } else if (model.peripheral.state == CBPeripheralStateConnected) {
+            self.lb_status.text = @"已连接";
+            self.switch_bind.on = YES;
+            self.switch_bind.enabled = YES;
+        } else if (model.peripheral.state == CBPeripheralStateConnecting) {
+            self.lb_status.text = @"正在连接";
+            self.switch_bind.on = NO;
+            self.switch_bind.enabled = NO;
+        }
     }
+    
     if (@available(iOS 9.0, *)) {
         // on newer versions
         if (model.peripheral.state == CBPeripheralStateDisconnecting) {

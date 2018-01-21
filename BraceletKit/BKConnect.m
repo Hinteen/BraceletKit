@@ -11,7 +11,7 @@
 #import <AXKit/AXKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <BLE3Framework/BLE3Framework.h>
-
+#import "BKServices.h"
 
 @interface BKConnect() <CBCentralManagerDelegate, CBPeripheralDelegate, BleDiscoverDelegate, BleConnectDelegate>
 
@@ -40,6 +40,10 @@
         self.bleSDK.connectDelegate = self;
     }
     return self;
+}
+
++ (instancetype)currentConnect{
+    return [BKServices sharedInstance].connect;
 }
 
 

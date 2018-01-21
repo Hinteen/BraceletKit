@@ -84,9 +84,9 @@ static inline void showSuccess(NSString *msg){
     self.bindDevices = [NSMutableArray array];
     // @xaoxuu: delegate
     self.bleSDK = [BLELib3 shareInstance];
-    self.bleSDK.discoverDelegate = self;
-    self.bleSDK.connectDelegate = self;
-    self.bleSDK.delegate = self;
+//    self.bleSDK.discoverDelegate = self;
+//    self.bleSDK.connectDelegate = self;
+//    self.bleSDK.delegate = self;
     
     self.central = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     

@@ -44,9 +44,19 @@ static BKServices *bkServices = nil;
     }
     self.connectDelegates = [NSMutableArray array];
     // @xaoxuu: delegate
-    self.connect = [[BKConnect alloc] initWithDelegate:self];
+    _connect = [[BKConnect alloc] initWithDelegate:self];
     
     return self;
+}
+
+
+- (BOOL)registerServiceWithUser:(BKUser *)user{
+    if (user.email.length) {
+        _user = user;
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 
@@ -78,31 +88,41 @@ static BKServices *bkServices = nil;
 
 - (void)bkDiscoverDevice:(BKDevice *)device{
     [self allConnectDelegates:^(NSObject<BKConnectDelegate> *delegate) {
-        [delegate bkDiscoverDevice:device];
+        if ([delegate respondsToSelector:@selector(bkDiscoverDevice:)]) {
+            [delegate bkDiscoverDevice:device];
+        }
     }];
 }
 
 - (void)bkConnectedDevice:(BKDevice *)device{
     [self allConnectDelegates:^(NSObject<BKConnectDelegate> *delegate) {
-        [delegate bkConnectedDevice:device];
+        if ([delegate respondsToSelector:@selector(bkConnectedDevice:)]) {
+            [delegate bkConnectedDevice:device];
+        }
     }];
 }
 
 - (void)bkUnconnectedDevice:(BKDevice *)device{
     [self allConnectDelegates:^(NSObject<BKConnectDelegate> *delegate) {
-        [delegate bkUnconnectedDevice:device];
+        if ([delegate respondsToSelector:@selector(bkUnconnectedDevice:)]) {
+            [delegate bkUnconnectedDevice:device];
+        }
     }];
 }
 
 - (void)bkFailToConnectDevice:(BKDevice *)device{
     [self allConnectDelegates:^(NSObject<BKConnectDelegate> *delegate) {
-        [delegate bkFailToConnectDevice:device];
+        if ([delegate respondsToSelector:@selector(bkFailToConnectDevice:)]) {
+            [delegate bkFailToConnectDevice:device];
+        }
     }];
 }
 
 - (void)bkConnectTimeout{
     [self allConnectDelegates:^(NSObject<BKConnectDelegate> *delegate) {
-        [delegate bkConnectTimeout];
+        if ([delegate respondsToSelector:@selector(bkConnectTimeout)]) {
+            [delegate bkConnectTimeout];
+        }
     }];
 }
 

@@ -6,9 +6,7 @@
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import <Realm/Realm.h>
+#import "BKBaseTable.h"
 
 typedef NS_ENUM(NSUInteger, BKGender) {
     BKGenderUnknown,
@@ -16,21 +14,21 @@ typedef NS_ENUM(NSUInteger, BKGender) {
     BKGenderFemale,
 };
 
-@interface BKUser : RLMObject
+@interface BKUser : BKBaseTable
 
 
-/**
- user id
- */
-@property (copy, nonatomic) NSString *uid;
 /**
  name
  */
 @property (copy, nonatomic) NSString *name;
 /**
- email
+ email (作为user id)
  */
 @property (copy, nonatomic) NSString *email;
+/**
+ phone
+ */
+@property (assign, nonatomic) NSUInteger phone;
 /**
  gender
  */
@@ -51,6 +49,13 @@ typedef NS_ENUM(NSUInteger, BKGender) {
  avatar url
  */
 @property (copy, nonatomic) NSString *avatar;
+
++ (instancetype)currentUser;
+
++ (instancetype)defaultUser;
+
++ (instancetype)registerWithEmail:(NSString *)email password:(NSString *)password;
++ (instancetype)loginWithEmail:(NSString *)email password:(NSString *)password;
 
 
 @end
