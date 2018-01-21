@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Realm/Realm.h>
+
 @class CBPeripheral, ZeronerBlePeripheral;
 
 @protocol BKDeviceDelegate <NSObject>
@@ -26,7 +28,8 @@
 
 @end
 
-@interface BKDevice : NSObject
+
+@interface BKDevice : RLMObject
 
 /**
  mac
@@ -71,6 +74,7 @@
 @property (weak, nonatomic) NSObject<BKDeviceDelegate> *delegate;
 
 @end
+RLM_ARRAY_TYPE(BKDevice)
 
 @interface BKDevice (BKCachedExtension)
 

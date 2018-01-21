@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+#import <Realm/Realm.h>
 
 typedef NS_ENUM(NSUInteger, BKGender) {
     BKGenderUnknown,
@@ -16,7 +16,7 @@ typedef NS_ENUM(NSUInteger, BKGender) {
     BKGenderFemale,
 };
 
-@interface BKUser : NSObject
+@interface BKUser : RLMObject
 
 
 /**

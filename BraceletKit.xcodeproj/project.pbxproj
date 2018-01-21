@@ -74,6 +74,8 @@
 		CD8F66CF1FD4F62F00B4C6DD /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8F66CE1FD4F62F00B4C6DD /* CameraViewController.m */; };
 		CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD944E881FB0B44600373636 /* FindPhoneManager.m */; };
 		CDA003FC20136A6F00E572A7 /* Calibri.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDA003FB20136A6F00E572A7 /* Calibri.ttf */; };
+		CDA004002013985800E572A7 /* BKSportDay.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA003FE2013985800E572A7 /* BKSportDay.h */; };
+		CDA004012013985800E572A7 /* BKSportDay.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA003FF2013985800E572A7 /* BKSportDay.m */; };
 		CDA527931FECB269009C39EC /* BraceletKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD2E79441FA0C55800012CDB /* BraceletKit.bundle */; };
 		CDB94C6620133A0400CB588C /* _BKModelHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB94C6420133A0400CB588C /* _BKModelHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDB94C6720133A0400CB588C /* _BKModelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB94C6520133A0400CB588C /* _BKModelHelper.m */; };
@@ -214,6 +216,8 @@
 		CD944E871FB0B44600373636 /* FindPhoneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindPhoneManager.h; sourceTree = "<group>"; };
 		CD944E881FB0B44600373636 /* FindPhoneManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindPhoneManager.m; sourceTree = "<group>"; };
 		CDA003FB20136A6F00E572A7 /* Calibri.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Calibri.ttf; sourceTree = "<group>"; };
+		CDA003FE2013985800E572A7 /* BKSportDay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSportDay.h; sourceTree = "<group>"; };
+		CDA003FF2013985800E572A7 /* BKSportDay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKSportDay.m; sourceTree = "<group>"; };
 		CDB94C6420133A0400CB588C /* _BKModelHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _BKModelHelper.h; sourceTree = "<group>"; };
 		CDB94C6520133A0400CB588C /* _BKModelHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _BKModelHelper.m; sourceTree = "<group>"; };
 		CDDFA3A91FB5BAC8004C99D5 /* HomeTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTableView.h; sourceTree = "<group>"; };
@@ -310,6 +314,8 @@
 				CD25EA1E20133037009BEFC1 /* BKConnect.m */,
 				CD25EA29201330EC009BEFC1 /* BKSummary.h */,
 				CD25EA2A201330EC009BEFC1 /* BKSummary.m */,
+				CDA003FE2013985800E572A7 /* BKSportDay.h */,
+				CDA003FF2013985800E572A7 /* BKSportDay.m */,
 				CD25EA322013330F009BEFC1 /* BKUser.h */,
 				CD25EA332013330F009BEFC1 /* BKUser.m */,
 				CD25EA362013331D009BEFC1 /* BKDevice.h */,
@@ -608,6 +614,7 @@
 				CD25EA232013306E009BEFC1 /* BKDatabase.h in Headers */,
 				CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */,
 				CD25EA1B2013301E009BEFC1 /* BKServices.h in Headers */,
+				CDA004002013985800E572A7 /* BKSportDay.h in Headers */,
 				CD2E794B1FA0C89F00012CDB /* BraceletManager.h in Headers */,
 				CD2E793B1FA0C54200012CDB /* BraceletKit.h in Headers */,
 			);
@@ -866,6 +873,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD25EA392013331D009BEFC1 /* BKDevice.m in Sources */,
+				CDA004012013985800E572A7 /* BKSportDay.m in Sources */,
 				CD25EA2C201330EC009BEFC1 /* BKSummary.m in Sources */,
 				CDB94C6720133A0400CB588C /* _BKModelHelper.m in Sources */,
 				CD25EA1820132FD4009BEFC1 /* BKDefines.m in Sources */,

@@ -5,7 +5,6 @@ target 'BraceletKit' do
     pod 'AXKit'
     pod 'YYKit'
     pod 'BLE3Framework'
-    pod 'Realm'
 
 end
 
