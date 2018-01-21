@@ -13,7 +13,7 @@
 #import "BKDataDay.h"
 #import "BKDataSport.h"
 #import "BKDataHR.h"
-
+#import "BKDataHRHour.h"
 
 
 @interface BKUser (BKBaseTable)
@@ -46,6 +46,11 @@
 @end
 
 @interface BKDataHR (BKBaseTable)
+
+
+@end
+
+@interface BKDataHRHour (BKBaseTable)
 
 
 @end

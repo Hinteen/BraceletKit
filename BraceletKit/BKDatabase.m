@@ -240,7 +240,7 @@ static inline NSString *dateString(NSDate *date){
     return columnName;
 }
 + (NSString *)tablePrimaryKey{
-    return @"date, user_id, device_id, data_type";
+    return @"date, user_id, device_id, data_type, start";
 }
 
 + (instancetype)modelWithSet:(FMResultSet *)set{
@@ -574,6 +574,78 @@ static inline NSString *dateString(NSDate *date){
 
 
 
+@implementation BKDataHRHour (BKBaseTable)
+
+
++ (NSString *)tableName{
+    return @"data_hr_hour";
+}
++ (NSString *)tableColumns{
+    static NSString *columnName;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSMutableString *column = [NSMutableString string];
+        [column appendIntegerColumn:@"date" comma:YES];
+        [column appendVarcharColumn:@"user_id" comma:YES];
+        [column appendVarcharColumn:@"device_id" comma:YES];
+        [column appendVarcharColumn:@"device_name" comma:YES];
+        
+        [column appendIntegerColumn:@"seq" comma:YES];
+        [column appendIntegerColumn:@"hour" comma:YES];
+        
+        [column appendVarcharColumn:@"detail" comma:YES];
+        
+        [column appendVarcharColumn:@"lastmodified" comma:NO];
+        columnName = column;
+    });
+    return columnName;
+}
++ (NSString *)tablePrimaryKey{
+    return @"date, user_id, device_id, seq, hour";
+}
+
++ (instancetype)modelWithSet:(FMResultSet *)set{
+    int i = 0;
+    BKDataHRHour *model = [[BKDataHRHour alloc] init];
+    i++;// date
+    i++;// user_id
+    i++;// device_id
+    i++;// device_name
+    model.seq = [set longForColumnIndex:i++];
+    model.hour = [set longForColumnIndex:i++];
+    
+    NSString *detailString = [set stringForColumnIndex:i++];
+    NSData *data = [detailString dataUsingEncoding:NSUTF8StringEncoding];
+    if (data) {
+        model.hrDetail = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    }
+    
+    return model;
+}
+
+- (NSString *)valueString{
+    NSMutableString *value = [NSMutableString string];
+    [value appendIntegerValue:today().dateInteger comma:YES];
+    [value appendVarcharValue:userId() comma:YES];
+    [value appendVarcharValue:deviceId() comma:YES];
+    [value appendVarcharValue:deviceName() comma:YES];
+    
+    [value appendIntegerValue:self.seq comma:YES];
+    [value appendIntegerValue:self.hour comma:YES];
+    
+    [value appendVarcharValue:self.hrDetail.description comma:YES];
+    
+    [value appendVarcharValue:dateString(today()) comma:NO];
+    return value;
+}
+
+- (BOOL)cacheable{
+    return userId().length && deviceId().length && self.dateInteger;
+}
+
+@end
+
+
 
 @implementation BKDatabase
 
@@ -586,6 +658,7 @@ static inline NSString *dateString(NSDate *date){
         [BKDataDay loadDatabase];
         [BKDataSport loadDatabase];
         [BKDataHR loadDatabase];
+        [BKDataHRHour loadDatabase];
     });
 }
 

@@ -40,6 +40,8 @@
 		CD37F4582014D7BC009B213B /* BKDataSport.m in Sources */ = {isa = PBXBuildFile; fileRef = CD37F4562014D7BC009B213B /* BKDataSport.m */; };
 		CD37F45B2014E1BF009B213B /* BKDataHR.h in Headers */ = {isa = PBXBuildFile; fileRef = CD37F4592014E1BF009B213B /* BKDataHR.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD37F45C2014E1BF009B213B /* BKDataHR.m in Sources */ = {isa = PBXBuildFile; fileRef = CD37F45A2014E1BF009B213B /* BKDataHR.m */; };
+		CD37F45F2014E993009B213B /* BKDataHRHour.h in Headers */ = {isa = PBXBuildFile; fileRef = CD37F45D2014E993009B213B /* BKDataHRHour.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CD37F4602014E993009B213B /* BKDataHRHour.m in Sources */ = {isa = PBXBuildFile; fileRef = CD37F45E2014E993009B213B /* BKDataHRHour.m */; };
 		CD3FC1151FA20A0B0054B26B /* DataAccessLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0BD1FA20A0B0054B26B /* DataAccessLayer.m */; };
 		CD3FC1161FA20A0B0054B26B /* ServicesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0BE1FA20A0B0054B26B /* ServicesLayer.m */; };
 		CD3FC11A1FA20A0B0054B26B /* BaseDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0C81FA20A0B0054B26B /* BaseDataAccess.m */; };
@@ -162,6 +164,8 @@
 		CD37F4562014D7BC009B213B /* BKDataSport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDataSport.m; sourceTree = "<group>"; };
 		CD37F4592014E1BF009B213B /* BKDataHR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDataHR.h; sourceTree = "<group>"; };
 		CD37F45A2014E1BF009B213B /* BKDataHR.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDataHR.m; sourceTree = "<group>"; };
+		CD37F45D2014E993009B213B /* BKDataHRHour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDataHRHour.h; sourceTree = "<group>"; };
+		CD37F45E2014E993009B213B /* BKDataHRHour.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDataHRHour.m; sourceTree = "<group>"; };
 		CD3FC0BC1FA20A0B0054B26B /* ServicesLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServicesLayer.h; sourceTree = "<group>"; };
 		CD3FC0BD1FA20A0B0054B26B /* DataAccessLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAccessLayer.m; sourceTree = "<group>"; };
 		CD3FC0BE1FA20A0B0054B26B /* ServicesLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServicesLayer.m; sourceTree = "<group>"; };
@@ -356,6 +360,8 @@
 				CD37F4562014D7BC009B213B /* BKDataSport.m */,
 				CD37F4592014E1BF009B213B /* BKDataHR.h */,
 				CD37F45A2014E1BF009B213B /* BKDataHR.m */,
+				CD37F45D2014E993009B213B /* BKDataHRHour.h */,
+				CD37F45E2014E993009B213B /* BKDataHRHour.m */,
 				CDB94C6420133A0400CB588C /* _BKModelHelper.h */,
 				CDB94C6520133A0400CB588C /* _BKModelHelper.m */,
 				CDA0040720146EFB00E572A7 /* _BKDatabaseHelper.h */,
@@ -643,6 +649,7 @@
 				CD25EA382013331D009BEFC1 /* BKDevice.h in Headers */,
 				CDB94C6620133A0400CB588C /* _BKModelHelper.h in Headers */,
 				CD37F4572014D7BC009B213B /* BKDataSport.h in Headers */,
+				CD37F45F2014E993009B213B /* BKDataHRHour.h in Headers */,
 				CD37F4532014CCC4009B213B /* BKDataDay.h in Headers */,
 				CDA004112014A99A00E572A7 /* BKDataIndex.h in Headers */,
 				CD25EA1F20133037009BEFC1 /* BKConnect.h in Headers */,
@@ -916,6 +923,7 @@
 			files = (
 				CD25EA392013331D009BEFC1 /* BKDevice.m in Sources */,
 				CDA004012013985800E572A7 /* BKSportDay.m in Sources */,
+				CD37F4602014E993009B213B /* BKDataHRHour.m in Sources */,
 				CD25EA2C201330EC009BEFC1 /* BKSummary.m in Sources */,
 				CDA004122014A99A00E572A7 /* BKDataIndex.m in Sources */,
 				CDB94C6720133A0400CB588C /* _BKModelHelper.m in Sources */,

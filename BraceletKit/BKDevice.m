@@ -15,6 +15,9 @@
 #import "BKDataDay.h"
 #import "BKDataSport.h"
 #import "BKDataHR.h"
+#import "BKDataHRHour.h"
+
+
 
 @interface BKDevice() <BLELib3Delegate>
 
@@ -280,6 +283,8 @@
  */
 - (void)updateHeartRateData_hours:(NSDictionary *)dict{
     AXCachedLogData(dict);
+    BKDataHRHour *model = [BKDataHRHour modelWithDict:dict];
+    [model saveToDatabase];
 }
 
 /**
