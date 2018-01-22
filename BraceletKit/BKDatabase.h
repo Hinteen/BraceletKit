@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BKUser.h"
 #import "BKDevice.h"
+#import "BKDeviceSetting.h"
 #import "BKDataIndex.h"
 #import "BKDataDay.h"
 #import "BKDataSport.h"
@@ -29,6 +30,18 @@
 + (instancetype)lastConnectedDevice;
 
 - (NSString *)restoreMac;
+
+@end
+
+@interface BKDeviceSetting (BKBaseTable)
+
+
+/**
+ 如果不存在的话就保存到数据库，如果存在，就不做任何操作
+ 
+ @return 结果
+ */
+- (BOOL)saveToDatabaseIfNotExists;
 
 @end
 

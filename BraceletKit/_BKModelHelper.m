@@ -8,7 +8,7 @@
 
 #import "_BKModelHelper.h"
 #import "BKDatabase.h"
-
+#import "BKDeviceSetting.h"
 
 @implementation _BKModelHelper
 
@@ -31,4 +31,61 @@
 }
 
 @end
+
+
+@implementation ZeronerHWOption (BKExtension)
+
+- (BKDeviceSetting *)transformToBKDeviceSetting{
+    BKDeviceSetting *model = [[BKDeviceSetting alloc] init];
+    model.ledSwitch = self.ledSwitch;
+    model.leftHand = self.leftHand;
+    model.wristSwitch = self.wristSwitch;
+    model.autoSleep = self.autoSleep;
+    model.advertisementSwitch = self.advertisementSwitch;
+    model.backgroundColor = self.backColor;
+    model.disConnectTip = self.disConnectTip;
+    model.autoHeartRate = self.autoHeartRate;
+    model.autoSport = self.autoSport;
+    model.findPhoneSwitch = self.findPhoneSwitch;
+    model.unitType = (NSUInteger)self.unitType;
+    model.hourFormat = (NSUInteger)self.timeFlag;
+    model.language = (NSUInteger)self.language;
+    model.backlightStart = self.backlightStart;
+    model.backlightEnd = self.backlightEnd;
+    model.dateFormat = self.dateFormatter;
+    model.wristBlightStart = self.wristBlightStart;
+    model.wristBlightEnd = self.wristBlightEnd;
+    return model;
+}
+
+@end
+
+
+@implementation BKDeviceSetting (BKExtension)
+
+- (ZeronerHWOption *)transformToZeronerHWOption{
+    ZeronerHWOption *model = [ZeronerHWOption defaultHWOption];
+    model.ledSwitch = self.ledSwitch;
+    model.leftHand = self.leftHand;
+    model.wristSwitch = self.wristSwitch;
+    model.autoSleep = self.autoSleep;
+    model.advertisementSwitch = self.advertisementSwitch;
+    model.backColor = self.backgroundColor;
+    model.disConnectTip = self.disConnectTip;
+    model.autoHeartRate = self.autoHeartRate;
+    model.autoSport = self.autoSport;
+    model.findPhoneSwitch = self.findPhoneSwitch;
+    model.unitType = (int)self.unitType;
+    model.timeFlag = (int)self.hourFormat;
+    model.language = (int)self.language;
+    model.backlightStart = self.backlightStart;
+    model.backlightEnd = self.backlightEnd;
+    model.dateFormatter = self.dateFormat;
+    model.wristBlightStart = self.wristBlightStart;
+    model.wristBlightEnd = self.wristBlightEnd;
+    return model;
+}
+
+@end
+
 

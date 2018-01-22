@@ -43,6 +43,24 @@
     return nil;
 }
 
+- (NSString *)whereExists{
+    NSAssert(NO, @"子类必须重写此方法");
+    return nil;
+}
+
+- (instancetype)restoreFromDatabase{
+//    if (self.cacheable) {
+//        databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+//            [db ax_select:@"*" from:self.class.tableName where:self.whereExists orderBy:@"lastmodified DESC LIMIT 1" result:^(NSMutableArray * _Nonnull result, FMResultSet * _Nonnull set) {
+//                while (set.next) {
+//                    self = [self.class modelWithSet:set];
+//                }
+//            }];
+//        });
+//    }
+    NSAssert(NO, @"子类必须重写此方法");
+    return nil;
+}
 
 - (BOOL)saveToDatabase{
     __block BOOL ret = NO;
@@ -53,6 +71,7 @@
     }
     return ret;
 }
+
 
 + (void)loadDatabase{
     databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {

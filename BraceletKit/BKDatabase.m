@@ -123,6 +123,10 @@ static inline NSString *dateString(NSDate *date){
     return self.email.length;
 }
 
+- (NSString *)whereExists{
+    return [NSString stringWithFormat:@"email = '%@'", self.email];
+}
+
 @end
 
 
@@ -182,6 +186,10 @@ static inline NSString *dateString(NSDate *date){
     return userId().length && self.mac.length && ![self.mac isEqualToString:@"advertisementData.length is less than 6"];
 }
 
+- (NSString *)whereExists{
+    return [NSString stringWithFormat:@"device = '%@'", self.mac];
+}
+
 + (instancetype)lastConnectedDevice{
     __block BKDevice *cachedDevice;
     databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
@@ -225,7 +233,162 @@ static inline NSString *dateString(NSDate *date){
 
 @end
 
+@implementation BKDeviceSetting (BKBaseTable)
+
+
++ (NSString *)tableName{
+    return @"device_setting";
+}
++ (NSString *)tableColumns{
+    static NSString *columnName;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSMutableString *column = [NSMutableString string];
+        [column appendVarcharColumn:@"user_id" comma:YES];
+        [column appendVarcharColumn:@"device_id" comma:YES];
+        [column appendVarcharColumn:@"device_name" comma:YES];
+        
+        [column appendIntegerColumn:@"language" comma:YES];
+        [column appendIntegerColumn:@"unit_type" comma:YES];
+        [column appendIntegerColumn:@"date_format" comma:YES];
+        [column appendIntegerColumn:@"hour_format" comma:YES];
+        
+        [column appendIntegerColumn:@"auto_sport" comma:YES];
+        [column appendIntegerColumn:@"auto_heartrate" comma:YES];
+        [column appendIntegerColumn:@"auto_sleep" comma:YES];
+        
+        [column appendIntegerColumn:@"disConnectTip" comma:YES];
+        [column appendIntegerColumn:@"findPhoneSwitch" comma:YES];
+        [column appendIntegerColumn:@"led_switch" comma:YES];
+        [column appendIntegerColumn:@"left_hand" comma:YES];
+        [column appendIntegerColumn:@"advertisementSwitch" comma:YES];
+        
+        [column appendIntegerColumn:@"backColor" comma:YES];
+        [column appendIntegerColumn:@"backlightStart" comma:YES];
+        [column appendIntegerColumn:@"backlightEnd" comma:YES];
+        
+        [column appendIntegerColumn:@"wristSwitch" comma:YES];
+        [column appendIntegerColumn:@"wristBlightStart" comma:YES];
+        [column appendIntegerColumn:@"wristBlightEnd" comma:YES];
+        
+        [column appendVarcharColumn:@"lastmodified" comma:NO];
+        columnName = column;
+    });
+    return columnName;
+}
++ (NSString *)tablePrimaryKey{
+    return @"user_id, device_id";
+}
+
++ (instancetype)modelWithSet:(FMResultSet *)set{
+    int i = 0;
+    BKDeviceSetting *model = [[BKDeviceSetting alloc] init];
+    i++;// user_id
+    i++;// device_id
+    i++;// device_name
+    model.language = [set longForColumnIndex:i++];
+    model.unitType = [set longForColumnIndex:i++];
+    model.dateFormat = [set longForColumnIndex:i++];
+    model.hourFormat = [set longForColumnIndex:i++];
+    
+    model.autoSport = [set longForColumnIndex:i++];
+    model.autoHeartRate = [set longForColumnIndex:i++];
+    model.autoSleep = [set longForColumnIndex:i++];
+    
+    model.disConnectTip = [set longForColumnIndex:i++];
+    model.findPhoneSwitch = [set longForColumnIndex:i++];
+    model.ledSwitch = [set longForColumnIndex:i++];
+    model.leftHand = [set longForColumnIndex:i++];
+    model.advertisementSwitch = [set longForColumnIndex:i++];
+    
+    model.backgroundColor = [set longForColumnIndex:i++];
+    model.backlightStart = [set longForColumnIndex:i++];
+    model.backlightEnd = [set longForColumnIndex:i++];
+    
+    model.wristSwitch = [set longForColumnIndex:i++];
+    model.wristBlightStart = [set longForColumnIndex:i++];
+    model.wristBlightEnd = [set longForColumnIndex:i++];
+    
+    return model;
+}
+
+- (NSString *)valueString{
+    NSMutableString *value = [NSMutableString string];
+    [value appendVarcharValue:userId() comma:YES];
+    [value appendVarcharValue:deviceId() comma:YES];
+    [value appendVarcharValue:deviceName() comma:YES];
+    [value appendIntegerValue:self.language comma:YES];
+    [value appendIntegerValue:self.unitType comma:YES];
+    [value appendIntegerValue:self.dateFormat comma:YES];
+    [value appendIntegerValue:self.hourFormat comma:YES];
+    
+    [value appendIntegerValue:self.autoSport comma:YES];
+    [value appendIntegerValue:self.autoHeartRate comma:YES];
+    [value appendIntegerValue:self.autoSleep comma:YES];
+    
+    [value appendIntegerValue:self.disConnectTip comma:YES];
+    [value appendIntegerValue:self.findPhoneSwitch comma:YES];
+    [value appendIntegerValue:self.ledSwitch comma:YES];
+    [value appendIntegerValue:self.leftHand comma:YES];
+    [value appendIntegerValue:self.advertisementSwitch comma:YES];
+    
+    [value appendIntegerValue:self.backgroundColor comma:YES];
+    [value appendIntegerValue:self.backlightStart comma:YES];
+    [value appendIntegerValue:self.backlightEnd comma:YES];
+    
+    [value appendIntegerValue:self.wristSwitch comma:YES];
+    [value appendIntegerValue:self.wristBlightStart comma:YES];
+    [value appendIntegerValue:self.wristBlightEnd comma:YES];
+    
+    [value appendVarcharValue:dateString(today()) comma:NO];
+    return value;
+}
+
+- (BOOL)cacheable{
+    return userId().length && deviceId().length;
+}
+
+- (NSString *)whereExists{
+    return [NSString stringWithFormat:@"user_id = '%@' and device_id = '%@'", userId(), deviceId()];
+}
+
+- (instancetype)restoreFromDatabase{
+    __block BKDeviceSetting *model = [[BKDeviceSetting alloc] init];
+    databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        [db ax_select:@"*" from:self.class.tableName where:self.whereExists result:^(NSMutableArray * _Nonnull result, FMResultSet * _Nonnull set) {
+            while (set.next) {
+                model = [self.class modelWithSet:set];
+            }
+        }];
+    });
+    return model;
+}
+
+
+- (BOOL)saveToDatabaseIfNotExists{
+    __block BOOL ret = NO;
+    if (self.cacheable) {
+        databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+            __block BOOL exists = NO;
+            [db ax_select:@"*" from:self.class.tableName where:self.whereExists result:^(NSMutableArray * _Nonnull result, FMResultSet * _Nonnull set) {
+                while (set.next) {
+                    exists = YES;
+                }
+            }];
+            if (!exists) {
+                ret = [db ax_replaceIntoTable:self.class.tableName column:self.class.tableColumns.stringByDeletingTypeAndComma value:self.valueString];
+            } else {
+                ret = NO;
+            }
+        });
+    }
+    return ret;
+}
+
+@end
+
 @implementation BKDataIndex (BKBaseTable)
+
 
 
 + (NSString *)tableName{
@@ -289,6 +452,7 @@ static inline NSString *dateString(NSDate *date){
 - (BOOL)cacheable{
     return userId().length && deviceId().length && self.dataType.length;
 }
+
 
 @end
 
@@ -761,6 +925,7 @@ static inline NSString *dateString(NSDate *date){
     dispatch_once(&onceToken, ^{
         [BKUser loadDatabase];
         [BKDevice loadDatabase];
+        [BKDeviceSetting loadDatabase];
         [BKDataIndex loadDatabase];
         [BKDataDay loadDatabase];
         [BKDataSport loadDatabase];

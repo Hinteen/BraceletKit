@@ -61,10 +61,26 @@
 - (BOOL)cacheable;
 
 /**
+ 可以确定这条数据存在的where语句
+
+ @return 可以确定这条数据存在的where语句
+ */
+- (NSString *)whereExists;
+
+/**
+ 从数据库中恢复这条数据
+
+ @return 从数据库中恢复这条数据
+ */
+- (instancetype)restoreFromDatabase;
+
+/**
  保存到数据库
 
  @return 是否成功
  */
 - (BOOL)saveToDatabase;
+
+
 
 @end

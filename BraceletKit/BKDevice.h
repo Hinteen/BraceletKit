@@ -7,7 +7,8 @@
 //
 
 #import "BKBaseTable.h"
-#import <BLE3Framework/BLE3Framework.h>
+//#import <BLE3Framework/BLE3Framework.h>
+#import "BKDeviceSetting.h"
 
 @class CBPeripheral, ZeronerBlePeripheral;
 
@@ -76,7 +77,10 @@
  */
 @property (strong, nonatomic) ZeronerBlePeripheral *zeronerBlePeripheral;
 
-
+/**
+ setting
+ */
+@property (strong, nonatomic) BKDeviceSetting *setting;
 
 
 /**

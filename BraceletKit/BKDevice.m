@@ -11,12 +11,8 @@
 #import "BKLogHelper.h"
 #import <AVFoundation/AVFoundation.h>
 #import "BKServices.h"
-#import "BKDataIndex.h"
-#import "BKDataDay.h"
-#import "BKDataSport.h"
-#import "BKDataHR.h"
-#import "BKDataHRHour.h"
-#import "BKDataSleep.h"
+#import "BKDatabase.h"
+
 
 
 @interface BKDevice() <BLELib3Delegate>
@@ -182,6 +178,8 @@
  */
 - (void)responseOfGetHWOption:(ZeronerHWOption *)hwOption{
     _hwOption = hwOption;
+    _setting = hwOption.transformToBKDeviceSetting;
+    [self.setting saveToDatabaseIfNotExists];
     AXCachedLogOBJ(hwOption);
 }
 
