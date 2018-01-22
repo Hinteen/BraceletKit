@@ -47,7 +47,7 @@
     model.autoHeartRate = self.autoHeartRate;
     model.autoSport = self.autoSport;
     model.findPhoneSwitch = self.findPhoneSwitch;
-    model.unitType = (NSUInteger)self.unitType;
+    model.distanceUnit = (NSUInteger)self.unitType;
     model.hourFormat = (NSUInteger)self.timeFlag;
     model.language = (NSUInteger)self.language;
     model.backlightStart = self.backlightStart;
@@ -75,7 +75,7 @@
     model.autoHeartRate = self.autoHeartRate;
     model.autoSport = self.autoSport;
     model.findPhoneSwitch = self.findPhoneSwitch;
-    model.unitType = (int)self.unitType;
+    model.unitType = (int)self.distanceUnit;
     model.timeFlag = (int)self.hourFormat;
     model.language = (int)self.language;
     model.backlightStart = self.backlightStart;

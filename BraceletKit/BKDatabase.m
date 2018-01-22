@@ -249,7 +249,7 @@ static inline NSString *dateString(NSDate *date){
         [column appendVarcharColumn:@"device_name" comma:YES];
         
         [column appendIntegerColumn:@"language" comma:YES];
-        [column appendIntegerColumn:@"unit_type" comma:YES];
+        [column appendIntegerColumn:@"distance_unit" comma:YES];
         [column appendIntegerColumn:@"date_format" comma:YES];
         [column appendIntegerColumn:@"hour_format" comma:YES];
         
@@ -287,7 +287,7 @@ static inline NSString *dateString(NSDate *date){
     i++;// device_id
     i++;// device_name
     model.language = [set longForColumnIndex:i++];
-    model.unitType = [set longForColumnIndex:i++];
+    model.distanceUnit = [set longForColumnIndex:i++];
     model.dateFormat = [set longForColumnIndex:i++];
     model.hourFormat = [set longForColumnIndex:i++];
     
@@ -318,7 +318,7 @@ static inline NSString *dateString(NSDate *date){
     [value appendVarcharValue:deviceId() comma:YES];
     [value appendVarcharValue:deviceName() comma:YES];
     [value appendIntegerValue:self.language comma:YES];
-    [value appendIntegerValue:self.unitType comma:YES];
+    [value appendIntegerValue:self.distanceUnit comma:YES];
     [value appendIntegerValue:self.dateFormat comma:YES];
     [value appendIntegerValue:self.hourFormat comma:YES];
     

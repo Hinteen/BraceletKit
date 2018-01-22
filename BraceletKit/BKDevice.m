@@ -397,10 +397,3 @@
 
 @end
 
-@implementation BKDevice (BKCachedExtension)
-
-+ (CGFloat)readCachedBatteryPercent{
-    return 0;
-}
-
-@end

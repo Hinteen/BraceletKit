@@ -11,12 +11,12 @@
 /**
  计量单位
 
- - BKUnitTypeInternational: km、meter、kg .国际制单位，如，千米 、米 、千克。
- - BKUnitTypeEnglish: feet、inch、pound .国际制单位，如，英尺 、英寸 、磅。
+ - BKDistanceUnitMetric:   公制距离单位 km、meter、kg .国际制单位，如，千米 、米 、千克。
+ - BKDistanceUnitImperial: 英制距离单位 feet、inch、pound .国际制单位，如，英尺 、英寸 、磅。
  */
-typedef NS_ENUM(NSUInteger, BKUnitType) {
-    BKUnitTypeInternational = 0,
-    BKUnitTypeEnglish = 1,
+typedef NS_ENUM(NSUInteger, BKDistanceUnit) {
+    BKDistanceUnitMetric = 0,
+    BKDistanceUnitImperial = 1,
 };
 
 
@@ -72,6 +72,18 @@ typedef NS_ENUM(NSUInteger, BKDeviceBGColor) {
     BKDeviceBGColorWhite = 1,
 };
 
+
+/**
+ 温度单位
+
+ - BKTemperatureUnitCentigrade: 摄氏温度
+ - BKTemperatureUnitFahrenheit: 华氏温度
+ */
+typedef NS_ENUM(NSUInteger, BKTemperatureUnit) {
+    BKTemperatureUnitCentigrade,
+    BKTemperatureUnitFahrenheit,
+};
+
 @interface BKDeviceSetting : BKBaseTable
 
 
@@ -82,7 +94,7 @@ typedef NS_ENUM(NSUInteger, BKDeviceBGColor) {
 /**
  公英制单位切换开关 ，默认是公制。
  */
-@property (assign, nonatomic) BKUnitType unitType;
+@property (assign, nonatomic) BKDistanceUnit distanceUnit;
 /**
  手环显示的日期格式，0表示 月月／日日 ，1表示 日日／月月.默认是0
  */
@@ -159,6 +171,11 @@ typedef NS_ENUM(NSUInteger, BKDeviceBGColor) {
  仅在 wristSwitch 为YES的时候有效，在设置的时间间隔内，翻腕点亮屏幕功能可用。wristBlightStart和wristBlightEnd都设置为0时表示24小时有效。取值范围在0-23，表示每个整点。
  */
 @property (assign, nonatomic) NSInteger wristBlightEnd;
+
+/**
+ 温度单位
+ */
+@property (assign, nonatomic) BKTemperatureUnit temperatureUnit;
 
 
 /**

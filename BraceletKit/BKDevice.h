@@ -94,10 +94,4 @@
 @end
 
 
-@interface BKDevice (BKCachedExtension)
-
-
-+ (CGFloat)readCachedBatteryPercent;
-   
-@end
 
