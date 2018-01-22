@@ -7,7 +7,7 @@
 //
 
 #import "BKSportList.h"
-#import "BKDefines.h"
+#import "_BKHeader.h"
 #import "BKDevice.h"
 
 @implementation BKSportList

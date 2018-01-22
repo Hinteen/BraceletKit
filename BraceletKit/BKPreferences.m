@@ -7,7 +7,7 @@
 //
 
 #import "BKPreferences.h"
-#import "BKDefines.h"
+#import "_BKHeader.h"
 
 @implementation BKPreferences
 

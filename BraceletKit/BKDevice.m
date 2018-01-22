@@ -7,7 +7,7 @@
 //
 
 #import "BKDevice.h"
-#import "BKDefines.h"
+#import "_BKHeader.h"
 #import <AVFoundation/AVFoundation.h>
 #import "BKServices.h"
 

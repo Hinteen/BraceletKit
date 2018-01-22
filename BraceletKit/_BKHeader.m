@@ -6,7 +6,7 @@
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BKDefines.h"
+#import "_BKHeader.h"
 #import "BKUser.h"
 #import "BKDevice.h"
 

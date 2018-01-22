@@ -11,7 +11,7 @@
 #import "BKServices.h"
 #import "_BKDatabaseHelper.h"
 #import <AXKit/AXKit.h>
-#import "BKDefines.h"
+#import "_BKHeader.h"
 
 @implementation BKUser
 

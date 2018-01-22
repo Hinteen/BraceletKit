@@ -7,7 +7,7 @@
 //
 
 #import "BKDataHRHour.h"
-#import "BKDefines.h"
+#import "_BKHeader.h"
 
 
 @implementation BKDataHRHour

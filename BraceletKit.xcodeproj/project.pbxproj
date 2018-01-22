@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CD25EA1720132FD4009BEFC1 /* BKDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA1520132FD4009BEFC1 /* BKDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CD25EA1820132FD4009BEFC1 /* BKDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA1620132FD4009BEFC1 /* BKDefines.m */; };
+		CD25EA1720132FD4009BEFC1 /* _BKHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA1520132FD4009BEFC1 /* _BKHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CD25EA1820132FD4009BEFC1 /* _BKHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA1620132FD4009BEFC1 /* _BKHeader.m */; };
 		CD25EA1B2013301E009BEFC1 /* BKServices.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA192013301E009BEFC1 /* BKServices.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD25EA1C2013301E009BEFC1 /* BKServices.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA1A2013301E009BEFC1 /* BKServices.m */; };
 		CD25EA1F20133037009BEFC1 /* BKConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA1D20133037009BEFC1 /* BKConnect.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -130,8 +130,8 @@
 /* Begin PBXFileReference section */
 		45D14689FFFFCA37F6DE88DC /* libPods-BraceletKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BraceletKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B04AE3ABF65FA07B8445BD1 /* Pods-BraceletKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKit/Pods-BraceletKit.release.xcconfig"; sourceTree = "<group>"; };
-		CD25EA1520132FD4009BEFC1 /* BKDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDefines.h; sourceTree = "<group>"; };
-		CD25EA1620132FD4009BEFC1 /* BKDefines.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDefines.m; sourceTree = "<group>"; };
+		CD25EA1520132FD4009BEFC1 /* _BKHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _BKHeader.h; sourceTree = "<group>"; };
+		CD25EA1620132FD4009BEFC1 /* _BKHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _BKHeader.m; sourceTree = "<group>"; };
 		CD25EA192013301E009BEFC1 /* BKServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKServices.h; sourceTree = "<group>"; };
 		CD25EA1A2013301E009BEFC1 /* BKServices.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKServices.m; sourceTree = "<group>"; };
 		CD25EA1D20133037009BEFC1 /* BKConnect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKConnect.h; sourceTree = "<group>"; };
@@ -340,8 +340,6 @@
 			isa = PBXGroup;
 			children = (
 				CD2E79391FA0C54200012CDB /* BraceletKit.h */,
-				CD25EA1520132FD4009BEFC1 /* BKDefines.h */,
-				CD25EA1620132FD4009BEFC1 /* BKDefines.m */,
 				CD25EA2520133083009BEFC1 /* BKLogHelper.h */,
 				CD25EA2620133083009BEFC1 /* BKLogHelper.m */,
 				CD25EA192013301E009BEFC1 /* BKServices.h */,
@@ -374,6 +372,8 @@
 				CD37F45E2014E993009B213B /* BKDataHRHour.m */,
 				CDC2EB772015A96E00C9F77E /* BKDataSleep.h */,
 				CDC2EB782015A96E00C9F77E /* BKDataSleep.m */,
+				CD25EA1520132FD4009BEFC1 /* _BKHeader.h */,
+				CD25EA1620132FD4009BEFC1 /* _BKHeader.m */,
 				CDB94C6420133A0400CB588C /* _BKModelHelper.h */,
 				CDB94C6520133A0400CB588C /* _BKModelHelper.m */,
 				CDA0040720146EFB00E572A7 /* _BKDatabaseHelper.h */,
@@ -671,7 +671,7 @@
 				CD25EA342013330F009BEFC1 /* BKUser.h in Headers */,
 				CD25EA2B201330EC009BEFC1 /* BKSummary.h in Headers */,
 				CD25EA2720133083009BEFC1 /* BKLogHelper.h in Headers */,
-				CD25EA1720132FD4009BEFC1 /* BKDefines.h in Headers */,
+				CD25EA1720132FD4009BEFC1 /* _BKHeader.h in Headers */,
 				CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */,
 				CD25EA1B2013301E009BEFC1 /* BKServices.h in Headers */,
 				CDA0040D201491DF00E572A7 /* BKBaseTable.h in Headers */,
@@ -942,7 +942,7 @@
 				CD25EA2C201330EC009BEFC1 /* BKSummary.m in Sources */,
 				CDA004122014A99A00E572A7 /* BKDataIndex.m in Sources */,
 				CDB94C6720133A0400CB588C /* _BKModelHelper.m in Sources */,
-				CD25EA1820132FD4009BEFC1 /* BKDefines.m in Sources */,
+				CD25EA1820132FD4009BEFC1 /* _BKHeader.m in Sources */,
 				CD2E794C1FA0C89F00012CDB /* BraceletManager.m in Sources */,
 				CD37F4582014D7BC009B213B /* BKDataSport.m in Sources */,
 				CD25EA2020133037009BEFC1 /* BKConnect.m in Sources */,
