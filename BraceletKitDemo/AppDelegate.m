@@ -54,6 +54,7 @@
         AXCachedLogOBJ(log);
     }
     
+    
     [UINavigationBar appearance].barStyle = UIBarStyleDefault;
     [UINavigationBar appearance].translucent = NO;
     [UINavigationBar appearance].opaque = YES;

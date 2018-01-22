@@ -16,7 +16,7 @@
 #import "BKDataSport.h"
 #import "BKDataHR.h"
 #import "BKDataHRHour.h"
-
+#import "BKDataSleep.h"
 
 
 @interface BKDevice() <BLELib3Delegate>
@@ -134,8 +134,9 @@
     }
     [self saveToDatabase];
     AXCachedLogOBJ(deviceInfo);
-#warning 缓存设备电量
     [NSUserDefaults ax_setInteger:deviceInfo.batLevel forKey:deviceInfo.seriesNo.extension(@"deviceInfo.batLevel")];
+    
+    [[BLELib3 shareInstance] getSleepData_Custom];
 }
 
 /**
@@ -228,6 +229,8 @@
  */
 - (void)updateSleepData:(NSDictionary *)dict{
     AXCachedLogData(dict);
+    BKDataSleep *model = [BKDataSleep modelWithDict:dict];
+    [model saveToDatabase];
 }
 
 /**

@@ -179,7 +179,19 @@ static inline NSString *dateString(NSDate *date){
 }
 
 - (BOOL)cacheable{
-    return self.mac.length && ![self.mac isEqualToString:@"advertisementData.length is less than 6"];
+    return userId().length && self.mac.length && ![self.mac isEqualToString:@"advertisementData.length is less than 6"];
+}
+
++ (instancetype)lastConnectedDevice{
+    __block BKDevice *cachedDevice;
+    databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        [db ax_select:@"*" from:self.tableName where:@"" orderBy:@"lastmodified DESC LIMIT 1" result:^(NSMutableArray * _Nonnull result, FMResultSet * _Nonnull set) {
+            while (set.next) {
+                cachedDevice = [self modelWithSet:set];
+            }
+        }];
+    });
+    return cachedDevice;
 }
 
 - (NSString *)restoreMac{
@@ -313,7 +325,7 @@ static inline NSString *dateString(NSDate *date){
     return columnName;
 }
 + (NSString *)tablePrimaryKey{
-    return @"date, user_id, device_id";
+    return @"date, user_id, device_id, steps, distance, calorie";
 }
 
 + (instancetype)modelWithSet:(FMResultSet *)set{
@@ -338,7 +350,7 @@ static inline NSString *dateString(NSDate *date){
 
 - (NSString *)valueString{
     NSMutableString *value = [NSMutableString string];
-    [value appendIntegerValue:today().dateInteger comma:YES];
+    [value appendIntegerValue:self.dateInteger comma:YES];
     [value appendVarcharValue:userId() comma:YES];
     [value appendVarcharValue:deviceId() comma:YES];
     [value appendVarcharValue:deviceName() comma:YES];
@@ -429,7 +441,7 @@ static inline NSString *dateString(NSDate *date){
 
 - (NSString *)valueString{
     NSMutableString *value = [NSMutableString string];
-    [value appendIntegerValue:today().dateInteger comma:YES];
+    [value appendIntegerValue:self.dateInteger comma:YES];
     [value appendVarcharValue:userId() comma:YES];
     [value appendVarcharValue:deviceId() comma:YES];
     [value appendVarcharValue:deviceName() comma:YES];
@@ -479,7 +491,7 @@ static inline NSString *dateString(NSDate *date){
         
         [column appendVarcharColumn:@"start" comma:YES];
         [column appendVarcharColumn:@"end" comma:YES];
-        [column appendIntegerColumn:@"energy" comma:YES];
+        [column appendDoubleColumn:@"energy" comma:YES];
         
         [column appendIntegerColumn:@"r1time" comma:YES];
         [column appendIntegerColumn:@"r2time" comma:YES];
@@ -540,7 +552,7 @@ static inline NSString *dateString(NSDate *date){
 
 - (NSString *)valueString{
     NSMutableString *value = [NSMutableString string];
-    [value appendIntegerValue:today().dateInteger comma:YES];
+    [value appendIntegerValue:self.dateInteger comma:YES];
     [value appendVarcharValue:userId() comma:YES];
     [value appendVarcharValue:deviceId() comma:YES];
     [value appendVarcharValue:deviceName() comma:YES];
@@ -625,7 +637,7 @@ static inline NSString *dateString(NSDate *date){
 
 - (NSString *)valueString{
     NSMutableString *value = [NSMutableString string];
-    [value appendIntegerValue:today().dateInteger comma:YES];
+    [value appendIntegerValue:self.dateInteger comma:YES];
     [value appendVarcharValue:userId() comma:YES];
     [value appendVarcharValue:deviceId() comma:YES];
     [value appendVarcharValue:deviceName() comma:YES];
@@ -646,6 +658,101 @@ static inline NSString *dateString(NSDate *date){
 @end
 
 
+@implementation BKDataSleep (BKBaseTable)
+
+
++ (NSString *)tableName{
+    return @"data_sleep";
+}
++ (NSString *)tableColumns{
+    static NSString *columnName;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSMutableString *column = [NSMutableString string];
+        [column appendIntegerColumn:@"date" comma:YES];
+        [column appendVarcharColumn:@"user_id" comma:YES];
+        [column appendVarcharColumn:@"device_id" comma:YES];
+        [column appendVarcharColumn:@"device_name" comma:YES];
+        
+        [column appendIntegerColumn:@"seq" comma:YES];
+        [column appendIntegerColumn:@"sleep_type" comma:YES];
+        [column appendIntegerColumn:@"mode" comma:YES];
+        
+        [column appendVarcharColumn:@"start" comma:YES];
+        [column appendVarcharColumn:@"end" comma:YES];
+        [column appendIntegerColumn:@"duration" comma:YES];
+        
+        [column appendIntegerColumn:@"sleep_enter" comma:YES];
+        [column appendIntegerColumn:@"sleep_exit" comma:YES];
+        [column appendIntegerColumn:@"sport_type" comma:YES];
+        
+        [column appendVarcharColumn:@"lastmodified" comma:NO];
+        columnName = column;
+    });
+    return columnName;
+}
++ (NSString *)tablePrimaryKey{
+    return @"date, user_id, device_id, seq, sleep_type";
+}
+
++ (instancetype)modelWithSet:(FMResultSet *)set{
+    int i = 0;
+    BKDataSleep *model = [[BKDataSleep alloc] init];
+    i++;// date
+    i++;// user_id
+    i++;// device_id
+    i++;// device_name
+    
+    model.seq = [set longForColumnIndex:i++];
+    model.sleepType = [set longForColumnIndex:i++];
+    model.mode = [set longForColumnIndex:i++];
+    
+    NSString *dateString = [set stringForColumnIndex:i++];
+    model.start = [formatter() dateFromString:dateString];
+    dateString = [set stringForColumnIndex:i++];
+    model.end = [formatter() dateFromString:dateString];
+    model.duration = [set longForColumnIndex:i++];
+    
+    model.sleepEnter = [set longForColumnIndex:i++];
+    model.sleepExit = [set longForColumnIndex:i++];
+    model.sportType = [set longForColumnIndex:i++];
+    
+    return model;
+}
+
+- (NSString *)valueString{
+    NSMutableString *value = [NSMutableString string];
+    [value appendIntegerValue:self.dateInteger comma:YES];
+    [value appendVarcharValue:userId() comma:YES];
+    [value appendVarcharValue:deviceId() comma:YES];
+    [value appendVarcharValue:deviceName() comma:YES];
+    
+    [value appendIntegerValue:self.seq comma:YES];
+    [value appendIntegerValue:self.sleepType comma:YES];
+    [value appendIntegerValue:self.mode comma:YES];
+    
+    [value appendVarcharValue:dateString(self.start) comma:YES];
+    [value appendVarcharValue:dateString(self.end) comma:YES];
+    [value appendIntegerValue:self.duration comma:YES];
+    
+    [value appendIntegerValue:self.sleepEnter comma:YES];
+    [value appendIntegerValue:self.sleepExit comma:YES];
+    [value appendIntegerValue:self.sportType comma:YES];
+    
+    [value appendVarcharValue:dateString(today()) comma:NO];
+    return value;
+}
+
+- (BOOL)cacheable{
+    return userId().length && deviceId().length && self.dateInteger;
+}
+
+@end
+
+
+
+
+
 
 @implementation BKDatabase
 
@@ -659,6 +766,7 @@ static inline NSString *dateString(NSDate *date){
         [BKDataSport loadDatabase];
         [BKDataHR loadDatabase];
         [BKDataHRHour loadDatabase];
+        [BKDataSleep loadDatabase];
     });
 }
 

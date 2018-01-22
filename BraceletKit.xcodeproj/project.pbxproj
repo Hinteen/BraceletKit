@@ -93,6 +93,8 @@
 		CDA527931FECB269009C39EC /* BraceletKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD2E79441FA0C55800012CDB /* BraceletKit.bundle */; };
 		CDB94C6620133A0400CB588C /* _BKModelHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB94C6420133A0400CB588C /* _BKModelHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDB94C6720133A0400CB588C /* _BKModelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB94C6520133A0400CB588C /* _BKModelHelper.m */; };
+		CDC2EB792015A96E00C9F77E /* BKDataSleep.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EB772015A96E00C9F77E /* BKDataSleep.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDC2EB7A2015A96E00C9F77E /* BKDataSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EB782015A96E00C9F77E /* BKDataSleep.m */; };
 		CDDFA3AB1FB5BAC8004C99D5 /* HomeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFA3AA1FB5BAC8004C99D5 /* HomeTableView.m */; };
 		CDDFA3AD1FB5BADB004C99D5 /* HomeTableView.json in Resources */ = {isa = PBXBuildFile; fileRef = CDDFA3AC1FB5BADB004C99D5 /* HomeTableView.json */; };
 		DEF70E632A2776ACEB30913A /* libPods-BraceletKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D14689FFFFCA37F6DE88DC /* libPods-BraceletKit.a */; };
@@ -248,6 +250,8 @@
 		CDA004102014A99A00E572A7 /* BKDataIndex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDataIndex.m; sourceTree = "<group>"; };
 		CDB94C6420133A0400CB588C /* _BKModelHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _BKModelHelper.h; sourceTree = "<group>"; };
 		CDB94C6520133A0400CB588C /* _BKModelHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _BKModelHelper.m; sourceTree = "<group>"; };
+		CDC2EB772015A96E00C9F77E /* BKDataSleep.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDataSleep.h; sourceTree = "<group>"; };
+		CDC2EB782015A96E00C9F77E /* BKDataSleep.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDataSleep.m; sourceTree = "<group>"; };
 		CDDFA3A91FB5BAC8004C99D5 /* HomeTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTableView.h; sourceTree = "<group>"; };
 		CDDFA3AA1FB5BAC8004C99D5 /* HomeTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTableView.m; sourceTree = "<group>"; };
 		CDDFA3AC1FB5BADB004C99D5 /* HomeTableView.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HomeTableView.json; sourceTree = "<group>"; };
@@ -362,6 +366,8 @@
 				CD37F45A2014E1BF009B213B /* BKDataHR.m */,
 				CD37F45D2014E993009B213B /* BKDataHRHour.h */,
 				CD37F45E2014E993009B213B /* BKDataHRHour.m */,
+				CDC2EB772015A96E00C9F77E /* BKDataSleep.h */,
+				CDC2EB782015A96E00C9F77E /* BKDataSleep.m */,
 				CDB94C6420133A0400CB588C /* _BKModelHelper.h */,
 				CDB94C6520133A0400CB588C /* _BKModelHelper.m */,
 				CDA0040720146EFB00E572A7 /* _BKDatabaseHelper.h */,
@@ -651,6 +657,7 @@
 				CD37F4572014D7BC009B213B /* BKDataSport.h in Headers */,
 				CD37F45F2014E993009B213B /* BKDataHRHour.h in Headers */,
 				CD37F4532014CCC4009B213B /* BKDataDay.h in Headers */,
+				CDC2EB792015A96E00C9F77E /* BKDataSleep.h in Headers */,
 				CDA004112014A99A00E572A7 /* BKDataIndex.h in Headers */,
 				CD25EA1F20133037009BEFC1 /* BKConnect.h in Headers */,
 				CD25EA342013330F009BEFC1 /* BKUser.h in Headers */,
@@ -933,6 +940,7 @@
 				CD25EA2020133037009BEFC1 /* BKConnect.m in Sources */,
 				CD25EA242013306E009BEFC1 /* BKDatabase.m in Sources */,
 				CDA0040A20146EFB00E572A7 /* _BKDatabaseHelper.m in Sources */,
+				CDC2EB7A2015A96E00C9F77E /* BKDataSleep.m in Sources */,
 				CD25EA1C2013301E009BEFC1 /* BKServices.m in Sources */,
 				CD37F4542014CCC4009B213B /* BKDataDay.m in Sources */,
 				CD25EA352013330F009BEFC1 /* BKUser.m in Sources */,
