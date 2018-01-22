@@ -6,11 +6,12 @@
 //  Copyright © 2017 xaoxuu. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "BraceletManager.h"
-#import "BKDevice.h"
+// 服务
 #import "BKServices.h"
 
+
+// #warning 待删
+#import "BraceletManager.h"
 
 //! Project version number for BraceletKit.
 FOUNDATION_EXPORT double BraceletKitVersionNumber;

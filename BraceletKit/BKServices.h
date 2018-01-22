@@ -15,12 +15,12 @@
 
 
 /**
- user manager
+ 用户
  */
 @property (strong, readonly, nonatomic) BKUser *user;
 
 /**
- connect manager
+ 连接
  */
 @property (strong, readonly, nonatomic) BKConnect *connect;
 
