@@ -13,18 +13,26 @@
 
 @protocol BKDeviceDelegate <NSObject>
 
-- (void)didUpdateDeviceInfo;
+/**
+ 更新了设备信息
+ */
+- (void)bkUpdateDeviceInfo;
 
-- (void)didUpdateDeviceBatteryLevel:(CGFloat)batteryLevel;
+/**
+ 更新了电池信息
+
+ @param batteryPercent 电池百分比
+ */
+- (void)bkUpdateDeviceBatteryPercent:(CGFloat)batteryPercent;
 
 /**
  手环点击了拍照
  */
-- (void)didTappedTakePicture;
+- (void)bkTappedTakePicture;
 /**
  手环点击了查找手机
  */
-- (void)didTappedFindMyPhone;
+- (void)bkTappedFindMyPhone;
 
 @end
 
