@@ -61,7 +61,7 @@
     [value appendVarcharValue:self.name comma:YES];
     [value appendVarcharValue:self.unit comma:YES];
     
-    [value appendVarcharValue:dateString(today()) comma:NO];
+    [value appendVarcharValue:bk_date_string(bk_today()) comma:NO];
     return value;
 }
 

@@ -127,7 +127,7 @@
     [value appendDoubleValue:self.weight comma:YES];
     [value appendVarcharValue:self.avatar comma:YES];
     
-    [value appendVarcharValue:dateString(today()) comma:NO];
+    [value appendVarcharValue:bk_date_string(bk_today()) comma:NO];
     return value;
 }
 

@@ -89,9 +89,9 @@
 - (NSString *)valueString{
     NSMutableString *value = [NSMutableString string];
     [value appendIntegerValue:self.dateInteger comma:YES];
-    [value appendVarcharValue:userId() comma:YES];
-    [value appendVarcharValue:deviceId() comma:YES];
-    [value appendVarcharValue:deviceName() comma:YES];
+    [value appendVarcharValue:bk_user_id() comma:YES];
+    [value appendVarcharValue:bk_device_id() comma:YES];
+    [value appendVarcharValue:bk_device_name() comma:YES];
     
     [value appendIntegerValue:self.steps comma:YES];
     [value appendDoubleValue:self.distance comma:YES];
@@ -103,12 +103,12 @@
     [value appendIntegerValue:self.maxBpm comma:YES];
     [value appendIntegerValue:self.minBpm comma:YES];
     
-    [value appendVarcharValue:dateString(today()) comma:NO];
+    [value appendVarcharValue:bk_date_string(bk_today()) comma:NO];
     return value;
 }
 
 - (BOOL)cacheable{
-    return userId().length && deviceId().length;
+    return bk_user_id().length && bk_device_id().length;
 }
 
 

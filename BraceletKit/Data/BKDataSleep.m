@@ -40,11 +40,11 @@
     int hour = start_time / 60;
     int minute = start_time % 60;
     dateStr = [NSString stringWithFormat:@"%04d-%02d-%02d %02d:%02d:00 +0800", year, month, day, hour, minute];
-    model.start = [formatter() dateFromString:dateStr];
+    model.start = [bk_formatter() dateFromString:dateStr];
     hour = end_time / 60;
     minute = end_time % 60;
     dateStr = [NSString stringWithFormat:@"%04d-%02d-%02d %02d:%02d:00 +0800", year, month, day, hour, minute];
-    model.end = [formatter() dateFromString:dateStr];
+    model.end = [bk_formatter() dateFromString:dateStr];
     
     
     model.duration = [dict integerValueForKey:@"activity"];
@@ -107,9 +107,9 @@
     model.mode = [set longForColumnIndex:i++];
     
     NSString *dateString = [set stringForColumnIndex:i++];
-    model.start = [formatter() dateFromString:dateString];
+    model.start = [bk_formatter() dateFromString:dateString];
     dateString = [set stringForColumnIndex:i++];
-    model.end = [formatter() dateFromString:dateString];
+    model.end = [bk_formatter() dateFromString:dateString];
     model.duration = [set longForColumnIndex:i++];
     
     model.sleepEnter = [set longForColumnIndex:i++];
@@ -122,28 +122,28 @@
 - (NSString *)valueString{
     NSMutableString *value = [NSMutableString string];
     [value appendIntegerValue:self.dateInteger comma:YES];
-    [value appendVarcharValue:userId() comma:YES];
-    [value appendVarcharValue:deviceId() comma:YES];
-    [value appendVarcharValue:deviceName() comma:YES];
+    [value appendVarcharValue:bk_user_id() comma:YES];
+    [value appendVarcharValue:bk_device_id() comma:YES];
+    [value appendVarcharValue:bk_device_name() comma:YES];
     
     [value appendIntegerValue:self.seq comma:YES];
     [value appendIntegerValue:self.sleepType comma:YES];
     [value appendIntegerValue:self.mode comma:YES];
     
-    [value appendVarcharValue:dateString(self.start) comma:YES];
-    [value appendVarcharValue:dateString(self.end) comma:YES];
+    [value appendVarcharValue:bk_date_string(self.start) comma:YES];
+    [value appendVarcharValue:bk_date_string(self.end) comma:YES];
     [value appendIntegerValue:self.duration comma:YES];
     
     [value appendIntegerValue:self.sleepEnter comma:YES];
     [value appendIntegerValue:self.sleepExit comma:YES];
     [value appendIntegerValue:self.sportType comma:YES];
     
-    [value appendVarcharValue:dateString(today()) comma:NO];
+    [value appendVarcharValue:bk_date_string(bk_today()) comma:NO];
     return value;
 }
 
 - (BOOL)cacheable{
-    return userId().length && deviceId().length && self.dateInteger;
+    return bk_user_id().length && bk_device_id().length && self.dateInteger;
 }
 
 @end

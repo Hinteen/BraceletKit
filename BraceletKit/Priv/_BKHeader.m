@@ -10,7 +10,7 @@
 #import "BKUser.h"
 #import "BKDevice.h"
 
-inline NSDateFormatter *formatter(){
+inline NSDateFormatter *bk_formatter(){
     static NSDateFormatter *fm;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -20,24 +20,24 @@ inline NSDateFormatter *formatter(){
     return fm;
 }
 
-inline NSDate *today(){
+inline NSDate *bk_today(){
     return [NSDate date];
 }
 
-inline NSString *userId(){
+inline NSString *bk_user_id(){
     return [BKUser currentUser].email;
 }
 
-inline NSString *deviceId(){
+inline NSString *bk_device_id(){
     return [BKDevice currentDevice].mac;
 }
 
-inline NSString *deviceName(){
+inline NSString *bk_device_name(){
     return [BKDevice currentDevice].name;
 }
 
-inline NSString *dateString(NSDate *date){
-    return [formatter() stringFromDate:date];
+inline NSString *bk_date_string(NSDate *date){
+    return [bk_formatter() stringFromDate:date];
 }
 
 

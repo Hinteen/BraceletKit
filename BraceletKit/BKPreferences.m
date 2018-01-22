@@ -102,9 +102,9 @@
 
 - (NSString *)valueString{
     NSMutableString *value = [NSMutableString string];
-    [value appendVarcharValue:userId() comma:YES];
-    [value appendVarcharValue:deviceId() comma:YES];
-    [value appendVarcharValue:deviceName() comma:YES];
+    [value appendVarcharValue:bk_user_id() comma:YES];
+    [value appendVarcharValue:bk_device_id() comma:YES];
+    [value appendVarcharValue:bk_device_name() comma:YES];
     [value appendIntegerValue:self.language comma:YES];
     [value appendIntegerValue:self.distanceUnit comma:YES];
     [value appendIntegerValue:self.temperatureUnit comma:YES];
@@ -129,16 +129,16 @@
     [value appendIntegerValue:self.wristBlightStart comma:YES];
     [value appendIntegerValue:self.wristBlightEnd comma:YES];
     
-    [value appendVarcharValue:dateString(today()) comma:NO];
+    [value appendVarcharValue:bk_date_string(bk_today()) comma:NO];
     return value;
 }
 
 - (BOOL)cacheable{
-    return userId().length && deviceId().length;
+    return bk_user_id().length && bk_device_id().length;
 }
 
 - (NSString *)whereExists{
-    return [NSString stringWithFormat:@"user_id = '%@' and device_id = '%@'", userId(), deviceId()];
+    return [NSString stringWithFormat:@"user_id = '%@' and device_id = '%@'", bk_user_id(), bk_device_id()];
 }
 
 - (instancetype)restoreFromDatabase{

@@ -6,7 +6,7 @@
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BKLogHelper.h"
+#import "_BKLogHelper.h"
 
 #import <BLE3Framework/BLE3Framework.h>
 

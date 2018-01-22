@@ -450,19 +450,19 @@
 
 - (NSString *)valueString{
     NSMutableString *value = [NSMutableString string];
-    [value appendVarcharValue:deviceId() comma:YES]; // device_id = mac
+    [value appendVarcharValue:bk_device_id() comma:YES]; // device_id = mac
     [value appendVarcharValue:self.mac comma:YES];
     [value appendVarcharValue:self.uuid comma:YES];
     [value appendVarcharValue:self.name comma:YES];
     [value appendVarcharValue:self.model comma:YES];
     [value appendVarcharValue:self.version comma:YES];
     
-    [value appendVarcharValue:dateString(today()) comma:NO];
+    [value appendVarcharValue:bk_date_string(bk_today()) comma:NO];
     return value;
 }
 
 - (BOOL)cacheable{
-    return userId().length && self.mac.length && ![self.mac isEqualToString:@"advertisementData.length is less than 6"];
+    return bk_user_id().length && self.mac.length && ![self.mac isEqualToString:@"advertisementData.length is less than 6"];
 }
 
 - (NSString *)whereExists{
