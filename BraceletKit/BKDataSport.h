@@ -8,7 +8,7 @@
 
 #import "BKBaseTable.h"
 
-@interface BKDataSport : BKBaseTable
+@interface BKDataSport : BKBaseTable <BKDatabase>
 
 /**
  date integer

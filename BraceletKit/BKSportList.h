@@ -9,7 +9,7 @@
 #import "BKBaseTable.h"
 #import <BLE3Framework/ZeronerBleHeader.h>
 
-@interface BKSportList : BKBaseTable
+@interface BKSportList : BKBaseTable <BKDatabase>
 
 /**
  运动类型

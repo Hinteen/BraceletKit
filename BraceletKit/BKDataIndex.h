@@ -30,7 +30,7 @@
 //};
 
 
-@interface BKDataIndex : BKBaseTable
+@interface BKDataIndex : BKBaseTable <BKDatabase>
 
 /**
  type

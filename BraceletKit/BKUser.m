@@ -12,91 +12,13 @@
 #import "_BKDatabaseHelper.h"
 #import <AXKit/AXKit.h>
 #import "BKDatabase.h"
-//NSString *TABLE_USER = @"users";
-//static CGFloat db_version = 1.0;
-//
-//static inline NSDateFormatter *formatter(){
-//    static NSDateFormatter *fm;
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        fm = [[NSDateFormatter alloc] init];
-//        fm.dateFormat = @"yyyy-MM-dd HH:mm:ss Z";
-//    });
-//    return fm;
-//}
-//
-//static inline NSString *getColumnName(){
-//    static NSString *columnName;
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        NSMutableString *column = [NSMutableString string];
-//        [column appendVarcharColumn:@"uid" comma:YES];
-//        [column appendVarcharColumn:@"email" comma:YES];
-//        [column appendVarcharColumn:@"name" comma:YES];
-//        [column appendIntegerColumn:@"phone" comma:YES];
-//
-//        [column appendIntegerColumn:@"gender" comma:YES];
-//        [column appendIntegerColumn:@"birthday" comma:YES];
-//        [column appendDoubleColumn:@"height" comma:YES];
-//        [column appendDoubleColumn:@"weight" comma:YES];
-//        [column appendVarcharColumn:@"avatar" comma:YES];
-//
-//        [column appendVarcharColumn:@"lastmodified" comma:NO];
-//        columnName = column;
-//    });
-//    return columnName;
-//}
-//
-//static inline void initDatabase(){
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-//            CGFloat lastDatabaseVersion = [NSUserDefaults ax_readDoubleForKey:@"db".extension(TABLE_USER)];
-//            if (db_version > lastDatabaseVersion) {
-//                [NSUserDefaults ax_setDouble:db_version forKey:@"db".extension(TABLE_USER)];
-//                [db ax_dropTable:TABLE_USER];
-//            }
-//            [db ax_createTable:TABLE_USER column:getColumnName() primaryKey:@"uid"];
-//        });
-//    });
-//}
-//
-//
-//static inline BKUser *modelWithSet(FMResultSet *set){
-//    int i = 0;
-//    BKUser *model = [[BKUser alloc] init];
-//    i++; // uid
-//    model.email = [set stringForColumnIndex:i++];
-//    model.name = [set stringForColumnIndex:i++];
-//    model.phone = [set longForColumnIndex:i++];
-//
-//    model.gender = [set longForColumnIndex:i++];
-//    model.birthday = [NSDate dateWithDateInteger:[set longForColumnIndex:i++]];
-//    model.height = [set doubleForColumnIndex:i++];
-//    model.weight = [set doubleForColumnIndex:i++];
-//    model.avatar = [set stringForColumnIndex:i++];
-//
-//    return model;
-//}
-//
-//static inline NSString *valueStringWithModel(BKUser *model){
-//    NSMutableString *value = [NSMutableString string];
-//    [value appendVarcharValue:model.uid comma:YES];
-//    [value appendVarcharValue:model.email comma:YES];
-//    [value appendVarcharValue:model.name comma:YES];
-//    [value appendIntegerValue:model.phone comma:YES];
-//
-//    [value appendIntegerValue:model.gender comma:YES];
-//    [value appendIntegerValue:model.birthday.dateInteger comma:YES];
-//    [value appendDoubleValue:model.height comma:YES];
-//    [value appendDoubleValue:model.weight comma:YES];
-//    [value appendVarcharValue:model.avatar comma:YES];
-//
-//    [value appendVarcharValue:[formatter() stringFromDate:[NSDate date]] comma:NO];
-//    return value;
-//}
+#import "BKDefines.h"
 
 @implementation BKUser
+
++ (void)load{
+    [self createTableIfNotExists];
+}
 
 + (instancetype)currentUser{
     return [BKServices sharedInstance].user;
@@ -117,19 +39,6 @@
     }
     return self;
 }
-
-
-//+ (void)loginWithUser:(BKUser *)user{
-//    BKUser *currentUser = [BKUser currentUser];
-//    currentUser.email = user.email;
-//    currentUser.name = user.name;
-//    currentUser.phone = user.phone;
-//    currentUser.gender = user.gender;
-//    currentUser.birthday = user.birthday;
-//    currentUser.height = user.height;
-//    currentUser.weight = user.weight;
-//    currentUser.avatar = user.avatar;
-//}
 
 + (instancetype)loginWithEmail:(NSString *)email password:(NSString *)password{
     NSString *savedPsw = [NSUserDefaults ax_readStringForKey:@"login".extension(email)];
@@ -155,6 +64,93 @@
     } else {
         return nil;
     }
+}
+
+
+#pragma mark - db delegate
+
+
++ (NSString *)tableName{
+    return @"users";
+}
++ (NSString *)tableColumns{
+    static NSString *columnName;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSMutableString *column = [NSMutableString string];
+        [column appendVarcharColumn:@"user_id" comma:YES];
+        [column appendVarcharColumn:@"email" comma:YES];
+        [column appendVarcharColumn:@"name" comma:YES];
+        [column appendIntegerColumn:@"phone" comma:YES];
+        
+        [column appendIntegerColumn:@"gender" comma:YES];
+        [column appendIntegerColumn:@"birthday" comma:YES];
+        [column appendDoubleColumn:@"height" comma:YES];
+        [column appendDoubleColumn:@"weight" comma:YES];
+        [column appendVarcharColumn:@"avatar" comma:YES];
+        
+        [column appendVarcharColumn:@"lastmodified" comma:NO];
+        columnName = column;
+    });
+    return columnName;
+}
++ (NSString *)tablePrimaryKey{
+    return @"user_id";
+}
+
++ (instancetype)modelWithSet:(FMResultSet *)set{
+    int i = 0;
+    BKUser *model = [[BKUser alloc] init];
+    i++; // user id
+    model.email = [set stringForColumnIndex:i++];
+    model.name = [set stringForColumnIndex:i++];
+    model.phone = [set longForColumnIndex:i++];
+    
+    model.gender = [set longForColumnIndex:i++];
+    model.birthday = [NSDate dateWithDateInteger:[set longForColumnIndex:i++]];
+    model.height = [set doubleForColumnIndex:i++];
+    model.weight = [set doubleForColumnIndex:i++];
+    model.avatar = [set stringForColumnIndex:i++];
+    
+    return model;
+}
+
+- (NSString *)valueString{
+    NSMutableString *value = [NSMutableString string];
+    [value appendVarcharValue:self.email comma:YES]; // userid = email
+    [value appendVarcharValue:self.email comma:YES];
+    [value appendVarcharValue:self.name comma:YES];
+    [value appendIntegerValue:self.phone comma:YES];
+    
+    [value appendIntegerValue:self.gender comma:YES];
+    [value appendIntegerValue:self.birthday.dateInteger comma:YES];
+    [value appendDoubleValue:self.height comma:YES];
+    [value appendDoubleValue:self.weight comma:YES];
+    [value appendVarcharValue:self.avatar comma:YES];
+    
+    [value appendVarcharValue:dateString(today()) comma:NO];
+    return value;
+}
+
++ (BKUser *)loadUserWithEmail:(NSString *)email{
+    __block BKUser *cachedUser = nil;
+    databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        NSString *where = [NSString stringWithFormat:@"email = '%@'", email];
+        [db ax_select:@"*" from:BKUser.tableName where:where result:^(NSMutableArray * _Nonnull result, FMResultSet * _Nonnull set) {
+            while (set.next) {
+                cachedUser = [BKUser modelWithSet:set];
+            }
+        }];
+    });
+    return cachedUser;;
+}
+
+- (BOOL)cacheable{
+    return self.email.length;
+}
+
+- (NSString *)whereExists{
+    return [NSString stringWithFormat:@"email = '%@'", self.email];
 }
 
 

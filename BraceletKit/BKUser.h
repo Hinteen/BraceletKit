@@ -14,7 +14,7 @@ typedef NS_ENUM(NSUInteger, BKGender) {
     BKGenderFemale,
 };
 
-@interface BKUser : BKBaseTable
+@interface BKUser : BKBaseTable <BKDatabase>
 
 
 /**

@@ -7,8 +7,7 @@
 //
 
 #import "_BKModelHelper.h"
-#import "BKDatabase.h"
-#import "BKDeviceSetting.h"
+
 
 @implementation _BKModelHelper
 
@@ -35,8 +34,8 @@
 
 @implementation ZeronerHWOption (BKExtension)
 
-- (BKDeviceSetting *)transformToBKDeviceSetting{
-    BKDeviceSetting *model = [[BKDeviceSetting alloc] init];
+- (BKPreferences *)transformToBKPreferences{
+    BKPreferences *model = [[BKPreferences alloc] init];
     model.ledSwitch = self.ledSwitch;
     model.leftHand = self.leftHand;
     model.wristSwitch = self.wristSwitch;
@@ -61,7 +60,7 @@
 @end
 
 
-@implementation BKDeviceSetting (BKExtension)
+@implementation BKPreferences (BKExtension)
 
 - (ZeronerHWOption *)transformToZeronerHWOption{
     ZeronerHWOption *model = [ZeronerHWOption defaultHWOption];

@@ -8,8 +8,16 @@
 
 #import "BKBaseTable.h"
 #import "_BKDatabaseHelper.h"
+#import "BKDatabase.h"
+
+
+@interface BKBaseTable() <BKDatabase>
+
+@end
 
 @implementation BKBaseTable
+
+//@required
 
 + (NSString *)tableName{
     NSAssert(NO, @"子类必须重写此方法");
@@ -49,15 +57,6 @@
 }
 
 - (instancetype)restoreFromDatabase{
-//    if (self.cacheable) {
-//        databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-//            [db ax_select:@"*" from:self.class.tableName where:self.whereExists orderBy:@"lastmodified DESC LIMIT 1" result:^(NSMutableArray * _Nonnull result, FMResultSet * _Nonnull set) {
-//                while (set.next) {
-//                    self = [self.class modelWithSet:set];
-//                }
-//            }];
-//        });
-//    }
     NSAssert(NO, @"子类必须重写此方法");
     return nil;
 }
@@ -72,11 +71,13 @@
     return ret;
 }
 
-
-+ (void)loadDatabase{
++ (void)createTableIfNotExists{
     databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
         [db ax_createTable:self.tableName column:self.tableColumns primaryKey:self.tablePrimaryKey];
     });
 }
+
+
+
 
 @end

@@ -8,7 +8,7 @@
 
 #import "BKBaseTable.h"
 
-@interface BKDataSleep : BKBaseTable
+@interface BKDataSleep : BKBaseTable <BKDatabase>
 
 /**
  date integer

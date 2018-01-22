@@ -7,10 +7,9 @@
 //
 
 #import "BKBaseTable.h"
-//#import <BLE3Framework/BLE3Framework.h>
-#import "BKDeviceSetting.h"
 
-@class CBPeripheral, ZeronerBlePeripheral;
+
+@class CBPeripheral, ZeronerBlePeripheral, BKPreferences;
 
 @protocol BKDeviceDelegate <NSObject>
 
@@ -38,7 +37,7 @@
 @end
 
 
-@interface BKDevice : BKBaseTable
+@interface BKDevice : BKBaseTable <BKDatabase>
 
 /**
  mac
@@ -80,7 +79,7 @@
 /**
  setting
  */
-@property (strong, nonatomic) BKDeviceSetting *setting;
+@property (strong, nonatomic) BKPreferences *preferences;
 
 
 /**
@@ -89,6 +88,11 @@
 @property (weak, nonatomic) NSObject<BKDeviceDelegate> *delegate;
 
 + (instancetype)currentDevice;
+
++ (instancetype)lastConnectedDevice;
+
+- (NSString *)restoreMac;
+
 
 
 @end

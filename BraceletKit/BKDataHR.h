@@ -8,7 +8,7 @@
 
 #import "BKBaseTable.h"
 
-@interface BKDataHR : BKBaseTable
+@interface BKDataHR : BKBaseTable <BKDatabase>
 
 
 /**

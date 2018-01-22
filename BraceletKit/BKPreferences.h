@@ -1,5 +1,5 @@
 //
-//  BKDeviceSetting.h
+//  BKPreferences.h
 //  BraceletKit
 //
 //  Created by xaoxuu on 22/01/2018.
@@ -10,7 +10,7 @@
 
 /**
  计量单位
-
+ 
  - BKDistanceUnitMetric:   公制距离单位 km、meter、kg .国际制单位，如，千米 、米 、千克。
  - BKDistanceUnitImperial: 英制距离单位 feet、inch、pound .国际制单位，如，英尺 、英寸 、磅。
  */
@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, BKDistanceUnit) {
 
 /**
  24、12小时制
-
+ 
  - BKHourFormat24: 24小时制
  - BKHourFormat12: 12小时制
  */
@@ -34,7 +34,7 @@ typedef NS_ENUM(NSUInteger, BKHourFormat) {
 
 /**
  日期格式
-
+ 
  - BKDateFormatMMDD: 月月/日日
  - BKDateFormatDDMM: 日日/月月
  */
@@ -63,7 +63,7 @@ typedef NS_ENUM(NSUInteger, BKLanguage) {
 
 /**
  手环的背景颜色
-
+ 
  - BKDeviceBGColorBlack: 黑色
  - BKDeviceBGColorWhite: 白色
  */
@@ -75,7 +75,7 @@ typedef NS_ENUM(NSUInteger, BKDeviceBGColor) {
 
 /**
  温度单位
-
+ 
  - BKTemperatureUnitCentigrade: 摄氏温度
  - BKTemperatureUnitFahrenheit: 华氏温度
  */
@@ -84,7 +84,7 @@ typedef NS_ENUM(NSUInteger, BKTemperatureUnit) {
     BKTemperatureUnitFahrenheit,
 };
 
-@interface BKDeviceSetting : BKBaseTable
+@interface BKPreferences : BKBaseTable <BKDatabase>
 
 
 /**
@@ -95,6 +95,10 @@ typedef NS_ENUM(NSUInteger, BKTemperatureUnit) {
  公英制单位切换开关 ，默认是公制。
  */
 @property (assign, nonatomic) BKDistanceUnit distanceUnit;
+/**
+ 温度单位
+ */
+@property (assign, nonatomic) BKTemperatureUnit temperatureUnit;
 /**
  手环显示的日期格式，0表示 月月／日日 ，1表示 日日／月月.默认是0
  */
@@ -172,10 +176,6 @@ typedef NS_ENUM(NSUInteger, BKTemperatureUnit) {
  */
 @property (assign, nonatomic) NSInteger wristBlightEnd;
 
-/**
- 温度单位
- */
-@property (assign, nonatomic) BKTemperatureUnit temperatureUnit;
 
 
 /**
@@ -183,5 +183,7 @@ typedef NS_ENUM(NSUInteger, BKTemperatureUnit) {
  */
 - (void)applyToDevice;
 
+- (BOOL)saveToDatabaseIfNotExists;
 
 @end
+

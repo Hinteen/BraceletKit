@@ -7,9 +7,15 @@
 //
 
 #import "BKDataDay.h"
-#import <AXKit/AXKit.h>
+#import "BKDefines.h"
 
 @implementation BKDataDay
+
++ (void)load{
+    [self createTableIfNotExists];
+}
+
+
 
 + (instancetype)modelWithDict:(NSDictionary *)dict{
     BKDataDay *model = [BKDataDay new];
@@ -24,5 +30,86 @@
     model.count = [dict integerValueForKey:@"count"];
     return model;
 }
+
+
+
+
++ (NSString *)tableName{
+    return @"data_day";
+}
++ (NSString *)tableColumns{
+    static NSString *columnName;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSMutableString *column = [NSMutableString string];
+        [column appendIntegerColumn:@"date" comma:YES];
+        [column appendVarcharColumn:@"user_id" comma:YES];
+        [column appendVarcharColumn:@"device_id" comma:YES];
+        [column appendVarcharColumn:@"device_name" comma:YES];
+        
+        [column appendIntegerColumn:@"steps" comma:YES];
+        [column appendDoubleColumn:@"distance" comma:YES];
+        [column appendDoubleColumn:@"calorie" comma:YES];
+        [column appendIntegerColumn:@"count" comma:YES];
+        [column appendIntegerColumn:@"activity" comma:YES];
+        
+        [column appendIntegerColumn:@"avg_bpm" comma:YES];
+        [column appendIntegerColumn:@"max_bpm" comma:YES];
+        [column appendIntegerColumn:@"min_bpm" comma:YES];
+        
+        [column appendVarcharColumn:@"lastmodified" comma:NO];
+        columnName = column;
+    });
+    return columnName;
+}
++ (NSString *)tablePrimaryKey{
+    return @"date, user_id, device_id, steps, distance, calorie";
+}
+
++ (instancetype)modelWithSet:(FMResultSet *)set{
+    int i = 0;
+    BKDataDay *model = [[BKDataDay alloc] init];
+    i++;// date
+    i++;// user_id
+    i++;// device_id
+    i++;// device_name
+    model.steps = [set longForColumnIndex:i++];
+    model.distance = [set doubleForColumnIndex:i++];
+    model.calorie = [set doubleForColumnIndex:i++];
+    model.count = [set longForColumnIndex:i++];
+    model.activity = [set longForColumnIndex:i++];
+    
+    model.avgBpm = [set longForColumnIndex:i++];
+    model.maxBpm = [set longForColumnIndex:i++];
+    model.minBpm = [set longForColumnIndex:i++];
+    
+    return model;
+}
+
+- (NSString *)valueString{
+    NSMutableString *value = [NSMutableString string];
+    [value appendIntegerValue:self.dateInteger comma:YES];
+    [value appendVarcharValue:userId() comma:YES];
+    [value appendVarcharValue:deviceId() comma:YES];
+    [value appendVarcharValue:deviceName() comma:YES];
+    
+    [value appendIntegerValue:self.steps comma:YES];
+    [value appendDoubleValue:self.distance comma:YES];
+    [value appendDoubleValue:self.calorie comma:YES];
+    [value appendIntegerValue:self.count comma:YES];
+    [value appendIntegerValue:self.activity comma:YES];
+    
+    [value appendIntegerValue:self.avgBpm comma:YES];
+    [value appendIntegerValue:self.maxBpm comma:YES];
+    [value appendIntegerValue:self.minBpm comma:YES];
+    
+    [value appendVarcharValue:dateString(today()) comma:NO];
+    return value;
+}
+
+- (BOOL)cacheable{
+    return userId().length && deviceId().length;
+}
+
 
 @end

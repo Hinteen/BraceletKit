@@ -11,8 +11,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <BLE3Framework/BLE3Framework.h>
 #import "BKDevice.h"
-#import "BKDeviceSetting.h"
-
+#import "BKPreferences.h"
 
 @interface _BKModelHelper : NSObject
 
@@ -29,11 +28,11 @@
 
 @interface ZeronerHWOption (BKExtension)
 
-- (BKDeviceSetting *)transformToBKDeviceSetting;
+- (BKPreferences *)transformToBKPreferences;
 
 @end
 
-@interface BKDeviceSetting (BKExtension)
+@interface BKPreferences (BKExtension)
 
 - (ZeronerHWOption *)transformToZeronerHWOption;
 

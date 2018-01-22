@@ -7,20 +7,16 @@
 //
 
 #import "BKDataHR.h"
-#import <AXKit/AXKit.h>
-
-static inline NSDateFormatter *formatter(){
-    static NSDateFormatter *fm;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        fm = [[NSDateFormatter alloc] init];
-        fm.dateFormat = @"yyyy-MM-dd HH:mm:ss Z";
-    });
-    return fm;
-}
+#import "BKDefines.h"
 
 
 @implementation BKDataHR
+
++ (void)load{
+    [self createTableIfNotExists];
+}
+
+
 
 - (instancetype)init{
     if (self = [super init]) {
@@ -76,6 +72,120 @@ static inline NSDateFormatter *formatter(){
     }
     
     return model;
+}
+
+
+
+
+
+
++ (NSString *)tableName{
+    return @"data_hr";
+}
++ (NSString *)tableColumns{
+    static NSString *columnName;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSMutableString *column = [NSMutableString string];
+        [column appendIntegerColumn:@"date" comma:YES];
+        [column appendVarcharColumn:@"user_id" comma:YES];
+        [column appendVarcharColumn:@"device_id" comma:YES];
+        [column appendVarcharColumn:@"device_name" comma:YES];
+        
+        [column appendIntegerColumn:@"seq" comma:YES];
+        [column appendIntegerColumn:@"hr_type" comma:YES];
+        
+        [column appendVarcharColumn:@"start" comma:YES];
+        [column appendVarcharColumn:@"end" comma:YES];
+        [column appendDoubleColumn:@"energy" comma:YES];
+        
+        [column appendIntegerColumn:@"r1time" comma:YES];
+        [column appendIntegerColumn:@"r2time" comma:YES];
+        [column appendIntegerColumn:@"r3time" comma:YES];
+        [column appendIntegerColumn:@"r4time" comma:YES];
+        [column appendIntegerColumn:@"r5time" comma:YES];
+        
+        [column appendDoubleColumn:@"r1energy" comma:YES];
+        [column appendDoubleColumn:@"r2energy" comma:YES];
+        [column appendDoubleColumn:@"r3energy" comma:YES];
+        [column appendDoubleColumn:@"r4energy" comma:YES];
+        [column appendDoubleColumn:@"r5energy" comma:YES];
+        
+        [column appendIntegerColumn:@"r1hr" comma:YES];
+        [column appendIntegerColumn:@"r2hr" comma:YES];
+        [column appendIntegerColumn:@"r3hr" comma:YES];
+        [column appendIntegerColumn:@"r4hr" comma:YES];
+        [column appendIntegerColumn:@"r5hr" comma:YES];
+        
+        [column appendVarcharColumn:@"lastmodified" comma:NO];
+        columnName = column;
+    });
+    return columnName;
+}
++ (NSString *)tablePrimaryKey{
+    return @"date, user_id, device_id, seq, hr_type";
+}
+
++ (instancetype)modelWithSet:(FMResultSet *)set{
+    int i = 0;
+    BKDataHR *model = [[BKDataHR alloc] init];
+    i++;// date
+    i++;// user_id
+    i++;// device_id
+    i++;// device_name
+    model.seq = [set longForColumnIndex:i++];
+    model.hrType = [set longForColumnIndex:i++];
+    
+    NSString *dateString = [set stringForColumnIndex:i++]; // start
+    model.start = [formatter() dateFromString:dateString];
+    dateString = [set stringForColumnIndex:i++]; // end
+    model.end = [formatter() dateFromString:dateString];
+    model.energy = [set doubleForColumnIndex:i++];
+    
+    for (int j = 0; j < 5; j++) {
+        [model.timeDetail addObject:@([set longForColumnIndex:i++])];
+    }
+    for (int j = 0; j < 5; j++) {
+        [model.energyDetail addObject:@([set doubleForColumnIndex:i++])];
+    }
+    for (int j = 0; j < 5; j++) {
+        [model.hrDetail addObject:@([set longForColumnIndex:i++])];
+    }
+    
+    
+    return model;
+}
+
+- (NSString *)valueString{
+    NSMutableString *value = [NSMutableString string];
+    [value appendIntegerValue:self.dateInteger comma:YES];
+    [value appendVarcharValue:userId() comma:YES];
+    [value appendVarcharValue:deviceId() comma:YES];
+    [value appendVarcharValue:deviceName() comma:YES];
+    
+    [value appendIntegerValue:self.seq comma:YES];
+    [value appendIntegerValue:self.hrType comma:YES];
+    
+    [value appendVarcharValue:dateString(self.start) comma:YES];
+    [value appendVarcharValue:dateString(self.end) comma:YES];
+    [value appendDoubleValue:self.energy comma:YES];
+    
+    for (int j = 0; j < 5; j++) {
+        [value appendIntegerValue:self.timeDetail[j].integerValue comma:YES];
+    }
+    for (int j = 0; j < 5; j++) {
+        [value appendDoubleValue:self.energyDetail[j].doubleValue comma:YES];
+    }
+    for (int j = 0; j < 5; j++) {
+        [value appendIntegerValue:self.hrDetail[j].integerValue comma:YES];
+    }
+    
+    [value appendVarcharValue:dateString(today()) comma:NO];
+    return value;
+}
+
+- (BOOL)cacheable{
+    return userId().length && deviceId().length && self.dateInteger;
 }
 
 
