@@ -142,6 +142,22 @@
  */
 - (void)notifySupportSportsList:(NSDictionary *)ssList{
     AXCachedLogOBJ(ssList);
+    NSArray<NSNumber *> *typeArr = [ssList arrayValueForKey:@"LIST"];
+    NSArray<NSString *> *nameArr = [ssList arrayValueForKey:@"NAME"];
+    NSArray<NSString *> *unitArr = [ssList arrayValueForKey:@"UNIT"];
+    NSUInteger count = typeArr.count; // 必须三项相等且不为0
+    if (count && (nameArr.count == count) && (unitArr.count == count)) {
+        for (int i = 0; i < count; i++) {
+            BKSportList *model = [[BKSportList alloc] init];
+            model.type = typeArr[i].intValue;
+            model.name = nameArr[i];
+            model.unit = unitArr[i];
+            [model saveToDatabase];
+        }
+    } else {
+        NSAssert(NO, @"无效的运动列表");
+    }
+    
 }
 
 /**

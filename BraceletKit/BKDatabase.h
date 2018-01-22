@@ -16,7 +16,7 @@
 #import "BKDataHR.h"
 #import "BKDataHRHour.h"
 #import "BKDataSleep.h"
-
+#import "BKSportList.h"
 
 
 @interface BKUser (BKBaseTable)
@@ -44,6 +44,15 @@
 - (BOOL)saveToDatabaseIfNotExists;
 
 @end
+
+@interface BKSportList (BKBaseTable)
+
+
+@end
+
+
+
+
 
 @interface BKDataIndex (BKBaseTable)
 

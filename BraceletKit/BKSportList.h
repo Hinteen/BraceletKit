@@ -7,8 +7,22 @@
 //
 
 #import "BKBaseTable.h"
-
+#import <BLE3Framework/ZeronerBleHeader.h>
 
 @interface BKSportList : BKBaseTable
+
+/**
+ 运动类型
+ */
+@property (assign, nonatomic) sd_sportType type;
+/**
+ 运动名
+ */
+@property (copy, nonatomic) NSString *name;
+/**
+ 运动计量单位
+ */
+@property (copy, nonatomic) NSString *unit;
+
 
 @end

@@ -97,7 +97,7 @@
 		CDC2EB7A2015A96E00C9F77E /* BKDataSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EB782015A96E00C9F77E /* BKDataSleep.m */; };
 		CDC2EB7D2015D3FF00C9F77E /* BKDeviceSetting.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EB7B2015D3FF00C9F77E /* BKDeviceSetting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDC2EB7E2015D3FF00C9F77E /* BKDeviceSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EB7C2015D3FF00C9F77E /* BKDeviceSetting.m */; };
-		CDC2EB812016099400C9F77E /* BKSportList.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EB7F2016099400C9F77E /* BKSportList.h */; };
+		CDC2EB812016099400C9F77E /* BKSportList.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EB7F2016099400C9F77E /* BKSportList.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDC2EB822016099400C9F77E /* BKSportList.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EB802016099400C9F77E /* BKSportList.m */; };
 		CDDFA3AB1FB5BAC8004C99D5 /* HomeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFA3AA1FB5BAC8004C99D5 /* HomeTableView.m */; };
 		CDDFA3AD1FB5BADB004C99D5 /* HomeTableView.json in Resources */ = {isa = PBXBuildFile; fileRef = CDDFA3AC1FB5BADB004C99D5 /* HomeTableView.json */; };
