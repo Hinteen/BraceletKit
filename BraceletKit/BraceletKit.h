@@ -10,7 +10,7 @@
 #import "BraceletManager.h"
 #import "BKDevice.h"
 #import "BKServices.h"
-#import "BKDatabase.h"
+
 
 //! Project version number for BraceletKit.
 FOUNDATION_EXPORT double BraceletKitVersionNumber;

@@ -13,8 +13,6 @@
 		CD25EA1C2013301E009BEFC1 /* BKServices.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA1A2013301E009BEFC1 /* BKServices.m */; };
 		CD25EA1F20133037009BEFC1 /* BKConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA1D20133037009BEFC1 /* BKConnect.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD25EA2020133037009BEFC1 /* BKConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA1E20133037009BEFC1 /* BKConnect.m */; };
-		CD25EA232013306E009BEFC1 /* BKDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA212013306E009BEFC1 /* BKDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CD25EA242013306E009BEFC1 /* BKDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA222013306E009BEFC1 /* BKDatabase.m */; };
 		CD25EA2720133083009BEFC1 /* BKLogHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA2520133083009BEFC1 /* BKLogHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD25EA2820133083009BEFC1 /* BKLogHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA2620133083009BEFC1 /* BKLogHelper.m */; };
 		CD25EA2B201330EC009BEFC1 /* BKSummary.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA29201330EC009BEFC1 /* BKSummary.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -138,8 +136,6 @@
 		CD25EA1A2013301E009BEFC1 /* BKServices.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKServices.m; sourceTree = "<group>"; };
 		CD25EA1D20133037009BEFC1 /* BKConnect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKConnect.h; sourceTree = "<group>"; };
 		CD25EA1E20133037009BEFC1 /* BKConnect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKConnect.m; sourceTree = "<group>"; };
-		CD25EA212013306E009BEFC1 /* BKDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDatabase.h; sourceTree = "<group>"; };
-		CD25EA222013306E009BEFC1 /* BKDatabase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDatabase.m; sourceTree = "<group>"; };
 		CD25EA2520133083009BEFC1 /* BKLogHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKLogHelper.h; sourceTree = "<group>"; };
 		CD25EA2620133083009BEFC1 /* BKLogHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKLogHelper.m; sourceTree = "<group>"; };
 		CD25EA29201330EC009BEFC1 /* BKSummary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSummary.h; sourceTree = "<group>"; };
@@ -358,8 +354,6 @@
 				CDA003FF2013985800E572A7 /* BKSportDay.m */,
 				CDA0040B201491DF00E572A7 /* BKBaseTable.h */,
 				CDA0040C201491DF00E572A7 /* BKBaseTable.m */,
-				CD25EA212013306E009BEFC1 /* BKDatabase.h */,
-				CD25EA222013306E009BEFC1 /* BKDatabase.m */,
 				CD25EA322013330F009BEFC1 /* BKUser.h */,
 				CD25EA332013330F009BEFC1 /* BKUser.m */,
 				CD25EA362013331D009BEFC1 /* BKDevice.h */,
@@ -678,7 +672,6 @@
 				CD25EA2B201330EC009BEFC1 /* BKSummary.h in Headers */,
 				CD25EA2720133083009BEFC1 /* BKLogHelper.h in Headers */,
 				CD25EA1720132FD4009BEFC1 /* BKDefines.h in Headers */,
-				CD25EA232013306E009BEFC1 /* BKDatabase.h in Headers */,
 				CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */,
 				CD25EA1B2013301E009BEFC1 /* BKServices.h in Headers */,
 				CDA0040D201491DF00E572A7 /* BKBaseTable.h in Headers */,
@@ -954,7 +947,6 @@
 				CD37F4582014D7BC009B213B /* BKDataSport.m in Sources */,
 				CD25EA2020133037009BEFC1 /* BKConnect.m in Sources */,
 				CDC2EB822016099400C9F77E /* BKSportList.m in Sources */,
-				CD25EA242013306E009BEFC1 /* BKDatabase.m in Sources */,
 				CDA0040A20146EFB00E572A7 /* _BKDatabaseHelper.m in Sources */,
 				CDC2EB7A2015A96E00C9F77E /* BKDataSleep.m in Sources */,
 				CD25EA1C2013301E009BEFC1 /* BKServices.m in Sources */,

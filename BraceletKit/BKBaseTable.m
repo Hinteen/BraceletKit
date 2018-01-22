@@ -8,7 +8,6 @@
 
 #import "BKBaseTable.h"
 #import "_BKDatabaseHelper.h"
-#import "BKDatabase.h"
 
 
 @interface BKBaseTable() <BKDatabase>
