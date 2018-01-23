@@ -8,6 +8,14 @@
 
 // 服务
 #import "BKServices.h"
+// 模块
+#import "BKScanner.h"
+#import "BKConnector.h"
+#import "BKDataQuerier.h"
+
+// 模型
+#import "BKUser.h"
+#import "BKDevice.h"
 
 
 // #warning 待删

@@ -7,7 +7,7 @@
 //
 
 #import "ActivityVC.h"
-
+#import <HealthKit/HealthKit.h>
 @interface ActivityVC ()
 
 @end

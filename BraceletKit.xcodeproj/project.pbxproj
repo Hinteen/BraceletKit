@@ -13,8 +13,6 @@
 		CD25EA1C2013301E009BEFC1 /* BKServices.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA1A2013301E009BEFC1 /* BKServices.m */; };
 		CD25EA2720133083009BEFC1 /* _BKLogHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA2520133083009BEFC1 /* _BKLogHelper.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CD25EA2820133083009BEFC1 /* _BKLogHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA2620133083009BEFC1 /* _BKLogHelper.m */; };
-		CD25EA2B201330EC009BEFC1 /* BKSummary.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA29201330EC009BEFC1 /* BKSummary.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CD25EA2C201330EC009BEFC1 /* BKSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA2A201330EC009BEFC1 /* BKSummary.m */; };
 		CD25EA342013330F009BEFC1 /* BKUser.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA322013330F009BEFC1 /* BKUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD25EA352013330F009BEFC1 /* BKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA332013330F009BEFC1 /* BKUser.m */; };
 		CD25EA382013331D009BEFC1 /* BKDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA362013331D009BEFC1 /* BKDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -97,6 +95,8 @@
 		CDC2EB8F20172A1300C9F77E /* BKScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EB8D20172A1300C9F77E /* BKScanner.m */; };
 		CDC2EB922017312A00C9F77E /* BKConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EB902017312A00C9F77E /* BKConnector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDC2EB932017312A00C9F77E /* BKConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EB912017312A00C9F77E /* BKConnector.m */; };
+		CDC2EB9E2017419C00C9F77E /* BKDataQuerier.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EB9C2017419C00C9F77E /* BKDataQuerier.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDC2EB9F2017419C00C9F77E /* BKDataQuerier.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EB9D2017419C00C9F77E /* BKDataQuerier.m */; };
 		CDDFA3AB1FB5BAC8004C99D5 /* HomeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFA3AA1FB5BAC8004C99D5 /* HomeTableView.m */; };
 		CDDFA3AD1FB5BADB004C99D5 /* HomeTableView.json in Resources */ = {isa = PBXBuildFile; fileRef = CDDFA3AC1FB5BADB004C99D5 /* HomeTableView.json */; };
 		DEF70E632A2776ACEB30913A /* libPods-BraceletKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D14689FFFFCA37F6DE88DC /* libPods-BraceletKit.a */; };
@@ -136,8 +136,6 @@
 		CD25EA1A2013301E009BEFC1 /* BKServices.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKServices.m; sourceTree = "<group>"; };
 		CD25EA2520133083009BEFC1 /* _BKLogHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _BKLogHelper.h; sourceTree = "<group>"; };
 		CD25EA2620133083009BEFC1 /* _BKLogHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _BKLogHelper.m; sourceTree = "<group>"; };
-		CD25EA29201330EC009BEFC1 /* BKSummary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSummary.h; sourceTree = "<group>"; };
-		CD25EA2A201330EC009BEFC1 /* BKSummary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKSummary.m; sourceTree = "<group>"; };
 		CD25EA322013330F009BEFC1 /* BKUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKUser.h; sourceTree = "<group>"; };
 		CD25EA332013330F009BEFC1 /* BKUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKUser.m; sourceTree = "<group>"; };
 		CD25EA362013331D009BEFC1 /* BKDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDevice.h; sourceTree = "<group>"; };
@@ -256,6 +254,8 @@
 		CDC2EB8D20172A1300C9F77E /* BKScanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKScanner.m; sourceTree = "<group>"; };
 		CDC2EB902017312A00C9F77E /* BKConnector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKConnector.h; sourceTree = "<group>"; };
 		CDC2EB912017312A00C9F77E /* BKConnector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKConnector.m; sourceTree = "<group>"; };
+		CDC2EB9C2017419C00C9F77E /* BKDataQuerier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDataQuerier.h; sourceTree = "<group>"; };
+		CDC2EB9D2017419C00C9F77E /* BKDataQuerier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDataQuerier.m; sourceTree = "<group>"; };
 		CDDFA3A91FB5BAC8004C99D5 /* HomeTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTableView.h; sourceTree = "<group>"; };
 		CDDFA3AA1FB5BAC8004C99D5 /* HomeTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTableView.m; sourceTree = "<group>"; };
 		CDDFA3AC1FB5BADB004C99D5 /* HomeTableView.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HomeTableView.json; sourceTree = "<group>"; };
@@ -346,8 +346,8 @@
 				CDC2EB8D20172A1300C9F77E /* BKScanner.m */,
 				CDC2EB902017312A00C9F77E /* BKConnector.h */,
 				CDC2EB912017312A00C9F77E /* BKConnector.m */,
-				CD25EA29201330EC009BEFC1 /* BKSummary.h */,
-				CD25EA2A201330EC009BEFC1 /* BKSummary.m */,
+				CDC2EB9C2017419C00C9F77E /* BKDataQuerier.h */,
+				CDC2EB9D2017419C00C9F77E /* BKDataQuerier.m */,
 				CDC2EB8B2016453800C9F77E /* BaseTable */,
 				CDC2EB892016452500C9F77E /* User */,
 				CDC2EB8A2016452D00C9F77E /* Device */,
@@ -707,7 +707,6 @@
 				CDC2EB792015A96E00C9F77E /* BKDataSleep.h in Headers */,
 				CDA004112014A99A00E572A7 /* BKDataIndex.h in Headers */,
 				CD25EA342013330F009BEFC1 /* BKUser.h in Headers */,
-				CD25EA2B201330EC009BEFC1 /* BKSummary.h in Headers */,
 				CDC2EB8E20172A1300C9F77E /* BKScanner.h in Headers */,
 				CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */,
 				CD25EA1B2013301E009BEFC1 /* BKServices.h in Headers */,
@@ -718,6 +717,7 @@
 				CD25EA2720133083009BEFC1 /* _BKLogHelper.h in Headers */,
 				CDB94C6620133A0400CB588C /* _BKModelHelper.h in Headers */,
 				CD25EA1720132FD4009BEFC1 /* _BKHeader.h in Headers */,
+				CDC2EB9E2017419C00C9F77E /* BKDataQuerier.h in Headers */,
 				CDA0040920146EFB00E572A7 /* _BKDatabaseHelper.h in Headers */,
 				CD2E793B1FA0C54200012CDB /* BraceletKit.h in Headers */,
 			);
@@ -977,8 +977,8 @@
 			files = (
 				CD25EA392013331D009BEFC1 /* BKDevice.m in Sources */,
 				CDC2EB8620163E4300C9F77E /* BKPreferences.m in Sources */,
+				CDC2EB9F2017419C00C9F77E /* BKDataQuerier.m in Sources */,
 				CD37F4602014E993009B213B /* BKDataHRHour.m in Sources */,
-				CD25EA2C201330EC009BEFC1 /* BKSummary.m in Sources */,
 				CDA004122014A99A00E572A7 /* BKDataIndex.m in Sources */,
 				CDC2EB932017312A00C9F77E /* BKConnector.m in Sources */,
 				CDB94C6720133A0400CB588C /* _BKModelHelper.m in Sources */,
