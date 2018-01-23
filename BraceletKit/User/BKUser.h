@@ -55,6 +55,7 @@ typedef NS_ENUM(NSUInteger, BKGender) {
 + (instancetype)defaultUser;
 
 + (instancetype)registerWithEmail:(NSString *)email password:(NSString *)password;
+
 + (instancetype)loginWithEmail:(NSString *)email password:(NSString *)password;
 
 

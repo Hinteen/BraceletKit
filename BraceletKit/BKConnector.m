@@ -1,27 +1,21 @@
 //
-//  BKConnect.m
+//  BKConnector.m
 //  BraceletKit
 //
-//  Created by xaoxuu on 20/01/2018.
+//  Created by xaoxuu on 23/01/2018.
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BKConnect.h"
-#import "_BKModelHelper.h"
-#import <AXKit/AXKit.h>
+#import "BKConnector.h"
 #import <CoreBluetooth/CoreBluetooth.h>
-#import <BLE3Framework/BLE3Framework.h>
+#import "_BKModelHelper.h"
 #import "BKServices.h"
 
-@interface BKConnect() <CBCentralManagerDelegate, CBPeripheralDelegate, BleDiscoverDelegate, BleConnectDelegate>
+@interface BKConnector() <CBCentralManagerDelegate, BleConnectDelegate>
 
 @property (strong, nonatomic) CBCentralManager *central;
 
 @property (strong, nonatomic) CBPeripheral *peripheral;
-
-@property (strong, nonatomic) BLELib3 *bleSDK;
-
-
 
 @end
 
@@ -29,79 +23,45 @@
 
 @end
 
-@implementation BKConnect
+@implementation BKConnector
+
 
 - (instancetype)init{
     if (self = [super init]) {
         self.central = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-        
-        self.bleSDK = [BLELib3 shareInstance];
-        self.bleSDK.discoverDelegate = self;
-        self.bleSDK.connectDelegate = self;
+        [BLELib3 shareInstance].connectDelegate = self;
     }
     return self;
 }
 
-+ (instancetype)currentConnect{
-    return [BKServices sharedInstance].connect;
-}
 
-
-- (instancetype)initWithDelegate:(NSObject<BKConnectDelegate> *)delegate{
+- (instancetype)initWithDelegate:(NSObject<BKConnectDelegate> *)delegate;{
     if (self = [self init]) {
-        self.delegate = delegate;
+        _delegate = delegate;
     }
     return self;
 }
 
-- (void)scanDevice{
-    [self.bleSDK scanDevice];
-    AXCachedLogOBJ(@"开始扫描");
-}
-
-- (void)stopScan{
-    [self.bleSDK stopScan];
-    AXCachedLogOBJ(@"停止扫描");
-}
 
 - (void)connectDevice:(BKDevice *)device{
-    [self.bleSDK connectDevice:device.zeronerBlePeripheral];
+    [[BLELib3 shareInstance] connectDevice:device.zeronerBlePeripheral];
     AXCachedLogOBJ(@"调用了连接方法");
 }
 
 - (void)disConnectDevice{
-    [self.bleSDK unConnectDevice];
-    [self.bleSDK debindFromSystem];
+    [[BLELib3 shareInstance] unConnectDevice];
+    [[BLELib3 shareInstance] debindFromSystem];
     AXCachedLogOBJ(@"调用了断开连接方法");
 }
 
 
+#pragma mark - system cb delegate
 
-
-
-#pragma mark - discover delegate
-#pragma mark required
-
-/**
- * This method is invoked while scanning
- 
- @param iwDevice Instance contain a CBPeripheral object and the device's MAC address
- */
-- (void)IWBLEDidDiscoverDeviceWithMAC:(ZeronerBlePeripheral *)iwDevice{
-    AXCachedLogOBJ(iwDevice);
-    if ([self.delegate respondsToSelector:@selector(bkDiscoverDevice:)]) {
-        [self.delegate bkDiscoverDevice:iwDevice.transformToBKDevice];
-    }
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central{
+    
 }
 
-#pragma mark optional
-/**
- *
- *  @return Specifal services used for communication. For exeample, like bracelet, you should return  @{@"FF20",@"FFE5"}, you also should not implement this method if want to connect with zeroner's bracelet.
- */
-//- (NSArray<NSString *> *)serverUUID{
-//    return @[@"FF20", @"FFE5"];
-//}
+
 
 #pragma mark - connect delegate
 
@@ -117,8 +77,8 @@
     _device = device.transformToBKDevice;
     [BLELib3 shareInstance].delegate = self.device;
     [self.central connectPeripheral:self.peripheral options:nil];
-    if ([self.delegate respondsToSelector:@selector(bkConnectedDevice:)]) {
-        [self.delegate bkConnectedDevice:device.transformToBKDevice];
+    if ([self.delegate respondsToSelector:@selector(connectorDidConnectedDevice:)]) {
+        [self.delegate connectorDidConnectedDevice:device.transformToBKDevice];
     }
 }
 
@@ -145,8 +105,8 @@
     if (self.peripheral) {
         [self.central cancelPeripheralConnection:self.peripheral];
     }
-    if ([self.delegate respondsToSelector:@selector(bkUnconnectedDevice:)]) {
-        [self.delegate bkUnconnectedDevice:device.transformToBKDevice];
+    if ([self.delegate respondsToSelector:@selector(connectorDidUnconnectedDevice:)]) {
+        [self.delegate connectorDidUnconnectedDevice:device.transformToBKDevice];
     }
 }
 
@@ -158,8 +118,8 @@
 - (void)IWBLEDidFailToConnectDevice:(ZeronerBlePeripheral *)device andError:(NSError *)error{
     AXCachedLogOBJ(device);
     AXCachedLogError(error);
-    if ([self.delegate respondsToSelector:@selector(bkFailToConnectDevice:)]) {
-        [self.delegate bkFailToConnectDevice:device.transformToBKDevice];
+    if ([self.delegate respondsToSelector:@selector(connectorDidFailToConnectDevice:)]) {
+        [self.delegate connectorDidFailToConnectDevice:device.transformToBKDevice];
     }
 }
 
@@ -168,8 +128,8 @@
  */
 - (void)IWBLEConnectTimeOut{
     AXCachedLogError(@"连接超时");
-    if ([self.delegate respondsToSelector:@selector(bkConnectTimeout)]) {
-        [self.delegate bkConnectTimeout];
+    if ([self.delegate respondsToSelector:@selector(connectorDidConnectTimeout)]) {
+        [self.delegate connectorDidConnectTimeout];
     }
 }
 
@@ -205,12 +165,6 @@
     
 }
 
-
-#pragma mark - system cb delegate
-
-- (void)centralManagerDidUpdateState:(CBCentralManager *)central{
-    
-}
 
 
 @end

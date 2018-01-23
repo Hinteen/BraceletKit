@@ -16,7 +16,7 @@
 }
 
 
-- (void)applyToDevice{
+- (void)applyToMyDevice{
     [[BLELib3 shareInstance] setFirmwareOption:self.transformToZeronerHWOption];
 }
 

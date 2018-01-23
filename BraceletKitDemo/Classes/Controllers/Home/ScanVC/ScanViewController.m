@@ -12,7 +12,7 @@
 #import "MJRefresh.h"
 #import "BKServices.h"
 
-@interface ScanViewController () <UITableViewDataSource, UITableViewDelegate, BKConnectDelegate>
+@interface ScanViewController () <UITableViewDataSource, UITableViewDelegate, BKScanDelegate>
 
 @property (strong, nonatomic) UITableView *tableView2;
 
@@ -44,8 +44,8 @@
     __weak typeof(self) weakSelf = self;
     self.tableView2.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf.devices removeAllObjects];
-        [[BKServices sharedInstance].connect stopScan];
-        [[BKServices sharedInstance].connect scanDevice];
+        [[BKServices sharedInstance].scanner stopScan];
+        [[BKServices sharedInstance].scanner scanDevice];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf.tableView2.mj_header endRefreshing];
         });
@@ -69,15 +69,15 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [[BKServices sharedInstance] registerConnectDelegate:self];
-    [[BKServices sharedInstance].connect scanDevice];
+    [[BKServices sharedInstance] registerScanDelegate:self];
+    [[BKServices sharedInstance].scanner scanDevice];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.devices removeAllObjects];
-    [[BKServices sharedInstance].connect stopScan];
-    [[BKServices sharedInstance] unRegisterConnectDelegate:self];
+    [[BKServices sharedInstance].scanner stopScan];
+    [[BKServices sharedInstance] unRegisterScanDelegate:self];
 }
 
 
@@ -100,7 +100,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)bkDiscoverDevice:(BKDevice *)device{
+- (void)scannerDidDiscoverDevice:(BKDevice *)device{
     [self.devices addObject:device];
     dispatch_async(dispatch_get_main_queue(), ^{
         // @xaoxuu: in main queue

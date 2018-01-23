@@ -181,7 +181,7 @@ typedef NS_ENUM(NSUInteger, BKTemperatureUnit) {
 /**
  将当前的设置应用到设备
  */
-- (void)applyToDevice;
+- (void)applyToMyDevice;
 
 - (BOOL)saveToDatabaseIfNotExists;
 

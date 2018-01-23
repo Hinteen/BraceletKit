@@ -1,8 +1,8 @@
 //
-//  BKConnect.h
+//  BKConnector.h
 //  BraceletKit
 //
-//  Created by xaoxuu on 20/01/2018.
+//  Created by xaoxuu on 23/01/2018.
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
@@ -12,49 +12,44 @@
 
 @protocol BKConnectDelegate <NSObject>
 
-@optional;
-
-/**
- 发现设备
-
- @param device 设备
- */
-- (void)bkDiscoverDevice:(BKDevice *)device;
+@optional
 
 /**
  已连接设备
-
+ 
  @param device 设备
  */
-- (void)bkConnectedDevice:(BKDevice *)device;
+- (void)connectorDidConnectedDevice:(BKDevice *)device;
 
 /**
  已断开设备
-
+ 
  @param device 设备
  */
-- (void)bkUnconnectedDevice:(BKDevice *)device;
+- (void)connectorDidUnconnectedDevice:(BKDevice *)device;
 
 /**
  与设备连接失败
-
+ 
  @param device 设备
  */
-- (void)bkFailToConnectDevice:(BKDevice *)device;
+- (void)connectorDidFailToConnectDevice:(BKDevice *)device;
 
 /**
  连接超时
  */
-- (void)bkConnectTimeout;
+- (void)connectorDidConnectTimeout;
 
 @end
 
-@interface BKConnect : NSObject
+@interface BKConnector : NSObject
+
 
 /**
  代理
  */
 @property (weak, nonatomic) NSObject<BKConnectDelegate> *delegate;
+
 /**
  设备
  */
@@ -62,33 +57,16 @@
 
 
 /**
- 当前的连接
-
- @return 连接实例
- */
-+ (instancetype)currentConnect;
-
-/**
  初始化连接
-
+ 
  @param delegate 代理
  @return 连接实例
  */
 - (instancetype)initWithDelegate:(NSObject<BKConnectDelegate> *)delegate;
 
 /**
- 扫描设备
- */
-- (void)scanDevice;
-
-/**
- 停止扫描
- */
-- (void)stopScan;
-
-/**
  连接设备
-
+ 
  @param device 设备
  */
 - (void)connectDevice:(BKDevice *)device;
@@ -98,6 +76,5 @@
  */
 - (void)disConnectDevice;
 
+
 @end
-
-

@@ -16,23 +16,24 @@
 /**
  更新了设备信息
  */
-- (void)bkUpdateDeviceInfo;
+- (void)deviceDidUpdateInfo;
 
 /**
  更新了电池信息
 
  @param batteryPercent 电池百分比
  */
-- (void)bkUpdateDeviceBatteryPercent:(CGFloat)batteryPercent;
+- (void)deviceDidUpdateBatteryPercent:(CGFloat)batteryPercent;
 
 /**
  手环点击了拍照
  */
-- (void)bkTappedTakePicture;
+- (void)deviceDidTappedTakePicture;
+
 /**
  手环点击了查找手机
  */
-- (void)bkTappedFindMyPhone;
+- (void)deviceDidTappedFindMyPhone;
 
 @end
 

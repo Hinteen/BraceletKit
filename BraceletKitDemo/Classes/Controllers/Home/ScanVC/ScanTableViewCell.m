@@ -94,9 +94,9 @@
 - (IBAction)connect:(UISwitch *)sender {
     sender.enabled = NO;
     if (sender.on) {
-        [[BKServices sharedInstance].connect connectDevice:self.model];
+        [[BKServices sharedInstance].connector connectDevice:self.model];
     } else {
-        [[BKServices sharedInstance].connect disConnectDevice];
+        [[BKServices sharedInstance].connector disConnectDevice];
     }
     
 }

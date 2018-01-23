@@ -39,7 +39,7 @@
 
 
 + (instancetype)currentDevice{
-    return [BKConnect currentConnect].device;
+    return [BKServices sharedInstance].connector.device;
 }
 
 
@@ -101,8 +101,8 @@
  */
 - (void)notifyToTakePicture{
     AXCachedLogOBJ(@"notifyToTakePicture");
-    if ([self.delegate respondsToSelector:@selector(bkTappedTakePicture)]) {
-        [self.delegate bkTappedTakePicture];
+    if ([self.delegate respondsToSelector:@selector(deviceDidTappedTakePicture)]) {
+        [self.delegate deviceDidTappedTakePicture];
     }
 }
 
@@ -112,8 +112,8 @@
  */
 - (void)notifyToSearchPhone{
     AXCachedLogOBJ(@"notifyToSearchPhone");
-    if ([self.delegate respondsToSelector:@selector(bkTappedFindMyPhone)]) {
-        [self.delegate bkTappedFindMyPhone];
+    if ([self.delegate respondsToSelector:@selector(deviceDidTappedFindMyPhone)]) {
+        [self.delegate deviceDidTappedFindMyPhone];
     }
     AudioServicesPlayAlertSound(1008);
 }
@@ -125,8 +125,8 @@
     _mac = deviceInfo.bleAddr;
     _model = deviceInfo.model;
     _version = deviceInfo.version;
-    if ([self.delegate respondsToSelector:@selector(bkUpdateDeviceInfo)]) {
-        [self.delegate bkUpdateDeviceInfo];
+    if ([self.delegate respondsToSelector:@selector(deviceDidUpdateInfo)]) {
+        [self.delegate deviceDidUpdateInfo];
     }
     [self saveToDatabase];
     AXCachedLogOBJ(deviceInfo);
@@ -137,8 +137,8 @@
 - (void)updateBattery:(ZeronerDeviceInfo *)deviceInfo{
     _deviceInfo = deviceInfo;
     _battery = AXMakeNumberInRange(@(deviceInfo.batLevel), @0, @100).doubleValue / 100.0f;
-    if ([self.delegate respondsToSelector:@selector(bkUpdateDeviceBatteryPercent:)]) {
-        [self.delegate bkUpdateDeviceBatteryPercent:self.battery];
+    if ([self.delegate respondsToSelector:@selector(deviceDidUpdateBatteryPercent:)]) {
+        [self.delegate deviceDidUpdateBatteryPercent:self.battery];
     }
     [self saveToDatabase];
     AXCachedLogOBJ(deviceInfo);

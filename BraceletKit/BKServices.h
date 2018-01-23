@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BKConnect.h"
 #import "BKUser.h"
+#import "BKScanner.h"
+#import "BKConnector.h"
 
 
 @interface BKServices : NSObject
@@ -19,11 +20,17 @@
  */
 @property (strong, readonly, nonatomic) BKUser *user;
 
-/**
- 连接
- */
-@property (strong, readonly, nonatomic) BKConnect *connect;
 
+/**
+ 扫描器
+ */
+@property (strong, readonly, nonatomic) BKScanner *scanner;
+
+
+/**
+ 连接器
+ */
+@property (strong, readonly, nonatomic) BKConnector *connector;
 
 
 
@@ -35,6 +42,22 @@
  @param user 用户
  */
 - (BOOL)registerServiceWithUser:(BKUser *)user;
+
+
+
+/**
+ 注册扫描代理
+ 
+ @param delegate 代理
+ */
+- (void)registerScanDelegate:(NSObject<BKScanDelegate> *)delegate;
+
+/**
+ 取消注册扫描代理
+ 
+ @param delegate 代理
+ */
+- (void)unRegisterScanDelegate:(NSObject<BKScanDelegate> *)delegate;
 
 
 /**
