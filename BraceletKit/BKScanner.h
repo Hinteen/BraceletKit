@@ -14,14 +14,24 @@
 @optional
 
 /**
- 发现设备
+ SDK发现设备
  
  @param device 设备
  */
 - (void)scannerDidDiscoverDevice:(BKDevice *)device;
 
+/**
+ CentralManager状态改变
+
+ @param central CentralManager
+ */
 - (void)scannerForCentralManagerDidUpdateState:(CBCentralManager *)central;
 
+/**
+ CentralManager发现设备
+ 
+ @param device 设备
+ */
 - (void)scannerForCentralManagerDidDiscoverDevice:(BKDevice *)device;
 
 @end
@@ -34,6 +44,7 @@
  代理
  */
 @property (weak, nonatomic) NSObject<BKScanDelegate> *delegate;
+
 
 - (instancetype)initWithDelegate:(NSObject<BKScanDelegate> *)delegate;
 

@@ -22,4 +22,9 @@
     return nil;
 }
 
++ (NSArray<BKQuery *> *)querySummaryWithDate:(NSDate *)date unit:(BKQueryUnit)unit{
+    NSAssert(NO, @"子类必须重写此方法");
+    return nil;
+}
+
 @end

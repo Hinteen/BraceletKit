@@ -32,6 +32,7 @@
 
 
 
+
 + (instancetype)sharedInstance;
 
 /**

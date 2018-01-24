@@ -1,15 +1,15 @@
 //
-//  BKDailySleepQuery.m
+//  BKSleepQuery.m
 //  BraceletKit
 //
 //  Created by xaoxuu on 23/01/2018.
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BKDailySleepQuery.h"
+#import "BKSleepQuery.h"
 #import "BKDataSleep.h"
 
-@implementation BKDailySleepQuery
+@implementation BKSleepQuery
 
 
 - (instancetype)init{
@@ -27,6 +27,8 @@
     return self;
 }
 
-
+//+ (NSArray<BKQuery *> *)querySummaryWithDate:(NSDate *)date unit:(BKQueryUnit)unit{
+//
+//}
 
 @end

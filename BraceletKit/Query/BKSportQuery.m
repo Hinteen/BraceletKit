@@ -1,17 +1,17 @@
 //
-//  BKDailySportQuery.m
+//  BKSportQuery.m
 //  BraceletKit
 //
 //  Created by xaoxuu on 23/01/2018.
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BKDailySportQuery.h"
+#import "BKSportQuery.h"
 #import "_BKHeader.h"
 #import "BKDataDay.h"
 #import "BKDataSport.h"
 
-@implementation BKDailySportQuery
+@implementation BKSportQuery
 
 - (instancetype)init{
     if (self = [super init]) {
@@ -30,6 +30,7 @@
 
 - (instancetype)initWithDayData:(BKDataDay *)day sports:(NSArray<BKDataSport *> *)sports{
     if (self = [self init]) {
+        self.date = [NSDate ax_dateWithIntegerValue:day.dateInteger];
         self.steps = day.steps;
         self.distance = day.distance;
         self.calorie = day.calorie;
@@ -66,12 +67,17 @@
     return self;
 }
 
-+ (NSArray<BKQuery *> *)querySummaryWithDate:(NSDate *)date{
++ (NSArray<BKQuery *> *)querySummaryWithDate:(NSDate *)date unit:(BKQueryUnit)unit{
     // 获取天摘要数据
     BKDataDay *day = [BKDataDay selectFromDatabaseWithDate:date].lastObject;
     // 获取区间内所有运动
     NSArray<BKDataSport *> *sports = [BKDataSport selectFromDatabaseWithDate:date];
-    BKDailySportQuery *model = [[self alloc] initWithDayData:day sports:sports];
-    return @[model];
+    BKSportQuery *result = [[self alloc] initWithDayData:day sports:sports];
+#warning 具体到哪一天
+    result.date = date;
+    result.unit = unit;
+    return @[result];
 }
+
+
 @end
