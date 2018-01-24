@@ -106,7 +106,7 @@
     model.phone = [set longForColumnIndex:i++];
     
     model.gender = [set longForColumnIndex:i++];
-    model.birthday = [NSDate dateWithDateInteger:[set longForColumnIndex:i++]];
+    model.birthday = [NSDate ax_dateWithIntegerValue:[set longForColumnIndex:i++]];
     model.height = [set doubleForColumnIndex:i++];
     model.weight = [set doubleForColumnIndex:i++];
     model.avatar = [set stringForColumnIndex:i++];
@@ -122,7 +122,7 @@
     [value appendIntegerValue:self.phone comma:YES];
     
     [value appendIntegerValue:self.gender comma:YES];
-    [value appendIntegerValue:self.birthday.dateInteger comma:YES];
+    [value appendIntegerValue:self.birthday.integerValue comma:YES];
     [value appendDoubleValue:self.height comma:YES];
     [value appendDoubleValue:self.weight comma:YES];
     [value appendVarcharValue:self.avatar comma:YES];
