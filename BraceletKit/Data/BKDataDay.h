@@ -47,6 +47,11 @@
  */
 @property (assign, nonatomic) NSInteger minBpm;
 
+
+
 + (instancetype)modelWithDict:(NSDictionary *)dict;
+
+
++ (instancetype)selectFromDatabaseWithDate:(NSDate *)date;
 
 @end

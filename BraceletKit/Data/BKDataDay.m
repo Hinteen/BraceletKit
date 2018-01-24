@@ -112,4 +112,17 @@
 }
 
 
++ (instancetype)selectFromDatabaseWithDate:(NSDate *)date{
+    __block BKDataDay *model;
+    databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        NSString *where = [NSString stringWithFormat:@"user_id = '%@' and device_id = '%@' and date = %08d", bk_user_id(), bk_device_id(), date.dateInteger];
+        [db ax_select:@"*" from:self.tableName where:where result:^(NSMutableArray * _Nonnull result, FMResultSet * _Nonnull set) {
+            while (set.next) {
+                model = [self modelWithSet:set];
+            }
+        }];
+    });
+    return model;
+}
+
 @end

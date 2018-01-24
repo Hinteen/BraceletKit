@@ -10,10 +10,8 @@
 #import "BKUser.h"
 #import "BKScanner.h"
 #import "BKConnector.h"
-#import "BKDataQuerier.h"
 
 @interface BKServices : NSObject
-
 
 /**
  用户
@@ -31,12 +29,6 @@
  连接器
  */
 @property (strong, readonly, nonatomic) BKConnector *connector;
-
-
-/**
- 数据查询器
- */
-@property (strong, readonly, nonatomic) BKDataQuerier *querier;
 
 
 

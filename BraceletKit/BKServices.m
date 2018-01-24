@@ -49,7 +49,6 @@ static BKServices *bkServices = nil;
     // @xaoxuu: delegate
     _scanner = [[BKScanner alloc] initWithDelegate:self];
     _connector = [[BKConnector alloc] initWithDelegate:self];
-    _querier = [[BKDataQuerier alloc] init];
     
     return self;
 }

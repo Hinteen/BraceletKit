@@ -1,16 +1,13 @@
 //
-//  BKDataQuerier.h
+//  BKHeartRateQuery.m
 //  BraceletKit
 //
 //  Created by xaoxuu on 23/01/2018.
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "BKHeartRateQuery.h"
 
-@interface BKDataQuerier : NSObject
-
-
-
+@implementation BKHeartRateQuery
 
 @end

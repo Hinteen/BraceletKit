@@ -11,7 +11,7 @@
 // 模块
 #import "BKScanner.h"
 #import "BKConnector.h"
-#import "BKDataQuerier.h"
+#import "BKQuery.h"
 
 // 模型
 #import "BKUser.h"

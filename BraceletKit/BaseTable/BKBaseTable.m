@@ -76,7 +76,10 @@
     });
 }
 
-
++ (instancetype)selectFromDatabaseWithDate:(NSDate *)date{
+    NSAssert(NO, @"子类必须重写此方法");
+    return nil;
+}
 
 
 @end
