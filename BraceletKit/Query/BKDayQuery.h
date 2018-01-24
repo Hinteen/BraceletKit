@@ -9,25 +9,25 @@
 #import "BKQuery.h"
 
 /**
- 一天的运动统计
+ 一天的运动量统计
  */
 @interface BKDayQuery : BKQuery
 
 
 /**
- 总步数
+ 一天总步数
  */
 @property (assign, nonatomic) NSInteger steps;
 /**
- 总距离
+ 一天总距离
  */
 @property (assign, nonatomic) CGFloat distance;
 /**
- 总卡路里
+ 一天消耗的总卡路里
  */
 @property (assign, nonatomic) CGFloat calorie;
 /**
- 总活动时间（分钟）
+ 一天的总活动时间（分钟）
  */
 @property (assign, nonatomic) NSInteger activity;
 
@@ -44,5 +44,6 @@
  每小时卡路里详情（共24条）
  */
 @property (strong, nonatomic) NSMutableArray<NSNumber *> *hourCalorie;
+
 
 @end

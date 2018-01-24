@@ -30,7 +30,7 @@
 
 - (instancetype)init{
     if (self = [super init]) {
-        _name = @"";
+        _name = @"unknown";
         _avatar = @"";
         _birthday = [NSDate dateWithTimeIntervalSince1970:0];
         _height = 170;

@@ -14,35 +14,31 @@
  */
 @interface BKSportQuery : BKQuery
 
+
 /**
- 总步数
+ 运动开始时间
  */
-@property (assign, nonatomic) NSInteger steps;
+@property (strong, nonatomic) NSDate *start;
 /**
- 总距离
+ 运动结束时间
  */
-@property (assign, nonatomic) CGFloat distance;
+@property (strong, nonatomic) NSDate *end;
 /**
- 总卡路里
- */
-@property (assign, nonatomic) CGFloat calorie;
-/**
- 总活动时间（分钟）
+ 活动时间
  */
 @property (assign, nonatomic) NSInteger activity;
 
-
 /**
- 每小时步数详情（共24条）
+ 步数
  */
-@property (strong, nonatomic) NSMutableArray<NSNumber *> *hourSteps;
+@property (assign, nonatomic) NSInteger steps;
 /**
- 每小时距离详情（共24条）
+ 距离
  */
-@property (strong, nonatomic) NSMutableArray<NSNumber *> *hourDistance;
+@property (assign, nonatomic) CGFloat distance;
 /**
- 每小时卡路里详情（共24条）
+ 卡路里
  */
-@property (strong, nonatomic) NSMutableArray<NSNumber *> *hourCalorie;
+@property (assign, nonatomic) CGFloat calorie;
 
 @end
