@@ -1,5 +1,5 @@
 //
-//  BKHeartRateQuery.h
+//  BKDailyHRQuery.h
 //  BraceletKit
 //
 //  Created by xaoxuu on 23/01/2018.
@@ -12,7 +12,7 @@
 /**
  一天的心率统计
  */
-@interface BKHeartRateQuery : BKQuery
+@interface BKDailyHRQuery : BKQuery
 
 /**
  一天的平均心率

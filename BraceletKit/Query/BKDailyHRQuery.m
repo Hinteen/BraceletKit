@@ -1,17 +1,17 @@
 //
-//  BKHeartRateQuery.m
+//  BKDailyHRQuery.m
 //  BraceletKit
 //
 //  Created by xaoxuu on 23/01/2018.
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BKHeartRateQuery.h"
+#import "BKDailyHRQuery.h"
 #import "BKDataHR.h"
 #import "BKDataHRHour.h"
 #import "_BKHeader.h"
 
-@implementation BKHeartRateQuery
+@implementation BKDailyHRQuery
 
 - (instancetype)init{
     if (self = [super init]) {
@@ -65,7 +65,7 @@
 + (NSArray<BKQuery *> *)querySummaryWithDate:(NSDate *)date{
     NSArray<BKDataHR *> *hrModels = [BKDataHR selectFromDatabaseWithDate:date];
     NSArray<BKDataHRHour *> *hrHourModels = [BKDataHRHour selectFromDatabaseWithDate:date];
-    BKHeartRateQuery *result = [[BKHeartRateQuery alloc] initWithHeartRateData:hrModels hoursData:hrHourModels];
+    BKDailyHRQuery *result = [[BKDailyHRQuery alloc] initWithHeartRateData:hrModels hoursData:hrHourModels];
     return @[result];
 }
 

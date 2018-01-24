@@ -1,15 +1,15 @@
 //
-//  BKSleepQuery.m
+//  BKDailySleepQuery.m
 //  BraceletKit
 //
 //  Created by xaoxuu on 23/01/2018.
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BKSleepQuery.h"
+#import "BKDailySleepQuery.h"
 #import "BKDataSleep.h"
 
-@implementation BKSleepQuery
+@implementation BKDailySleepQuery
 
 
 - (instancetype)init{

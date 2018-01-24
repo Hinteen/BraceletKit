@@ -75,8 +75,6 @@
 		CD828DC01FBA909B0071C9D8 /* DeviceSettingTV.json in Resources */ = {isa = PBXBuildFile; fileRef = CD828DBD1FBA909A0071C9D8 /* DeviceSettingTV.json */; };
 		CD8F66CF1FD4F62F00B4C6DD /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8F66CE1FD4F62F00B4C6DD /* CameraViewController.m */; };
 		CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD944E881FB0B44600373636 /* FindPhoneManager.m */; };
-		CD965BF820175FF9001FBE11 /* BKDayQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = CD965BF620175FF9001FBE11 /* BKDayQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CD965BF920175FF9001FBE11 /* BKDayQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CD965BF720175FF9001FBE11 /* BKDayQuery.m */; };
 		CDA003FC20136A6F00E572A7 /* Calibri.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDA003FB20136A6F00E572A7 /* Calibri.ttf */; };
 		CDA0040920146EFB00E572A7 /* _BKDatabaseHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA0040720146EFB00E572A7 /* _BKDatabaseHelper.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CDA0040A20146EFB00E572A7 /* _BKDatabaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA0040820146EFB00E572A7 /* _BKDatabaseHelper.m */; };
@@ -99,12 +97,12 @@
 		CDC2EB932017312A00C9F77E /* BKConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EB912017312A00C9F77E /* BKConnector.m */; };
 		CDC2EB9E2017419C00C9F77E /* BKQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EB9C2017419C00C9F77E /* BKQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDC2EB9F2017419C00C9F77E /* BKQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EB9D2017419C00C9F77E /* BKQuery.m */; };
-		CDC2EBA2201754F100C9F77E /* BKSportQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EBA0201754F100C9F77E /* BKSportQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CDC2EBA3201754F100C9F77E /* BKSportQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EBA1201754F100C9F77E /* BKSportQuery.m */; };
-		CDC2EBA62017552400C9F77E /* BKHeartRateQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EBA42017552400C9F77E /* BKHeartRateQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CDC2EBA72017552400C9F77E /* BKHeartRateQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EBA52017552400C9F77E /* BKHeartRateQuery.m */; };
-		CDC2EBAA2017553800C9F77E /* BKSleepQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EBA82017553800C9F77E /* BKSleepQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CDC2EBAB2017553800C9F77E /* BKSleepQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EBA92017553800C9F77E /* BKSleepQuery.m */; };
+		CDC2EBA2201754F100C9F77E /* BKDailySportQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EBA0201754F100C9F77E /* BKDailySportQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDC2EBA3201754F100C9F77E /* BKDailySportQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EBA1201754F100C9F77E /* BKDailySportQuery.m */; };
+		CDC2EBA62017552400C9F77E /* BKDailyHRQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EBA42017552400C9F77E /* BKDailyHRQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDC2EBA72017552400C9F77E /* BKDailyHRQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EBA52017552400C9F77E /* BKDailyHRQuery.m */; };
+		CDC2EBAA2017553800C9F77E /* BKDailySleepQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EBA82017553800C9F77E /* BKDailySleepQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDC2EBAB2017553800C9F77E /* BKDailySleepQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EBA92017553800C9F77E /* BKDailySleepQuery.m */; };
 		CDDFA3AB1FB5BAC8004C99D5 /* HomeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFA3AA1FB5BAC8004C99D5 /* HomeTableView.m */; };
 		CDDFA3AD1FB5BADB004C99D5 /* HomeTableView.json in Resources */ = {isa = PBXBuildFile; fileRef = CDDFA3AC1FB5BADB004C99D5 /* HomeTableView.json */; };
 		DEF70E632A2776ACEB30913A /* libPods-BraceletKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D14689FFFFCA37F6DE88DC /* libPods-BraceletKit.a */; };
@@ -243,8 +241,6 @@
 		CD8F66CE1FD4F62F00B4C6DD /* CameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		CD944E871FB0B44600373636 /* FindPhoneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindPhoneManager.h; sourceTree = "<group>"; };
 		CD944E881FB0B44600373636 /* FindPhoneManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindPhoneManager.m; sourceTree = "<group>"; };
-		CD965BF620175FF9001FBE11 /* BKDayQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDayQuery.h; sourceTree = "<group>"; };
-		CD965BF720175FF9001FBE11 /* BKDayQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDayQuery.m; sourceTree = "<group>"; };
 		CDA003FB20136A6F00E572A7 /* Calibri.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Calibri.ttf; sourceTree = "<group>"; };
 		CDA0040720146EFB00E572A7 /* _BKDatabaseHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _BKDatabaseHelper.h; sourceTree = "<group>"; };
 		CDA0040820146EFB00E572A7 /* _BKDatabaseHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _BKDatabaseHelper.m; sourceTree = "<group>"; };
@@ -266,12 +262,12 @@
 		CDC2EB912017312A00C9F77E /* BKConnector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKConnector.m; sourceTree = "<group>"; };
 		CDC2EB9C2017419C00C9F77E /* BKQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKQuery.h; sourceTree = "<group>"; };
 		CDC2EB9D2017419C00C9F77E /* BKQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKQuery.m; sourceTree = "<group>"; };
-		CDC2EBA0201754F100C9F77E /* BKSportQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSportQuery.h; sourceTree = "<group>"; };
-		CDC2EBA1201754F100C9F77E /* BKSportQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKSportQuery.m; sourceTree = "<group>"; };
-		CDC2EBA42017552400C9F77E /* BKHeartRateQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKHeartRateQuery.h; sourceTree = "<group>"; };
-		CDC2EBA52017552400C9F77E /* BKHeartRateQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKHeartRateQuery.m; sourceTree = "<group>"; };
-		CDC2EBA82017553800C9F77E /* BKSleepQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSleepQuery.h; sourceTree = "<group>"; };
-		CDC2EBA92017553800C9F77E /* BKSleepQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKSleepQuery.m; sourceTree = "<group>"; };
+		CDC2EBA0201754F100C9F77E /* BKDailySportQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDailySportQuery.h; sourceTree = "<group>"; };
+		CDC2EBA1201754F100C9F77E /* BKDailySportQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDailySportQuery.m; sourceTree = "<group>"; };
+		CDC2EBA42017552400C9F77E /* BKDailyHRQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDailyHRQuery.h; sourceTree = "<group>"; };
+		CDC2EBA52017552400C9F77E /* BKDailyHRQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDailyHRQuery.m; sourceTree = "<group>"; };
+		CDC2EBA82017553800C9F77E /* BKDailySleepQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDailySleepQuery.h; sourceTree = "<group>"; };
+		CDC2EBA92017553800C9F77E /* BKDailySleepQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDailySleepQuery.m; sourceTree = "<group>"; };
 		CDDFA3A91FB5BAC8004C99D5 /* HomeTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTableView.h; sourceTree = "<group>"; };
 		CDDFA3AA1FB5BAC8004C99D5 /* HomeTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTableView.m; sourceTree = "<group>"; };
 		CDDFA3AC1FB5BADB004C99D5 /* HomeTableView.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HomeTableView.json; sourceTree = "<group>"; };
@@ -711,14 +707,12 @@
 			children = (
 				CDC2EB9C2017419C00C9F77E /* BKQuery.h */,
 				CDC2EB9D2017419C00C9F77E /* BKQuery.m */,
-				CD965BF620175FF9001FBE11 /* BKDayQuery.h */,
-				CD965BF720175FF9001FBE11 /* BKDayQuery.m */,
-				CDC2EBA0201754F100C9F77E /* BKSportQuery.h */,
-				CDC2EBA1201754F100C9F77E /* BKSportQuery.m */,
-				CDC2EBA42017552400C9F77E /* BKHeartRateQuery.h */,
-				CDC2EBA52017552400C9F77E /* BKHeartRateQuery.m */,
-				CDC2EBA82017553800C9F77E /* BKSleepQuery.h */,
-				CDC2EBA92017553800C9F77E /* BKSleepQuery.m */,
+				CDC2EBA0201754F100C9F77E /* BKDailySportQuery.h */,
+				CDC2EBA1201754F100C9F77E /* BKDailySportQuery.m */,
+				CDC2EBA42017552400C9F77E /* BKDailyHRQuery.h */,
+				CDC2EBA52017552400C9F77E /* BKDailyHRQuery.m */,
+				CDC2EBA82017553800C9F77E /* BKDailySleepQuery.h */,
+				CDC2EBA92017553800C9F77E /* BKDailySleepQuery.m */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -733,14 +727,13 @@
 				CD25EA382013331D009BEFC1 /* BKDevice.h in Headers */,
 				CD37F4572014D7BC009B213B /* BKDataSport.h in Headers */,
 				CDC2EB922017312A00C9F77E /* BKConnector.h in Headers */,
-				CD965BF820175FF9001FBE11 /* BKDayQuery.h in Headers */,
 				CD37F45F2014E993009B213B /* BKDataHRHour.h in Headers */,
 				CD37F4532014CCC4009B213B /* BKDataDay.h in Headers */,
 				CDC2EB812016099400C9F77E /* BKSportList.h in Headers */,
 				CDC2EB792015A96E00C9F77E /* BKDataSleep.h in Headers */,
 				CDA004112014A99A00E572A7 /* BKDataIndex.h in Headers */,
-				CDC2EBA2201754F100C9F77E /* BKSportQuery.h in Headers */,
-				CDC2EBAA2017553800C9F77E /* BKSleepQuery.h in Headers */,
+				CDC2EBA2201754F100C9F77E /* BKDailySportQuery.h in Headers */,
+				CDC2EBAA2017553800C9F77E /* BKDailySleepQuery.h in Headers */,
 				CD25EA342013330F009BEFC1 /* BKUser.h in Headers */,
 				CDC2EB8E20172A1300C9F77E /* BKScanner.h in Headers */,
 				CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */,
@@ -751,7 +744,7 @@
 				CDC2EB8520163E4300C9F77E /* BKPreferences.h in Headers */,
 				CD25EA2720133083009BEFC1 /* _BKLogHelper.h in Headers */,
 				CDB94C6620133A0400CB588C /* _BKModelHelper.h in Headers */,
-				CDC2EBA62017552400C9F77E /* BKHeartRateQuery.h in Headers */,
+				CDC2EBA62017552400C9F77E /* BKDailyHRQuery.h in Headers */,
 				CD25EA1720132FD4009BEFC1 /* _BKHeader.h in Headers */,
 				CDC2EB9E2017419C00C9F77E /* BKQuery.h in Headers */,
 				CDA0040920146EFB00E572A7 /* _BKDatabaseHelper.h in Headers */,
@@ -1011,7 +1004,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD965BF920175FF9001FBE11 /* BKDayQuery.m in Sources */,
 				CD25EA392013331D009BEFC1 /* BKDevice.m in Sources */,
 				CDC2EB8620163E4300C9F77E /* BKPreferences.m in Sources */,
 				CDC2EB9F2017419C00C9F77E /* BKQuery.m in Sources */,
@@ -1023,15 +1015,15 @@
 				CD2E794C1FA0C89F00012CDB /* BraceletManager.m in Sources */,
 				CD37F4582014D7BC009B213B /* BKDataSport.m in Sources */,
 				CDC2EB8F20172A1300C9F77E /* BKScanner.m in Sources */,
-				CDC2EBAB2017553800C9F77E /* BKSleepQuery.m in Sources */,
+				CDC2EBAB2017553800C9F77E /* BKDailySleepQuery.m in Sources */,
 				CDC2EB822016099400C9F77E /* BKSportList.m in Sources */,
 				CDA0040A20146EFB00E572A7 /* _BKDatabaseHelper.m in Sources */,
-				CDC2EBA3201754F100C9F77E /* BKSportQuery.m in Sources */,
+				CDC2EBA3201754F100C9F77E /* BKDailySportQuery.m in Sources */,
 				CDC2EB7A2015A96E00C9F77E /* BKDataSleep.m in Sources */,
 				CD25EA1C2013301E009BEFC1 /* BKServices.m in Sources */,
 				CD37F4542014CCC4009B213B /* BKDataDay.m in Sources */,
 				CD25EA352013330F009BEFC1 /* BKUser.m in Sources */,
-				CDC2EBA72017552400C9F77E /* BKHeartRateQuery.m in Sources */,
+				CDC2EBA72017552400C9F77E /* BKDailyHRQuery.m in Sources */,
 				CD25EA2820133083009BEFC1 /* _BKLogHelper.m in Sources */,
 				CDA0040E201491DF00E572A7 /* BKBaseTable.m in Sources */,
 				CD37F45C2014E1BF009B213B /* BKDataHR.m in Sources */,

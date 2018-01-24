@@ -1,5 +1,5 @@
 //
-//  BKSleepQuery.h
+//  BKDailySleepQuery.h
 //  BraceletKit
 //
 //  Created by xaoxuu on 23/01/2018.
@@ -13,7 +13,7 @@
 /**
  一天的睡眠统计（开始时间所在的天，如今天晚上睡到明天早上的数据属于今天的睡眠数据）
  */
-@interface BKSleepQuery : BKQuery
+@interface BKDailySleepQuery : BKQuery
 
 
 /**

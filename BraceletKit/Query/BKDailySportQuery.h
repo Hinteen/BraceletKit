@@ -1,5 +1,5 @@
 //
-//  BKDayQuery.h
+//  BKDailySportQuery.h
 //  BraceletKit
 //
 //  Created by xaoxuu on 23/01/2018.
@@ -8,10 +8,11 @@
 
 #import "BKQuery.h"
 
+@class BKDataSport;
 /**
  一天的运动量统计
  */
-@interface BKDayQuery : BKQuery
+@interface BKDailySportQuery : BKQuery
 
 
 /**
@@ -44,6 +45,5 @@
  每小时卡路里详情（共24条）
  */
 @property (strong, nonatomic) NSMutableArray<NSNumber *> *hourCalorie;
-
 
 @end

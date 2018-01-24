@@ -1,18 +1,17 @@
 //
-//  BKDayQuery.m
+//  BKDailySportQuery.m
 //  BraceletKit
 //
 //  Created by xaoxuu on 23/01/2018.
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BKDayQuery.h"
+#import "BKDailySportQuery.h"
 #import "_BKHeader.h"
 #import "BKDataDay.h"
 #import "BKDataSport.h"
-#import "BKSportQuery.h"
 
-@implementation BKDayQuery
+@implementation BKDailySportQuery
 
 - (instancetype)init{
     if (self = [super init]) {
@@ -29,14 +28,14 @@
 }
 
 
-- (instancetype)initWithDayData:(BKDataDay *)day sports:(NSArray<BKSportQuery *> *)sports{
+- (instancetype)initWithDayData:(BKDataDay *)day sports:(NSArray<BKDataSport *> *)sports{
     if (self = [self init]) {
         self.steps = day.steps;
         self.distance = day.distance;
         self.calorie = day.calorie;
         self.activity = day.activity;
         // 把运动按小时拆分
-        [sports enumerateObjectsUsingBlock:^(BKSportQuery * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [sports enumerateObjectsUsingBlock:^(BKDataSport * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSInteger startHour = obj.start.stringValue(@"HH").integerValue;
             NSInteger endHour = obj.end.stringValue(@"HH").integerValue;
             if (startHour == endHour) {
@@ -67,13 +66,12 @@
     return self;
 }
 
-+ (nullable NSArray<__kindof BKQuery *> *)querySummaryWithDate:(NSDate *)date{
++ (NSArray<BKQuery *> *)querySummaryWithDate:(NSDate *)date{
     // 获取天摘要数据
     BKDataDay *day = [BKDataDay selectFromDatabaseWithDate:date].lastObject;
     // 获取区间内所有运动
-    NSArray<BKSportQuery *> *sports = [BKSportQuery querySummaryWithDate:date];
-    BKDayQuery *model = [[BKDayQuery alloc] initWithDayData:day sports:sports];
+    NSArray<BKDataSport *> *sports = [BKDataSport selectFromDatabaseWithDate:date];
+    BKDailySportQuery *model = [[self alloc] initWithDayData:day sports:sports];
     return @[model];
 }
-
 @end
