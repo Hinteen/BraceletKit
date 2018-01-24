@@ -111,18 +111,19 @@
     return bk_user_id().length && bk_device_id().length;
 }
 
-
-+ (instancetype)selectFromDatabaseWithDate:(NSDate *)date{
-    __block BKDataDay *model;
++ (NSArray<BKBaseTable *> *)selectFromDatabaseWithDate:(NSDate *)date{
+    NSMutableArray<BKDataDay *> *results = [NSMutableArray array];
     databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        NSString *where = [NSString stringWithFormat:@"user_id = '%@' and device_id = '%@' and date = %08d", bk_user_id(), bk_device_id(), date.dateInteger];
+        NSString *where = [NSString stringWithFormat:@"user_id = '%@' and device_id = '%@' and date = %08d", bk_user_id(), bk_device_id(), date.intValue];
         [db ax_select:@"*" from:self.tableName where:where result:^(NSMutableArray * _Nonnull result, FMResultSet * _Nonnull set) {
             while (set.next) {
-                model = [self modelWithSet:set];
+                BKDataDay *model = [self modelWithSet:set];
+                [results addObject:model];
             }
         }];
     });
-    return model;
+    return results;
 }
+
 
 @end

@@ -132,26 +132,11 @@
     return bk_user_id().length && bk_device_id().length && self.dateInteger;
 }
 
-
-
-+ (NSArray<BKDataSport *> *)selectFromDatabaseWhere:(NSString *)where{
-    NSMutableArray<BKDataSport *> *results = [NSMutableArray array];
-    databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        NSString *where = [NSString stringWithFormat:@"user_id = '%@' and device_id = '%@' and %@", bk_user_id(), bk_device_id(), where];
-        [db ax_select:@"*" from:self.tableName where:where orderBy:@"lastmodified" result:^(NSMutableArray * _Nonnull result, FMResultSet * _Nonnull set) {
-            while (set.next) {
-                BKDataSport *model = [self modelWithSet:set];
-                [results addObject:model];
-            }
-        }];
-    });
-    return results;
++ (NSArray<BKBaseTable *> *)selectFromDatabaseWithDate:(NSDate *)date{
+    return [self selectFromDatabaseWhere:[NSString stringWithFormat:@"date = %08d", date.intValue]];
 }
 
-+ (NSArray<BKDataSport *> *)selectFromDatabaseWithDate:(NSDate *)date{
-    return [self selectFromDatabaseWhere:[NSString stringWithFormat:@"date = %08d", date.dateInteger]];
-}
-+ (NSArray<BKDataSport *> *)selectFromDatabaseWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate{
++ (NSArray<BKBaseTable *> *)selectFromDatabaseWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate{
     return [self selectFromDatabaseWhere:[NSString stringWithFormat:@"start > '%@' and start < '%@'", bk_date_string(startDate), bk_date_string(endDate)]];
 }
 

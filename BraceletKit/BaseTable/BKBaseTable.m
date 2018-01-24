@@ -7,7 +7,7 @@
 //
 
 #import "BKBaseTable.h"
-#import "_BKDatabaseHelper.h"
+#import "_BKHeader.h"
 
 
 @interface BKBaseTable() <BKDatabase>
@@ -76,10 +76,17 @@
     });
 }
 
-+ (instancetype)selectFromDatabaseWithDate:(NSDate *)date{
-    NSAssert(NO, @"子类必须重写此方法");
-    return nil;
++ (NSArray<BKBaseTable *> *)selectFromDatabaseWhere:(NSString *)where{
+    NSMutableArray *results = [NSMutableArray array];
+    databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        NSString *whereStr = [NSString stringWithFormat:@"user_id = '%@' and device_id = '%@' and %@", bk_user_id(), bk_device_id(), where];
+        [db ax_select:@"*" from:self.tableName where:whereStr orderBy:@"lastmodified" result:^(NSMutableArray * _Nonnull result, FMResultSet * _Nonnull set) {
+            while (set.next) {
+                [results addObject:[self modelWithSet:set]];
+            }
+        }];
+    });
+    return results;
 }
-
 
 @end

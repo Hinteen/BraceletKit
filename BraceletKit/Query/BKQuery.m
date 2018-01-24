@@ -7,8 +7,19 @@
 //
 
 #import "BKQuery.h"
-#import "_BKHeader.h"
 
 @implementation BKQuery
+
+
++ (nullable NSArray<__kindof BKQuery *> *)queryDaySummaryWithDate:(NSDate *)date{
+    NSAssert(NO, @"子类必须重写此方法");
+    return nil;
+}
+
+
++ (nullable NSArray<__kindof BKQuery *> *)queryDaySummaryWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate{
+    NSAssert(NO, @"子类必须重写此方法");
+    return nil;
+}
 
 @end

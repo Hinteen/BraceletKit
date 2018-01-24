@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class FMResultSet;
+@class FMResultSet, BKBaseTable;
 
 @protocol BKDatabase <NSObject>
 
@@ -56,6 +56,7 @@
 - (BOOL)cacheable;
 
 
+
 @optional
 
 /**
@@ -73,6 +74,23 @@
 - (instancetype)restoreFromDatabase;
 
 
+/**
+ 取出当天的所有原始数据
+
+ @param date 天（日期只需要精确到天）
+ @return 满足条件的所有原始数据
+ */
++ (NSArray<__kindof BKBaseTable *> *)selectFromDatabaseWithDate:(NSDate *)date;
+
+
+/**
+ 取出从某个时刻到某个时刻的所有原始数据
+
+ @param startDate 开始时间
+ @param endDate 截止时间
+ @return 满足条件的所有原始数据
+ */
++ (NSArray<__kindof BKBaseTable *> *)selectFromDatabaseWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate;
 
 @end
 
@@ -92,6 +110,14 @@
  */
 - (BOOL)saveToDatabase;
 
+
+/**
+ 从数据库中取出数据
+ 
+ @param where where语句
+ @return 满足条件的所有原始数据
+ */
++ (NSArray<__kindof BKBaseTable *> *)selectFromDatabaseWhere:(NSString *)where;
 
 
 @end

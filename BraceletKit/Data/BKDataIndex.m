@@ -73,7 +73,7 @@
 
 - (NSString *)valueString{
     NSMutableString *value = [NSMutableString string];
-    [value appendIntegerValue:bk_today().dateInteger comma:YES];
+    [value appendIntegerValue:bk_today().integerValue comma:YES];
     [value appendVarcharValue:bk_user_id() comma:YES];
     [value appendVarcharValue:bk_device_id() comma:YES];
     [value appendVarcharValue:bk_device_name() comma:YES];

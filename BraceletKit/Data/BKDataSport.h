@@ -54,7 +54,5 @@
 
 + (instancetype)modelWithDict:(NSDictionary *)dict;
 
-+ (NSArray<BKDataSport *> *)selectFromDatabaseWithDate:(NSDate *)date;
-+ (NSArray<BKDataSport *> *)selectFromDatabaseWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate;
 
 @end

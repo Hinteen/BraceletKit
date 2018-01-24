@@ -52,6 +52,6 @@
 + (instancetype)modelWithDict:(NSDictionary *)dict;
 
 
-+ (instancetype)selectFromDatabaseWithDate:(NSDate *)date;
+//+ (NSArray<BKDataDay *> *)selectFromDatabaseWithDate:(NSDate *)date;
 
 @end
