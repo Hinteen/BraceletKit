@@ -26,8 +26,6 @@
 		CD2E793B1FA0C54200012CDB /* BraceletKit.h in Headers */ = {isa = PBXBuildFile; fileRef = CD2E79391FA0C54200012CDB /* BraceletKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD2E793E1FA0C54200012CDB /* BraceletKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2E79371FA0C54100012CDB /* BraceletKit.framework */; };
 		CD2E793F1FA0C54200012CDB /* BraceletKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD2E79371FA0C54100012CDB /* BraceletKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CD2E794B1FA0C89F00012CDB /* BraceletManager.h in Headers */ = {isa = PBXBuildFile; fileRef = CD2E79491FA0C89F00012CDB /* BraceletManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CD2E794C1FA0C89F00012CDB /* BraceletManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2E794A1FA0C89F00012CDB /* BraceletManager.m */; };
 		CD37F4532014CCC4009B213B /* BKDayData.h in Headers */ = {isa = PBXBuildFile; fileRef = CD37F4512014CCC3009B213B /* BKDayData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD37F4542014CCC4009B213B /* BKDayData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD37F4522014CCC4009B213B /* BKDayData.m */; };
 		CD37F4572014D7BC009B213B /* BKSportData.h in Headers */ = {isa = PBXBuildFile; fileRef = CD37F4552014D7BC009B213B /* BKSportData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -161,8 +159,6 @@
 		CD2E79391FA0C54200012CDB /* BraceletKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BraceletKit.h; sourceTree = "<group>"; };
 		CD2E793A1FA0C54200012CDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD2E79441FA0C55800012CDB /* BraceletKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BraceletKit.bundle; sourceTree = "<group>"; };
-		CD2E79491FA0C89F00012CDB /* BraceletManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BraceletManager.h; sourceTree = "<group>"; };
-		CD2E794A1FA0C89F00012CDB /* BraceletManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BraceletManager.m; sourceTree = "<group>"; };
 		CD37F4512014CCC3009B213B /* BKDayData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDayData.h; sourceTree = "<group>"; };
 		CD37F4522014CCC4009B213B /* BKDayData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDayData.m; sourceTree = "<group>"; };
 		CD37F4552014D7BC009B213B /* BKSportData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSportData.h; sourceTree = "<group>"; };
@@ -362,14 +358,11 @@
 				CDC2EB902017312A00C9F77E /* BKConnector.h */,
 				CDC2EB912017312A00C9F77E /* BKConnector.m */,
 				CDC2EBAC2017556A00C9F77E /* Query */,
-				CDC2EB8B2016453800C9F77E /* BaseTable */,
 				CDC2EB892016452500C9F77E /* User */,
 				CDC2EB8A2016452D00C9F77E /* Device */,
 				CD30B49E201CCB2D00EB8C1B /* Preference */,
 				CDC2EB872016428600C9F77E /* Data */,
 				CDC2EB88201642B700C9F77E /* Priv */,
-				CD2E79491FA0C89F00012CDB /* BraceletManager.h */,
-				CD2E794A1FA0C89F00012CDB /* BraceletManager.m */,
 				CD2E79441FA0C55800012CDB /* BraceletKit.bundle */,
 				CD2E793A1FA0C54200012CDB /* Info.plist */,
 			);
@@ -655,6 +648,8 @@
 		CDC2EB872016428600C9F77E /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				CDA0040B201491DF00E572A7 /* BKData.h */,
+				CDA0040C201491DF00E572A7 /* BKData.m */,
 				CDA0040F2014A99A00E572A7 /* BKDataIndex.h */,
 				CDA004102014A99A00E572A7 /* BKDataIndex.m */,
 				CD37F4512014CCC3009B213B /* BKDayData.h */,
@@ -704,15 +699,6 @@
 			path = Device;
 			sourceTree = "<group>";
 		};
-		CDC2EB8B2016453800C9F77E /* BaseTable */ = {
-			isa = PBXGroup;
-			children = (
-				CDA0040B201491DF00E572A7 /* BKData.h */,
-				CDA0040C201491DF00E572A7 /* BKData.m */,
-			);
-			path = BaseTable;
-			sourceTree = "<group>";
-		};
 		CDC2EBAC2017556A00C9F77E /* Query */ = {
 			isa = PBXGroup;
 			children = (
@@ -752,7 +738,6 @@
 				CDA0040D201491DF00E572A7 /* BKData.h in Headers */,
 				CD37F45B2014E1BF009B213B /* BKHeartRateData.h in Headers */,
 				CDE04B41201C90DA00A29F31 /* BKDefines.h in Headers */,
-				CD2E794B1FA0C89F00012CDB /* BraceletManager.h in Headers */,
 				CDC2EB8520163E4300C9F77E /* BKPreferences.h in Headers */,
 				CD25EA2720133083009BEFC1 /* _BKLogHelper.h in Headers */,
 				CDB94C6620133A0400CB588C /* _BKModelHelper.h in Headers */,
@@ -1024,7 +1009,6 @@
 				CDC2EB932017312A00C9F77E /* BKConnector.m in Sources */,
 				CDB94C6720133A0400CB588C /* _BKModelHelper.m in Sources */,
 				CD25EA1820132FD4009BEFC1 /* _BKHeader.m in Sources */,
-				CD2E794C1FA0C89F00012CDB /* BraceletManager.m in Sources */,
 				CD37F4582014D7BC009B213B /* BKSportData.m in Sources */,
 				CDC2EB8F20172A1300C9F77E /* BKScanner.m in Sources */,
 				CDC2EBAB2017553800C9F77E /* BKSleepQuery.m in Sources */,

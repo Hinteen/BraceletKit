@@ -88,9 +88,9 @@ inline void databaseDeferredTransaction(void (^block)(FMDatabase *db, BOOL *roll
     if (result) {
         NSString *whereString = [NSString stringWithFormat:@"SELECT %@ FROM %@", select, from];
         if (where) {
-            NSString *callback = where();
-            if (callback.length) {
-                whereString = [whereString stringByAppendingFormat:@" WHERE %@", where];
+            NSString *whereCallback = where();
+            if (whereCallback.length) {
+                whereString = [whereString stringByAppendingFormat:@" WHERE %@", whereCallback];
             }
             if (orderBy.length) {
                 whereString = [whereString stringByAppendingFormat:@" ORDER BY %@", orderBy];

@@ -7,12 +7,13 @@
 //
 
 #import "BKData.h"
-
+#import "BKDefines.h"
 
 @class CBPeripheral, ZeronerBlePeripheral, BKPreferences;
-
+NS_ASSUME_NONNULL_BEGIN
 @protocol BKDeviceDelegate <NSObject>
 
+@optional
 /**
  更新了设备信息
  */
@@ -21,9 +22,9 @@
 /**
  更新了电池信息
 
- @param batteryPercent 电池百分比
+ @param battery 电池电量
  */
-- (void)deviceDidUpdateBatteryPercent:(CGFloat)batteryPercent;
+- (void)deviceDidUpdateBattery:(NSInteger)battery;
 
 /**
  手环点击了拍照
@@ -61,9 +62,20 @@
  */
 @property (copy, nonatomic) NSString *version;
 /**
- battery percent
+ 电池电量（0~100）
  */
-@property (assign, nonatomic) CGFloat battery;
+@property (assign, nonatomic) NSInteger battery;
+
+/**
+ 支持的语言
+ */
+@property (strong, nonatomic) NSMutableArray<NSNumber *> *languages;
+
+/**
+ 支持的功能
+ */
+@property (strong, nonatomic) NSMutableArray<NSNumber *> *functions;
+
 /**
  peripheral
  */
@@ -90,13 +102,40 @@
 
 + (instancetype)currentDevice;
 
+#pragma mark - db
+
 + (instancetype)lastConnectedDevice;
 
 - (NSString *)restoreMac;
 
 
+#pragma mark - function
+
+
+/**
+ 立即同步时间
+ 
+ @param completion 操作成功
+ @param error 操作失败及其原因
+ */
+- (void)syncTimeAtOnceCompletion:(void(^)(void))completion error:(void (^)(NSError *error))error;
+/**
+ 进入或退出拍照模式
+
+ @param cameraMode 进入或退出
+ @param completion 操作成功
+ @param error 操作失败及其原因
+ */
+- (void)cameraMode:(BOOL)cameraMode completion:(void(^)(void))completion error:(void (^)(NSError *error))error;
+
+/**
+ 向手环推送消息（不要超过手环一屏内容，否则显示不全）
+
+ @param message 消息内容
+ @param completion 操作成功
+ @param error 操作失败及其原因
+ */
+- (void)pushMessage:(NSString *)message completion:(void(^)(void))completion error:(void (^)(NSError *error))error;
 
 @end
-
-
-
+NS_ASSUME_NONNULL_END

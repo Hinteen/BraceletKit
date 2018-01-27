@@ -30,7 +30,7 @@
 
 - (instancetype)init{
     if (self = [super init]) {
-        _name = @"unknown";
+        _name = @"";
         _avatar = @"";
         _birthday = [NSDate dateWithTimeIntervalSince1970:0];
         _height = 170;
@@ -56,6 +56,9 @@
         BKUser *user = [BKUser defaultUser];
         user.email = email;
         success = [user saveToDatabase];
+        if (success) {
+            cachedUser = user;
+        }
         [NSUserDefaults ax_setString:password forKey:@"login".extension(email)];
     }
     if (success) {

@@ -77,18 +77,23 @@
 }
 
 
++ (NSString *)defaultWhereString{
+    return [NSString stringWithFormat:@"user_id = '%@' and device_id = '%@'", bk_user_id(), bk_device_id()];
+}
+
 
 + (void)select:(NSString *)select where:(NSString *(^)(void))where result:(void (^)(FMResultSet *))result{
     if (where) {
+        NSString *whereStr = [self defaultWhereString];
         NSString *callback = where();
         if (callback.length) {
-            NSString *whereStr = [NSString stringWithFormat:@"user_id = '%@' and device_id = '%@' and %@", bk_user_id(), bk_device_id(), callback];
-            databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-                [db ax_select:select from:self.tableName where:^NSString * _Nonnull{
-                    return whereStr;
-                } orderBy:@"lastmodified" result:result];
-            });
+            whereStr = [NSString stringWithFormat:@"%@ and %@", whereStr, callback];
         }
+        databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+            [db ax_select:select from:self.tableName where:^NSString * _Nonnull{
+                return whereStr;
+            } orderBy:@"lastmodified" result:result];
+        });
     }
 }
 

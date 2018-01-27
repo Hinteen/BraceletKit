@@ -74,6 +74,19 @@
 - (void)unRegisterConnectDelegate:(NSObject<BKConnectDelegate> *)delegate;
 
 
+/**
+ 注册设备代理
+
+ @param delegate 代理
+ */
+- (void)registerDeviceDelegate:(NSObject<BKDeviceDelegate> *)delegate;
+
+/**
+ 取消注册设备代理
+
+ @param delegate 代理
+ */
+- (void)unRegisterDeviceDelegate:(NSObject<BKDeviceDelegate> *)delegate;
 
 
 @end

@@ -8,7 +8,6 @@
 
 #import "BKDevice.h"
 #import "_BKHeader.h"
-#import <AVFoundation/AVFoundation.h>
 #import "BKServices.h"
 
 #import "BKUser.h"
@@ -22,6 +21,18 @@
 #import "BKSleepData.h"
 #import "BKSportList.h"
 
+
+static inline void bk_ble_option(void (^option)(void), void(^completion)(void), void (^error)(NSError * __nullable)){
+    if (option) {
+        option();
+    }
+    if (completion) {
+        completion();
+    }
+    if (error) {
+        error(nil);
+    }
+}
 
 @interface BKDevice() <BLELib3Delegate>
 
@@ -41,6 +52,242 @@
 + (instancetype)currentDevice{
     return [BKServices sharedInstance].connector.device;
 }
+
+- (instancetype)init{
+    if (self = [super init]) {
+        _languages = [NSMutableArray array];
+        _functions = [NSMutableArray array];
+    }
+    return self;
+}
+
+#pragma mark - db delegate
+
++ (NSString *)tableName{
+    return @"devices";
+}
++ (NSString *)tableColumns{
+    static NSString *columnName;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSMutableString *column = [NSMutableString string];
+        [column appendVarcharColumn:@"device_id" comma:YES];
+        [column appendVarcharColumn:@"mac" comma:YES];
+        [column appendVarcharColumn:@"uuid" comma:YES];
+        [column appendVarcharColumn:@"name" comma:YES];
+        [column appendVarcharColumn:@"model" comma:YES];
+        [column appendVarcharColumn:@"version" comma:YES];
+        [column appendIntegerColumn:@"battery" comma:YES];
+        [column appendVarcharColumn:@"languages" comma:YES];
+        [column appendVarcharColumn:@"functions" comma:YES];
+        
+        [column appendVarcharColumn:@"lastmodified" comma:NO];
+        columnName = column;
+    });
+    return columnName;
+}
++ (NSString *)tablePrimaryKey{
+    return @"device_id, uuid, model, version";
+}
+
++ (instancetype)modelWithSet:(FMResultSet *)set{
+    int i = 0;
+    BKDevice *model = [[BKDevice alloc] init];
+    i++;// device_id
+    model.mac = [set stringForColumnIndex:i++];
+    model.uuid = [set stringForColumnIndex:i++];
+    model.name = [set stringForColumnIndex:i++];
+    model.model = [set stringForColumnIndex:i++];
+    model.version = [set stringForColumnIndex:i++];
+    model.battery = [set intForColumnIndex:i++];
+//    NSData *data = [set dataForColumnIndex:i++];
+//    model.languages = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+//    data = [set dataForColumnIndex:i++];
+//    model.functions = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+
+    NSString *tmp = [set stringForColumnIndex:i++];
+    NSArray<NSString *> *tmpArr = [tmp componentsSeparatedByString:@","];
+    [tmpArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.length) {
+            [model.languages addObject:@(obj.integerValue)];
+        }
+    }];
+    tmp = [set stringForColumnIndex:i++];
+    tmpArr = [tmp componentsSeparatedByString:@","];
+    [tmpArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.length) {
+            [model.functions addObject:@(obj.integerValue)];
+        }
+    }];
+    return model;
+}
+
+- (NSString *)valueString{
+    NSMutableString *value = [NSMutableString string];
+    [value appendVarcharValue:bk_device_id() comma:YES]; // device_id = mac
+    [value appendVarcharValue:self.mac comma:YES];
+    [value appendVarcharValue:self.uuid comma:YES];
+    [value appendVarcharValue:self.name comma:YES];
+    [value appendVarcharValue:self.model comma:YES];
+    [value appendVarcharValue:self.version comma:YES];
+    [value appendIntegerValue:self.battery comma:YES];
+    
+    NSMutableString *languages = [NSMutableString string];
+    [self.languages enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [languages appendFormat:@"%ld,", obj.integerValue];
+    }];
+    NSString *str = @"";
+    if (languages.length) {
+        str = [languages substringToIndex:languages.length-1];
+    }
+    [value appendVarcharValue:str comma:YES];
+    NSMutableString *functions = [NSMutableString string];
+    [self.functions enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [functions appendFormat:@"%ld,", obj.integerValue];
+    }];
+    str = @"";
+    if (functions.length) {
+        str = [functions substringToIndex:functions.length-1];
+    }
+    [value appendVarcharValue:str comma:YES];
+    
+    [value appendVarcharValue:bk_date_string(bk_today()) comma:NO];
+    return value;
+}
+
+- (BOOL)cacheable{
+    return bk_user_id().length && self.mac.length && ![self.mac isEqualToString:@"advertisementData.length is less than 6"];
+}
+
+- (NSString *)whereExists{
+    return [NSString stringWithFormat:@"device = '%@'", self.mac];
+}
+
++ (instancetype)lastConnectedDevice{
+    __block BKDevice *cachedDevice;
+    databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        [db ax_select:@"*" from:self.tableName where:^NSString * _Nonnull{
+            return @"";
+        } orderBy:@"lastmodified DESC LIMIT 1" result:^(FMResultSet * _Nonnull set) {
+            cachedDevice = [self modelWithSet:set];
+        }];
+    });
+    return cachedDevice;
+}
+
+- (NSString *)restoreMac{
+    __block NSString *mac;
+    databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        [db ax_select:@"mac" from:self.class.tableName where:^NSString * _Nonnull{
+            return [NSString stringWithFormat:@"uuid = '%@'", self.uuid];
+        } orderBy:@"lastmodified DESC LIMIT 1" result:^(FMResultSet * _Nonnull set) {
+            mac = [set stringForColumnIndex:0];
+        }];
+        if (!mac.length) { // 如果根据UUID找不到，可尝试根据设备name恢复
+            [db ax_select:@"mac" from:self.class.tableName where:^NSString * _Nonnull{
+                return [NSString stringWithFormat:@"name = '%@'", self.name];
+            } orderBy:@"lastmodified DESC LIMIT 1" result:^(FMResultSet * _Nonnull set) {
+                mac = [set stringForColumnIndex:0];
+            }];
+        }
+        if (!mac.length) { // 如果根据name找不到，可尝试根据设备model恢复
+            [db ax_select:@"mac" from:self.class.tableName where:^NSString * _Nonnull{
+                return [NSString stringWithFormat:@"model = '%@'", self.model];
+            } orderBy:@"lastmodified DESC LIMIT 1" result:^(FMResultSet * _Nonnull set) {
+                mac = [set stringForColumnIndex:0];
+            }];
+        }
+    });
+    return mac;
+}
+
+
++ (NSString *)defaultWhereString{
+    return [NSString stringWithFormat:@"device_id = '%@'",bk_device_id()];
+}
+
+#pragma mark - priv
+
+/**
+ 第一次连接设备的时候进行初始化
+ */
+- (void)initializeDeviceWhenFirstConnected{
+    BKDevice *cachedDevice = [self.class selectWhere:[NSString stringWithFormat:@"model = '%@' and version = '%@'", self.model, self.version]].lastObject;
+    if (!cachedDevice) {
+        // 获取支持的语言列表
+        [self.languages addObject:@(BKLanguageSimpleMarkings)]; // icon
+        [self.languages addObject:@(BKLanguageDefault)]; // English
+        [self.languages addObject:@(BKLanguageSimpleChinese)];
+        // 获取支持的功能列表
+        if ([BLELib3 shareInstance].hasLanguageSelectFunction) {
+            [self.functions addObject:@(BKDeviceFunctionLanguageSelection)];
+        }
+        if ([BLELib3 shareInstance].hasBackgroundLightFunction) {
+            [self.functions addObject:@(BKDeviceFunctionBackgroundLight)];
+        }
+        if ([BLELib3 shareInstance].hasLedLightFunction) {
+            [self.functions addObject:@(BKDeviceFunctionLedLight)];
+        }
+        if ([BLELib3 shareInstance].hasWristBlightFunction) {
+            [self.functions addObject:@(BKDeviceFunctionWristBlight)];
+        }
+        if ([BLELib3 shareInstance].hasScheduleFunction) {
+            [self.functions addObject:@(BKDeviceFunctionSchedule)];
+        }
+        if ([BLELib3 shareInstance].hasMotorControlFunction) {
+            [self.functions addObject:@(BKDeviceFunctionMotorControl)];
+        }
+        if ([BLELib3 shareInstance].hasWeatherFunction) {
+            [self.functions addObject:@(BKDeviceFunctionWeather)];
+        }
+        if ([BLELib3 shareInstance].hasHeartFunction) {
+            [self.functions addObject:@(BKDeviceFunctionHeartRate)];
+        }
+        if ([BLELib3 shareInstance].hasAutoHeartRateFunction) {
+            [self.functions addObject:@(BKDeviceFunctionAutoHeartRate)];
+        }
+        if ([BLELib3 shareInstance].hasExerciseHRWarningFunction) {
+            [self.functions addObject:@(BKDeviceFunctionExerciseHRWarning)];
+        }
+        AXCachedLogOBJ(self);
+    } else {
+        // 恢复
+        self.languages = cachedDevice.languages;
+        self.functions = cachedDevice.functions;
+    }
+}
+
+#pragma mark - function
+
+- (void)syncTimeAtOnceCompletion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
+    bk_ble_option(^{
+        [[BLELib3 shareInstance] syscTimeAtOnce];
+    }, completion, error);
+}
+
+/**
+ 进入或退出拍照模式
+ 
+ @param cameraMode 进入或退出
+ @param completion 操作成功
+ @param error 操作失败
+ */
+- (void)cameraMode:(BOOL)cameraMode completion:(void(^)(void))completion error:(void (^)(NSError * _Nonnull))error{
+    bk_ble_option(^{
+        [[BLELib3 shareInstance] setKeyNotify:cameraMode];
+    }, completion, error);
+}
+
+- (void)pushMessage:(NSString *)message completion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
+    bk_ble_option(^{
+        [[BLELib3 shareInstance] pushStr:message];
+    }, completion, error);
+}
+
+
+
+
+
 
 
 
@@ -115,7 +362,6 @@
     if ([self.delegate respondsToSelector:@selector(deviceDidTappedFindMyPhone)]) {
         [self.delegate deviceDidTappedFindMyPhone];
     }
-    AudioServicesPlayAlertSound(1008);
 }
 
 #pragma mark - ble delegate -> device Info
@@ -128,17 +374,19 @@
     if ([self.delegate respondsToSelector:@selector(deviceDidUpdateInfo)]) {
         [self.delegate deviceDidUpdateInfo];
     }
-    [self saveToDatabase];
     AXCachedLogOBJ(deviceInfo);
+    // 如果是第一次连接
+    [self initializeDeviceWhenFirstConnected];
+    [self saveToDatabase];
     // 获取设置信息
     [[BLELib3 shareInstance] readFirmwareOption];
 }
 
 - (void)updateBattery:(ZeronerDeviceInfo *)deviceInfo{
     _deviceInfo = deviceInfo;
-    _battery = AXMakeNumberInRange(@(deviceInfo.batLevel), @0, @100).doubleValue / 100.0f;
-    if ([self.delegate respondsToSelector:@selector(deviceDidUpdateBatteryPercent:)]) {
-        [self.delegate deviceDidUpdateBatteryPercent:self.battery];
+    _battery = AXMakeNumberInRange(@(deviceInfo.batLevel), @0, @100).integerValue;
+    if ([self.delegate respondsToSelector:@selector(deviceDidUpdateBattery:)]) {
+        [self.delegate deviceDidUpdateBattery:self.battery];
     }
     [self saveToDatabase];
     AXCachedLogOBJ(deviceInfo);
@@ -406,106 +654,6 @@
 }
 
 
-
-
-#pragma mark - db delegate
-
-
-+ (NSString *)tableName{
-    return @"devices";
-}
-+ (NSString *)tableColumns{
-    static NSString *columnName;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSMutableString *column = [NSMutableString string];
-        [column appendVarcharColumn:@"device_id" comma:YES];
-        [column appendVarcharColumn:@"mac" comma:YES];
-        [column appendVarcharColumn:@"uuid" comma:YES];
-        [column appendVarcharColumn:@"name" comma:YES];
-        [column appendVarcharColumn:@"model" comma:YES];
-        [column appendVarcharColumn:@"version" comma:YES];
-        
-        [column appendVarcharColumn:@"lastmodified" comma:NO];
-        columnName = column;
-    });
-    return columnName;
-}
-+ (NSString *)tablePrimaryKey{
-    return @"device_id, uuid";
-}
-
-+ (instancetype)modelWithSet:(FMResultSet *)set{
-    int i = 0;
-    BKDevice *model = [[BKDevice alloc] init];
-    i++;// device_id
-    model.mac = [set stringForColumnIndex:i++];
-    model.uuid = [set stringForColumnIndex:i++];
-    model.name = [set stringForColumnIndex:i++];
-    model.model = [set stringForColumnIndex:i++];
-    model.version = [set stringForColumnIndex:i++];
-    
-    return model;
-}
-
-- (NSString *)valueString{
-    NSMutableString *value = [NSMutableString string];
-    [value appendVarcharValue:bk_device_id() comma:YES]; // device_id = mac
-    [value appendVarcharValue:self.mac comma:YES];
-    [value appendVarcharValue:self.uuid comma:YES];
-    [value appendVarcharValue:self.name comma:YES];
-    [value appendVarcharValue:self.model comma:YES];
-    [value appendVarcharValue:self.version comma:YES];
-    
-    [value appendVarcharValue:bk_date_string(bk_today()) comma:NO];
-    return value;
-}
-
-- (BOOL)cacheable{
-    return bk_user_id().length && self.mac.length && ![self.mac isEqualToString:@"advertisementData.length is less than 6"];
-}
-
-- (NSString *)whereExists{
-    return [NSString stringWithFormat:@"device = '%@'", self.mac];
-}
-
-+ (instancetype)lastConnectedDevice{
-    __block BKDevice *cachedDevice;
-    databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        [db ax_select:@"*" from:self.tableName where:^NSString * _Nonnull{
-            return @"";
-        } orderBy:@"lastmodified DESC LIMIT 1" result:^(FMResultSet * _Nonnull set) {
-            cachedDevice = [self modelWithSet:set];
-        }];
-    });
-    return cachedDevice;
-}
-
-- (NSString *)restoreMac{
-    __block NSString *mac;
-    databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        [db ax_select:@"mac" from:self.class.tableName where:^NSString * _Nonnull{
-            return [NSString stringWithFormat:@"uuid = '%@'", self.uuid];
-        } orderBy:@"lastmodified DESC LIMIT 1" result:^(FMResultSet * _Nonnull set) {
-            mac = [set stringForColumnIndex:0];
-        }];
-        if (!mac.length) { // 如果根据UUID找不到，可尝试根据设备name恢复
-            [db ax_select:@"mac" from:self.class.tableName where:^NSString * _Nonnull{
-                return [NSString stringWithFormat:@"name = '%@'", self.name];
-            } orderBy:@"lastmodified DESC LIMIT 1" result:^(FMResultSet * _Nonnull set) {
-                mac = [set stringForColumnIndex:0];
-            }];
-        }
-        if (!mac.length) { // 如果根据name找不到，可尝试根据设备model恢复
-            [db ax_select:@"mac" from:self.class.tableName where:^NSString * _Nonnull{
-                return [NSString stringWithFormat:@"model = '%@'", self.model];
-            } orderBy:@"lastmodified DESC LIMIT 1" result:^(FMResultSet * _Nonnull set) {
-                mac = [set stringForColumnIndex:0];
-            }];
-        }
-    });
-    return mac;
-}
 
 
 

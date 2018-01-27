@@ -11,12 +11,14 @@
 #import <AXKit/AXKit.h>
 #import <AXCameraKit/AXCameraKit.h>
 #import "DeviceSettingTV.h"
+#import <AVFoundation/AVFoundation.h>
+
 
 static inline CGSize contentSize(){
     return CGSizeMake(kScreenW, kScreenH - kTopBarHeight - kTabBarHeight);
 }
 
-@interface HomeVC () <BraceletManager>
+@interface HomeVC () <BKDeviceDelegate>
 
 
 @end
@@ -30,12 +32,15 @@ static inline CGSize contentSize(){
     self.view.width = kScreenW;
     self.view.height -= kTabBarHeight;
     
-    
-//    [[BraceletManager sharedInstance] registerDelegate:self];
+    [[BKServices sharedInstance] registerDeviceDelegate:self];
     
     __weak typeof(self) weakSelf = self;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem ax_itemWithImageName:@"band" action:^(UIBarButtonItem * _Nonnull sender) {
         [weakSelf.navigationController ax_pushViewControllerNamed:@"ScanViewController"];
+    }];
+    
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem ax_itemWithTitle:@"setting" action:^(UIBarButtonItem * _Nonnull sender) {
+        [UIApplication ax_openAppSetting];
     }];
     
 }
@@ -49,7 +54,7 @@ static inline CGSize contentSize(){
 }
 
 - (void)dealloc{
-//    [[BraceletManager sharedInstance] unRegisterDelegate:self];
+    [[BKServices sharedInstance] unRegisterDeviceDelegate:self];
 }
 
 
@@ -58,12 +63,28 @@ static inline CGSize contentSize(){
 }
 
 
-- (void)braceletDidUpdateDeviceInfo:(ZeronerDeviceInfo *)deviceInfo{
+/**
+ 更新了设备信息
+ */
+- (void)deviceDidUpdateInfo{
     [self.tableView reloadDataSourceAndRefreshTableView];
 }
 
-- (void)braceletDidUpdateDeviceBattery:(ZeronerDeviceInfo *)deviceInfo{
+/**
+ 更新了电池信息
+ 
+ @param battery 电池电量
+ */
+- (void)deviceDidUpdateBattery:(NSInteger)battery{
     [self.tableView reloadDataSourceAndRefreshTableView];
+}
+
+
+/**
+ 手环点击了查找手机
+ */
+- (void)deviceDidTappedFindMyPhone{
+    AudioServicesPlayAlertSound(1008);
 }
 
 

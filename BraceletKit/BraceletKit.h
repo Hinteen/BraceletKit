@@ -8,6 +8,7 @@
 
 // 服务
 #import "BKServices.h"
+#import <CoreBluetooth/CoreBluetooth.h>
 // 模块
 #import "BKScanner.h"
 #import "BKConnector.h"
@@ -16,10 +17,8 @@
 // 模型
 #import "BKUser.h"
 #import "BKDevice.h"
+#import "BKPreferences.h"
 
-
-// #warning 待删
-#import "BraceletManager.h"
 
 //! Project version number for BraceletKit.
 FOUNDATION_EXPORT double BraceletKitVersionNumber;

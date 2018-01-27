@@ -22,6 +22,9 @@
 @interface BKDevice() <BLELib3Delegate>
 
 @end
+@interface BKServices() <BKDeviceDelegate>
+
+@end
 
 @implementation BKConnector
 
@@ -75,6 +78,7 @@
     AXCachedLogOBJ(device);
     self.peripheral = device.cbDevice;
     _device = device.transformToBKDevice;
+    self.device.delegate = [BKServices sharedInstance];
     [BLELib3 shareInstance].delegate = self.device;
     [self.central connectPeripheral:self.peripheral options:nil];
     if ([self.delegate respondsToSelector:@selector(connectorDidConnectedDevice:)]) {
@@ -102,6 +106,7 @@
     AXCachedLogOBJ(device);
     AXCachedLogError(error);
     _device = nil;
+    self.device.delegate = nil;
     if (self.peripheral) {
         [self.central cancelPeripheralConnection:self.peripheral];
     }
@@ -118,6 +123,7 @@
 - (void)IWBLEDidFailToConnectDevice:(ZeronerBlePeripheral *)device andError:(NSError *)error{
     AXCachedLogOBJ(device);
     AXCachedLogError(error);
+    self.device.delegate = nil;
     if ([self.delegate respondsToSelector:@selector(connectorDidFailToConnectDevice:)]) {
         [self.delegate connectorDidFailToConnectDevice:device.transformToBKDevice];
     }
@@ -128,6 +134,7 @@
  */
 - (void)IWBLEConnectTimeOut{
     AXCachedLogError(@"连接超时");
+    self.device.delegate = nil;
     if ([self.delegate respondsToSelector:@selector(connectorDidConnectTimeout)]) {
         [self.delegate connectorDidConnectTimeout];
     }

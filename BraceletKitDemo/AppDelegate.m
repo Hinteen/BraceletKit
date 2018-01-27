@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <BraceletKit/BraceletKit.h>
+#import <BLE3Framework/BLE3Framework.h>
 #import <AXKit/AXKit.h>
 #import "ServicesLayer.h"
 #import "RootViewController.h"

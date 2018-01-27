@@ -8,7 +8,7 @@
 
 #import "CameraViewController.h"
 
-@interface CameraViewController () <BraceletManager>
+@interface CameraViewController () <BKDeviceDelegate>
 
 @end
 
@@ -26,19 +26,31 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [[BraceletManager sharedInstance] registerDelegate:self];
-    [BraceletManager sharedInstance].cameraMode = YES;
+    [[BKServices sharedInstance] registerDeviceDelegate:self];
+    [[BKDevice currentDevice] cameraMode:YES completion:^{
+        
+    } error:^(NSError *error) {
+        
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [[BraceletManager sharedInstance] unRegisterDelegate:self];
-    [BraceletManager sharedInstance].cameraMode = NO;
+    [[BKServices sharedInstance] unRegisterDeviceDelegate:self];
+    [[BKDevice currentDevice] cameraMode:NO completion:^{
+        
+    } error:^(NSError *error) {
+        
+    }];
 }
 
-- (void)braceletDidTakePicture{
+/**
+ 手环点击了拍照
+ */
+- (void)deviceDidTappedTakePicture{
     [self takePicture];
 }
+
 
 
 @end

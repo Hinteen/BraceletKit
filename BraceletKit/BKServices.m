@@ -10,11 +10,13 @@
 
 static BKServices *bkServices = nil;
 
-@interface BKServices() <BKScanDelegate, BKConnectDelegate>
+@interface BKServices() <BKScanDelegate, BKConnectDelegate, BKDeviceDelegate>
 
 @property (strong, nonatomic) NSMutableArray<NSObject<BKScanDelegate> *> *scanDelegates;
 
 @property (strong, nonatomic) NSMutableArray<NSObject<BKConnectDelegate> *> *connectDelegates;
+
+@property (strong, nonatomic) NSMutableArray<NSObject<BKDeviceDelegate> *> *deviceDelegates;
 
 @end
 
@@ -46,9 +48,11 @@ static BKServices *bkServices = nil;
     }
     self.scanDelegates = [NSMutableArray array];
     self.connectDelegates = [NSMutableArray array];
+    self.deviceDelegates = [NSMutableArray array];
     // @xaoxuu: delegate
     _scanner = [[BKScanner alloc] initWithDelegate:self];
     _connector = [[BKConnector alloc] initWithDelegate:self];
+    
     
     return self;
 }
@@ -89,6 +93,17 @@ static BKServices *bkServices = nil;
     }
 }
 
+- (void)registerDeviceDelegate:(NSObject<BKDeviceDelegate> *)delegate{
+    if (delegate && ![self.deviceDelegates containsObject:delegate]) {
+        [self.deviceDelegates addObject:delegate];
+    }
+}
+
+- (void)unRegisterDeviceDelegate:(NSObject<BKDeviceDelegate> *)delegate{
+    if (delegate && [self.deviceDelegates containsObject:delegate]) {
+        [self.deviceDelegates removeObject:delegate];
+    }
+}
 // @xaoxuu: 让所有的代理执行
 - (void)allScannerDelegates:(void (^)(NSObject<BKScanDelegate> *delegate))handler{
     [self.scanDelegates enumerateObjectsUsingBlock:^(NSObject<BKScanDelegate> *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -104,10 +119,16 @@ static BKServices *bkServices = nil;
         }
     }];
 }
+- (void)allDeviceDelegates:(void (^)(NSObject<BKDeviceDelegate> *delegate))handler{
+    [self.deviceDelegates enumerateObjectsUsingBlock:^(NSObject<BKDeviceDelegate> *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (handler) {
+            handler(obj);
+        }
+    }];
+}
 
 
-
-#pragma mark - 广播 scanner delegate
+#pragma mark - scan delegate
 
 - (void)scannerDidDiscoverDevice:(BKDevice *)device{
     [self allScannerDelegates:^(NSObject<BKScanDelegate> *delegate) {
@@ -131,7 +152,7 @@ static BKServices *bkServices = nil;
     }];
 }
 
-#pragma mark - 广播 connect delegate
+#pragma mark - connect delegate
 
 - (void)connectorDidConnectedDevice:(BKDevice *)device{
     [self allConnectDelegates:^(NSObject<BKConnectDelegate> *delegate) {
@@ -165,5 +186,39 @@ static BKServices *bkServices = nil;
     }];
 }
 
+
+#pragma mark - device delegate
+
+- (void)deviceDidUpdateInfo{
+    [self allDeviceDelegates:^(NSObject<BKDeviceDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(deviceDidUpdateInfo)]) {
+            [delegate deviceDidUpdateInfo];
+        }
+    }];
+}
+
+- (void)deviceDidUpdateBattery:(NSInteger)battery{
+    [self allDeviceDelegates:^(NSObject<BKDeviceDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(deviceDidUpdateBattery:)]) {
+            [delegate deviceDidUpdateBattery:battery];
+        }
+    }];
+}
+
+- (void)deviceDidTappedTakePicture{
+    [self allDeviceDelegates:^(NSObject<BKDeviceDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(deviceDidTappedTakePicture)]) {
+            [delegate deviceDidTappedTakePicture];
+        }
+    }];
+}
+
+- (void)deviceDidTappedFindMyPhone{
+    [self allDeviceDelegates:^(NSObject<BKDeviceDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(deviceDidTappedFindMyPhone)]) {
+            [delegate deviceDidTappedFindMyPhone];
+        }
+    }];
+}
 
 @end
