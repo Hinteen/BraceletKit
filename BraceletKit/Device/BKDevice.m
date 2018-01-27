@@ -472,10 +472,10 @@
 + (instancetype)lastConnectedDevice{
     __block BKDevice *cachedDevice;
     databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        [db ax_select:@"*" from:self.tableName where:@"" orderBy:@"lastmodified DESC LIMIT 1" result:^(NSMutableArray * _Nonnull result, FMResultSet * _Nonnull set) {
-            while (set.next) {
-                cachedDevice = [self modelWithSet:set];
-            }
+        [db ax_select:@"*" from:self.tableName where:^NSString * _Nonnull{
+            return @"";
+        } orderBy:@"lastmodified DESC LIMIT 1" result:^(FMResultSet * _Nonnull set) {
+            cachedDevice = [self modelWithSet:set];
         }];
     });
     return cachedDevice;
@@ -484,26 +484,23 @@
 - (NSString *)restoreMac{
     __block NSString *mac;
     databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        NSString *where = [NSString stringWithFormat:@"uuid = '%@'", self.uuid];
-        [db ax_select:@"mac" from:self.class.tableName where:where result:^(NSMutableArray * _Nonnull result, FMResultSet * _Nonnull set) {
-            while (set.next) {
-                mac = [set stringForColumnIndex:0];
-            }
+        [db ax_select:@"mac" from:self.class.tableName where:^NSString * _Nonnull{
+            return [NSString stringWithFormat:@"uuid = '%@'", self.uuid];
+        } orderBy:@"lastmodified DESC LIMIT 1" result:^(FMResultSet * _Nonnull set) {
+            mac = [set stringForColumnIndex:0];
         }];
         if (!mac.length) { // 如果根据UUID找不到，可尝试根据设备name恢复
-            NSString *where = [NSString stringWithFormat:@"name = '%@'", self.name];
-            [db ax_select:@"mac" from:self.class.tableName where:where result:^(NSMutableArray * _Nonnull result, FMResultSet * _Nonnull set) {
-                while (set.next) {
-                    mac = [set stringForColumnIndex:0];
-                }
+            [db ax_select:@"mac" from:self.class.tableName where:^NSString * _Nonnull{
+                return [NSString stringWithFormat:@"name = '%@'", self.name];
+            } orderBy:@"lastmodified DESC LIMIT 1" result:^(FMResultSet * _Nonnull set) {
+                mac = [set stringForColumnIndex:0];
             }];
         }
         if (!mac.length) { // 如果根据name找不到，可尝试根据设备model恢复
-            NSString *where = [NSString stringWithFormat:@"model = '%@'", self.model];
-            [db ax_select:@"mac" from:self.class.tableName where:where result:^(NSMutableArray * _Nonnull result, FMResultSet * _Nonnull set) {
-                while (set.next) {
-                    mac = [set stringForColumnIndex:0];
-                }
+            [db ax_select:@"mac" from:self.class.tableName where:^NSString * _Nonnull{
+                return [NSString stringWithFormat:@"model = '%@'", self.model];
+            } orderBy:@"lastmodified DESC LIMIT 1" result:^(FMResultSet * _Nonnull set) {
+                mac = [set stringForColumnIndex:0];
             }];
         }
     });

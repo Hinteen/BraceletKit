@@ -192,12 +192,11 @@
 + (NSArray<BKBaseTable *> *)selectFromDatabaseWhere:(NSString *)where{
     NSMutableArray<BKDataHR *> *results = [NSMutableArray array];
     databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        NSString *where = [NSString stringWithFormat:@"user_id = '%@' and device_id = '%@' and %@", bk_user_id(), bk_device_id(), where];
-        [db ax_select:@"*" from:self.tableName where:where orderBy:@"lastmodified" result:^(NSMutableArray * _Nonnull result, FMResultSet * _Nonnull set) {
-            while (set.next) {
-                BKDataHR *model = [self modelWithSet:set];
-                [results addObject:model];
-            }
+        [db ax_select:@"*" from:self.tableName where:^NSString * _Nonnull{
+            return [NSString stringWithFormat:@"user_id = '%@' and device_id = '%@' and %@", bk_user_id(), bk_device_id(), where];
+        } orderBy:@"lastmodified" result:^(FMResultSet * _Nonnull set) {
+            BKDataHR *model = [self modelWithSet:set];
+            [results addObject:model];
         }];
     });
     return results;

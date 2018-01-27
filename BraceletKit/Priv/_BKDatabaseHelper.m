@@ -78,53 +78,42 @@ inline void databaseDeferredTransaction(void (^block)(FMDatabase *db, BOOL *roll
 /**
  查询（from where orderby）
  
- @param select 查询的列（*代表全部）
+ @param select 查询的列（"*"或nil代表全部）
  @param from 从哪个表查询
  @param where 筛选条件
  @param orderBy 排序
  @param result 查询结果
- @return 查询结果
  */
-- (NSMutableArray *)ax_select:(NSString *)select from:(NSString *)from where:(nullable NSString *)where orderBy:(nullable NSString *)orderBy result:(void (^)(NSMutableArray *result, FMResultSet *set))result{
-    NSString *whereString = [NSString stringWithFormat:@"SELECT %@ FROM %@", select, from];
-    if (where.length) {
-        whereString = [whereString stringByAppendingFormat:@" WHERE %@", where];
-    }
-    if (orderBy.length) {
-        whereString = [whereString stringByAppendingFormat:@" ORDER BY %@", orderBy];
-    }
-    NSMutableArray *ret = [NSMutableArray array];
+- (void)ax_select:(NSString *)select from:(NSString *)from where:(NSString *(^)(void))where orderBy:(nullable NSString *)orderBy result:(void (^)(FMResultSet *set))result{
     if (result) {
-        FMResultSet *set = self.executeQuery(whereString);
-        result(ret, set);
+        NSString *whereString = [NSString stringWithFormat:@"SELECT %@ FROM %@", select, from];
+        if (where) {
+            NSString *callback = where();
+            if (callback.length) {
+                whereString = [whereString stringByAppendingFormat:@" WHERE %@", where];
+            }
+            if (orderBy.length) {
+                whereString = [whereString stringByAppendingFormat:@" ORDER BY %@", orderBy];
+            }
+            FMResultSet *set = self.executeQuery(whereString);
+            while (set.next) {
+                result(set);
+            }
+        }
     }
-    return ret;
 }
 
 /**
- 查询（from where）
+ 查询（from where orderby）
  
- @param select 查询的列（*代表全部）
+ @param select 查询的列（"*"或nil代表全部）
  @param from 从哪个表查询
  @param where 筛选条件
  @param result 查询结果
- @return 查询结果
  */
-- (NSMutableArray *)ax_select:(NSString *)select from:(NSString *)from where:(nullable NSString *)where result:(void (^)(NSMutableArray *result, FMResultSet *set))result{
-    return [self ax_select:select from:from where:where orderBy:nil result:result];
+- (void)ax_select:(NSString *)select from:(NSString *)from where:(NSString *(^)(void))where result:(void (^)(FMResultSet *set))result{
+    [self ax_select:select from:from where:where orderBy:nil result:result];
 }
-/**
- 查询（from）
- 
- @param select 查询的列（*代表全部）
- @param from 从哪个表查询
- @param result 查询结果
- @return 查询结果
- */
-- (NSMutableArray *)ax_select:(NSString *)select from:(NSString *)from result:(void (^)(NSMutableArray *result, FMResultSet *set))result{
-    return [self ax_select:select from:from where:nil orderBy:nil result:result];
-}
-
 
 #pragma mark create
 

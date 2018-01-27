@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+NS_ASSUME_NONNULL_BEGIN
 @class FMResultSet, BKBaseTable;
 
 @protocol BKDatabase <NSObject>
@@ -120,4 +120,8 @@
 + (NSArray<__kindof BKBaseTable *> *)selectFromDatabaseWhere:(NSString *)where;
 
 
++ (void)select:(NSString *)sel where:(NSString *(^)(void))where result:(void (^)(FMResultSet *set))result;
+
+
 @end
+NS_ASSUME_NONNULL_END

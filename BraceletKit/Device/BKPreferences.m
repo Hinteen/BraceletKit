@@ -144,10 +144,10 @@
 - (instancetype)restoreFromDatabase{
     __block BKPreferences *model = [[BKPreferences alloc] init];
     databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        [db ax_select:@"*" from:self.class.tableName where:self.whereExists result:^(NSMutableArray * _Nonnull result, FMResultSet * _Nonnull set) {
-            while (set.next) {
-                model = [self.class modelWithSet:set];
-            }
+        [db ax_select:@"*" from:self.class.tableName where:^NSString * _Nonnull{
+            return self.whereExists;
+        } result:^(FMResultSet * _Nonnull set) {
+            model = [self.class modelWithSet:set];
         }];
     });
     return model;
@@ -159,10 +159,10 @@
     if (self.cacheable) {
         databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
             __block BOOL exists = NO;
-            [db ax_select:@"*" from:self.class.tableName where:self.whereExists result:^(NSMutableArray * _Nonnull result, FMResultSet * _Nonnull set) {
-                while (set.next) {
-                    exists = YES;
-                }
+            [db ax_select:@"*" from:self.class.tableName where:^NSString * _Nonnull{
+                return self.whereExists;
+            } result:^(FMResultSet * _Nonnull set) {
+                exists = YES;
             }];
             if (!exists) {
                 ret = [db ax_replaceIntoTable:self.class.tableName column:self.class.tableColumns.stringByDeletingTypeAndComma value:self.valueString];

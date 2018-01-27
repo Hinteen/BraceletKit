@@ -134,11 +134,10 @@
 + (BKUser *)loadUserWithEmail:(NSString *)email{
     __block BKUser *cachedUser = nil;
     databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
-        NSString *where = [NSString stringWithFormat:@"email = '%@'", email];
-        [db ax_select:@"*" from:BKUser.tableName where:where result:^(NSMutableArray * _Nonnull result, FMResultSet * _Nonnull set) {
-            while (set.next) {
-                cachedUser = [BKUser modelWithSet:set];
-            }
+        [db ax_select:@"*" from:BKUser.tableName where:^NSString * _Nonnull{
+            return [NSString stringWithFormat:@"email = '%@'", email];
+        } orderBy:@"lastmodified" result:^(FMResultSet * _Nonnull set) {
+            cachedUser = [BKUser modelWithSet:set];
         }];
     });
     return cachedUser;;

@@ -38,34 +38,22 @@ FOUNDATION_EXTERN void databaseDeferredTransaction(void (^block)(FMDatabase *db,
 /**
  查询（from where orderby）
  
- @param select 查询的列（*代表全部）
+ @param select 查询的列（"*"或nil代表全部）
  @param from 从哪个表查询
  @param where 筛选条件
  @param orderBy 排序
  @param result 查询结果
- @return 查询结果
  */
-- (NSMutableArray *)ax_select:(NSString *)select from:(NSString *)from where:(nullable NSString *)where orderBy:(nullable NSString *)orderBy result:(void (^)(NSMutableArray *result, FMResultSet *set))result;
+- (void)ax_select:(NSString *)select from:(NSString *)from where:(NSString *(^)(void))where orderBy:(nullable NSString *)orderBy result:(void (^)(FMResultSet *set))result;
 /**
  查询（from where）
  
- @param select 查询的列（*代表全部）
+ @param select 查询的列（"*"或nil代表全部）
  @param from 从哪个表查询
  @param where 筛选条件
  @param result 查询结果
- @return 查询结果
  */
-- (NSMutableArray *)ax_select:(NSString *)select from:(NSString *)from where:(nullable NSString *)where result:(void (^)(NSMutableArray *result, FMResultSet *set))result;
-/**
- 查询（from）
- 
- @param select 查询的列（*代表全部）
- @param from 从哪个表查询
- @param result 查询结果
- @return 查询结果
- */
-- (NSMutableArray *)ax_select:(NSString *)select from:(NSString *)from result:(void (^)(NSMutableArray *result, FMResultSet *set))result;
-
+- (void)ax_select:(NSString *)select from:(NSString *)from where:(NSString *(^)(void))where result:(void (^)(FMResultSet *set))result;
 
 #pragma mark create
 
