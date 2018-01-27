@@ -6,6 +6,20 @@
 	objectVersion = 48;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		CD30B4A8201D02D200EB8C1B /* Framework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = CD30B4AB201D02D200EB8C1B /* Build configuration list for PBXAggregateTarget "Framework" */;
+			buildPhases = (
+				CD30B4AC201D02F200EB8C1B /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Framework;
+			productName = Framework;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		CD25EA1720132FD4009BEFC1 /* _BKHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA1520132FD4009BEFC1 /* _BKHeader.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CD25EA1820132FD4009BEFC1 /* _BKHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA1620132FD4009BEFC1 /* _BKHeader.m */; };
@@ -811,6 +825,10 @@
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Automatic;
 					};
+					CD30B4A8201D02D200EB8C1B = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = CD2E79141FA0C53200012CDB /* Build configuration list for PBXProject "BraceletKit" */;
@@ -828,6 +846,7 @@
 			targets = (
 				CD2E79181FA0C53300012CDB /* BraceletKitDemo */,
 				CD2E79361FA0C54100012CDB /* BraceletKit */,
+				CD30B4A8201D02D200EB8C1B /* Framework */,
 			);
 		};
 /* End PBXProject section */
@@ -933,6 +952,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BraceletKitDemo/Pods-BraceletKitDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		CD30B4AC201D02F200EB8C1B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${ACTION}\" = \"build\" ]\nthen\nINSTALL_DIR=${SRCROOT}/Products/${PROJECT_NAME}.framework\n\nDEVICE_DIR=${BUILD_ROOT}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework\n\nSIMULATOR_DIR=${BUILD_ROOT}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework\n\n\nif [ -d \"${INSTALL_DIR}\" ]\nthen\nrm -rf \"${INSTALL_DIR}\"\nfi\n\nmkdir -p \"${INSTALL_DIR}\"\n\ncp -R \"${DEVICE_DIR}/\" \"${INSTALL_DIR}/\"\n#ditto \"${DEVICE_DIR}/Headers\" \"${INSTALL_DIR}/Headers\"\n\nlipo -create \"${DEVICE_DIR}/${PROJECT_NAME}\" \"${SIMULATOR_DIR}/${PROJECT_NAME}\" -output \"${INSTALL_DIR}/${PROJECT_NAME}\"\n\n#open \"${DEVICE_DIR}\"\nopen \"${SRCROOT}/Products\"\nfi\n";
 		};
 		F72234A99F2AD5DC355ED8B1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1280,6 +1312,24 @@
 			};
 			name = Release;
 		};
+		CD30B4A9201D02D200EB8C1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6C36HX8DP4;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CD30B4AA201D02D200EB8C1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6C36HX8DP4;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1306,6 +1356,15 @@
 			buildConfigurations = (
 				CD2E79411FA0C54200012CDB /* Debug */,
 				CD2E79421FA0C54200012CDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD30B4AB201D02D200EB8C1B /* Build configuration list for PBXAggregateTarget "Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD30B4A9201D02D200EB8C1B /* Debug */,
+				CD30B4AA201D02D200EB8C1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

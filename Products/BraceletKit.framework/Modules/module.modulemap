@@ -1,0 +1,6 @@
+framework module BraceletKit {
+  umbrella header "BraceletKit.h"
+
+  export *
+  module * { export * }
+}
