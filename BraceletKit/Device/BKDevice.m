@@ -257,6 +257,30 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
     }
 }
 
+- (void)applyUserInfo{
+    ZeronerPersonal *user = [[ZeronerPersonal alloc] init];
+    user.height = [BKUser currentUser].height;
+    user.weight = [BKUser currentUser].weight;
+    switch ([BKUser currentUser].gender) {
+        case BKGenderMale:
+            user.gender = 0;
+            break;
+        case BKGenderFemale:
+            user.gender = 1;
+            break;
+        default:
+            break;
+    }
+    NSInteger currentYear = [[[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:[NSDate date]] year];
+    NSInteger birthYear = [[[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:[BKUser currentUser].birthday] year];
+    user.age = currentYear - birthYear;
+    [[BLELib3 shareInstance] setPersonalInfo:user];
+}
+
+
+- (void)refreshPreferences{
+    [[BLELib3 shareInstance] readFirmwareOption];
+}
 #pragma mark - function
 
 - (void)syncTimeAtOnceCompletion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
@@ -302,6 +326,9 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
  */
 - (void)setBLEParameterAfterConnect{
     AXCachedLogOBJ(@"setBLEParameterAfterConnect");
+    [self applyUserInfo];
+    [self refreshPreferences];
+    
 }
 
 
@@ -378,8 +405,7 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
     // 如果是第一次连接
     [self initializeDeviceWhenFirstConnected];
     [self saveToDatabase];
-    // 获取设置信息
-    [[BLELib3 shareInstance] readFirmwareOption];
+    
 }
 
 - (void)updateBattery:(ZeronerDeviceInfo *)deviceInfo{

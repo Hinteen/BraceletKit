@@ -59,7 +59,7 @@
     NSMutableArray<BKSportQuery *> *results = [NSMutableArray arrayWithCapacity:unit];
     [self getAlldateWithDate:date unit:unit completion:^(NSDate * _Nonnull date) {
         BKSportQuery *result = [[self alloc] init];
-        BKDayData *day = [BKDayData selectWithDate:date unit:BKQueryUnitDaily];
+        BKDayData *day = [BKDayData selectWithDate:date unit:BKQueryUnitDaily].lastObject;
         if (day) {
             result.date = [NSDate ax_dateWithIntegerValue:day.dateInteger];
             result.steps = day.steps;
