@@ -1,5 +1,5 @@
 //
-//  BKDataHR.h
+//  BKHeartRateData.h
 //  BraceletKit
 //
 //  Created by xaoxuu on 21/01/2018.
@@ -8,7 +8,7 @@
 
 #import "BKBaseTable.h"
 
-@interface BKDataHR : BKBaseTable <BKDatabase>
+@interface BKHeartRateData : BKBaseTable <BKDatabase>
 
 
 /**

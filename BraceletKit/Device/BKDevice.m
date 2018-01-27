@@ -15,11 +15,11 @@
 #import "BKDevice.h"
 #import "BKPreferences.h"
 #import "BKDataIndex.h"
-#import "BKDataDay.h"
-#import "BKDataSport.h"
-#import "BKDataHR.h"
-#import "BKDataHRHour.h"
-#import "BKDataSleep.h"
+#import "BKDayData.h"
+#import "BKSportData.h"
+#import "BKHeartRateData.h"
+#import "BKHeartRateHourData.h"
+#import "BKSleepData.h"
 #import "BKSportList.h"
 
 
@@ -255,7 +255,7 @@
  */
 - (void)updateSleepData:(NSDictionary *)dict{
     AXCachedLogData(dict);
-    BKDataSleep *model = [BKDataSleep modelWithDict:dict];
+    BKSleepData *model = [BKSleepData modelWithDict:dict];
     [model saveToDatabase];
 }
 
@@ -266,7 +266,7 @@
  */
 - (void)updateSportData:(NSDictionary *)dict{
     AXCachedLogData(dict);
-    BKDataSport *model = [BKDataSport modelWithDict:dict];
+    BKSportData *model = [BKSportData modelWithDict:dict];
     [model saveToDatabase];
 }
 
@@ -277,7 +277,7 @@
  */
 - (void)updateWholeDaySportData:(NSDictionary *)dict{
     AXCachedLogData(dict);
-    BKDataDay *model = [BKDataDay modelWithDict:dict];
+    BKDayData *model = [BKDayData modelWithDict:dict];
     [model saveToDatabase];
 }
 
@@ -288,7 +288,7 @@
  */
 - (void)updateCurrentWholeDaySportData:(NSDictionary *)dict{
     AXCachedLogData(dict);
-    BKDataDay *model = [BKDataDay modelWithDict:dict];
+    BKDayData *model = [BKDayData modelWithDict:dict];
     [model saveToDatabase];
 }
 
@@ -299,7 +299,7 @@
  */
 - (void)updateHeartRateData:(NSDictionary *)dict{
     AXCachedLogData(dict);
-    BKDataHR *model = [BKDataHR modelWithDict:dict];
+    BKHeartRateData *model = [BKHeartRateData modelWithDict:dict];
     [model saveToDatabase];
 }
 
@@ -312,7 +312,7 @@
  */
 - (void)updateHeartRateData_hours:(NSDictionary *)dict{
     AXCachedLogData(dict);
-    BKDataHRHour *model = [BKDataHRHour modelWithDict:dict];
+    BKHeartRateHourData *model = [BKHeartRateHourData modelWithDict:dict];
     [model saveToDatabase];
 }
 

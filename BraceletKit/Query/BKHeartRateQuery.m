@@ -7,9 +7,9 @@
 //
 
 #import "BKHeartRateQuery.h"
-#import "BKDataDay.h"
-#import "BKDataHR.h"
-#import "BKDataHRHour.h"
+#import "BKDayData.h"
+#import "BKHeartRateData.h"
+#import "BKHeartRateHourData.h"
 #import "_BKHeader.h"
 
 @implementation BKHeartRateQuery
@@ -32,7 +32,7 @@
     return self;
 }
 
-- (void)calcHeartRateData:(BKDataHR *)hrModel{
+- (void)calcHeartRateData:(BKHeartRateData *)hrModel{
     for (int i = 0; i < 5; i++) {
         self.timeDetail[i] = @(self.timeDetail[i].integerValue + hrModel.timeDetail[i].integerValue);
         self.energyDetail[i] = @(self.energyDetail[i].doubleValue + hrModel.energyDetail[i].doubleValue);
@@ -42,9 +42,9 @@
 }
 
 // 必须传入24个小时的每小时心率
-//- (instancetype)initWithHeartRateData:(NSArray<BKDataHR *> *)hrModels hoursData:(NSArray<BKDataHRHour *> *)hourModels{
+//- (instancetype)initWithHeartRateData:(NSArray<BKHeartRateData *> *)hrModels hoursData:(NSArray<BKHeartRateHourData *> *)hourModels{
 //    if (self = [self init]) {
-//        [hrModels enumerateObjectsUsingBlock:^(BKDataHR * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [hrModels enumerateObjectsUsingBlock:^(BKHeartRateData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 //            for (int i = 0; i < 5; i++) {
 //                self.timeDetail[i] = @(self.timeDetail[i].integerValue + obj.timeDetail[i].integerValue);
 //                self.energyDetail[i] = @(self.energyDetail[i].doubleValue + obj.energyDetail[i].doubleValue);
@@ -53,7 +53,7 @@
 //            }
 //
 //        }];
-//        [hourModels enumerateObjectsUsingBlock:^(BKDataHRHour * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [hourModels enumerateObjectsUsingBlock:^(BKHeartRateHourData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 //            [self.minuteDetail addObjectsFromArray:obj.hrDetail];
 //        }];
 //        // 提取出有效心率，进行数据分析
@@ -75,17 +75,17 @@
     [self getAlldateWithDate:date unit:unit completion:^(NSDate * _Nonnull date) {
         BKHeartRateQuery *result = [[self alloc] init];
         result.date = date;
-        NSArray<BKDataHR *> *hrModels = [BKDataHR selectWithDate:date unit:BKQueryUnitDaily];
-        NSArray<BKDataHRHour *> *hrHourModels = [BKDataHRHour selectWithDate:date unit:BKQueryUnitDaily];
-        [hrModels enumerateObjectsUsingBlock:^(BKDataHR * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSArray<BKHeartRateData *> *hrModels = [BKHeartRateData selectWithDate:date unit:BKQueryUnitDaily];
+        NSArray<BKHeartRateHourData *> *hrHourModels = [BKHeartRateHourData selectWithDate:date unit:BKQueryUnitDaily];
+        [hrModels enumerateObjectsUsingBlock:^(BKHeartRateData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [result calcHeartRateData:obj];
         }];
         if (unit == BKQueryUnitDaily) {
-            [hrHourModels enumerateObjectsUsingBlock:^(BKDataHRHour * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [hrHourModels enumerateObjectsUsingBlock:^(BKHeartRateHourData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 [result.minuteHR addObjectsFromArray:obj.hrDetail];
             }];
         }
-        BKDataDay *day = [BKDataDay selectWithDate:date unit:BKQueryUnitDaily].lastObject;
+        BKDayData *day = [BKDayData selectWithDate:date unit:BKQueryUnitDaily].lastObject;
         if (day) {
             result.maxBpm = day.maxBpm;
             result.avgBpm = day.avgBpm;

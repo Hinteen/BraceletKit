@@ -1,16 +1,16 @@
 //
-//  BKDataSleep.m
+//  BKSleepData.m
 //  BraceletKit
 //
 //  Created by xaoxuu on 22/01/2018.
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BKDataSleep.h"
+#import "BKSleepData.h"
 #import "_BKHeader.h"
 
 
-@implementation BKDataSleep
+@implementation BKSleepData
 
 + (void)load{
     [self createTableIfNotExists];
@@ -26,7 +26,7 @@
 }
 
 + (instancetype)modelWithDict:(NSDictionary *)dict{
-    BKDataSleep *model = [[BKDataSleep alloc] init];
+    BKSleepData *model = [[BKSleepData alloc] init];
     int year = (int)[dict integerValueForKey:@"year"];
     int month = (int)[dict integerValueForKey:@"month"];
     int day = (int)[dict integerValueForKey:@"day"];
@@ -96,7 +96,7 @@
 
 + (instancetype)modelWithSet:(FMResultSet *)set{
     int i = 0;
-    BKDataSleep *model = [[BKDataSleep alloc] init];
+    BKSleepData *model = [[BKSleepData alloc] init];
     i++;// date
     i++;// user_id
     i++;// device_id

@@ -10,7 +10,7 @@
 #import "BKDefines.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@class BKDataDay, BKDataSport, BKDataHR, BKDataHRHour, BKDataSleep;
+@class BKDayData, BKSportData, BKHeartRateData, BKHeartRateHourData, BKSleepData;
 
 /**
  只能查询当前登录用户的当前连接的设备的数据

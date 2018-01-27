@@ -8,7 +8,7 @@
 
 #import "BKQuery.h"
 
-@class BKDataHR, BKDataHRHour;
+@class BKHeartRateData, BKHeartRateHourData;
 /**
  心率统计
  */

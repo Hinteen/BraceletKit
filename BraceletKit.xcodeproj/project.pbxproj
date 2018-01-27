@@ -28,14 +28,14 @@
 		CD2E793F1FA0C54200012CDB /* BraceletKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD2E79371FA0C54100012CDB /* BraceletKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CD2E794B1FA0C89F00012CDB /* BraceletManager.h in Headers */ = {isa = PBXBuildFile; fileRef = CD2E79491FA0C89F00012CDB /* BraceletManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD2E794C1FA0C89F00012CDB /* BraceletManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2E794A1FA0C89F00012CDB /* BraceletManager.m */; };
-		CD37F4532014CCC4009B213B /* BKDataDay.h in Headers */ = {isa = PBXBuildFile; fileRef = CD37F4512014CCC3009B213B /* BKDataDay.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CD37F4542014CCC4009B213B /* BKDataDay.m in Sources */ = {isa = PBXBuildFile; fileRef = CD37F4522014CCC4009B213B /* BKDataDay.m */; };
-		CD37F4572014D7BC009B213B /* BKDataSport.h in Headers */ = {isa = PBXBuildFile; fileRef = CD37F4552014D7BC009B213B /* BKDataSport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CD37F4582014D7BC009B213B /* BKDataSport.m in Sources */ = {isa = PBXBuildFile; fileRef = CD37F4562014D7BC009B213B /* BKDataSport.m */; };
-		CD37F45B2014E1BF009B213B /* BKDataHR.h in Headers */ = {isa = PBXBuildFile; fileRef = CD37F4592014E1BF009B213B /* BKDataHR.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CD37F45C2014E1BF009B213B /* BKDataHR.m in Sources */ = {isa = PBXBuildFile; fileRef = CD37F45A2014E1BF009B213B /* BKDataHR.m */; };
-		CD37F45F2014E993009B213B /* BKDataHRHour.h in Headers */ = {isa = PBXBuildFile; fileRef = CD37F45D2014E993009B213B /* BKDataHRHour.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CD37F4602014E993009B213B /* BKDataHRHour.m in Sources */ = {isa = PBXBuildFile; fileRef = CD37F45E2014E993009B213B /* BKDataHRHour.m */; };
+		CD37F4532014CCC4009B213B /* BKDayData.h in Headers */ = {isa = PBXBuildFile; fileRef = CD37F4512014CCC3009B213B /* BKDayData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CD37F4542014CCC4009B213B /* BKDayData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD37F4522014CCC4009B213B /* BKDayData.m */; };
+		CD37F4572014D7BC009B213B /* BKSportData.h in Headers */ = {isa = PBXBuildFile; fileRef = CD37F4552014D7BC009B213B /* BKSportData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CD37F4582014D7BC009B213B /* BKSportData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD37F4562014D7BC009B213B /* BKSportData.m */; };
+		CD37F45B2014E1BF009B213B /* BKHeartRateData.h in Headers */ = {isa = PBXBuildFile; fileRef = CD37F4592014E1BF009B213B /* BKHeartRateData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CD37F45C2014E1BF009B213B /* BKHeartRateData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD37F45A2014E1BF009B213B /* BKHeartRateData.m */; };
+		CD37F45F2014E993009B213B /* BKHeartRateHourData.h in Headers */ = {isa = PBXBuildFile; fileRef = CD37F45D2014E993009B213B /* BKHeartRateHourData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CD37F4602014E993009B213B /* BKHeartRateHourData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD37F45E2014E993009B213B /* BKHeartRateHourData.m */; };
 		CD3FC1151FA20A0B0054B26B /* DataAccessLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0BD1FA20A0B0054B26B /* DataAccessLayer.m */; };
 		CD3FC1161FA20A0B0054B26B /* ServicesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0BE1FA20A0B0054B26B /* ServicesLayer.m */; };
 		CD3FC11A1FA20A0B0054B26B /* BaseDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0C81FA20A0B0054B26B /* BaseDataAccess.m */; };
@@ -85,7 +85,7 @@
 		CDA527931FECB269009C39EC /* BraceletKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD2E79441FA0C55800012CDB /* BraceletKit.bundle */; };
 		CDB94C6620133A0400CB588C /* _BKModelHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB94C6420133A0400CB588C /* _BKModelHelper.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CDB94C6720133A0400CB588C /* _BKModelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB94C6520133A0400CB588C /* _BKModelHelper.m */; };
-		CDC2EB792015A96E00C9F77E /* BKDataSleep.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EB772015A96E00C9F77E /* BKDataSleep.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDC2EB792015A96E00C9F77E /* BKSleepData.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EB772015A96E00C9F77E /* BKSleepData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDC2EB7A2015A96E00C9F77E /* BKDataSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EB782015A96E00C9F77E /* BKDataSleep.m */; };
 		CDC2EB812016099400C9F77E /* BKSportList.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EB7F2016099400C9F77E /* BKSportList.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDC2EB822016099400C9F77E /* BKSportList.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EB802016099400C9F77E /* BKSportList.m */; };
@@ -163,14 +163,14 @@
 		CD2E79441FA0C55800012CDB /* BraceletKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BraceletKit.bundle; sourceTree = "<group>"; };
 		CD2E79491FA0C89F00012CDB /* BraceletManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BraceletManager.h; sourceTree = "<group>"; };
 		CD2E794A1FA0C89F00012CDB /* BraceletManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BraceletManager.m; sourceTree = "<group>"; };
-		CD37F4512014CCC3009B213B /* BKDataDay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDataDay.h; sourceTree = "<group>"; };
-		CD37F4522014CCC4009B213B /* BKDataDay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDataDay.m; sourceTree = "<group>"; };
-		CD37F4552014D7BC009B213B /* BKDataSport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDataSport.h; sourceTree = "<group>"; };
-		CD37F4562014D7BC009B213B /* BKDataSport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDataSport.m; sourceTree = "<group>"; };
-		CD37F4592014E1BF009B213B /* BKDataHR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDataHR.h; sourceTree = "<group>"; };
-		CD37F45A2014E1BF009B213B /* BKDataHR.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDataHR.m; sourceTree = "<group>"; };
-		CD37F45D2014E993009B213B /* BKDataHRHour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDataHRHour.h; sourceTree = "<group>"; };
-		CD37F45E2014E993009B213B /* BKDataHRHour.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDataHRHour.m; sourceTree = "<group>"; };
+		CD37F4512014CCC3009B213B /* BKDayData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDayData.h; sourceTree = "<group>"; };
+		CD37F4522014CCC4009B213B /* BKDayData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDayData.m; sourceTree = "<group>"; };
+		CD37F4552014D7BC009B213B /* BKSportData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSportData.h; sourceTree = "<group>"; };
+		CD37F4562014D7BC009B213B /* BKSportData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKSportData.m; sourceTree = "<group>"; };
+		CD37F4592014E1BF009B213B /* BKHeartRateData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKHeartRateData.h; sourceTree = "<group>"; };
+		CD37F45A2014E1BF009B213B /* BKHeartRateData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKHeartRateData.m; sourceTree = "<group>"; };
+		CD37F45D2014E993009B213B /* BKHeartRateHourData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKHeartRateHourData.h; sourceTree = "<group>"; };
+		CD37F45E2014E993009B213B /* BKHeartRateHourData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKHeartRateHourData.m; sourceTree = "<group>"; };
 		CD3FC0BC1FA20A0B0054B26B /* ServicesLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServicesLayer.h; sourceTree = "<group>"; };
 		CD3FC0BD1FA20A0B0054B26B /* DataAccessLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataAccessLayer.m; sourceTree = "<group>"; };
 		CD3FC0BE1FA20A0B0054B26B /* ServicesLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServicesLayer.m; sourceTree = "<group>"; };
@@ -251,7 +251,7 @@
 		CDA004102014A99A00E572A7 /* BKDataIndex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDataIndex.m; sourceTree = "<group>"; };
 		CDB94C6420133A0400CB588C /* _BKModelHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _BKModelHelper.h; sourceTree = "<group>"; };
 		CDB94C6520133A0400CB588C /* _BKModelHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _BKModelHelper.m; sourceTree = "<group>"; };
-		CDC2EB772015A96E00C9F77E /* BKDataSleep.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDataSleep.h; sourceTree = "<group>"; };
+		CDC2EB772015A96E00C9F77E /* BKSleepData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSleepData.h; sourceTree = "<group>"; };
 		CDC2EB782015A96E00C9F77E /* BKDataSleep.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDataSleep.m; sourceTree = "<group>"; };
 		CDC2EB7F2016099400C9F77E /* BKSportList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSportList.h; sourceTree = "<group>"; };
 		CDC2EB802016099400C9F77E /* BKSportList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKSportList.m; sourceTree = "<group>"; };
@@ -365,6 +365,7 @@
 				CDC2EB8B2016453800C9F77E /* BaseTable */,
 				CDC2EB892016452500C9F77E /* User */,
 				CDC2EB8A2016452D00C9F77E /* Device */,
+				CD30B49E201CCB2D00EB8C1B /* Preference */,
 				CDC2EB872016428600C9F77E /* Data */,
 				CDC2EB88201642B700C9F77E /* Priv */,
 				CD2E79491FA0C89F00012CDB /* BraceletManager.h */,
@@ -382,6 +383,17 @@
 				FE1DC049097F75176EA41B0A /* libPods-BraceletKitDemo.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CD30B49E201CCB2D00EB8C1B /* Preference */ = {
+			isa = PBXGroup;
+			children = (
+				CDC2EB8320163E4300C9F77E /* BKPreferences.h */,
+				CDC2EB8420163E4300C9F77E /* BKPreferences.m */,
+				CDC2EB7F2016099400C9F77E /* BKSportList.h */,
+				CDC2EB802016099400C9F77E /* BKSportList.m */,
+			);
+			path = Preference;
 			sourceTree = "<group>";
 		};
 		CD3FC0B91FA20A0B0054B26B /* Classes */ = {
@@ -643,19 +655,17 @@
 		CDC2EB872016428600C9F77E /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				CDC2EB7F2016099400C9F77E /* BKSportList.h */,
-				CDC2EB802016099400C9F77E /* BKSportList.m */,
 				CDA0040F2014A99A00E572A7 /* BKDataIndex.h */,
 				CDA004102014A99A00E572A7 /* BKDataIndex.m */,
-				CD37F4512014CCC3009B213B /* BKDataDay.h */,
-				CD37F4522014CCC4009B213B /* BKDataDay.m */,
-				CD37F4552014D7BC009B213B /* BKDataSport.h */,
-				CD37F4562014D7BC009B213B /* BKDataSport.m */,
-				CD37F4592014E1BF009B213B /* BKDataHR.h */,
-				CD37F45A2014E1BF009B213B /* BKDataHR.m */,
-				CD37F45D2014E993009B213B /* BKDataHRHour.h */,
-				CD37F45E2014E993009B213B /* BKDataHRHour.m */,
-				CDC2EB772015A96E00C9F77E /* BKDataSleep.h */,
+				CD37F4512014CCC3009B213B /* BKDayData.h */,
+				CD37F4522014CCC4009B213B /* BKDayData.m */,
+				CD37F4552014D7BC009B213B /* BKSportData.h */,
+				CD37F4562014D7BC009B213B /* BKSportData.m */,
+				CD37F4592014E1BF009B213B /* BKHeartRateData.h */,
+				CD37F45A2014E1BF009B213B /* BKHeartRateData.m */,
+				CD37F45D2014E993009B213B /* BKHeartRateHourData.h */,
+				CD37F45E2014E993009B213B /* BKHeartRateHourData.m */,
+				CDC2EB772015A96E00C9F77E /* BKSleepData.h */,
 				CDC2EB782015A96E00C9F77E /* BKDataSleep.m */,
 			);
 			path = Data;
@@ -690,8 +700,6 @@
 			children = (
 				CD25EA362013331D009BEFC1 /* BKDevice.h */,
 				CD25EA372013331D009BEFC1 /* BKDevice.m */,
-				CDC2EB8320163E4300C9F77E /* BKPreferences.h */,
-				CDC2EB8420163E4300C9F77E /* BKPreferences.m */,
 			);
 			path = Device;
 			sourceTree = "<group>";
@@ -728,12 +736,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD25EA382013331D009BEFC1 /* BKDevice.h in Headers */,
-				CD37F4572014D7BC009B213B /* BKDataSport.h in Headers */,
+				CD37F4572014D7BC009B213B /* BKSportData.h in Headers */,
 				CDC2EB922017312A00C9F77E /* BKConnector.h in Headers */,
-				CD37F45F2014E993009B213B /* BKDataHRHour.h in Headers */,
-				CD37F4532014CCC4009B213B /* BKDataDay.h in Headers */,
+				CD37F45F2014E993009B213B /* BKHeartRateHourData.h in Headers */,
+				CD37F4532014CCC4009B213B /* BKDayData.h in Headers */,
 				CDC2EB812016099400C9F77E /* BKSportList.h in Headers */,
-				CDC2EB792015A96E00C9F77E /* BKDataSleep.h in Headers */,
+				CDC2EB792015A96E00C9F77E /* BKSleepData.h in Headers */,
 				CDA004112014A99A00E572A7 /* BKDataIndex.h in Headers */,
 				CDC2EBA2201754F100C9F77E /* BKSportQuery.h in Headers */,
 				CDC2EBAA2017553800C9F77E /* BKSleepQuery.h in Headers */,
@@ -742,7 +750,7 @@
 				CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */,
 				CD25EA1B2013301E009BEFC1 /* BKServices.h in Headers */,
 				CDA0040D201491DF00E572A7 /* BKBaseTable.h in Headers */,
-				CD37F45B2014E1BF009B213B /* BKDataHR.h in Headers */,
+				CD37F45B2014E1BF009B213B /* BKHeartRateData.h in Headers */,
 				CDE04B41201C90DA00A29F31 /* BKDefines.h in Headers */,
 				CD2E794B1FA0C89F00012CDB /* BraceletManager.h in Headers */,
 				CDC2EB8520163E4300C9F77E /* BKPreferences.h in Headers */,
@@ -1011,13 +1019,13 @@
 				CD25EA392013331D009BEFC1 /* BKDevice.m in Sources */,
 				CDC2EB8620163E4300C9F77E /* BKPreferences.m in Sources */,
 				CDC2EB9F2017419C00C9F77E /* BKQuery.m in Sources */,
-				CD37F4602014E993009B213B /* BKDataHRHour.m in Sources */,
+				CD37F4602014E993009B213B /* BKHeartRateHourData.m in Sources */,
 				CDA004122014A99A00E572A7 /* BKDataIndex.m in Sources */,
 				CDC2EB932017312A00C9F77E /* BKConnector.m in Sources */,
 				CDB94C6720133A0400CB588C /* _BKModelHelper.m in Sources */,
 				CD25EA1820132FD4009BEFC1 /* _BKHeader.m in Sources */,
 				CD2E794C1FA0C89F00012CDB /* BraceletManager.m in Sources */,
-				CD37F4582014D7BC009B213B /* BKDataSport.m in Sources */,
+				CD37F4582014D7BC009B213B /* BKSportData.m in Sources */,
 				CDC2EB8F20172A1300C9F77E /* BKScanner.m in Sources */,
 				CDC2EBAB2017553800C9F77E /* BKSleepQuery.m in Sources */,
 				CDC2EB822016099400C9F77E /* BKSportList.m in Sources */,
@@ -1025,12 +1033,12 @@
 				CDC2EBA3201754F100C9F77E /* BKSportQuery.m in Sources */,
 				CDC2EB7A2015A96E00C9F77E /* BKDataSleep.m in Sources */,
 				CD25EA1C2013301E009BEFC1 /* BKServices.m in Sources */,
-				CD37F4542014CCC4009B213B /* BKDataDay.m in Sources */,
+				CD37F4542014CCC4009B213B /* BKDayData.m in Sources */,
 				CD25EA352013330F009BEFC1 /* BKUser.m in Sources */,
 				CDC2EBA72017552400C9F77E /* BKHeartRateQuery.m in Sources */,
 				CD25EA2820133083009BEFC1 /* _BKLogHelper.m in Sources */,
 				CDA0040E201491DF00E572A7 /* BKBaseTable.m in Sources */,
-				CD37F45C2014E1BF009B213B /* BKDataHR.m in Sources */,
+				CD37F45C2014E1BF009B213B /* BKHeartRateData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

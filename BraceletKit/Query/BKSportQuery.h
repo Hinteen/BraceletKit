@@ -8,7 +8,7 @@
 
 #import "BKQuery.h"
 
-@class BKDataSport;
+@class BKSportData;
 /**
  运动量统计
  */

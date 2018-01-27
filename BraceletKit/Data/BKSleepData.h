@@ -1,5 +1,5 @@
 //
-//  BKDataSleep.h
+//  BKSleepData.h
 //  BraceletKit
 //
 //  Created by xaoxuu on 22/01/2018.
@@ -8,7 +8,7 @@
 
 #import "BKBaseTable.h"
 
-@interface BKDataSleep : BKBaseTable <BKDatabase>
+@interface BKSleepData : BKBaseTable <BKDatabase>
 
 /**
  date integer

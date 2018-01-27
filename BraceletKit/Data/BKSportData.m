@@ -1,15 +1,15 @@
 //
-//  BKDataSport.m
+//  BKSportData.m
 //  BraceletKit
 //
 //  Created by xaoxuu on 21/01/2018.
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BKDataSport.h"
+#import "BKSportData.h"
 #import "_BKHeader.h"
 
-@implementation BKDataSport
+@implementation BKSportData
 
 + (void)load{
     [self createTableIfNotExists];
@@ -18,7 +18,7 @@
 
 
 + (instancetype)modelWithDict:(NSDictionary *)dict{
-    BKDataSport *model = [BKDataSport new];
+    BKSportData *model = [BKSportData new];
     int year = (int)[dict integerValueForKey:@"year"];
     int month = (int)[dict integerValueForKey:@"month"];
     int day = (int)[dict integerValueForKey:@"day"];
@@ -85,7 +85,7 @@
 
 + (instancetype)modelWithSet:(FMResultSet *)set{
     int i = 0;
-    BKDataSport *model = [[BKDataSport alloc] init];
+    BKSportData *model = [[BKSportData alloc] init];
     i++;// date
     i++;// user_id
     i++;// device_id

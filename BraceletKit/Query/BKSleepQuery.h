@@ -8,7 +8,7 @@
 
 #import "BKQuery.h"
 
-@class BKDataSleep;
+@class BKSleepData;
 
 /**
  一天的睡眠统计（开始时间所在的天，如今天晚上睡到明天早上的数据属于今天的睡眠数据）
@@ -46,7 +46,7 @@
  
  如果查询单位是周、月或年，则此值为空
  */
-@property (strong, nonatomic) NSMutableArray<BKDataSleep *> *detail;
+@property (strong, nonatomic) NSMutableArray<BKSleepData *> *detail;
 
 
 @end

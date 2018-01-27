@@ -7,7 +7,7 @@
 //
 
 #import "BKSleepQuery.h"
-#import "BKDataSleep.h"
+#import "BKSleepData.h"
 
 @implementation BKSleepQuery
 
@@ -20,7 +20,7 @@
 }
 
 // 必须传入24个小时的每小时心率
-- (instancetype)initWithSleepData:(NSArray<BKDataSleep *> *)sleeps{
+- (instancetype)initWithSleepData:(NSArray<BKSleepData *> *)sleeps{
     if (self = [self init]) {
 #warning 123
     }

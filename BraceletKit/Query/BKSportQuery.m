@@ -8,8 +8,8 @@
 
 #import "BKSportQuery.h"
 #import "_BKHeader.h"
-#import "BKDataDay.h"
-#import "BKDataSport.h"
+#import "BKDayData.h"
+#import "BKSportData.h"
 
 @implementation BKSportQuery
 
@@ -27,7 +27,7 @@
     return self;
 }
 
-- (void)calcDaySport:(BKDataSport *)sport{
+- (void)calcDaySport:(BKSportData *)sport{
     NSInteger startHour = sport.start.stringValue(@"HH").integerValue;
     NSInteger endHour = sport.end.stringValue(@"HH").integerValue;
     if (startHour == endHour) {
@@ -59,7 +59,7 @@
     NSMutableArray<BKSportQuery *> *results = [NSMutableArray arrayWithCapacity:unit];
     [self getAlldateWithDate:date unit:unit completion:^(NSDate * _Nonnull date) {
         BKSportQuery *result = [[self alloc] init];
-        BKDataDay *day = [BKDataDay selectWithDate:date unit:BKQueryUnitDaily];
+        BKDayData *day = [BKDayData selectWithDate:date unit:BKQueryUnitDaily];
         if (day) {
             result.date = [NSDate ax_dateWithIntegerValue:day.dateInteger];
             result.steps = day.steps;
@@ -72,8 +72,8 @@
     // 如果是一天的查询，还需要查询每小时的运动数据
     if (unit == BKQueryUnitDaily) {
         // 获取区间内所有运动
-        NSArray<BKDataSport *> *sports = [BKDataSport selectWithDate:date unit:BKQueryUnitDaily];
-        [sports enumerateObjectsUsingBlock:^(BKDataSport * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSArray<BKSportData *> *sports = [BKSportData selectWithDate:date unit:BKQueryUnitDaily];
+        [sports enumerateObjectsUsingBlock:^(BKSportData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [results.lastObject calcDaySport:obj];
         }];
     }

@@ -1,15 +1,15 @@
 //
-//  BKDataDay.m
+//  BKDayData.m
 //  BraceletKit
 //
 //  Created by xaoxuu on 21/01/2018.
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BKDataDay.h"
+#import "BKDayData.h"
 #import "_BKHeader.h"
 
-@implementation BKDataDay
+@implementation BKDayData
 
 + (void)load{
     [self createTableIfNotExists];
@@ -18,7 +18,7 @@
 
 
 + (instancetype)modelWithDict:(NSDictionary *)dict{
-    BKDataDay *model = [BKDataDay new];
+    BKDayData *model = [BKDayData new];
     int year = (int)[dict integerValueForKey:@"year"];
     int month = (int)[dict integerValueForKey:@"month"];
     int day = (int)[dict integerValueForKey:@"day"];
@@ -68,7 +68,7 @@
 
 + (instancetype)modelWithSet:(FMResultSet *)set{
     int i = 0;
-    BKDataDay *model = [[BKDataDay alloc] init];
+    BKDayData *model = [[BKDayData alloc] init];
     i++;// date
     i++;// user_id
     i++;// device_id

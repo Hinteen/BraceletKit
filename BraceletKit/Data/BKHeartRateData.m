@@ -1,16 +1,16 @@
 //
-//  BKDataHR.m
+//  BKHeartRateData.m
 //  BraceletKit
 //
 //  Created by xaoxuu on 21/01/2018.
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BKDataHR.h"
+#import "BKHeartRateData.h"
 #import "_BKHeader.h"
 
 
-@implementation BKDataHR
+@implementation BKHeartRateData
 
 + (void)load{
     [self createTableIfNotExists];
@@ -28,7 +28,7 @@
 }
 
 + (instancetype)modelWithDict:(NSDictionary *)dict{
-    BKDataHR *model = [[BKDataHR alloc] init];
+    BKHeartRateData *model = [[BKHeartRateData alloc] init];
     int year = (int)[dict integerValueForKey:@"year"];
     int month = (int)[dict integerValueForKey:@"month"];
     int day = (int)[dict integerValueForKey:@"day"];
@@ -128,7 +128,7 @@
 
 + (instancetype)modelWithSet:(FMResultSet *)set{
     int i = 0;
-    BKDataHR *model = [[BKDataHR alloc] init];
+    BKHeartRateData *model = [[BKHeartRateData alloc] init];
     i++;// date
     i++;// user_id
     i++;// device_id

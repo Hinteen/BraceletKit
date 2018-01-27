@@ -1,5 +1,5 @@
 //
-//  BKDataDay.h
+//  BKDayData.h
 //  BraceletKit
 //
 //  Created by xaoxuu on 21/01/2018.
@@ -8,7 +8,7 @@
 
 #import "BKBaseTable.h"
 
-@interface BKDataDay : BKBaseTable <BKDatabase>
+@interface BKDayData : BKBaseTable <BKDatabase>
 
 /**
  date integer
@@ -52,6 +52,6 @@
 + (instancetype)modelWithDict:(NSDictionary *)dict;
 
 
-//+ (NSArray<BKDataDay *> *)selectFromDatabaseWithDate:(NSDate *)date;
+//+ (NSArray<BKDayData *> *)selectFromDatabaseWithDate:(NSDate *)date;
 
 @end

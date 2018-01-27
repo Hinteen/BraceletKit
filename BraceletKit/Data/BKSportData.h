@@ -1,5 +1,5 @@
 //
-//  BKDataSport.h
+//  BKSportData.h
 //  BraceletKit
 //
 //  Created by xaoxuu on 21/01/2018.
@@ -8,7 +8,7 @@
 
 #import "BKBaseTable.h"
 
-@interface BKDataSport : BKBaseTable <BKDatabase>
+@interface BKSportData : BKBaseTable <BKDatabase>
 
 /**
  date integer
