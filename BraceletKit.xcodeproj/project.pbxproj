@@ -78,8 +78,8 @@
 		CDA003FC20136A6F00E572A7 /* Calibri.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDA003FB20136A6F00E572A7 /* Calibri.ttf */; };
 		CDA0040920146EFB00E572A7 /* _BKDatabaseHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA0040720146EFB00E572A7 /* _BKDatabaseHelper.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CDA0040A20146EFB00E572A7 /* _BKDatabaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA0040820146EFB00E572A7 /* _BKDatabaseHelper.m */; };
-		CDA0040D201491DF00E572A7 /* BKBaseTable.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA0040B201491DF00E572A7 /* BKBaseTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CDA0040E201491DF00E572A7 /* BKBaseTable.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA0040C201491DF00E572A7 /* BKBaseTable.m */; };
+		CDA0040D201491DF00E572A7 /* BKData.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA0040B201491DF00E572A7 /* BKData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDA0040E201491DF00E572A7 /* BKData.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA0040C201491DF00E572A7 /* BKData.m */; };
 		CDA004112014A99A00E572A7 /* BKDataIndex.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA0040F2014A99A00E572A7 /* BKDataIndex.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDA004122014A99A00E572A7 /* BKDataIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA004102014A99A00E572A7 /* BKDataIndex.m */; };
 		CDA527931FECB269009C39EC /* BraceletKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD2E79441FA0C55800012CDB /* BraceletKit.bundle */; };
@@ -245,8 +245,8 @@
 		CDA003FB20136A6F00E572A7 /* Calibri.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Calibri.ttf; sourceTree = "<group>"; };
 		CDA0040720146EFB00E572A7 /* _BKDatabaseHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _BKDatabaseHelper.h; sourceTree = "<group>"; };
 		CDA0040820146EFB00E572A7 /* _BKDatabaseHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _BKDatabaseHelper.m; sourceTree = "<group>"; };
-		CDA0040B201491DF00E572A7 /* BKBaseTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKBaseTable.h; sourceTree = "<group>"; };
-		CDA0040C201491DF00E572A7 /* BKBaseTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKBaseTable.m; sourceTree = "<group>"; };
+		CDA0040B201491DF00E572A7 /* BKData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKData.h; sourceTree = "<group>"; };
+		CDA0040C201491DF00E572A7 /* BKData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKData.m; sourceTree = "<group>"; };
 		CDA0040F2014A99A00E572A7 /* BKDataIndex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDataIndex.h; sourceTree = "<group>"; };
 		CDA004102014A99A00E572A7 /* BKDataIndex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDataIndex.m; sourceTree = "<group>"; };
 		CDB94C6420133A0400CB588C /* _BKModelHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _BKModelHelper.h; sourceTree = "<group>"; };
@@ -707,8 +707,8 @@
 		CDC2EB8B2016453800C9F77E /* BaseTable */ = {
 			isa = PBXGroup;
 			children = (
-				CDA0040B201491DF00E572A7 /* BKBaseTable.h */,
-				CDA0040C201491DF00E572A7 /* BKBaseTable.m */,
+				CDA0040B201491DF00E572A7 /* BKData.h */,
+				CDA0040C201491DF00E572A7 /* BKData.m */,
 			);
 			path = BaseTable;
 			sourceTree = "<group>";
@@ -749,7 +749,7 @@
 				CDC2EB8E20172A1300C9F77E /* BKScanner.h in Headers */,
 				CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */,
 				CD25EA1B2013301E009BEFC1 /* BKServices.h in Headers */,
-				CDA0040D201491DF00E572A7 /* BKBaseTable.h in Headers */,
+				CDA0040D201491DF00E572A7 /* BKData.h in Headers */,
 				CD37F45B2014E1BF009B213B /* BKHeartRateData.h in Headers */,
 				CDE04B41201C90DA00A29F31 /* BKDefines.h in Headers */,
 				CD2E794B1FA0C89F00012CDB /* BraceletManager.h in Headers */,
@@ -1037,7 +1037,7 @@
 				CD25EA352013330F009BEFC1 /* BKUser.m in Sources */,
 				CDC2EBA72017552400C9F77E /* BKHeartRateQuery.m in Sources */,
 				CD25EA2820133083009BEFC1 /* _BKLogHelper.m in Sources */,
-				CDA0040E201491DF00E572A7 /* BKBaseTable.m in Sources */,
+				CDA0040E201491DF00E572A7 /* BKData.m in Sources */,
 				CD37F45C2014E1BF009B213B /* BKHeartRateData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

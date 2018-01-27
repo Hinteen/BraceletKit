@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXTERN FMDatabaseQueue *databaseQueue();
+FOUNDATION_EXTERN FMDatabaseQueue *databaseQueue(void);
 
 FOUNDATION_EXTERN void databaseTransaction(void (^block)(FMDatabase *db, BOOL *rollback));
 

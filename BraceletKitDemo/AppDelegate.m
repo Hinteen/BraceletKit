@@ -24,7 +24,7 @@
     // Override point for customization after application launch.
     AXCachedLogOBJ(@"启动");
     // 加载数据库
-//    [BKBaseTable loadDatabase];
+//    [BKData loadDatabase];
     [[BLELib3 shareInstance] applicationDidFinishLaunchingWithOptions];
     // @xaoxuu: 启动服务
     [ServicesLayer sharedInstance];

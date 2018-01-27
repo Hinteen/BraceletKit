@@ -6,7 +6,7 @@
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BKBaseTable.h"
+#import "BKData.h"
 
 
 @class CBPeripheral, ZeronerBlePeripheral, BKPreferences;
@@ -38,7 +38,7 @@
 @end
 
 
-@interface BKDevice : BKBaseTable <BKDatabase>
+@interface BKDevice : BKData <BKData>
 
 /**
  mac

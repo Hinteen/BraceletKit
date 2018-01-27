@@ -133,7 +133,7 @@
 }
 
 
-+ (NSArray<BKBaseTable *> *)selectWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate{
++ (NSArray<BKData *> *)selectWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate{
     return [self selectWhere:[NSString stringWithFormat:@"start >= '%@' and start < '%@'", bk_date_string(startDate), bk_date_string(endDate)]];
 }
 

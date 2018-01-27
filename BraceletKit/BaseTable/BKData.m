@@ -1,20 +1,20 @@
 //
-//  BKBaseTable.m
+//  BKData.m
 //  BraceletKit
 //
 //  Created by xaoxuu on 21/01/2018.
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BKBaseTable.h"
+#import "BKData.h"
 #import "_BKHeader.h"
 
 
-@interface BKBaseTable() <BKDatabase>
+@interface BKData() <BKData>
 
 @end
 
-@implementation BKBaseTable
+@implementation BKData
 
 //@required
 
@@ -128,7 +128,7 @@
     }
 }
 
-+ (NSArray<BKBaseTable *> *)selectWhere:(NSString *)where{
++ (NSArray<BKData *> *)selectWhere:(NSString *)where{
     NSMutableArray *results = [NSMutableArray array];
     [self select:@"*" where:^NSString * _Nonnull{
         return where;
@@ -138,7 +138,7 @@
     return results;
 }
 
-+ (NSArray<BKBaseTable *> *)selectWithDate:(NSDate *)date unit:(BKQueryUnit)unit{
++ (NSArray<BKData *> *)selectWithDate:(NSDate *)date unit:(BKQueryUnit)unit{
     NSMutableArray *results = [NSMutableArray array];
     [self select:@"*" date:date unit:unit result:^(FMResultSet * _Nonnull set) {
         [results addObject:[self modelWithSet:set]];
@@ -146,7 +146,7 @@
     return results;
 }
 
-+ (NSArray<BKBaseTable *> *)selectWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate{
++ (NSArray<BKData *> *)selectWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate{
     NSMutableArray *results = [NSMutableArray array];
     [self select:@"*" startDate:startDate endDate:endDate result:^(FMResultSet *set) {
         [results addObject:[self modelWithSet:set]];

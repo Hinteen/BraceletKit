@@ -6,7 +6,7 @@
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BKBaseTable.h"
+#import "BKData.h"
 
 /**
  计量单位
@@ -84,7 +84,7 @@ typedef NS_ENUM(NSUInteger, BKTemperatureUnit) {
     BKTemperatureUnitFahrenheit,
 };
 
-@interface BKPreferences : BKBaseTable <BKDatabase>
+@interface BKPreferences : BKData <BKData>
 
 
 /**

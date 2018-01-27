@@ -6,7 +6,7 @@
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BKBaseTable.h"
+#import "BKData.h"
 
 typedef NS_ENUM(NSUInteger, BKGender) {
     BKGenderUnknown,
@@ -14,7 +14,7 @@ typedef NS_ENUM(NSUInteger, BKGender) {
     BKGenderFemale,
 };
 
-@interface BKUser : BKBaseTable <BKDatabase>
+@interface BKUser : BKData <BKData>
 
 
 /**

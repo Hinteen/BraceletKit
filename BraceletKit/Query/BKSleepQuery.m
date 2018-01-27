@@ -19,7 +19,7 @@
     return self;
 }
 
-// 必须传入24个小时的每小时心率
+
 - (instancetype)initWithSleepData:(NSArray<BKSleepData *> *)sleeps{
     if (self = [self init]) {
 #warning 123

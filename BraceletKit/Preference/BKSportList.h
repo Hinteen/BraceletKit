@@ -6,10 +6,10 @@
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BKBaseTable.h"
+#import "BKData.h"
 #import <BLE3Framework/ZeronerBleHeader.h>
 
-@interface BKSportList : BKBaseTable <BKDatabase>
+@interface BKSportList : BKData <BKData>
 
 /**
  运动类型

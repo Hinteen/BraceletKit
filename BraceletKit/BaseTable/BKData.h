@@ -1,5 +1,5 @@
 //
-//  BKBaseTable.h
+//  BKData.h
 //  BraceletKit
 //
 //  Created by xaoxuu on 21/01/2018.
@@ -10,9 +10,9 @@
 #import "BKDefines.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@class FMResultSet, BKBaseTable;
+@class FMResultSet, BKData;
 
-@protocol BKDatabase <NSObject>
+@protocol BKData <NSObject>
 
 @required
 /**
@@ -78,7 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface BKBaseTable : NSObject
+@interface BKData : NSObject
 
 
 /**
@@ -107,7 +107,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param where where语句
  @return 满足条件的所有原始数据
  */
-+ (NSArray<__kindof BKBaseTable *> *)selectWhere:(NSString *)where;
++ (NSArray<__kindof BKData *> *)selectWhere:(NSString *)where;
 
 /**
  取出若干天的所有原始数据
@@ -116,7 +116,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param unit 查询单位
  @return 满足条件的所有原始数据
  */
-+ (NSArray<__kindof BKBaseTable *> *)selectWithDate:(NSDate *)date unit:(BKQueryUnit)unit;
++ (NSArray<__kindof BKData *> *)selectWithDate:(NSDate *)date unit:(BKQueryUnit)unit;
 
 /**
  取出从某个时刻到某个时刻的所有原始数据
@@ -125,7 +125,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param endDate 截止时间
  @return 满足条件的所有原始数据
  */
-+ (NSArray<__kindof BKBaseTable *> *)selectWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate;
++ (NSArray<__kindof BKData *> *)selectWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate;
 
 
 

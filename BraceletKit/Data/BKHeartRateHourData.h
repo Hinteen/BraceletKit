@@ -6,9 +6,9 @@
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BKBaseTable.h"
+#import "BKData.h"
 
-@interface BKHeartRateHourData : BKBaseTable <BKDatabase>
+@interface BKHeartRateHourData : BKData <BKData>
 
 
 
