@@ -7,6 +7,7 @@
 //
 
 #import "BKHeartRateQuery.h"
+#import "BKDataDay.h"
 #import "BKDataHR.h"
 #import "BKDataHRHour.h"
 #import "_BKHeader.h"
@@ -15,64 +16,84 @@
 
 - (instancetype)init{
     if (self = [super init]) {
-        self.energy = 0;
         self.timeDetail = [NSMutableArray arrayWithCapacity:5];
         self.energyDetail = [NSMutableArray arrayWithCapacity:5];
         self.hrDetail = [NSMutableArray arrayWithCapacity:5];
-        self.minuteDetail = [NSMutableArray arrayWithCapacity:24*60];
-        self.dailyAvgBpms = [NSMutableArray array];
-        self.dailyMaxBpms = [NSMutableArray array];
-        self.dailyMinBpms = [NSMutableArray array];
-        self.dailyEnergys = [NSMutableArray array];
+        self.minuteHR = [NSMutableArray arrayWithCapacity:24*60];
         for (int i = 0; i < 5; i++) {
             [self.timeDetail addObject:@0];
             [self.energyDetail addObject:@0];
             [self.hrDetail addObject:@0];
         }
         for (int i = 0; i < 24*60; i++) {
-            [self.minuteDetail addObject:@0];
+            [self.minuteHR addObject:@0];
         }
     }
     return self;
 }
 
-// 必须传入24个小时的每小时心率
-- (instancetype)initWithHeartRateData:(NSArray<BKDataHR *> *)hrModels hoursData:(NSArray<BKDataHRHour *> *)hourModels{
-    if (self = [self init]) {
-        [hrModels enumerateObjectsUsingBlock:^(BKDataHR * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            for (int i = 0; i < 5; i++) {
-                self.timeDetail[i] = @(self.timeDetail[i].integerValue + obj.timeDetail[i].integerValue);
-                self.energyDetail[i] = @(self.energyDetail[i].doubleValue + obj.energyDetail[i].doubleValue);
-                self.hrDetail[i] = @(self.hrDetail[i].integerValue + obj.hrDetail[i].integerValue);
-                self.energy += obj.energy;
-            }
-            
-        }];
-        [hourModels enumerateObjectsUsingBlock:^(BKDataHRHour * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [self.minuteDetail addObjectsFromArray:obj.hrDetail];
-        }];
-        // 提取出有效心率，进行数据分析
-        NSMutableArray<NSNumber *> *validHR = [NSMutableArray array];
-        [self.minuteDetail enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (obj.integerValue > 0 && obj.integerValue < 255) {
-                [validHR addObject:obj];
-            }
-        }];
-        self.avgBpm = (NSInteger)[validHR ax_avg];
-        self.maxBpm = (NSInteger)[validHR ax_max];
-        self.minBpm = (NSInteger)[validHR ax_min];
+- (void)calcHeartRateData:(BKDataHR *)hrModel{
+    for (int i = 0; i < 5; i++) {
+        self.timeDetail[i] = @(self.timeDetail[i].integerValue + hrModel.timeDetail[i].integerValue);
+        self.energyDetail[i] = @(self.energyDetail[i].doubleValue + hrModel.energyDetail[i].doubleValue);
+        self.hrDetail[i] = @(self.hrDetail[i].integerValue + hrModel.hrDetail[i].integerValue);
+        self.energy += hrModel.energy;
     }
-    return self;
 }
 
+// 必须传入24个小时的每小时心率
+//- (instancetype)initWithHeartRateData:(NSArray<BKDataHR *> *)hrModels hoursData:(NSArray<BKDataHRHour *> *)hourModels{
+//    if (self = [self init]) {
+//        [hrModels enumerateObjectsUsingBlock:^(BKDataHR * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            for (int i = 0; i < 5; i++) {
+//                self.timeDetail[i] = @(self.timeDetail[i].integerValue + obj.timeDetail[i].integerValue);
+//                self.energyDetail[i] = @(self.energyDetail[i].doubleValue + obj.energyDetail[i].doubleValue);
+//                self.hrDetail[i] = @(self.hrDetail[i].integerValue + obj.hrDetail[i].integerValue);
+//                self.energy += obj.energy;
+//            }
+//
+//        }];
+//        [hourModels enumerateObjectsUsingBlock:^(BKDataHRHour * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            [self.minuteDetail addObjectsFromArray:obj.hrDetail];
+//        }];
+//        // 提取出有效心率，进行数据分析
+//        NSMutableArray<NSNumber *> *validHR = [NSMutableArray array];
+//        [self.minuteDetail enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            if (obj.integerValue > 0 && obj.integerValue < 255) {
+//                [validHR addObject:obj];
+//            }
+//        }];
+//        self.avgBpm = (NSInteger)[validHR ax_avg];
+//        self.maxBpm = (NSInteger)[validHR ax_max];
+//        self.minBpm = (NSInteger)[validHR ax_min];
+//    }
+//    return self;
+//}
+
 + (NSArray<BKQuery *> *)querySummaryWithDate:(NSDate *)date unit:(BKQueryUnit)unit{
-    NSArray<BKDataHR *> *hrModels = [BKDataHR selectFromDatabaseWithDate:date];
-    NSArray<BKDataHRHour *> *hrHourModels = [BKDataHRHour selectFromDatabaseWithDate:date];
-    BKHeartRateQuery *result = [[BKHeartRateQuery alloc] initWithHeartRateData:hrModels hoursData:hrHourModels];
-#warning 具体到哪一天
-    result.date = date;
-    result.unit = unit;
-    return @[result];
+    NSMutableArray<BKHeartRateQuery *> *results = [NSMutableArray arrayWithCapacity:unit];
+    [self getAlldateWithDate:date unit:unit completion:^(NSDate * _Nonnull date) {
+        BKHeartRateQuery *result = [[self alloc] init];
+        result.date = date;
+        NSArray<BKDataHR *> *hrModels = [BKDataHR selectWithDate:date unit:BKQueryUnitDaily];
+        NSArray<BKDataHRHour *> *hrHourModels = [BKDataHRHour selectWithDate:date unit:BKQueryUnitDaily];
+        [hrModels enumerateObjectsUsingBlock:^(BKDataHR * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [result calcHeartRateData:obj];
+        }];
+        if (unit == BKQueryUnitDaily) {
+            [hrHourModels enumerateObjectsUsingBlock:^(BKDataHRHour * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [result.minuteHR addObjectsFromArray:obj.hrDetail];
+            }];
+        }
+        BKDataDay *day = [BKDataDay selectWithDate:date unit:BKQueryUnitDaily].lastObject;
+        if (day) {
+            result.maxBpm = day.maxBpm;
+            result.avgBpm = day.avgBpm;
+            result.minBpm = day.minBpm;
+        }
+        [results addObject:result];
+    }];
+    return results;
 }
 
 @end

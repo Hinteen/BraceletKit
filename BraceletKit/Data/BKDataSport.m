@@ -132,12 +132,9 @@
     return bk_user_id().length && bk_device_id().length && self.dateInteger;
 }
 
-+ (NSArray<BKBaseTable *> *)selectFromDatabaseWithDate:(NSDate *)date{
-    return [self selectFromDatabaseWhere:[NSString stringWithFormat:@"date = %08d", date.intValue]];
-}
 
-+ (NSArray<BKBaseTable *> *)selectFromDatabaseWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate{
-    return [self selectFromDatabaseWhere:[NSString stringWithFormat:@"start > '%@' and start < '%@'", bk_date_string(startDate), bk_date_string(endDate)]];
++ (NSArray<BKBaseTable *> *)selectWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate{
+    return [self selectWhere:[NSString stringWithFormat:@"start >= '%@' and start < '%@'", bk_date_string(startDate), bk_date_string(endDate)]];
 }
 
 

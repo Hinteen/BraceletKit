@@ -26,11 +26,11 @@
  最小心率
  */
 @property (assign, nonatomic) NSInteger minBpm;
-
 /**
- 总能量消耗
+ 消耗的能力
  */
 @property (assign, nonatomic) CGFloat energy;
+
 
 
 /**
@@ -50,45 +50,11 @@
 
 
 /**
- 心率详情
- 
- 如果查询单位是天，则代表每分钟心率，共24x60=1440条
- 如果查询单位是周、月或年，则代表每天的平均心率，有多少天就有多少条
+ 分钟心率详情（只有当查询单位为天时才有这个值）
+ 代表每分钟心率，共24x60=1440条
  */
-@property (strong, nonatomic) NSMutableArray<NSNumber *> *minuteDetail;
+@property (strong, nonatomic) NSMutableArray<NSNumber *> *minuteHR;
 
-
-/**
- 每天平均心率
- 
- 如果查询单位是天，则此值为空
- 如果查询单位是周、月或年，则代表每天的平均心率，有多少天就有多少条
- */
-@property (strong, nonatomic) NSMutableArray<NSNumber *> *dailyAvgBpms;
-
-/**
- 每天最大心率
- 
- 如果查询单位是天，则此值为空
- 如果查询单位是周、月或年，则代表每天的平均心率，有多少天就有多少条
- */
-@property (strong, nonatomic) NSMutableArray<NSNumber *> *dailyMaxBpms;
-
-/**
- 每天最小心率
- 
- 如果查询单位是天，则此值为空
- 如果查询单位是周、月或年，则代表每天的平均心率，有多少天就有多少条
- */
-@property (strong, nonatomic) NSMutableArray<NSNumber *> *dailyMinBpms;
-
-/**
- 每天能量消耗
- 
- 如果查询单位是天，则此值为空
- 如果查询单位是周、月或年，则代表每天的平均心率，有多少天就有多少条
- */
-@property (strong, nonatomic) NSMutableArray<NSNumber *> *dailyEnergys;
 
 
 

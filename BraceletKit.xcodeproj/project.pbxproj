@@ -105,6 +105,7 @@
 		CDC2EBAB2017553800C9F77E /* BKSleepQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EBA92017553800C9F77E /* BKSleepQuery.m */; };
 		CDDFA3AB1FB5BAC8004C99D5 /* HomeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFA3AA1FB5BAC8004C99D5 /* HomeTableView.m */; };
 		CDDFA3AD1FB5BADB004C99D5 /* HomeTableView.json in Resources */ = {isa = PBXBuildFile; fileRef = CDDFA3AC1FB5BADB004C99D5 /* HomeTableView.json */; };
+		CDE04B41201C90DA00A29F31 /* BKDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE04B3F201C90DA00A29F31 /* BKDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DEF70E632A2776ACEB30913A /* libPods-BraceletKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D14689FFFFCA37F6DE88DC /* libPods-BraceletKit.a */; };
 		EC05BC38CB898D8E3D73CB74 /* libPods-BraceletKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE1DC049097F75176EA41B0A /* libPods-BraceletKitDemo.a */; };
 /* End PBXBuildFile section */
@@ -271,6 +272,7 @@
 		CDDFA3A91FB5BAC8004C99D5 /* HomeTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTableView.h; sourceTree = "<group>"; };
 		CDDFA3AA1FB5BAC8004C99D5 /* HomeTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTableView.m; sourceTree = "<group>"; };
 		CDDFA3AC1FB5BADB004C99D5 /* HomeTableView.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HomeTableView.json; sourceTree = "<group>"; };
+		CDE04B3F201C90DA00A29F31 /* BKDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDefines.h; sourceTree = "<group>"; };
 		DB1E183FFB52344948ECBE59 /* Pods-BraceletKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKit/Pods-BraceletKit.debug.xcconfig"; sourceTree = "<group>"; };
 		E6EFBFB819873C01F3CF1024 /* Pods-BraceletKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKitDemo/Pods-BraceletKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		FAB7368B52D73BF363A9199C /* Pods-BraceletKitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKitDemo/Pods-BraceletKitDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				CD2E79391FA0C54200012CDB /* BraceletKit.h */,
+				CDE04B3F201C90DA00A29F31 /* BKDefines.h */,
 				CD25EA192013301E009BEFC1 /* BKServices.h */,
 				CD25EA1A2013301E009BEFC1 /* BKServices.m */,
 				CDC2EB8C20172A1300C9F77E /* BKScanner.h */,
@@ -740,6 +743,7 @@
 				CD25EA1B2013301E009BEFC1 /* BKServices.h in Headers */,
 				CDA0040D201491DF00E572A7 /* BKBaseTable.h in Headers */,
 				CD37F45B2014E1BF009B213B /* BKDataHR.h in Headers */,
+				CDE04B41201C90DA00A29F31 /* BKDefines.h in Headers */,
 				CD2E794B1FA0C89F00012CDB /* BraceletManager.h in Headers */,
 				CDC2EB8520163E4300C9F77E /* BKPreferences.h in Headers */,
 				CD25EA2720133083009BEFC1 /* _BKLogHelper.h in Headers */,

@@ -7,42 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BKDefines.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @class BKDataDay, BKDataSport, BKDataHR, BKDataHRHour, BKDataSleep;
-
-
-/**
- 查询单位
-
- - BKQueryUnitDaily: 每日数据
- - BKQueryUnitWeekly: 每周数据
- - BKQueryUnitMonthly: 每月数据
- - BKQueryUnitYearly: 每年数据
- */
-typedef NS_ENUM(NSUInteger, BKQueryUnit) {
-    BKQueryUnitDaily,
-    BKQueryUnitWeekly,
-    BKQueryUnitMonthly,
-    BKQueryUnitYearly
-};
 
 /**
  只能查询当前登录用户的当前连接的设备的数据
  */
 @interface BKQuery : NSObject
 
-
 /**
- 时间
+ date
  */
 @property (strong, nonatomic) NSDate *date;
-
-/**
- 查询单位
- */
-@property (assign, nonatomic) BKQueryUnit unit;
-
 
 #pragma mark - 运动
 
@@ -59,6 +37,9 @@ typedef NS_ENUM(NSUInteger, BKQueryUnit) {
  @return 满足条件的统计数据（某一天/一周/一个月/一年）
  */
 + (nullable NSArray<__kindof BKQuery *> *)querySummaryWithDate:(NSDate *)date unit:(BKQueryUnit)unit;
+
+
++ (void)getAlldateWithDate:(NSDate *)date unit:(BKQueryUnit)unit completion:(void (^)(NSDate *date))completion;
 
 ///**
 // 查询某一天的摘要数据

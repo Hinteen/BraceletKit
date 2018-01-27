@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BKDefines.h"
+
 NS_ASSUME_NONNULL_BEGIN
 @class FMResultSet, BKBaseTable;
 
@@ -73,25 +75,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)restoreFromDatabase;
 
-
-/**
- 取出当天的所有原始数据
-
- @param date 天（日期只需要精确到天）
- @return 满足条件的所有原始数据
- */
-+ (NSArray<__kindof BKBaseTable *> *)selectFromDatabaseWithDate:(NSDate *)date;
-
-
-/**
- 取出从某个时刻到某个时刻的所有原始数据
-
- @param startDate 开始时间
- @param endDate 截止时间
- @return 满足条件的所有原始数据
- */
-+ (NSArray<__kindof BKBaseTable *> *)selectFromDatabaseWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate;
-
 @end
 
 
@@ -111,16 +94,41 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)saveToDatabase;
 
 
+
++ (void)select:(NSString *)select where:(NSString *(^)(void))where result:(void (^)(FMResultSet *set))result;
+
++ (void)select:(NSString *)select date:(NSDate *)date unit:(BKQueryUnit)unit result:(void (^)(FMResultSet *set))result;
+
++ (void)select:(NSString *)select startDate:(NSDate *)startDate endDate:(NSDate *)endDate result:(void (^)(FMResultSet *set))result;
+
 /**
  从数据库中取出数据
  
  @param where where语句
  @return 满足条件的所有原始数据
  */
-+ (NSArray<__kindof BKBaseTable *> *)selectFromDatabaseWhere:(NSString *)where;
++ (NSArray<__kindof BKBaseTable *> *)selectWhere:(NSString *)where;
+
+/**
+ 取出若干天的所有原始数据
+ 
+ @param date 天（日期只需要精确到天）
+ @param unit 查询单位
+ @return 满足条件的所有原始数据
+ */
++ (NSArray<__kindof BKBaseTable *> *)selectWithDate:(NSDate *)date unit:(BKQueryUnit)unit;
+
+/**
+ 取出从某个时刻到某个时刻的所有原始数据
+ 
+ @param startDate 开始时间
+ @param endDate 截止时间
+ @return 满足条件的所有原始数据
+ */
++ (NSArray<__kindof BKBaseTable *> *)selectWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate;
 
 
-+ (void)select:(NSString *)sel where:(NSString *(^)(void))where result:(void (^)(FMResultSet *set))result;
+
 
 
 @end
