@@ -12,7 +12,7 @@
 #import "MJRefresh.h"
 #import "BKServices.h"
 
-@interface ScanViewController () <UITableViewDataSource, UITableViewDelegate, BKScanDelegate>
+@interface ScanViewController () <UITableViewDataSource, UITableViewDelegate, BKScanDelegate, ScanTableViewCellDelegate>
 
 @property (strong, nonatomic) UITableView *tableView2;
 
@@ -57,6 +57,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (void)dealloc{
     [self.devices removeAllObjects];
     
@@ -93,6 +94,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ScanTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ScanTableViewCell" forIndexPath:indexPath];
     cell.model = self.devices[indexPath.section];
+    cell.delegate = self;
     return cell;
 }
 
@@ -108,5 +110,15 @@
     });
 }
 
+- (void)cell:(ScanTableViewCell *)cell didTappedSwitch:(UISwitch *)sender{
+    if (sender.on) {
+        [[BKServices sharedInstance].connector connectDevice:cell.model];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    } else {
+        [[BKServices sharedInstance].connector disConnectDevice];
+    }
+}
 
 @end

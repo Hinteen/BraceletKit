@@ -17,19 +17,19 @@
 /**
  steps
  */
-@property (assign, nonatomic) NSInteger steps;
+@property (strong, nonatomic) NSNumber *steps;
 /**
  distance
  */
-@property (assign, nonatomic) CGFloat distance;
+@property (strong, nonatomic) NSNumber *distance;
 /**
  calorie
  */
-@property (assign, nonatomic) CGFloat calorie;
+@property (strong, nonatomic) NSNumber *calorie;
 /**
  activity
  */
-@property (assign, nonatomic) NSInteger activity;
+@property (strong, nonatomic) NSNumber *activity;
 
 
 /**

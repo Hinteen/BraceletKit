@@ -76,6 +76,7 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
         [column appendVarcharColumn:@"uuid" comma:YES];
         [column appendVarcharColumn:@"name" comma:YES];
         [column appendVarcharColumn:@"model" comma:YES];
+        [column appendIntegerColumn:@"type" comma:YES];
         [column appendVarcharColumn:@"version" comma:YES];
         [column appendIntegerColumn:@"battery" comma:YES];
         [column appendVarcharColumn:@"languages" comma:YES];
@@ -98,6 +99,7 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
     model.uuid = [set stringForColumnIndex:i++];
     model.name = [set stringForColumnIndex:i++];
     model.model = [set stringForColumnIndex:i++];
+    model.type = [set longForColumnIndex:i++];
     model.version = [set stringForColumnIndex:i++];
     model.battery = [set intForColumnIndex:i++];
 //    NSData *data = [set dataForColumnIndex:i++];
@@ -129,6 +131,7 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
     [value appendVarcharValue:self.uuid comma:YES];
     [value appendVarcharValue:self.name comma:YES];
     [value appendVarcharValue:self.model comma:YES];
+    [value appendIntegerValue:self.type comma:YES];
     [value appendVarcharValue:self.version comma:YES];
     [value appendIntegerValue:self.battery comma:YES];
     
@@ -173,6 +176,18 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
         }];
     });
     return cachedDevice;
+}
+
++ (NSMutableArray<BKDevice *> *)allMyDevices{
+    NSMutableArray<BKDevice *> *devices = [NSMutableArray array];
+    databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
+        [db ax_select:@"*" from:self.tableName where:^NSString * _Nonnull{
+            return @"";
+        } orderBy:@"lastmodified DESC" result:^(FMResultSet * _Nonnull set) {
+            [devices addObject:[self modelWithSet:set]];
+        }];
+    });
+    return devices;
 }
 
 - (NSString *)restoreMac{
@@ -302,6 +317,13 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
     }, completion, error);
 }
 
+/**
+ 向手环推送消息（不要超过手环一屏内容，否则显示不全）
+ 
+ @param message 消息内容
+ @param completion 操作成功
+ @param error 操作失败及其原因
+ */
 - (void)pushMessage:(NSString *)message completion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
     bk_ble_option(^{
         [[BLELib3 shareInstance] pushStr:message];
@@ -310,10 +332,33 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
 
 
 
+/**
+ 刷新电池电量
+ */
+- (void)refreshBattery{
+    [[BLELib3 shareInstance] readDeviceBattery];
+}
 
-
-
-
+- (void)syncAllDataCompletion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
+    bk_ble_option(^{
+        [[BLELib3 shareInstance] syncData];
+//        if (self.type == BKDeviceTypeI5) {
+//            [[BLELib3 shareInstance] getSportData];
+//            [[BLELib3 shareInstance] getCurrentSportData];
+//        }
+//        [[BLELib3 shareInstance] sportDataOpen:YES];
+    }, completion, error);
+}
+- (void)cancelSyncAllDataCompletion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
+    bk_ble_option(^{
+        [[BLELib3 shareInstance] stopSyncData];
+//        if (self.type == BKDeviceTypeI5) {
+//            [[BLELib3 shareInstance] stopSyncData];
+//            [[BLELib3 shareInstance] getCurrentSportData];
+//        }
+//        [[BLELib3 shareInstance] sportDataOpen:YES];
+    }, completion, error);
+}
 
 
 

@@ -15,6 +15,10 @@
 
 - (instancetype)init{
     if (self = [super init]) {
+        self.steps = @0;
+        self.distance = @0;
+        self.calorie = @0;
+        self.activity = @0;
         self.hourSteps = [NSMutableArray arrayWithCapacity:24];
         self.hourDistance = [NSMutableArray arrayWithCapacity:24];
         self.hourCalorie = [NSMutableArray arrayWithCapacity:24];
@@ -62,10 +66,10 @@
         BKDayData *day = [BKDayData selectWithDate:date unit:BKQueryUnitDaily].lastObject;
         if (day) {
             result.date = [NSDate ax_dateWithIntegerValue:day.dateInteger];
-            result.steps = day.steps;
-            result.distance = day.distance;
-            result.calorie = day.calorie;
-            result.activity = day.activity;
+            result.steps = @(day.steps);
+            result.distance = @(day.distance);
+            result.calorie = @(day.calorie);
+            result.activity = @(day.activity);
         }
         [results addObject:result];
     }];

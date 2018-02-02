@@ -58,6 +58,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (copy, nonatomic) NSString *model;
 /**
+ type
+ */
+@property (assign, nonatomic) BKDeviceType type;
+/**
  version
  */
 @property (copy, nonatomic) NSString *version;
@@ -102,11 +106,30 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)currentDevice;
 
+
 #pragma mark - db
 
+/**
+ 上一次连接过的设备
+
+ @return 上一次连接过的设备
+ */
 + (instancetype)lastConnectedDevice;
 
+/**
+ 所有连接过的设备
+
+ @return 所有连接过的设备
+ */
++ (NSMutableArray<BKDevice *> *)allMyDevices;
+
+/**
+ 恢复Mac地址
+
+ @return Mac地址
+ */
 - (NSString *)restoreMac;
+
 
 
 #pragma mark - function
@@ -136,6 +159,14 @@ NS_ASSUME_NONNULL_BEGIN
  @param error 操作失败及其原因
  */
 - (void)pushMessage:(NSString *)message completion:(void(^)(void))completion error:(void (^)(NSError *error))error;
+
+/**
+ 刷新电池电量
+ */
+- (void)refreshBattery;
+
+- (void)syncAllDataCompletion:(void (^)(void))completion error:(void (^)(NSError *error))error;
+- (void)cancelSyncAllDataCompletion:(void (^)(void))completion error:(void (^)(NSError *error))error;
 
 @end
 NS_ASSUME_NONNULL_END

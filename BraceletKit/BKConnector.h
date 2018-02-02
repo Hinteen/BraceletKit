@@ -54,7 +54,10 @@
  设备
  */
 @property (strong, readonly, nonatomic) BKDevice *device;
-
+/**
+ 连接状态
+ */
+@property (assign, readonly, nonatomic) BKConnectState state;
 
 /**
  初始化连接
@@ -70,6 +73,15 @@
  @param device 设备
  */
 - (void)connectDevice:(BKDevice *)device;
+
+
+/**
+ 恢复离线设备
+ 用于数据调试，以这台设备的身份查看数据以及app展示效果
+
+ @param device 离线设备
+ */
+- (void)restoreOfflineDevice:(BKDevice *)device;
 
 /**
  断开连接

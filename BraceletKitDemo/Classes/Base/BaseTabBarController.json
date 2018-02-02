@@ -1,7 +1,7 @@
 [
     {
       "vc":"HomeVC",
-      "title":"主页",
+      "title":"今日",
       "icon":"tabbar_home",
       "icon_sel":"",
     },
@@ -11,7 +11,12 @@
       "icon":"tabbar_debug",
       "icon_sel":"",
     },
-     
+     {
+     "vc":"DeviceVC",
+     "title":"设备",
+     "icon":"tabbar_device",
+     "icon_sel":"",
+     },
     {
       "vc":"MineVC",
       "title":"我的",

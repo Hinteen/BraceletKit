@@ -15,6 +15,8 @@
 
 @property (strong, nonatomic) CBCentralManager *central;
 
+@property (strong, nonatomic) NSMutableArray<BKDevice *> *devices;
+
 @end
 
 @implementation BKScanner
@@ -22,6 +24,7 @@
 
 - (instancetype)init{
     if (self = [super init]) {
+        _devices = [NSMutableArray array];
         self.central = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         
         [BLELib3 shareInstance].discoverDelegate = self;
@@ -77,8 +80,15 @@
  */
 - (void)IWBLEDidDiscoverDeviceWithMAC:(ZeronerBlePeripheral *)iwDevice{
     AXCachedLogOBJ(iwDevice);
+    BKDevice *device = iwDevice.transformToBKDevice;
+    [self.devices addObject:device];
     if ([self.delegate respondsToSelector:@selector(scannerDidDiscoverDevice:)]) {
-        [self.delegate scannerDidDiscoverDevice:iwDevice.transformToBKDevice];
+        [self.delegate scannerDidDiscoverDevice:device];
+    }
+    if ([BKServices sharedInstance].connector.state == BKConnectStateBindingUnconnected) {
+        if ([device.mac isEqualToString:[BKDevice currentDevice].mac]) {
+            [[BKServices sharedInstance].connector connectDevice:device];
+        }
     }
 }
 

@@ -31,7 +31,9 @@
 
 - (instancetype)init{
     if (self = [super init]) {
+        _state = BKConnectStateUnknown;
         self.central = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        _device = [BKDevice lastConnectedDevice];
         [BLELib3 shareInstance].connectDelegate = self;
     }
     return self;
@@ -47,14 +49,33 @@
 
 
 - (void)connectDevice:(BKDevice *)device{
-    [[BLELib3 shareInstance] connectDevice:device.zeronerBlePeripheral];
     AXCachedLogOBJ(@"调用了连接方法");
+    if (device.zeronerBlePeripheral) {
+        [[BLELib3 shareInstance] stopScan];
+        [[BLELib3 shareInstance] connectDevice:device.zeronerBlePeripheral];
+    }
+}
+
+- (void)restoreOfflineDevice:(BKDevice *)device{
+    AXCachedLogOBJ(@"调用了恢复离线设备的方法");
+    _state = BKConnectStateBindingUnconnected;
+    _device = device;
+    if (self.central.state == CBCentralManagerStatePoweredOn) {
+        [[BKServices sharedInstance].scanner scanDevice];
+    }
+    
 }
 
 - (void)disConnectDevice{
-    [[BLELib3 shareInstance] unConnectDevice];
-    [[BLELib3 shareInstance] debindFromSystem];
-    AXCachedLogOBJ(@"调用了断开连接方法");
+    if (self.state == BKConnectStateConnected) {
+        AXCachedLogOBJ(@"调用了断开连接方法");
+        [[BLELib3 shareInstance] unConnectDevice];
+        [[BLELib3 shareInstance] debindFromSystem];
+    } else {
+        AXCachedLogOBJ(@"尝试断开连接，但当前已经是离线模式");
+        // 如果是离线模式，断开的动作实际上只是remove当前的离线设备
+        _device = nil;
+    }
 }
 
 
@@ -76,9 +97,10 @@
  */
 - (void)IWBLEDidConnectDevice:(ZeronerBlePeripheral *)device{
     AXCachedLogOBJ(device);
-    self.peripheral = device.cbDevice;
+    _state = BKConnectStateConnected;
     _device = device.transformToBKDevice;
     self.device.delegate = [BKServices sharedInstance];
+    self.peripheral = device.cbDevice;
     [BLELib3 shareInstance].delegate = self.device;
     [self.central connectPeripheral:self.peripheral options:nil];
     if ([self.delegate respondsToSelector:@selector(connectorDidConnectedDevice:)]) {
@@ -105,8 +127,13 @@
 - (void)IWBLEDidDisConnectWithDevice:(ZeronerBlePeripheral *)device andError:(NSError *)error{
     AXCachedLogOBJ(device);
     AXCachedLogError(error);
-    _device = nil;
-    self.device.delegate = nil;
+    if (self.state == BKConnectStateConnected) {
+        // 如果当前状态是已连接，就需要更新状态为未连接
+        _state = BKConnectStateBindingUnconnected;
+        _device = nil;
+        // 移除掉代理，不再接收事件
+        self.device.delegate = nil;
+    }
     if (self.peripheral) {
         [self.central cancelPeripheralConnection:self.peripheral];
     }
@@ -123,6 +150,11 @@
 - (void)IWBLEDidFailToConnectDevice:(ZeronerBlePeripheral *)device andError:(NSError *)error{
     AXCachedLogOBJ(device);
     AXCachedLogError(error);
+    if (device) {
+        _state = BKConnectStateBindingUnconnected;
+    } else {
+        _state = BKConnectStateUnknown;
+    }
     self.device.delegate = nil;
     if ([self.delegate respondsToSelector:@selector(connectorDidFailToConnectDevice:)]) {
         [self.delegate connectorDidFailToConnectDevice:device.transformToBKDevice];
@@ -134,6 +166,7 @@
  */
 - (void)IWBLEConnectTimeOut{
     AXCachedLogError(@"连接超时");
+    _state = BKConnectStateUnknown;
     self.device.delegate = nil;
     if ([self.delegate respondsToSelector:@selector(connectorDidConnectTimeout)]) {
         [self.delegate connectorDidConnectTimeout];

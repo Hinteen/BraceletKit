@@ -20,6 +20,7 @@
     bk.mac = self.mediaAC;
     bk.name = self.deviceName;
     bk.uuid = self.uuidString;
+    bk.type = (BKDeviceType)[BLELib3 shareInstance].deviceType;
     bk.peripheral = self.cbDevice;
     bk.rssi = self.RSSI;
     bk.zeronerBlePeripheral = self;

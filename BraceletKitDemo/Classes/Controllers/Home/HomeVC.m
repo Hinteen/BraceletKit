@@ -8,10 +8,9 @@
 
 #import "HomeVC.h"
 #import "HomeTableView.h"
-#import <AXKit/AXKit.h>
-#import <AXCameraKit/AXCameraKit.h>
+
 #import "DeviceSettingTV.h"
-#import <AVFoundation/AVFoundation.h>
+
 
 
 static inline CGSize contentSize(){
@@ -34,19 +33,24 @@ static inline CGSize contentSize(){
     
     [[BKServices sharedInstance] registerDeviceDelegate:self];
     
-    __weak typeof(self) weakSelf = self;
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem ax_itemWithImageName:@"band" action:^(UIBarButtonItem * _Nonnull sender) {
-        [weakSelf.navigationController ax_pushViewControllerNamed:@"ScanViewController"];
+    
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem ax_itemWithImageName:@"battery" action:^(UIBarButtonItem * _Nonnull sender) {
+        sender.image = UIImageNamed(@"refresh");
+        [[BKDevice currentDevice] refreshBattery];
+        [[BKDevice currentDevice] syncAllDataCompletion:nil error:nil];
     }];
     
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem ax_itemWithTitle:@"setting" action:^(UIBarButtonItem * _Nonnull sender) {
-        [UIApplication ax_openAppSetting];
-    }];
     
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.tableView reloadDataSourceAndRefreshTableView];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-//    [UIAlertController ax_showAlertWithTitle:nil message:@"haha" actions:nil];
+
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -57,17 +61,8 @@ static inline CGSize contentSize(){
     [[BKServices sharedInstance] unRegisterDeviceDelegate:self];
 }
 
-
 - (AXTableViewType *)installTableView{
-    return [[DeviceSettingTV alloc] initWithFrame:CGRectMake(0, 0, contentSize().width, contentSize().height) style:UITableViewStyleGrouped];
-}
-
-
-/**
- 更新了设备信息
- */
-- (void)deviceDidUpdateInfo{
-    [self.tableView reloadDataSourceAndRefreshTableView];
+    return [[HomeTableView alloc] initWithFrame:CGRectMake(0, 0, contentSize().width, contentSize().height) style:UITableViewStyleGrouped];
 }
 
 /**
@@ -76,15 +71,10 @@ static inline CGSize contentSize(){
  @param battery 电池电量
  */
 - (void)deviceDidUpdateBattery:(NSInteger)battery{
-    [self.tableView reloadDataSourceAndRefreshTableView];
-}
-
-
-/**
- 手环点击了查找手机
- */
-- (void)deviceDidTappedFindMyPhone{
-    AudioServicesPlayAlertSound(1008);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.navigationItem.rightBarButtonItem.image = nil;
+        self.navigationItem.rightBarButtonItem.title = [NSString stringWithFormat:@"%d%%", (int)battery];
+    });
 }
 
 

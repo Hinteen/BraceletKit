@@ -9,10 +9,19 @@
 #import <UIKit/UIKit.h>
 #import <BraceletKit/BraceletKit.h>
 
+@class ScanTableViewCell;
+
+@protocol ScanTableViewCellDelegate <NSObject>
+
+- (void)cell:(ScanTableViewCell *)cell didTappedSwitch:(UISwitch *)sender;
+
+@end
 
 @interface ScanTableViewCell : UITableViewCell
 
 // @xaoxuu: model
 @property (strong, nonatomic) BKDevice *model;
+
+@property (weak, nonatomic) NSObject<ScanTableViewCellDelegate> *delegate;
 
 @end

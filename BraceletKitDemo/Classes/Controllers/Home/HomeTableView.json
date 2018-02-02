@@ -1,39 +1,39 @@
 {
-    "title":"设置",
+    "title":"今日概览",
     "headerTitle":"this is table header",
     "headerHeight":0,
     "footerTitle":"this is table footer",
     "footerHeight":0,
     "sections":[
         {
-            "headerTitle":"基本信息1",
+            "headerTitle":"今日概览",
             "headerHeight":44,
             "footerTitle":"",
             "footerHeight":0,
             "rowHeight":50,
             "rows":[
                 {
-                    "title":"根控制器",
-                    "detail":"about axkit",
-                    "icon":"setting_about",
+                    "title":"步数",
+                    "detail":"--",
+                    "icon":"",
                     "target":"RootViewController"
                 },
                 {
-                    "title":"博客",
-                    "detail":"xaoxuu's blog",
-                    "icon":"https://xaoxuu.com/images/avatar.png",
+                    "title":"距离",
+                    "detail":"--",
+                    "icon":"",
                     "target":"https://blog.xaoxuu.com"
                 },
                 {
-                    "title":"主页",
-                    "detail":"xaoxuu",
-                    "icon":"http://xaoxuu.com",
+                    "title":"卡路里",
+                    "detail":"--",
+                    "icon":"",
                     "target":"http://xaoxuu.com"
                 },
                 {
-                    "title":"new vc",
-                    "detail":"xaoxuu's proj",
-                    "icon":"help",
+                    "title":"活动时间",
+                    "detail":"--",
+                    "icon":"",
                     "target":"NewViewController"
                 }
 
@@ -41,7 +41,7 @@
             ]
         },
         {
-            "headerTitle":"基本信息2",
+            "headerTitle":"运动趋势",
             "headerHeight":44,
             "footerTitle":"",
             "footerHeight":0,

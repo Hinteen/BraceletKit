@@ -13,7 +13,7 @@
 #import <AXCameraKit/AXCameraKit.h>
 #import "CameraViewController.h"
 
-@interface DeviceSettingTV ()
+@interface DeviceSettingTV () 
 
 
 @end
@@ -52,10 +52,6 @@
             row.title = @"版本";
             row.detail = device.version;
             row.target = @"version";
-        }];
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"RSSI";
-            row.detail = device.rssi.stringValue;
         }];
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"mac地址";
