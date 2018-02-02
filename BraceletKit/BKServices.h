@@ -89,4 +89,19 @@
 - (void)unRegisterDeviceDelegate:(NSObject<BKDeviceDelegate> *)delegate;
 
 
+/**
+ 注册数据代理
+ 
+ @param delegate 代理
+ */
+- (void)registerDataObserver:(NSObject<BKDataObserver> *)observer;
+
+/**
+ 取消注册数据代理
+ 
+ @param delegate 代理
+ */
+- (void)unRegisterDataObserver:(NSObject<BKDataObserver> *)observer;
+
+
 @end

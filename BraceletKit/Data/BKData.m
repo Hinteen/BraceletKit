@@ -8,7 +8,11 @@
 
 #import "BKData.h"
 #import "_BKHeader.h"
+#import "BKServices.h"
 
+@interface BKServices() <BKDataObserver>
+
+@end
 
 @interface BKData() <BKData>
 
@@ -66,6 +70,11 @@
         databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
             ret = [db ax_replaceIntoTable:self.class.tableName column:self.class.tableColumns.stringByDeletingTypeAndComma value:self.valueString];
         });
+    }
+    if (ret) {
+        if ([[BKServices sharedInstance] respondsToSelector:@selector(dataDidUpdated:)]) {
+            [[BKServices sharedInstance] dataDidUpdated:self];
+        }
     }
     return ret;
 }

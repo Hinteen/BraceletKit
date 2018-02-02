@@ -159,7 +159,7 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
 }
 
 - (BOOL)cacheable{
-    return bk_user_id().length && self.mac.length && ![self.mac isEqualToString:@"advertisementData.length is less than 6"];
+    return bk_user_id().length && self.mac.length && ![self.mac isEqualToString:@"advertisementData.length is less than 6"] && self.model.length && self.version.length;
 }
 
 - (NSString *)whereExists{
@@ -296,67 +296,80 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
 - (void)refreshPreferences{
     [[BLELib3 shareInstance] readFirmwareOption];
 }
-#pragma mark - function
 
-- (void)syncTimeAtOnceCompletion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
+
+#pragma mark - function
+/**
+ 请求立即同步时间
+ 
+ @param completion 指令已发送到设备
+ @param error 指令发送失败及其原因
+ */
+- (void)requestSyncTimeAtOnceCompletion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
     bk_ble_option(^{
         [[BLELib3 shareInstance] syscTimeAtOnce];
     }, completion, error);
 }
 
 /**
- 进入或退出拍照模式
+ 请求进入或退出拍照模式
  
  @param cameraMode 进入或退出
- @param completion 操作成功
+ @param completion 指令已发送到设备
  @param error 操作失败
  */
-- (void)cameraMode:(BOOL)cameraMode completion:(void(^)(void))completion error:(void (^)(NSError * _Nonnull))error{
+- (void)requestCameraMode:(BOOL)cameraMode completion:(void(^)(void))completion error:(void (^)(NSError * _Nonnull))error{
     bk_ble_option(^{
         [[BLELib3 shareInstance] setKeyNotify:cameraMode];
     }, completion, error);
 }
 
 /**
- 向手环推送消息（不要超过手环一屏内容，否则显示不全）
+ 请求向手环推送消息（不要超过手环一屏内容，否则显示不全）
  
  @param message 消息内容
- @param completion 操作成功
- @param error 操作失败及其原因
+ @param completion 指令已发送到设备
+ @param error 指令发送失败及其原因
  */
-- (void)pushMessage:(NSString *)message completion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
+- (void)requestPushMessage:(NSString *)message completion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
     bk_ble_option(^{
         [[BLELib3 shareInstance] pushStr:message];
     }, completion, error);
 }
 
-
-
 /**
- 刷新电池电量
+ 请求更新电池电量信息
+ 
+ @param completion 指令已发送到设备
+ @param error 指令发送失败及其原因
  */
-- (void)refreshBattery{
-    [[BLELib3 shareInstance] readDeviceBattery];
-}
-
-- (void)syncAllDataCompletion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
+- (void)requestUpdateBatteryCompletion:(void(^)(void))completion error:(void (^)(NSError *error))error{
     bk_ble_option(^{
-        [[BLELib3 shareInstance] syncData];
-//        if (self.type == BKDeviceTypeI5) {
-//            [[BLELib3 shareInstance] getSportData];
-//            [[BLELib3 shareInstance] getCurrentSportData];
-//        }
-//        [[BLELib3 shareInstance] sportDataOpen:YES];
+        [[BLELib3 shareInstance] readDeviceBattery];
     }, completion, error);
 }
-- (void)cancelSyncAllDataCompletion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
+
+/**
+ 请求更新所有健康数据
+ 
+ @param completion 指令已发送到设备
+ @param error 指令发送失败及其原因
+ */
+- (void)requestUpdateAllHealthDataCompletion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    bk_ble_option(^{
+        [[BLELib3 shareInstance] syncData];
+    }, completion, error);
+}
+
+/**
+ 请求立即停止更新所有健康数据
+ 
+ @param completion 指令已发送到设备
+ @param error 指令发送失败及其原因
+ */
+- (void)requestStopUpdateAllHealthDataCompletion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     bk_ble_option(^{
         [[BLELib3 shareInstance] stopSyncData];
-//        if (self.type == BKDeviceTypeI5) {
-//            [[BLELib3 shareInstance] stopSyncData];
-//            [[BLELib3 shareInstance] getCurrentSportData];
-//        }
-//        [[BLELib3 shareInstance] sportDataOpen:YES];
     }, completion, error);
 }
 

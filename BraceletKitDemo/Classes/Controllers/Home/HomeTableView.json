@@ -41,70 +41,63 @@
             ]
         },
         {
-            "headerTitle":"运动趋势",
+            "headerTitle":"分段运动",
             "headerHeight":44,
             "footerTitle":"",
             "footerHeight":0,
             "rowHeight":80,
             "rows":[
                 {
-                    "title":"关sfadfsadfasdf于",
-                    "detail":"about axkit dsa fafds fsd fas dfs sd ",
-                    "icon":"setting_about",
+                    "title":"运动1",
+                    "detail":"",
+                    "icon":"",
                     "target":""
                 },
                 {
-                    "title":"博客防守打法ad发多少发送dsa d但是",
-                    "detail":"xaoxuu's blog 史蒂芬s",
-                    "icon":"https://xaoxuu.com/images/avatar.png",
+                    "title":"运动2",
+                    "detail":"",
+                    "icon":"",
                     "target":""
                 }
                 
             ]
-                },
+        },
+        {
+            "headerTitle":"心率数据",
+            "headerHeight":44,
+            "footerTitle":"",
+            "footerHeight":0,
+            "rowHeight":80,
+            "rows":[
                 {
-                "headerTitle":"基本信息2",
-                "headerHeight":44,
-                "footerTitle":"",
-                "footerHeight":0,
-                "rowHeight":80,
-                "rows":[
-                        {
-                        "title":"关sfadfsadfasdf于",
-                        "detail":"about axkit dsa fafds fsd fas dfs sd ",
-                        "icon":"setting_about",
-                        "target":"AboutVC"
-                        },
-                        {
-                        "title":"博客防守打法ad发多少发送dsa d但是",
-                        "detail":"xaoxuu's blog 史蒂芬s",
-                        "icon":"https://xaoxuu.com/images/avatar.png",
-                        "target":"BlogVC"
-                        }
-                        
-                        ]
-                },
-                {
-                "headerTitle":"基本信息2",
-                "headerHeight":44,
-                "footerTitle":"",
-                "footerHeight":0,
-                "rowHeight":80,
-                "rows":[
-                        {
-                        "title":"关sfadfsadfasdf于",
-                        "detail":"about axkit dsa fafds fsd fas dfs sd ",
-                        "icon":"setting_about",
-                        "target":"AboutVC"
-                        },
-                        {
-                        "title":"博客防守打法ad发多少发送dsa d但是",
-                        "detail":"xaoxuu's blog 史蒂芬s",
-                        "icon":"https://xaoxuu.com/images/avatar.png",
-                        "target":"BlogVC"
-                        }
-                        
-                        ]
+                    "title":"心率图表",
+                    "detail":"",
+                    "icon":"",
+                    "target":""
                 }
+            ]
+        },
+        {
+            "headerTitle":"睡眠数据",
+            "headerHeight":44,
+            "footerTitle":"",
+            "footerHeight":0,
+            "rowHeight":80,
+            "rows":[
+                {
+                    "title":"睡眠分段1",
+                    "detail":"",
+                    "icon":"",
+                    "target":""
+                },
+                {
+                    "title":"睡眠分段2",
+                    "detail":"",
+                    "icon":"",
+                    "target":""
+                }
+                
+            ]
+        }
     ]
 }

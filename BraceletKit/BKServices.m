@@ -10,13 +10,16 @@
 
 static BKServices *bkServices = nil;
 
-@interface BKServices() <BKScanDelegate, BKConnectDelegate, BKDeviceDelegate>
+@interface BKServices() <BKScanDelegate, BKConnectDelegate, BKDeviceDelegate, BKDataObserver>
 
 @property (strong, nonatomic) NSMutableArray<NSObject<BKScanDelegate> *> *scanDelegates;
 
 @property (strong, nonatomic) NSMutableArray<NSObject<BKConnectDelegate> *> *connectDelegates;
 
 @property (strong, nonatomic) NSMutableArray<NSObject<BKDeviceDelegate> *> *deviceDelegates;
+
+@property (strong, nonatomic) NSMutableArray<NSObject<BKDataObserver> *> *dataObservers;
+
 
 @end
 
@@ -49,6 +52,7 @@ static BKServices *bkServices = nil;
     self.scanDelegates = [NSMutableArray array];
     self.connectDelegates = [NSMutableArray array];
     self.deviceDelegates = [NSMutableArray array];
+    self.dataObservers = [NSMutableArray array];
     // @xaoxuu: delegate
     _scanner = [[BKScanner alloc] initWithDelegate:self];
     _connector = [[BKConnector alloc] initWithDelegate:self];
@@ -104,6 +108,21 @@ static BKServices *bkServices = nil;
         [self.deviceDelegates removeObject:delegate];
     }
 }
+
+- (void)registerDataObserver:(NSObject<BKDataObserver> *)observer{
+    if (observer && ![self.dataObservers containsObject:observer]) {
+        [self.dataObservers addObject:observer];
+    }
+}
+
+- (void)unRegisterDataObserver:(NSObject<BKDataObserver> *)observer{
+    if (observer && [self.dataObservers containsObject:observer]) {
+        [self.dataObservers removeObject:observer];
+    }
+}
+
+
+
 // @xaoxuu: 让所有的代理执行
 - (void)allScannerDelegates:(void (^)(NSObject<BKScanDelegate> *delegate))handler{
     [self.scanDelegates enumerateObjectsUsingBlock:^(NSObject<BKScanDelegate> *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -121,6 +140,14 @@ static BKServices *bkServices = nil;
 }
 - (void)allDeviceDelegates:(void (^)(NSObject<BKDeviceDelegate> *delegate))handler{
     [self.deviceDelegates enumerateObjectsUsingBlock:^(NSObject<BKDeviceDelegate> *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (handler) {
+            handler(obj);
+        }
+    }];
+}
+
+- (void)allDataObservers:(void (^)(NSObject<BKDataObserver> *observer))handler{
+    [self.dataObservers enumerateObjectsUsingBlock:^(NSObject<BKDataObserver> *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (handler) {
             handler(obj);
         }
@@ -217,6 +244,16 @@ static BKServices *bkServices = nil;
     [self allDeviceDelegates:^(NSObject<BKDeviceDelegate> *delegate) {
         if ([delegate respondsToSelector:@selector(deviceDidTappedFindMyPhone)]) {
             [delegate deviceDidTappedFindMyPhone];
+        }
+    }];
+}
+
+#pragma mark - data delegate
+
+- (void)dataDidUpdated:(__kindof BKData *)data{
+    [self allDataObservers:^(NSObject<BKDataObserver> *observer) {
+        if ([observer respondsToSelector:@selector(dataDidUpdated:)]) {
+            [observer dataDidUpdated:data];
         }
     }];
 }

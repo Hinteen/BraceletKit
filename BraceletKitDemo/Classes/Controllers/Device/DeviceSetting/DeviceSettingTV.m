@@ -162,7 +162,7 @@
         [self.controller presentViewController:vc animated:YES completion:nil];
         
     } else if ([model.target isEqualToString:@"pushstring"]) {
-        [[BKDevice currentDevice] pushMessage:@"DID YOU MISS ME" completion:^{
+        [[BKDevice currentDevice] requestPushMessage:@"DID YOU MISS ME" completion:^{
             
         } error:^(NSError * _Nonnull error) {
             
@@ -182,7 +182,7 @@
     }
     
     else if ([model.target isEqualToString:@"time"]) {
-        [[BKDevice currentDevice] syncTimeAtOnceCompletion:^{
+        [[BKDevice currentDevice] requestSyncTimeAtOnceCompletion:^{
             
         } error:^(NSError * _Nonnull error) {
             

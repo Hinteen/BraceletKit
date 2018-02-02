@@ -17,7 +17,7 @@ static inline CGSize contentSize(){
     return CGSizeMake(kScreenW, kScreenH - kTopBarHeight - kTabBarHeight);
 }
 
-@interface HomeVC () <BKDeviceDelegate>
+@interface HomeVC () <BKConnectDelegate, BKDeviceDelegate, BKDataObserver>
 
 
 @end
@@ -31,13 +31,14 @@ static inline CGSize contentSize(){
     self.view.width = kScreenW;
     self.view.height -= kTabBarHeight;
     
+    [[BKServices sharedInstance] registerConnectDelegate:self];
     [[BKServices sharedInstance] registerDeviceDelegate:self];
-    
+    [[BKServices sharedInstance] registerDataObserver:self];
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem ax_itemWithImageName:@"battery" action:^(UIBarButtonItem * _Nonnull sender) {
         sender.image = UIImageNamed(@"refresh");
-        [[BKDevice currentDevice] refreshBattery];
-        [[BKDevice currentDevice] syncAllDataCompletion:nil error:nil];
+        [[BKDevice currentDevice] requestUpdateBatteryCompletion:nil error:nil];
+        [[BKDevice currentDevice] requestUpdateAllHealthDataCompletion:nil error:nil];
     }];
     
     
@@ -46,23 +47,37 @@ static inline CGSize contentSize(){
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationItem.title = [BKDevice currentDevice].name;
     [self.tableView reloadDataSourceAndRefreshTableView];
 }
+
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
 
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 - (void)dealloc{
+    [[BKServices sharedInstance] unRegisterConnectDelegate:self];
     [[BKServices sharedInstance] unRegisterDeviceDelegate:self];
+    [[BKServices sharedInstance] unRegisterDataObserver:self];
 }
 
 - (AXTableViewType *)installTableView{
     return [[HomeTableView alloc] initWithFrame:CGRectMake(0, 0, contentSize().width, contentSize().height) style:UITableViewStyleGrouped];
+}
+
+/**
+ 已连接设备
+ 
+ @param device 设备
+ */
+- (void)connectorDidConnectedDevice:(BKDevice *)device{
+    self.navigationItem.title = device.name;
 }
 
 /**
@@ -77,5 +92,9 @@ static inline CGSize contentSize(){
     });
 }
 
+
+- (void)dataDidUpdated:(__kindof BKData *)data{
+    [self.tableView reloadDataSourceAndRefreshTableView];
+}
 
 @end

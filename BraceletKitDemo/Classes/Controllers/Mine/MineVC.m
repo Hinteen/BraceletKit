@@ -25,7 +25,7 @@
     // Do any additional setup after loading the view from its nib.
     
     
-    self.title = @"我的设备";
+    self.navigationItem.title = @"我的设备";
     self.devices = [NSMutableArray array];
     
     CGRect frame = self.view.bounds;

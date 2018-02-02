@@ -9,7 +9,7 @@
 #import "BKData.h"
 #import "BKDefines.h"
 
-@class CBPeripheral, ZeronerBlePeripheral, BKPreferences;
+@class CBPeripheral, ZeronerBlePeripheral, BKPreferences, BKData;
 NS_ASSUME_NONNULL_BEGIN
 @protocol BKDeviceDelegate <NSObject>
 
@@ -35,6 +35,13 @@ NS_ASSUME_NONNULL_BEGIN
  手环点击了查找手机
  */
 - (void)deviceDidTappedFindMyPhone;
+
+/**
+ 更新了数据
+
+ @param data 数据
+ */
+- (void)deviceDidUpdateData:(__kindof BKData *)data;
 
 @end
 
@@ -136,37 +143,54 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- 立即同步时间
+ 请求立即同步时间
  
- @param completion 操作成功
- @param error 操作失败及其原因
+ @param completion 指令已发送到设备
+ @param error 指令发送失败及其原因
  */
-- (void)syncTimeAtOnceCompletion:(void(^)(void))completion error:(void (^)(NSError *error))error;
+- (void)requestSyncTimeAtOnceCompletion:(void(^)(void))completion error:(void (^)(NSError *error))error;
+
 /**
- 进入或退出拍照模式
+ 请求进入或退出拍照模式
 
  @param cameraMode 进入或退出
- @param completion 操作成功
- @param error 操作失败及其原因
+ @param completion 指令已发送到设备
+ @param error 指令发送失败及其原因
  */
-- (void)cameraMode:(BOOL)cameraMode completion:(void(^)(void))completion error:(void (^)(NSError *error))error;
+- (void)requestCameraMode:(BOOL)cameraMode completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error;
 
 /**
- 向手环推送消息（不要超过手环一屏内容，否则显示不全）
+ 请求向手环推送消息（不要超过手环一屏内容，否则显示不全）
 
  @param message 消息内容
- @param completion 操作成功
- @param error 操作失败及其原因
+ @param completion 指令已发送到设备
+ @param error 指令发送失败及其原因
  */
-- (void)pushMessage:(NSString *)message completion:(void(^)(void))completion error:(void (^)(NSError *error))error;
+- (void)requestPushMessage:(NSString *)message completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error;
 
 /**
- 刷新电池电量
- */
-- (void)refreshBattery;
+ 请求更新电池电量信息
 
-- (void)syncAllDataCompletion:(void (^)(void))completion error:(void (^)(NSError *error))error;
-- (void)cancelSyncAllDataCompletion:(void (^)(void))completion error:(void (^)(NSError *error))error;
+ @param completion 指令已发送到设备
+ @param error 指令发送失败及其原因
+ */
+- (void)requestUpdateBatteryCompletion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
+
+/**
+ 请求更新所有健康数据
+
+ @param completion 指令已发送到设备
+ @param error 指令发送失败及其原因
+ */
+- (void)requestUpdateAllHealthDataCompletion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
+
+/**
+ 请求立即停止更新所有健康数据
+ 
+ @param completion 指令已发送到设备
+ @param error 指令发送失败及其原因
+ */
+- (void)requestStopUpdateAllHealthDataCompletion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
 @end
 NS_ASSUME_NONNULL_END

@@ -12,6 +12,18 @@
 NS_ASSUME_NONNULL_BEGIN
 @class FMResultSet, BKData;
 
+@protocol BKDataObserver <NSObject>
+
+/**
+ 数据更新了
+ 所有BKData的子类存到数据库都会触发此方法，包括用户、设备、设置、健康数据等
+
+ @param data 数据
+ */
+- (void)dataDidUpdated:(__kindof BKData *)data;
+
+@end
+
 @protocol BKData <NSObject>
 
 @required

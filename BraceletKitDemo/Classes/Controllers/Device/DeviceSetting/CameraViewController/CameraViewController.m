@@ -27,7 +27,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [[BKServices sharedInstance] registerDeviceDelegate:self];
-    [[BKDevice currentDevice] cameraMode:YES completion:^{
+    [[BKDevice currentDevice] requestCameraMode:YES completion:^{
         
     } error:^(NSError *error) {
         
@@ -37,7 +37,7 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[BKServices sharedInstance] unRegisterDeviceDelegate:self];
-    [[BKDevice currentDevice] cameraMode:NO completion:^{
+    [[BKDevice currentDevice] requestCameraMode:NO completion:^{
         
     } error:^(NSError *error) {
         
