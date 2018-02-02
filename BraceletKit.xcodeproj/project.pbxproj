@@ -98,7 +98,7 @@
 		CDB94C6620133A0400CB588C /* _BKModelHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = CDB94C6420133A0400CB588C /* _BKModelHelper.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CDB94C6720133A0400CB588C /* _BKModelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB94C6520133A0400CB588C /* _BKModelHelper.m */; };
 		CDC2EB792015A96E00C9F77E /* BKSleepData.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EB772015A96E00C9F77E /* BKSleepData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CDC2EB7A2015A96E00C9F77E /* BKDataSleep.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EB782015A96E00C9F77E /* BKDataSleep.m */; };
+		CDC2EB7A2015A96E00C9F77E /* BKSleepData.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EB782015A96E00C9F77E /* BKSleepData.m */; };
 		CDC2EB812016099400C9F77E /* BKSportList.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EB7F2016099400C9F77E /* BKSportList.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDC2EB822016099400C9F77E /* BKSportList.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EB802016099400C9F77E /* BKSportList.m */; };
 		CDC2EB8520163E4300C9F77E /* BKPreferences.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EB8320163E4300C9F77E /* BKPreferences.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -262,7 +262,7 @@
 		CDB94C6420133A0400CB588C /* _BKModelHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _BKModelHelper.h; sourceTree = "<group>"; };
 		CDB94C6520133A0400CB588C /* _BKModelHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _BKModelHelper.m; sourceTree = "<group>"; };
 		CDC2EB772015A96E00C9F77E /* BKSleepData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSleepData.h; sourceTree = "<group>"; };
-		CDC2EB782015A96E00C9F77E /* BKDataSleep.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDataSleep.m; sourceTree = "<group>"; };
+		CDC2EB782015A96E00C9F77E /* BKSleepData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKSleepData.m; sourceTree = "<group>"; };
 		CDC2EB7F2016099400C9F77E /* BKSportList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSportList.h; sourceTree = "<group>"; };
 		CDC2EB802016099400C9F77E /* BKSportList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKSportList.m; sourceTree = "<group>"; };
 		CDC2EB8320163E4300C9F77E /* BKPreferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKPreferences.h; sourceTree = "<group>"; };
@@ -675,7 +675,7 @@
 				CD37F45D2014E993009B213B /* BKHeartRateHourData.h */,
 				CD37F45E2014E993009B213B /* BKHeartRateHourData.m */,
 				CDC2EB772015A96E00C9F77E /* BKSleepData.h */,
-				CDC2EB782015A96E00C9F77E /* BKDataSleep.m */,
+				CDC2EB782015A96E00C9F77E /* BKSleepData.m */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1047,7 +1047,7 @@
 				CDC2EB822016099400C9F77E /* BKSportList.m in Sources */,
 				CDA0040A20146EFB00E572A7 /* _BKDatabaseHelper.m in Sources */,
 				CDC2EBA3201754F100C9F77E /* BKSportQuery.m in Sources */,
-				CDC2EB7A2015A96E00C9F77E /* BKDataSleep.m in Sources */,
+				CDC2EB7A2015A96E00C9F77E /* BKSleepData.m in Sources */,
 				CD25EA1C2013301E009BEFC1 /* BKServices.m in Sources */,
 				CD37F4542014CCC4009B213B /* BKDayData.m in Sources */,
 				CD25EA352013330F009BEFC1 /* BKUser.m in Sources */,
