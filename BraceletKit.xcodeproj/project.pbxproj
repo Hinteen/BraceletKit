@@ -86,6 +86,8 @@
 		CD616CA91FB9E0B300E38244 /* BaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616CA41FB9E0B300E38244 /* BaseTabBarController.m */; };
 		CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = CD616CAA1FB9E16D00E38244 /* PrefixHeader.pch */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD616CAD1FB9E2FC00E38244 /* BaseTabBarController.json in Resources */ = {isa = PBXBuildFile; fileRef = CD616CAC1FB9E2FC00E38244 /* BaseTabBarController.json */; };
+		CD6F6DD92024CA91008D91CF /* MyDevicesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6F6DD82024CA91008D91CF /* MyDevicesVC.m */; };
+		CD6F6DDD2024D286008D91CF /* BKBatteryView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6F6DDC2024D286008D91CF /* BKBatteryView.m */; };
 		CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD944E881FB0B44600373636 /* FindPhoneManager.m */; };
 		CDA003FC20136A6F00E572A7 /* Calibri.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDA003FB20136A6F00E572A7 /* Calibri.ttf */; };
 		CDA0040920146EFB00E572A7 /* _BKDatabaseHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA0040720146EFB00E572A7 /* _BKDatabaseHelper.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -251,6 +253,10 @@
 		CD616CA51FB9E0B300E38244 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		CD616CAA1FB9E16D00E38244 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		CD616CAC1FB9E2FC00E38244 /* BaseTabBarController.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BaseTabBarController.json; sourceTree = "<group>"; };
+		CD6F6DD72024CA91008D91CF /* MyDevicesVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyDevicesVC.h; sourceTree = "<group>"; };
+		CD6F6DD82024CA91008D91CF /* MyDevicesVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyDevicesVC.m; sourceTree = "<group>"; };
+		CD6F6DDB2024D286008D91CF /* BKBatteryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKBatteryView.h; sourceTree = "<group>"; };
+		CD6F6DDC2024D286008D91CF /* BKBatteryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKBatteryView.m; sourceTree = "<group>"; };
 		CD944E871FB0B44600373636 /* FindPhoneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindPhoneManager.h; sourceTree = "<group>"; };
 		CD944E881FB0B44600373636 /* FindPhoneManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindPhoneManager.m; sourceTree = "<group>"; };
 		CDA003FB20136A6F00E572A7 /* Calibri.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Calibri.ttf; sourceTree = "<group>"; };
@@ -327,6 +333,7 @@
 			children = (
 				CD20ADA12024551300475E26 /* DeviceVC.h */,
 				CD20ADA22024551300475E26 /* DeviceVC.m */,
+				CD6F6DDA2024CA97008D91CF /* MyDevices */,
 				CD20AD942024551300475E26 /* DeviceSetting */,
 			);
 			path = Device;
@@ -596,6 +603,8 @@
 		CD3FC10A1FA20A0B0054B26B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CD6F6DDB2024D286008D91CF /* BKBatteryView.h */,
+				CD6F6DDC2024D286008D91CF /* BKBatteryView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -667,6 +676,15 @@
 				CD616C9F1FB9E0B300E38244 /* BaseViewController.m */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		CD6F6DDA2024CA97008D91CF /* MyDevices */ = {
+			isa = PBXGroup;
+			children = (
+				CD6F6DD72024CA91008D91CF /* MyDevicesVC.h */,
+				CD6F6DD82024CA91008D91CF /* MyDevicesVC.m */,
+			);
+			path = MyDevices;
 			sourceTree = "<group>";
 		};
 		CDC2EB872016428600C9F77E /* Data */ = {
@@ -1006,6 +1024,7 @@
 				CD3FC1241FA20A0B0054B26B /* HTMacros.m in Sources */,
 				CD3FC1911FA20B730054B26B /* NSObject+MJKeyValue.m in Sources */,
 				CD20ADA82024551300475E26 /* CameraViewController.m in Sources */,
+				CD6F6DD92024CA91008D91CF /* MyDevicesVC.m in Sources */,
 				CD20ADA32024551300475E26 /* DeviceSettingTV.m in Sources */,
 				CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */,
 				CD3FC1301FA20A0B0054B26B /* MineVC.m in Sources */,
@@ -1036,6 +1055,7 @@
 				CD2E791E1FA0C53300012CDB /* AppDelegate.m in Sources */,
 				CD3FC1961FA20B730054B26B /* NSObject+MJClass.m in Sources */,
 				CD3FC11E1FA20A0B0054B26B /* BaseServices.m in Sources */,
+				CD6F6DDD2024D286008D91CF /* BKBatteryView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

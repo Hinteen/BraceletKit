@@ -7,6 +7,7 @@
 //
 
 #import "DeviceVC.h"
+#import "MyDevicesVC.h"
 #import "DeviceSettingTV.h"
 #import <AXCameraKit/AXCameraKit.h>
 #import <AVFoundation/AVFoundation.h>
@@ -32,13 +33,23 @@ static inline CGSize contentSize(){
     [[BKServices sharedInstance] registerDeviceDelegate:self];
     
     __weak typeof(self) weakSelf = self;
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem ax_itemWithImageName:@"band" action:^(UIBarButtonItem * _Nonnull sender) {
-        [weakSelf.navigationController ax_pushViewControllerNamed:@"ScanViewController"];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem ax_itemWithImageName:@"nav_plus" action:^(UIBarButtonItem * _Nonnull sender) {
+        if ([BKServices sharedInstance].connector.state == BKConnectStateConnected) {
+            [UIAlertController ax_showAlertWithTitle:@"确定要与当前设备解绑，并绑定新的设备吗？" message:@"已经绑定过的设备可以点击左侧按钮进入[我的设备]页面直接切换设备。" actions:^(UIAlertController * _Nonnull alert) {
+                [alert ax_addCancelActionWithTitle:@"取消" handler:nil];
+                [alert ax_addDestructiveActionWithTitle:@"解绑并搜索新的设备" handler:^(UIAlertAction * _Nonnull sender) {
+                    [weakSelf.navigationController ax_pushViewControllerNamed:@"ScanViewController"];
+                }];
+            }];
+        } else {
+            [weakSelf.navigationController ax_pushViewControllerNamed:@"ScanViewController"];
+        }
     }];
     
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem ax_itemWithTitle:@"setting" action:^(UIBarButtonItem * _Nonnull sender) {
-        [UIApplication ax_openAppSetting];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem ax_itemWithImageName:@"nav_list" action:^(UIBarButtonItem * _Nonnull sender) {
+        [weakSelf.navigationController ax_pushViewControllerNamed:@"MyDevicesVC"];
     }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

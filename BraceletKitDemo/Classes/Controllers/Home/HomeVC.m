@@ -8,7 +8,7 @@
 
 #import "HomeVC.h"
 #import "HomeTableView.h"
-
+#import "BKBatteryView.h"
 #import "DeviceSettingTV.h"
 
 
@@ -19,6 +19,7 @@ static inline CGSize contentSize(){
 
 @interface HomeVC () <BKConnectDelegate, BKDeviceDelegate, BKDataObserver>
 
+@property (strong, nonatomic) BKBatteryView *batteryView;
 
 @end
 
@@ -35,13 +36,9 @@ static inline CGSize contentSize(){
     [[BKServices sharedInstance] registerDeviceDelegate:self];
     [[BKServices sharedInstance] registerDataObserver:self];
     
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem ax_itemWithImageName:@"battery" action:^(UIBarButtonItem * _Nonnull sender) {
-        sender.image = UIImageNamed(@"refresh");
-        [[BKDevice currentDevice] requestUpdateBatteryCompletion:nil error:nil];
-        [[BKDevice currentDevice] requestUpdateAllHealthDataCompletion:nil error:nil];
-    }];
+    [self setupRefreshView];
     
-    
+    [self setupBatteryView];
     
 }
 
@@ -71,6 +68,26 @@ static inline CGSize contentSize(){
     return [[HomeTableView alloc] initWithFrame:CGRectMake(0, 0, contentSize().width, contentSize().height) style:UITableViewStyleGrouped];
 }
 
+- (void)setupRefreshView{
+    UIImageView *imgv = UIImageViewWithImageNamed(@"nav_refresh");
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem ax_itemWithCustomView:imgv action:^(UIBarButtonItem * _Nonnull sender) {
+        [[BKDevice currentDevice] requestUpdateBatteryCompletion:nil error:nil];
+        [[BKDevice currentDevice] requestUpdateAllHealthDataCompletion:nil error:nil];
+        CABasicAnimation *rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+        rotation.toValue = [NSNumber numberWithFloat:M_PI * 2.0];
+        rotation.duration = 1;
+        rotation.cumulative = YES;
+        rotation.repeatCount = 5;
+        [imgv.layer addAnimation:rotation forKey:@"rotation"];
+    }];
+}
+- (void)setupBatteryView{
+    self.batteryView = [BKBatteryView sharedInstance];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem ax_itemWithCustomView:self.batteryView action:^(UIBarButtonItem * _Nonnull sender) {
+        
+    }];
+}
+
 /**
  已连接设备
  
@@ -87,8 +104,9 @@ static inline CGSize contentSize(){
  */
 - (void)deviceDidUpdateBattery:(NSInteger)battery{
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.navigationItem.rightBarButtonItem.image = nil;
-        self.navigationItem.rightBarButtonItem.title = [NSString stringWithFormat:@"%d%%", (int)battery];
+        [self.batteryView updateBatteryPercent:(CGFloat)battery / 100.0f];
+//        self.navigationItem.leftBarButtonItem.image = nil;
+//        self.navigationItem.leftBarButtonItem.title = [NSString stringWithFormat:@"%d%%", (int)battery];
     });
 }
 

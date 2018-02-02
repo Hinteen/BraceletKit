@@ -2,25 +2,25 @@
     {
       "vc":"HomeVC",
       "title":"今日",
-      "icon":"tabbar_home",
+      "icon":"tabbar_today",
       "icon_sel":"",
     },
     {
       "vc":"ActivityVC",
-      "title":"活动",
-      "icon":"tabbar_debug",
+      "title":"统计",
+      "icon":"tabbar_history",
       "icon_sel":"",
     },
      {
      "vc":"DeviceVC",
      "title":"设备",
-     "icon":"tabbar_device",
+     "icon":"tabbar_band",
      "icon_sel":"",
      },
     {
       "vc":"MineVC",
       "title":"我的",
-      "icon":"tabbar_setting",
+      "icon":"tabbar_me",
       "icon_sel":"",
     }
 ]
