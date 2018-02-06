@@ -216,6 +216,14 @@ static BKServices *bkServices = nil;
 
 #pragma mark - device delegate
 
+- (void)deviceDidSynchronizing:(BOOL)synchronizing{
+    [self allDeviceDelegates:^(NSObject<BKDeviceDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(deviceDidSynchronizing:)]) {
+            [delegate deviceDidSynchronizing:synchronizing];
+        }
+    }];
+}
+
 - (void)deviceDidUpdateInfo{
     [self allDeviceDelegates:^(NSObject<BKDeviceDelegate> *delegate) {
         if ([delegate respondsToSelector:@selector(deviceDidUpdateInfo)]) {
@@ -247,6 +255,8 @@ static BKServices *bkServices = nil;
         }
     }];
 }
+
+
 
 #pragma mark - data delegate
 

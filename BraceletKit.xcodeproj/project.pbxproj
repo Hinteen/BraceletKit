@@ -80,6 +80,7 @@
 		CD3FC1981FA20B730054B26B /* MJPropertyKey.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1581FA20B720054B26B /* MJPropertyKey.m */; };
 		CD3FC1991FA20B730054B26B /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC15C1FA20B720054B26B /* MJFoundation.m */; };
 		CD3FC1B11FA20F8F0054B26B /* tabbar_controllers.json in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC1B01FA20F8F0054B26B /* tabbar_controllers.json */; };
+		CD5CDDC32029B1D900186014 /* BKRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5CDDC22029B1D900186014 /* BKRefreshView.m */; };
 		CD616CA61FB9E0B300E38244 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616C9E1FB9E0B300E38244 /* RootViewController.m */; };
 		CD616CA71FB9E0B300E38244 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616C9F1FB9E0B300E38244 /* BaseViewController.m */; };
 		CD616CA81FB9E0B300E38244 /* BaseNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616CA31FB9E0B300E38244 /* BaseNavController.m */; };
@@ -243,6 +244,8 @@
 		CD3FC15B1FA20B720054B26B /* NSObject+MJCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJCoding.h"; sourceTree = "<group>"; };
 		CD3FC15C1FA20B720054B26B /* MJFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFoundation.m; sourceTree = "<group>"; };
 		CD3FC1B01FA20F8F0054B26B /* tabbar_controllers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tabbar_controllers.json; sourceTree = "<group>"; };
+		CD5CDDC12029B1D900186014 /* BKRefreshView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKRefreshView.h; sourceTree = "<group>"; };
+		CD5CDDC22029B1D900186014 /* BKRefreshView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKRefreshView.m; sourceTree = "<group>"; };
 		CD616C9E1FB9E0B300E38244 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		CD616C9F1FB9E0B300E38244 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		CD616CA01FB9E0B300E38244 /* BaseTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTabBarController.h; sourceTree = "<group>"; };
@@ -605,6 +608,8 @@
 			children = (
 				CD6F6DDB2024D286008D91CF /* BKBatteryView.h */,
 				CD6F6DDC2024D286008D91CF /* BKBatteryView.m */,
+				CD5CDDC12029B1D900186014 /* BKRefreshView.h */,
+				CD5CDDC22029B1D900186014 /* BKRefreshView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1030,6 +1035,7 @@
 				CD3FC1301FA20A0B0054B26B /* MineVC.m in Sources */,
 				CD3FC1971FA20B730054B26B /* NSString+MJExtension.m in Sources */,
 				CD3FC1161FA20A0B0054B26B /* ServicesLayer.m in Sources */,
+				CD5CDDC32029B1D900186014 /* BKRefreshView.m in Sources */,
 				CD3FC11A1FA20A0B0054B26B /* BaseDataAccess.m in Sources */,
 				CD2E792C1FA0C53300012CDB /* main.m in Sources */,
 				CD3FC1151FA20A0B0054B26B /* DataAccessLayer.m in Sources */,

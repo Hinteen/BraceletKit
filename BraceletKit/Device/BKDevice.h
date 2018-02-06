@@ -14,6 +14,14 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol BKDeviceDelegate <NSObject>
 
 @optional
+
+/**
+ 设备是否正在同步
+
+ @param synchronizing 正在同步
+ */
+- (void)deviceDidSynchronizing:(BOOL)synchronizing;
+
 /**
  更新了设备信息
  */
@@ -105,6 +113,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (strong, nonatomic) BKPreferences *preferences;
 
+/**
+ 是否正在同步
+ */
+@property (assign, nonatomic) BOOL isSynchronizing;
 
 /**
  delegate

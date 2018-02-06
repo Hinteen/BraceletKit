@@ -8,6 +8,7 @@
 
 #import "HomeVC.h"
 #import "HomeTableView.h"
+#import "BKRefreshView.h"
 #import "BKBatteryView.h"
 #import "DeviceSettingTV.h"
 
@@ -18,6 +19,8 @@ static inline CGSize contentSize(){
 }
 
 @interface HomeVC () <BKConnectDelegate, BKDeviceDelegate, BKDataObserver>
+
+@property (strong, nonatomic) BKRefreshView *refreshView;
 
 @property (strong, nonatomic) BKBatteryView *batteryView;
 
@@ -46,6 +49,7 @@ static inline CGSize contentSize(){
     [super viewWillAppear:animated];
     self.navigationItem.title = [BKDevice currentDevice].name;
     [self.tableView reloadDataSourceAndRefreshTableView];
+    [self.refreshView updateState];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -69,16 +73,10 @@ static inline CGSize contentSize(){
 }
 
 - (void)setupRefreshView{
-    UIImageView *imgv = UIImageViewWithImageNamed(@"nav_refresh");
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem ax_itemWithCustomView:imgv action:^(UIBarButtonItem * _Nonnull sender) {
+    self.refreshView = [BKRefreshView sharedInstance];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem ax_itemWithCustomView:self.refreshView action:^(UIBarButtonItem * _Nonnull sender) {
         [[BKDevice currentDevice] requestUpdateBatteryCompletion:nil error:nil];
         [[BKDevice currentDevice] requestUpdateAllHealthDataCompletion:nil error:nil];
-        CABasicAnimation *rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-        rotation.toValue = [NSNumber numberWithFloat:M_PI * 2.0];
-        rotation.duration = 1;
-        rotation.cumulative = YES;
-        rotation.repeatCount = 5;
-        [imgv.layer addAnimation:rotation forKey:@"rotation"];
     }];
 }
 - (void)setupBatteryView{

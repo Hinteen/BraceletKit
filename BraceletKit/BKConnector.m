@@ -16,7 +16,7 @@
 
 @end
 
-@interface BKDevice() <BLELib3Delegate>
+@interface BKDevice() <BLELib3Delegate, BKConnectDelegate>
 
 @end
 @interface BKServices() <BKDeviceDelegate>
@@ -32,6 +32,8 @@
         _central = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         _device = [BKDevice lastConnectedDevice];
         [BLELib3 shareInstance].connectDelegate = self;
+        
+        
     }
     return self;
 }
@@ -57,6 +59,7 @@
     AXCachedLogOBJ(@"调用了恢复离线设备的方法");
     _state = BKConnectStateBindingUnconnected;
     _device = device;
+    [[BKServices sharedInstance] registerConnectDelegate:device];
     if (self.central.state == CBCentralManagerStatePoweredOn) {
         [[BKServices sharedInstance].scanner scanDevice];
     }
@@ -71,6 +74,7 @@
     } else {
         AXCachedLogOBJ(@"尝试断开连接，但当前已经是离线模式");
         // 如果是离线模式，断开的动作实际上只是remove当前的离线设备
+        [[BKServices sharedInstance] unRegisterConnectDelegate:self.device];
         _device = nil;
     }
 }
@@ -97,6 +101,7 @@
     _state = BKConnectStateConnected;
     _device = device.transformToBKDevice;
     self.device.delegate = [BKServices sharedInstance];
+    [[BKServices sharedInstance] registerConnectDelegate:self.device];
     _peripheral = device.cbDevice;
     [BLELib3 shareInstance].delegate = self.device;
     [self.central connectPeripheral:self.peripheral options:nil];
@@ -127,16 +132,19 @@
     if (self.state == BKConnectStateConnected) {
         // 如果当前状态是已连接，就需要更新状态为未连接
         _state = BKConnectStateBindingUnconnected;
-        _device = nil;
-        // 移除掉代理，不再接收事件
-        self.device.delegate = nil;
     }
+    
     if (self.peripheral) {
         [self.central cancelPeripheralConnection:self.peripheral];
     }
     if ([self.delegate respondsToSelector:@selector(connectorDidUnconnectedDevice:)]) {
         [self.delegate connectorDidUnconnectedDevice:device.transformToBKDevice];
     }
+    
+    // 移除掉代理，不再接收事件
+    [[BKServices sharedInstance] unRegisterConnectDelegate:self.device];
+    _device = nil;
+    self.device.delegate = nil;
 }
 
 /**
@@ -152,10 +160,12 @@
     } else {
         _state = BKConnectStateUnknown;
     }
-    self.device.delegate = nil;
+    
     if ([self.delegate respondsToSelector:@selector(connectorDidFailToConnectDevice:)]) {
         [self.delegate connectorDidFailToConnectDevice:device.transformToBKDevice];
     }
+    
+    self.device.delegate = nil;
 }
 
 /**
@@ -164,10 +174,12 @@
 - (void)IWBLEConnectTimeOut{
     AXCachedLogError(@"连接超时");
     _state = BKConnectStateUnknown;
-    self.device.delegate = nil;
+    
     if ([self.delegate respondsToSelector:@selector(connectorDidConnectTimeout)]) {
         [self.delegate connectorDidConnectTimeout];
     }
+    
+    self.device.delegate = nil;
 }
 
 /**

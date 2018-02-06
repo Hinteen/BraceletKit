@@ -24,7 +24,7 @@
 
 
 static inline void bk_ble_option(void (^option)(void), void(^completion)(void), void (^error)(NSError * __nullable)){
-    CBCentralManagerState state = [BKServices sharedInstance].connector.central.state;
+    CBCentralManagerState state = (CBCentralManagerState)[BKServices sharedInstance].connector.central.state;
     BOOL ble = state == CBCentralManagerStatePoweredOn;
     if (!ble) {
         NSError *err = [NSError ax_errorWithMaker:^(NSErrorMaker * _Nonnull error) {
@@ -84,15 +84,19 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
     
 }
 
-@interface BKDevice() <BLELib3Delegate>
+@interface BKDevice() <BLELib3Delegate, BKConnectDelegate>
 
 @property (strong, nonatomic) ZeronerDeviceInfo *deviceInfo;
 
 @property (strong, nonatomic) ZeronerHWOption *hwOption;
 
+
+
 @end
 
 @implementation BKDevice
+
+#pragma mark - life circle
 
 + (void)load{
     [self createTableIfNotExists];
@@ -107,8 +111,13 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
     if (self = [super init]) {
         _languages = [NSMutableArray array];
         _functions = [NSMutableArray array];
+        
     }
     return self;
+}
+
+- (void)dealloc{
+    
 }
 
 #pragma mark - db delegate
@@ -347,6 +356,14 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
     [[BLELib3 shareInstance] readFirmwareOption];
 }
 
+- (void)changeSyncState:(BOOL)sync{
+    if (self.isSynchronizing == !sync) {
+        self.isSynchronizing = sync;
+        if ([self.delegate respondsToSelector:@selector(deviceDidSynchronizing:)]) {
+            [self.delegate deviceDidSynchronizing:self.isSynchronizing];
+        }
+    }
+}
 
 #pragma mark - function
 /**
@@ -425,6 +442,14 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
 
 
 
+#pragma mark - connect delegate -> device setting
+
+
+- (void)connectorDidUnconnectedDevice:(BKDevice *)device{
+    [self changeSyncState:NO];
+}
+
+
 #pragma mark - ble delegate -> device setting
 
 #pragma mark required
@@ -472,7 +497,11 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
 //}
 
 - (NSString *)currentUserUid{
-    return @"123456";
+    if ([BKUser currentUser].email.length) {
+        return [BKUser currentUser].email;
+    } else {
+        return @"123456";
+    }
 }
 
 /*!
@@ -628,6 +657,11 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
 - (void)syscDataFinishedStateChange:(KSyscDataState)ksdState{
     NSString *log = [BKLogHelper descriptionForSyncState:ksdState];
     AXCachedLogOBJ(log);
+    if (ksdState == KSyscDataStateBegin || ksdState == KSyscDataStateStartSyscF1Data) {
+        [self changeSyncState:YES];
+    } else if (ksdState == KSyscDataStateInFinished) {
+        [self changeSyncState:NO];
+    }
 }
 
 /**
