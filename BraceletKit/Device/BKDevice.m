@@ -185,7 +185,7 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
 
 - (NSString *)valueString{
     NSMutableString *value = [NSMutableString string];
-    [value appendVarcharValue:bk_device_id() comma:YES]; // device_id = mac
+    [value appendVarcharValue:self.mac comma:YES]; // device_id = mac
     [value appendVarcharValue:self.mac comma:YES];
     [value appendVarcharValue:self.uuid comma:YES];
     [value appendVarcharValue:self.name comma:YES];

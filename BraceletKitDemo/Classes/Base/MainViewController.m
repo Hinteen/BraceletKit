@@ -38,7 +38,9 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationItem.title = [BKDevice currentDevice].name;
+    if ([BKDevice currentDevice]) {
+        self.navigationItem.title = [BKDevice currentDevice].name;
+    }
     [self.tableView reloadDataSourceAndRefreshTableView];
     [[BKRefreshView sharedInstance] updateState];
 }
