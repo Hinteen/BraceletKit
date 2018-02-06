@@ -42,6 +42,7 @@
 
 @end
 
+@class CBCentralManager, CBPeripheral;
 @interface BKConnector : NSObject
 
 
@@ -58,6 +59,16 @@
  连接状态
  */
 @property (assign, readonly, nonatomic) BKConnectState state;
+
+/**
+ 中心设备管理器
+ */
+@property (strong, readonly, nonatomic) CBCentralManager *central;
+
+/**
+ 外设
+ */
+@property (strong, readonly, nonatomic) CBPeripheral *peripheral;
 
 /**
  初始化连接

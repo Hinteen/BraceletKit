@@ -13,9 +13,6 @@
 
 @interface BKConnector() <CBCentralManagerDelegate, BleConnectDelegate>
 
-@property (strong, nonatomic) CBCentralManager *central;
-
-@property (strong, nonatomic) CBPeripheral *peripheral;
 
 @end
 
@@ -32,7 +29,7 @@
 - (instancetype)init{
     if (self = [super init]) {
         _state = BKConnectStateUnknown;
-        self.central = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        _central = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         _device = [BKDevice lastConnectedDevice];
         [BLELib3 shareInstance].connectDelegate = self;
     }
@@ -100,7 +97,7 @@
     _state = BKConnectStateConnected;
     _device = device.transformToBKDevice;
     self.device.delegate = [BKServices sharedInstance];
-    self.peripheral = device.cbDevice;
+    _peripheral = device.cbDevice;
     [BLELib3 shareInstance].delegate = self.device;
     [self.central connectPeripheral:self.peripheral options:nil];
     if ([self.delegate respondsToSelector:@selector(connectorDidConnectedDevice:)]) {
