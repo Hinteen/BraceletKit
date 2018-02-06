@@ -224,6 +224,14 @@ static BKServices *bkServices = nil;
     }];
 }
 
+- (void)deviceDidUpdateSynchronizeProgress:(CGFloat)progress{
+    [self allDeviceDelegates:^(NSObject<BKDeviceDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(deviceDidUpdateSynchronizeProgress:)]) {
+            [delegate deviceDidUpdateSynchronizeProgress:progress];
+        }
+    }];
+}
+
 - (void)deviceDidUpdateInfo{
     [self allDeviceDelegates:^(NSObject<BKDeviceDelegate> *delegate) {
         if ([delegate respondsToSelector:@selector(deviceDidUpdateInfo)]) {

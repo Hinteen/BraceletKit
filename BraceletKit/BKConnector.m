@@ -104,7 +104,7 @@
     [[BKServices sharedInstance] registerConnectDelegate:self.device];
     _peripheral = device.cbDevice;
     [BLELib3 shareInstance].delegate = self.device;
-    [self.central connectPeripheral:self.peripheral options:nil];
+    [self.central connectPeripheral:self.peripheral options:@{CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES}];
     if ([self.delegate respondsToSelector:@selector(connectorDidConnectedDevice:)]) {
         [self.delegate connectorDidConnectedDevice:device.transformToBKDevice];
     }

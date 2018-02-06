@@ -66,7 +66,7 @@
 }
 
 - (BOOL)cacheable{
-    return [UIDevice currentDevice].model.length;
+    return [UIDevice currentDevice].model.length && ![[UIDevice currentDevice].model isEqualToString:@"(null)"];
 }
 
 - (NSString *)whereExists{

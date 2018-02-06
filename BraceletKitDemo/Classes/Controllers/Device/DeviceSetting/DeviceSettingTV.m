@@ -12,6 +12,8 @@
 #import "DefaultViewController.h"
 #import <AXCameraKit/AXCameraKit.h>
 #import "CameraViewController.h"
+#import "BKBatteryView.h"
+
 
 @interface DeviceSettingTV () 
 
@@ -153,7 +155,6 @@
     dataSource(dataList);
     
 }
-
 
 - (void)ax_tableViewDidSelectedRowAtIndexPath:(NSIndexPath *)indexPath{
     AXTableRowModelType *model = [self tableViewRowModelForIndexPath:indexPath];

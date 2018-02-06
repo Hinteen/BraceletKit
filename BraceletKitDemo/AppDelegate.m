@@ -30,7 +30,7 @@
     // @xaoxuu: 启动服务
     [ServicesLayer sharedInstance];
     [[UIThemeManager sharedInstance] configDefaultTheme:^(UIThemeManager *theme) {
-        theme.color.theme = [UIColor md_blue];
+        theme.color.theme = [UIColor ax_blue];
         theme.color.accent = [UIColor md_lime];
     }];
     

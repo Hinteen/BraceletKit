@@ -99,23 +99,23 @@
         [column appendVarcharColumn:@"end" comma:YES];
         [column appendDoubleColumn:@"energy" comma:YES];
         
-        [column appendIntegerColumn:@"r1time" comma:YES];
-        [column appendIntegerColumn:@"r2time" comma:YES];
-        [column appendIntegerColumn:@"r3time" comma:YES];
-        [column appendIntegerColumn:@"r4time" comma:YES];
-        [column appendIntegerColumn:@"r5time" comma:YES];
-        
-        [column appendDoubleColumn:@"r1energy" comma:YES];
-        [column appendDoubleColumn:@"r2energy" comma:YES];
-        [column appendDoubleColumn:@"r3energy" comma:YES];
-        [column appendDoubleColumn:@"r4energy" comma:YES];
-        [column appendDoubleColumn:@"r5energy" comma:YES];
-        
-        [column appendIntegerColumn:@"r1hr" comma:YES];
-        [column appendIntegerColumn:@"r2hr" comma:YES];
-        [column appendIntegerColumn:@"r3hr" comma:YES];
-        [column appendIntegerColumn:@"r4hr" comma:YES];
-        [column appendIntegerColumn:@"r5hr" comma:YES];
+//        [column appendIntegerColumn:@"r1time" comma:YES];
+//        [column appendIntegerColumn:@"r2time" comma:YES];
+//        [column appendIntegerColumn:@"r3time" comma:YES];
+//        [column appendIntegerColumn:@"r4time" comma:YES];
+//        [column appendIntegerColumn:@"r5time" comma:YES];
+//
+//        [column appendDoubleColumn:@"r1energy" comma:YES];
+//        [column appendDoubleColumn:@"r2energy" comma:YES];
+//        [column appendDoubleColumn:@"r3energy" comma:YES];
+//        [column appendDoubleColumn:@"r4energy" comma:YES];
+//        [column appendDoubleColumn:@"r5energy" comma:YES];
+//
+//        [column appendIntegerColumn:@"r1hr" comma:YES];
+//        [column appendIntegerColumn:@"r2hr" comma:YES];
+//        [column appendIntegerColumn:@"r3hr" comma:YES];
+//        [column appendIntegerColumn:@"r4hr" comma:YES];
+//        [column appendIntegerColumn:@"r5hr" comma:YES];
         
         [column appendVarcharColumn:@"lastmodified" comma:NO];
         columnName = column;
@@ -142,15 +142,15 @@
     model.end = [bk_formatter() dateFromString:dateString];
     model.energy = [set doubleForColumnIndex:i++];
     
-    for (int j = 0; j < 5; j++) {
-        [model.timeDetail addObject:@([set longForColumnIndex:i++])];
-    }
-    for (int j = 0; j < 5; j++) {
-        [model.energyDetail addObject:@([set doubleForColumnIndex:i++])];
-    }
-    for (int j = 0; j < 5; j++) {
-        [model.hrDetail addObject:@([set longForColumnIndex:i++])];
-    }
+//    for (int j = 0; j < 5; j++) {
+//        [model.timeDetail addObject:@([set longForColumnIndex:i++])];
+//    }
+//    for (int j = 0; j < 5; j++) {
+//        [model.energyDetail addObject:@([set doubleForColumnIndex:i++])];
+//    }
+//    for (int j = 0; j < 5; j++) {
+//        [model.hrDetail addObject:@([set longForColumnIndex:i++])];
+//    }
     
     
     return model;
@@ -170,15 +170,15 @@
     [value appendVarcharValue:bk_date_string(self.end) comma:YES];
     [value appendDoubleValue:self.energy comma:YES];
     
-    for (int j = 0; j < 5; j++) {
-        [value appendIntegerValue:self.timeDetail[j].integerValue comma:YES];
-    }
-    for (int j = 0; j < 5; j++) {
-        [value appendDoubleValue:self.energyDetail[j].doubleValue comma:YES];
-    }
-    for (int j = 0; j < 5; j++) {
-        [value appendIntegerValue:self.hrDetail[j].integerValue comma:YES];
-    }
+//    for (int j = 0; j < 5; j++) {
+//        [value appendIntegerValue:self.timeDetail[j].integerValue comma:YES];
+//    }
+//    for (int j = 0; j < 5; j++) {
+//        [value appendDoubleValue:self.energyDetail[j].doubleValue comma:YES];
+//    }
+//    for (int j = 0; j < 5; j++) {
+//        [value appendIntegerValue:self.hrDetail[j].integerValue comma:YES];
+//    }
     
     [value appendVarcharValue:bk_date_string(bk_today()) comma:NO];
     return value;

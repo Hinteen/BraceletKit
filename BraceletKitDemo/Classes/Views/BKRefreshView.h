@@ -10,8 +10,17 @@
 
 @interface BKRefreshView : UIImageView
 
+/**
+ enable
+ */
+@property (assign, getter=isEnable, nonatomic) BOOL enable;
+
 + (instancetype)sharedInstance;
 
 - (void)updateState;
+
+- (void)startAnimating;
+
+- (void)stopAnimating;
 
 @end

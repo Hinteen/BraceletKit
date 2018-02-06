@@ -87,6 +87,7 @@
 		CD616CA91FB9E0B300E38244 /* BaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616CA41FB9E0B300E38244 /* BaseTabBarController.m */; };
 		CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = CD616CAA1FB9E16D00E38244 /* PrefixHeader.pch */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD616CAD1FB9E2FC00E38244 /* BaseTabBarController.json in Resources */ = {isa = PBXBuildFile; fileRef = CD616CAC1FB9E2FC00E38244 /* BaseTabBarController.json */; };
+		CD6B285D2029EACB00A98FE6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6B285C2029EACB00A98FE6 /* MainViewController.m */; };
 		CD6F6DD92024CA91008D91CF /* MyDevicesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6F6DD82024CA91008D91CF /* MyDevicesVC.m */; };
 		CD6F6DDD2024D286008D91CF /* BKBatteryView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6F6DDC2024D286008D91CF /* BKBatteryView.m */; };
 		CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD944E881FB0B44600373636 /* FindPhoneManager.m */; };
@@ -256,6 +257,8 @@
 		CD616CA51FB9E0B300E38244 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		CD616CAA1FB9E16D00E38244 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		CD616CAC1FB9E2FC00E38244 /* BaseTabBarController.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BaseTabBarController.json; sourceTree = "<group>"; };
+		CD6B285B2029EACB00A98FE6 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		CD6B285C2029EACB00A98FE6 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		CD6F6DD72024CA91008D91CF /* MyDevicesVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyDevicesVC.h; sourceTree = "<group>"; };
 		CD6F6DD82024CA91008D91CF /* MyDevicesVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyDevicesVC.m; sourceTree = "<group>"; };
 		CD6F6DDB2024D286008D91CF /* BKBatteryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKBatteryView.h; sourceTree = "<group>"; };
@@ -679,6 +682,8 @@
 				CD616CA31FB9E0B300E38244 /* BaseNavController.m */,
 				CD616CA51FB9E0B300E38244 /* BaseViewController.h */,
 				CD616C9F1FB9E0B300E38244 /* BaseViewController.m */,
+				CD6B285B2029EACB00A98FE6 /* MainViewController.h */,
+				CD6B285C2029EACB00A98FE6 /* MainViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1026,6 +1031,7 @@
 				CD3FC1941FA20B730054B26B /* MJExtensionConst.m in Sources */,
 				CD2E79211FA0C53300012CDB /* ViewController.m in Sources */,
 				CD20ADA52024551300475E26 /* ScanTableViewCell.m in Sources */,
+				CD6B285D2029EACB00A98FE6 /* MainViewController.m in Sources */,
 				CD3FC1241FA20A0B0054B26B /* HTMacros.m in Sources */,
 				CD3FC1911FA20B730054B26B /* NSObject+MJKeyValue.m in Sources */,
 				CD20ADA82024551300475E26 /* CameraViewController.m in Sources */,

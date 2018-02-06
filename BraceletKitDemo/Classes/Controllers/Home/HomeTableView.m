@@ -8,8 +8,11 @@
 
 #import "HomeTableView.h"
 #import "BKSportQuery.h"
+#import <MJRefresh.h>
+#import "BKRefreshView.h"
 
-@interface HomeTableView()
+
+@interface HomeTableView() <BKDeviceDelegate>
 
 @property (strong, nonatomic) BKSportQuery *query;
 
@@ -17,8 +20,25 @@
 
 @implementation HomeTableView
 
-
-
+- (void)ax_tableViewDidLoadFinished:(UITableView<AXTableView> *)tableView{
+    self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        __weak typeof(self) weakSelf = self;
+        if ([BKDevice currentDevice]) {
+            [[BKRefreshView sharedInstance] startAnimating];
+            [[BKDevice currentDevice] requestUpdateBatteryCompletion:nil error:^(NSError * _Nonnull error) {
+                [weakSelf.mj_header endRefreshing];
+                [[BKRefreshView sharedInstance] stopAnimating];
+            }];
+            [[BKDevice currentDevice] requestUpdateAllHealthDataCompletion:nil error:^(NSError * _Nonnull error) {
+                [weakSelf.mj_header endRefreshing];
+                [[BKRefreshView sharedInstance] stopAnimating];
+            }];
+        } else {
+            [weakSelf.mj_header endRefreshing];
+            [[BKRefreshView sharedInstance] stopAnimating];
+        }
+    }];
+}
 
 - (void)ax_tableViewDataSource:(void (^)(AXTableModelType *))dataSource{
     self.query = [BKSportQuery querySummaryWithDate:[NSDate date] unit:BKQueryUnitDaily].lastObject;
@@ -44,7 +64,6 @@
     
     
 }
-
 
 
 @end

@@ -10,7 +10,7 @@
 #import <AXKit/StatusKit.h>
 
 
-@interface RootViewController () <BKScanDelegate, BKConnectDelegate>
+@interface RootViewController () <BKScanDelegate, BKConnectDelegate, BKDeviceDelegate>
 
 
 @end
@@ -24,6 +24,7 @@
     
     [[BKServices sharedInstance] registerScanDelegate:self];
     [[BKServices sharedInstance] registerConnectDelegate:self];
+    [[BKServices sharedInstance] registerDeviceDelegate:self];
     
     self.mainTabBarVC = [[BaseTabBarController alloc] init];
     [self addChildViewController:self.mainTabBarVC];
@@ -36,6 +37,7 @@
     // Dispose of any resources that can be recreated.
     [[BKServices sharedInstance] unRegisterScanDelegate:self];
     [[BKServices sharedInstance] unRegisterConnectDelegate:self];
+    [[BKServices sharedInstance] unRegisterScanDelegate:self];
 }
 
 /*
@@ -150,6 +152,17 @@
     NSString *msg = [NSString stringWithFormat:@"连接超时"];
     dispatch_async(dispatch_get_main_queue(), ^{
         [AXStatusBar showStatusBarMessage:msg textColor:[UIColor whiteColor] backgroundColor:[UIColor md_red] duration:15];
+    });
+}
+
+- (void)deviceDidUpdateSynchronizeProgress:(CGFloat)progress{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [AXStatusBar showStatusBarProgress:progress textColor:[UIColor whiteColor] backgroundColor:[UIColor md_lightGreen] duration:60];
+        if (progress == 1) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [AXStatusBar hideStatusBarProgressMessage];
+            });
+        }
     });
 }
 

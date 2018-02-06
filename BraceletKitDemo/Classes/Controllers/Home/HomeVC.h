@@ -6,8 +6,8 @@
 //  Copyright © 2017 hinteen. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "MainViewController.h"
 
-@interface HomeVC : BaseViewController
+@interface HomeVC : MainViewController
 
 @end

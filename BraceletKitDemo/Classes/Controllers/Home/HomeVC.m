@@ -11,18 +11,14 @@
 #import "BKRefreshView.h"
 #import "BKBatteryView.h"
 #import "DeviceSettingTV.h"
-
+#import <MJRefresh.h>
 
 
 static inline CGSize contentSize(){
     return CGSizeMake(kScreenW, kScreenH - kTopBarHeight - kTabBarHeight);
 }
 
-@interface HomeVC () <BKConnectDelegate, BKDeviceDelegate, BKDataObserver>
-
-@property (strong, nonatomic) BKRefreshView *refreshView;
-
-@property (strong, nonatomic) BKBatteryView *batteryView;
+@interface HomeVC () <BKDeviceDelegate, BKDataObserver>
 
 @end
 
@@ -35,7 +31,7 @@ static inline CGSize contentSize(){
     self.view.width = kScreenW;
     self.view.height -= kTabBarHeight;
     
-    [[BKServices sharedInstance] registerConnectDelegate:self];
+    
     [[BKServices sharedInstance] registerDeviceDelegate:self];
     [[BKServices sharedInstance] registerDataObserver:self];
     
@@ -47,9 +43,12 @@ static inline CGSize contentSize(){
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationItem.title = [BKDevice currentDevice].name;
     [self.tableView reloadDataSourceAndRefreshTableView];
-    [self.refreshView updateState];
+    if ([BKServices sharedInstance].connector.state != BKConnectStateConnected) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView.mj_header endRefreshing];
+        });
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -63,7 +62,6 @@ static inline CGSize contentSize(){
 }
 
 - (void)dealloc{
-    [[BKServices sharedInstance] unRegisterConnectDelegate:self];
     [[BKServices sharedInstance] unRegisterDeviceDelegate:self];
     [[BKServices sharedInstance] unRegisterDataObserver:self];
 }
@@ -73,27 +71,18 @@ static inline CGSize contentSize(){
 }
 
 - (void)setupRefreshView{
-    self.refreshView = [BKRefreshView sharedInstance];
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem ax_itemWithCustomView:self.refreshView action:^(UIBarButtonItem * _Nonnull sender) {
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem ax_itemWithCustomView:[BKRefreshView sharedInstance] action:^(UIBarButtonItem * _Nonnull sender) {
+        [[BKRefreshView sharedInstance] startAnimating];
         [[BKDevice currentDevice] requestUpdateBatteryCompletion:nil error:nil];
         [[BKDevice currentDevice] requestUpdateAllHealthDataCompletion:nil error:nil];
     }];
 }
 - (void)setupBatteryView{
-    self.batteryView = [BKBatteryView sharedInstance];
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem ax_itemWithCustomView:self.batteryView action:^(UIBarButtonItem * _Nonnull sender) {
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem ax_itemWithCustomView:[BKBatteryView sharedInstance] action:^(UIBarButtonItem * _Nonnull sender) {
         
     }];
 }
 
-/**
- 已连接设备
- 
- @param device 设备
- */
-- (void)connectorDidConnectedDevice:(BKDevice *)device{
-    self.navigationItem.title = device.name;
-}
 
 /**
  更新了电池信息
@@ -102,12 +91,17 @@ static inline CGSize contentSize(){
  */
 - (void)deviceDidUpdateBattery:(NSInteger)battery{
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.batteryView updateBatteryPercent:(CGFloat)battery / 100.0f];
-//        self.navigationItem.leftBarButtonItem.image = nil;
-//        self.navigationItem.leftBarButtonItem.title = [NSString stringWithFormat:@"%d%%", (int)battery];
+        [[BKBatteryView sharedInstance] updateBatteryPercent:(CGFloat)battery / 100.0f];
     });
 }
 
+- (void)deviceDidSynchronizing:(BOOL)synchronizing{
+    if (!synchronizing) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView.mj_header endRefreshing];
+        });
+    }
+}
 
 - (void)dataDidUpdated:(__kindof BKData *)data{
     [self.tableView reloadDataSourceAndRefreshTableView];

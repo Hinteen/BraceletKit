@@ -66,6 +66,10 @@
     return @"date, user_id, device_id, steps, distance, calorie";
 }
 
++ (NSString *)orderBy{
+    return @"steps";
+}
+
 + (instancetype)modelWithSet:(FMResultSet *)set{
     int i = 0;
     BKDayData *model = [[BKDayData alloc] init];

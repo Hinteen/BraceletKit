@@ -23,6 +23,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)deviceDidSynchronizing:(BOOL)synchronizing;
 
 /**
+ 更新了同步进度
+
+ @param progress 进度(0~1)
+ */
+- (void)deviceDidUpdateSynchronizeProgress:(CGFloat)progress;
+
+/**
  更新了设备信息
  */
 - (void)deviceDidUpdateInfo;

@@ -90,6 +90,9 @@
     return [NSString stringWithFormat:@"user_id = '%@' and device_id = '%@'", bk_user_id(), bk_device_id()];
 }
 
++ (NSString *)orderBy{
+    return @"lastmodified";
+}
 
 + (void)select:(NSString *)select where:(NSString *(^)(void))where result:(void (^)(FMResultSet *))result{
     if (where) {
@@ -101,7 +104,7 @@
         databaseTransaction(^(FMDatabase * _Nonnull db, BOOL * _Nonnull rollback) {
             [db ax_select:select from:self.tableName where:^NSString * _Nonnull{
                 return whereStr;
-            } orderBy:@"lastmodified" result:result];
+            } orderBy:self.orderBy result:result];
         });
     }
 }

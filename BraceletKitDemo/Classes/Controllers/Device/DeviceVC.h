@@ -6,8 +6,8 @@
 //  Copyright © 2018 xaoxuu. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "MainViewController.h"
 
-@interface DeviceVC : BaseViewController
+@interface DeviceVC : MainViewController
 
 @end

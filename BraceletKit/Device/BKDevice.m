@@ -90,7 +90,7 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
 
 @property (strong, nonatomic) ZeronerHWOption *hwOption;
 
-
+@property (assign, nonatomic) CGFloat progress;
 
 @end
 
@@ -357,6 +357,33 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
 }
 
 - (void)changeSyncState:(BOOL)sync{
+    if (self.isSynchronizing ^ sync) {
+        static NSTimer *timer;
+        [timer ax_pause];
+        timer = nil;
+        if (sync) {
+            self.progress = 0;
+            __weak typeof(self) weakSelf = self;
+            timer = [NSTimer ax_scheduledTimerWithTimeInterval:0.2 repeats:YES usingBlock:^(NSTimer * _Nonnull timer) {
+                NSInteger pro = [BLELib3 shareInstance].dataSyncProgress;
+                if (pro >= 0) {
+                    weakSelf.progress = AXMakeNumberInRange(@((CGFloat)[BLELib3 shareInstance].dataSyncProgress / 100.0), @0, @1).doubleValue;
+                } else {
+                    if (self.progress) {
+                        weakSelf.progress = 1;
+                    }
+                }
+                if ([self.delegate respondsToSelector:@selector(deviceDidUpdateSynchronizeProgress:)]) {
+                    [self.delegate deviceDidUpdateSynchronizeProgress:self.progress];
+                }
+            }];
+        } else {
+            self.progress = 1;
+            if ([self.delegate respondsToSelector:@selector(deviceDidUpdateSynchronizeProgress:)]) {
+                [self.delegate deviceDidUpdateSynchronizeProgress:self.progress];
+            }
+        }
+    }
     if (self.isSynchronizing == !sync) {
         self.isSynchronizing = sync;
         if ([self.delegate respondsToSelector:@selector(deviceDidSynchronizing:)]) {

@@ -25,7 +25,9 @@
 - (instancetype)init{
     if (self = [super init]) {
         _devices = [NSMutableArray array];
-        self.central = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        NSDictionary *options = @{CBCentralManagerOptionShowPowerAlertKey:@YES};
+        self.central = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:options];
+//        self.central = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         
         [BLELib3 shareInstance].discoverDelegate = self;
     }

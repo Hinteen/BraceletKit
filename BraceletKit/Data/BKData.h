@@ -107,6 +107,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)defaultWhereString;
 
++ (NSString *)orderBy;
 
 + (void)select:(NSString *)select where:(NSString *(^)(void))where result:(void (^)(FMResultSet *set))result;
 
