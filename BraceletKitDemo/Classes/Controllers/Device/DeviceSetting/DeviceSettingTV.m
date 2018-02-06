@@ -13,7 +13,7 @@
 #import <AXCameraKit/AXCameraKit.h>
 #import "CameraViewController.h"
 #import "BKBatteryView.h"
-
+#import <MJRefresh.h>
 
 @interface DeviceSettingTV () 
 
@@ -22,7 +22,18 @@
 
 @implementation DeviceSettingTV
 
-
+- (void)ax_tableViewDidLoadFinished:(UITableView<AXTableView> *)tableView{
+    self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        __weak typeof(self) weakSelf = self;
+        if ([BKDevice currentDevice]) {
+            [[BKDevice currentDevice] requestUpdateBatteryCompletion:nil error:^(NSError * _Nonnull error) {
+                [weakSelf.mj_header endRefreshing];
+            }];
+        } else {
+            [weakSelf.mj_header endRefreshing];
+        }
+    }];
+}
 
 - (void)ax_tableViewDataSource:(void (^)(AXTableModelType *))dataSource{
     BKDevice *device = [BKDevice currentDevice];

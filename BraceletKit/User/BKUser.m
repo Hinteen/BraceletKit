@@ -96,6 +96,7 @@
     });
     return columnName;
 }
+
 + (NSString *)tablePrimaryKey{
     return @"user_id";
 }

@@ -11,6 +11,7 @@
 #import "DeviceSettingTV.h"
 #import <AXCameraKit/AXCameraKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <MJRefresh.h>
 
 static inline CGSize contentSize(){
     return CGSizeMake(kScreenW, kScreenH - kTopBarHeight - kTabBarHeight);
@@ -38,7 +39,10 @@ static inline CGSize contentSize(){
             [UIAlertController ax_showAlertWithTitle:@"确定要与当前设备解绑，并绑定新的设备吗？" message:@"已经绑定过的设备可以点击左侧按钮进入[我的设备]页面直接切换设备。" actions:^(UIAlertController * _Nonnull alert) {
                 [alert ax_addCancelActionWithTitle:@"取消" handler:nil];
                 [alert ax_addDestructiveActionWithTitle:@"解绑并搜索新的设备" handler:^(UIAlertAction * _Nonnull sender) {
-                    [weakSelf.navigationController ax_pushViewControllerNamed:@"ScanViewController"];
+                    [[BKServices sharedInstance].connector disConnectDevice];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [weakSelf.navigationController ax_pushViewControllerNamed:@"ScanViewController"];
+                    });
                 }];
             }];
         } else {
@@ -63,6 +67,16 @@ static inline CGSize contentSize(){
 }
 
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if ([BKServices sharedInstance].connector.state != BKConnectStateConnected) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView.mj_header endRefreshing];
+        });
+    }
+}
+
+
 - (AXTableViewType *)installTableView{
     return [[DeviceSettingTV alloc] initWithFrame:CGRectMake(0, 0, contentSize().width, contentSize().height) style:UITableViewStyleGrouped];
 }
@@ -73,6 +87,7 @@ static inline CGSize contentSize(){
  */
 - (void)deviceDidUpdateInfo{
     [self.tableView reloadDataSourceAndRefreshTableView];
+    [self.tableView.mj_header endRefreshing];
 }
 
 /**
@@ -82,6 +97,7 @@ static inline CGSize contentSize(){
  */
 - (void)deviceDidUpdateBattery:(NSInteger)battery{
     [self.tableView reloadDataSourceAndRefreshTableView];
+    [self.tableView.mj_header endRefreshing];
 }
 
 
