@@ -41,7 +41,7 @@
 }
 
 - (void)ax_tableViewDataSource:(void (^)(AXTableModelType *))dataSource{
-    self.query = [BKSportQuery querySummaryWithDate:[NSDate date] unit:BKQueryUnitDaily].lastObject;
+//    self.query = [BKSportQuery querySummaryWithDate:[NSDate date] unit:BKQueryUnitDaily].lastObject;
     
     
     [self reloadData];

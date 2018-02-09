@@ -20,6 +20,7 @@
 
 @implementation BKData
 
+
 //@required
 
 + (NSString *)tableName{
@@ -87,7 +88,7 @@
 
 
 + (NSString *)defaultWhereString{
-    return [NSString stringWithFormat:@"user_id = '%@' and device_id = '%@'", bk_user_id(), bk_device_id()];
+    return [NSString stringWithFormat:@"device_id = '%@'", bk_device_id()];
 }
 
 + (NSString *)orderBy{

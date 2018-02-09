@@ -16,6 +16,8 @@ FOUNDATION_EXTERN void databaseTransaction(void (^block)(FMDatabase *db, BOOL *r
 
 FOUNDATION_EXTERN void databaseDeferredTransaction(void (^block)(FMDatabase *db, BOOL *rollback));
 
+#define NOTI_LOAD_FINSHED @"NOTI_LOAD_FINSHED"
+
 @interface FMDatabase (AXExtension)
 
 #pragma mark fmdb直接封装
@@ -158,6 +160,9 @@ FOUNDATION_EXTERN void databaseDeferredTransaction(void (^block)(FMDatabase *db,
 @end
 
 @interface _BKDatabaseHelper : NSObject
+
++ (void)loadDatabaseCompletion:(void (^)(BOOL uninitialized))completion;
++ (void)uploadDataCompletion:(void (^)(BOOL success))completion;
 
 @end
 NS_ASSUME_NONNULL_END

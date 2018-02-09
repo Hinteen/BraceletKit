@@ -8,10 +8,26 @@
 
 #import "_BKDatabaseHelper.h"
 #import <AXKit/AXKit.h>
+#import "BKDocument.h"
+#import <sqlite3.h>
 
 NSString *dbkey = @"com.xaoxuu.braceletkit.db";
 static CGFloat currentDatabaseVersion = 1.0;
 static FMDatabaseQueue *queue = nil;
+
+
+static inline NSURL *ubiquityURL(){
+    static NSURL *url;
+    if (!url) {
+        url = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
+        if (!url) {
+            AXCachedLogError(@"未能连接到iCloud");
+        } else {
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/Documents/%@", url.urlString, dbkey]];
+        }
+    }
+    return url;
+}
 
 inline FMDatabaseQueue *databaseQueue(){
     if (!queue) {
@@ -23,10 +39,11 @@ inline FMDatabaseQueue *databaseQueue(){
                 dbkey.docPath.removeFile();
             }
         });
-        queue = [FMDatabaseQueue databaseQueueWithPath:dbkey.docPath];
+        queue = [FMDatabaseQueue databaseQueueWithPath:dbkey.docPath flags:SQLITE_OPEN_READWRITE|SQLITE_OPEN_CREATE|SQLITE_OPEN_FILEPROTECTION_NONE];
     }
     return queue;
 }
+
 
 inline void databaseTransaction(void (^block)(FMDatabase *db, BOOL *rollback)){
     [databaseQueue() inTransaction:block];
@@ -56,6 +73,17 @@ inline void databaseDeferredTransaction(void (^block)(FMDatabase *db, BOOL *roll
             ax_debug_only(^{
                 // 在DEBUG的时候严格一点，有错误就崩溃，杜绝隐患。
                 NSAssert(NO, log);
+            });
+        } else {
+            // 修改了数据5秒后同步到iCloud
+            static ax_dispatch_operation_t op;
+            ax_dispatch_cancel_operation(op);
+            op = ax_dispatch_cancellable(5, dispatch_get_global_queue(0, 0), ^{
+                [_BKDatabaseHelper uploadDataCompletion:^(BOOL success) {
+                    if (success) {
+                        AXCachedLogOBJ(@"对数据的修改已经同步到iCloud");
+                    }
+                }];
             });
         }
         return result;
@@ -322,5 +350,45 @@ inline void databaseDeferredTransaction(void (^block)(FMDatabase *db, BOOL *roll
 @end
 
 @implementation _BKDatabaseHelper
+
++ (void)loadDatabaseCompletion:(void (^)(BOOL uninitialized))completion{
+    if ([[NSFileManager defaultManager] fileExistsAtPath:dbkey.docPath]) {
+        // 本地已经有数据
+        if (completion) {
+            completion(YES);
+        }
+    } else {
+        if (ubiquityURL()) {
+            BKDocument *doc = [[BKDocument alloc] initWithFileURL:ubiquityURL()];
+            [doc openWithCompletionHandler:^(BOOL success) {
+                AXLogBOOL(success);
+                [doc closeWithCompletionHandler:^(BOOL success) {
+                    if (completion) {
+                        completion(NO);
+                    }
+                }];
+            }];
+        } else {
+            // 无法使用iCloud
+            if (completion) {
+                completion(YES);
+            }
+        }
+    }
+}
+
++ (void)uploadDataCompletion:(void (^)(BOOL success))completion{
+    if ([[NSFileManager defaultManager] fileExistsAtPath:dbkey.docPath]) {
+        if (ubiquityURL()) {
+            BKDocument *doc = [[BKDocument alloc] initWithFileURL:ubiquityURL()];
+            [doc saveToURL:ubiquityURL() forSaveOperation:UIDocumentSaveForOverwriting completionHandler:^(BOOL success) {
+                AXLogBOOL(success);
+                if (completion) {
+                    completion(success);
+                }
+            }];
+        }
+    }
+}
 
 @end

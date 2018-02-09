@@ -12,11 +12,6 @@
 
 @implementation BKSportList
 
-+ (void)load{
-    [self createTableIfNotExists];
-}
-
-
 
 
 

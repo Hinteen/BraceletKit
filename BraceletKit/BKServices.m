@@ -7,10 +7,16 @@
 //
 
 #import "BKServices.h"
+#import "_BKDatabaseHelper.h"
+#import <AXKit/AXKit.h>
 
 static BKServices *bkServices = nil;
+static BOOL loadFinished = NO;
 
 @interface BKServices() <BKScanDelegate, BKConnectDelegate, BKDeviceDelegate, BKDataObserver>
+
+
+@property (strong, nonatomic) NSMutableArray<NSObject<BKServicesDelegate> *> *servicesDelegates;
 
 @property (strong, nonatomic) NSMutableArray<NSObject<BKScanDelegate> *> *scanDelegates;
 
@@ -20,13 +26,13 @@ static BKServices *bkServices = nil;
 
 @property (strong, nonatomic) NSMutableArray<NSObject<BKDataObserver> *> *dataObservers;
 
-
 @end
 
 @implementation BKServices
 
 
 #pragma mark - life circle
+
 
 
 + (instancetype)defaultManager{
@@ -49,6 +55,7 @@ static BKServices *bkServices = nil;
     if (self = [super init]) {
         
     }
+    self.servicesDelegates = [NSMutableArray array];
     self.scanDelegates = [NSMutableArray array];
     self.connectDelegates = [NSMutableArray array];
     self.deviceDelegates = [NSMutableArray array];
@@ -58,9 +65,28 @@ static BKServices *bkServices = nil;
     _connector = [[BKConnector alloc] initWithDelegate:self];
     
     
+    [_BKDatabaseHelper loadDatabaseCompletion:^(BOOL uninitialized) {
+//        if (uninitialized) {
+            // 初始化所有表
+            NSArray<Class> *arr = NSClassGetAllSubclasses([BKData class]);
+            [arr enumerateObjectsUsingBlock:^(Class  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([obj respondsToSelector:@selector(createTableIfNotExists)]) {
+                    [obj createTableIfNotExists];
+                }
+            }];
+//        }
+        loadFinished = YES;
+        [self allServicesDelegates:^(NSObject<BKServicesDelegate> *delegate) {
+            if ([delegate respondsToSelector:@selector(servicesDidLoadFinished:)]) {
+                [delegate servicesDidLoadFinished:self];
+            }
+        }];
+    }];
+    
+    
+    
     return self;
 }
-
 
 - (BOOL)registerServiceWithUser:(BKUser *)user{
     if (user.email.length) {
@@ -68,6 +94,26 @@ static BKServices *bkServices = nil;
         return YES;
     } else {
         return NO;
+    }
+}
+
+- (void)uploadDataCompletion:(void (^)(BOOL success))completion{
+    [_BKDatabaseHelper uploadDataCompletion:completion];
+}
+
+
+- (void)registerServicesDelegate:(NSObject<BKServicesDelegate> *)delegate{
+    if (delegate && ![self.servicesDelegates containsObject:delegate]) {
+        [self.servicesDelegates addObject:delegate];
+        if (loadFinished) {
+            [delegate servicesDidLoadFinished:self];
+        }
+    }
+}
+
+- (void)unRegisterServicesDelegate:(NSObject<BKServicesDelegate> *)delegate{
+    if (delegate && [self.servicesDelegates containsObject:delegate]) {
+        [self.servicesDelegates removeObject:delegate];
     }
 }
 
@@ -124,6 +170,13 @@ static BKServices *bkServices = nil;
 
 
 // @xaoxuu: 让所有的代理执行
+- (void)allServicesDelegates:(void (^)(NSObject<BKServicesDelegate> *delegate))handler{
+    [self.servicesDelegates enumerateObjectsUsingBlock:^(NSObject<BKServicesDelegate> *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (handler) {
+            handler(obj);
+        }
+    }];
+}
 - (void)allScannerDelegates:(void (^)(NSObject<BKScanDelegate> *delegate))handler{
     [self.scanDelegates enumerateObjectsUsingBlock:^(NSObject<BKScanDelegate> *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (handler) {
@@ -275,5 +328,6 @@ static BKServices *bkServices = nil;
         }
     }];
 }
+
 
 @end

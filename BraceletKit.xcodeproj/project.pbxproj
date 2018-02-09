@@ -88,6 +88,9 @@
 		CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = CD616CAA1FB9E16D00E38244 /* PrefixHeader.pch */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD616CAD1FB9E2FC00E38244 /* BaseTabBarController.json in Resources */ = {isa = PBXBuildFile; fileRef = CD616CAC1FB9E2FC00E38244 /* BaseTabBarController.json */; };
 		CD6B285D2029EACB00A98FE6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6B285C2029EACB00A98FE6 /* MainViewController.m */; };
+		CD6B2860202B388F00A98FE6 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6B285F202B388F00A98FE6 /* CloudKit.framework */; };
+		CD6B2863202B43F600A98FE6 /* BKDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = CD6B2861202B43F600A98FE6 /* BKDocument.h */; };
+		CD6B2864202B43F600A98FE6 /* BKDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6B2862202B43F600A98FE6 /* BKDocument.m */; };
 		CD6F6DD92024CA91008D91CF /* MyDevicesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6F6DD82024CA91008D91CF /* MyDevicesVC.m */; };
 		CD6F6DDD2024D286008D91CF /* BKBatteryView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6F6DDC2024D286008D91CF /* BKBatteryView.m */; };
 		CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD944E881FB0B44600373636 /* FindPhoneManager.m */; };
@@ -259,6 +262,10 @@
 		CD616CAC1FB9E2FC00E38244 /* BaseTabBarController.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BaseTabBarController.json; sourceTree = "<group>"; };
 		CD6B285B2029EACB00A98FE6 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		CD6B285C2029EACB00A98FE6 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		CD6B285E202B33A600A98FE6 /* BraceletKitDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BraceletKitDemo.entitlements; sourceTree = "<group>"; };
+		CD6B285F202B388F00A98FE6 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		CD6B2861202B43F600A98FE6 /* BKDocument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDocument.h; sourceTree = "<group>"; };
+		CD6B2862202B43F600A98FE6 /* BKDocument.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDocument.m; sourceTree = "<group>"; };
 		CD6F6DD72024CA91008D91CF /* MyDevicesVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyDevicesVC.h; sourceTree = "<group>"; };
 		CD6F6DD82024CA91008D91CF /* MyDevicesVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyDevicesVC.m; sourceTree = "<group>"; };
 		CD6F6DDB2024D286008D91CF /* BKBatteryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKBatteryView.h; sourceTree = "<group>"; };
@@ -307,6 +314,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD6B2860202B388F00A98FE6 /* CloudKit.framework in Frameworks */,
 				CD2E793E1FA0C54200012CDB /* BraceletKit.framework in Frameworks */,
 				EC05BC38CB898D8E3D73CB74 /* libPods-BraceletKitDemo.a in Frameworks */,
 			);
@@ -401,6 +409,7 @@
 		CD2E791B1FA0C53300012CDB /* BraceletKitDemo */ = {
 			isa = PBXGroup;
 			children = (
+				CD6B285E202B33A600A98FE6 /* BraceletKitDemo.entitlements */,
 				CD3FC0B91FA20A0B0054B26B /* Classes */,
 				CD2E791C1FA0C53300012CDB /* AppDelegate.h */,
 				CD2E791D1FA0C53300012CDB /* AppDelegate.m */,
@@ -422,6 +431,8 @@
 			children = (
 				CD2E79391FA0C54200012CDB /* BraceletKit.h */,
 				CDE04B3F201C90DA00A29F31 /* BKDefines.h */,
+				CD6B2861202B43F600A98FE6 /* BKDocument.h */,
+				CD6B2862202B43F600A98FE6 /* BKDocument.m */,
 				CD25EA192013301E009BEFC1 /* BKServices.h */,
 				CD25EA1A2013301E009BEFC1 /* BKServices.m */,
 				CDC2EB8C20172A1300C9F77E /* BKScanner.h */,
@@ -443,6 +454,7 @@
 		CD2E794D1FA0CA6000012CDB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD6B285F202B388F00A98FE6 /* CloudKit.framework */,
 				45D14689FFFFCA37F6DE88DC /* libPods-BraceletKit.a */,
 				FE1DC049097F75176EA41B0A /* libPods-BraceletKitDemo.a */,
 			);
@@ -797,6 +809,7 @@
 				CD25EA1720132FD4009BEFC1 /* _BKHeader.h in Headers */,
 				CDC2EB9E2017419C00C9F77E /* BKQuery.h in Headers */,
 				CDA0040920146EFB00E572A7 /* _BKDatabaseHelper.h in Headers */,
+				CD6B2863202B43F600A98FE6 /* BKDocument.h in Headers */,
 				CD2E793B1FA0C54200012CDB /* BraceletKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -858,6 +871,14 @@
 					CD2E79181FA0C53300012CDB = {
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					CD2E79361FA0C54100012CDB = {
 						CreatedOnToolsVersion = 9.0.1;
@@ -1095,6 +1116,7 @@
 				CD25EA352013330F009BEFC1 /* BKUser.m in Sources */,
 				CDC2EBA72017552400C9F77E /* BKHeartRateQuery.m in Sources */,
 				CD25EA2820133083009BEFC1 /* _BKLogHelper.m in Sources */,
+				CD6B2864202B43F600A98FE6 /* BKDocument.m in Sources */,
 				CDA0040E201491DF00E572A7 /* BKData.m in Sources */,
 				CD37F45C2014E1BF009B213B /* BKHeartRateData.m in Sources */,
 			);
@@ -1241,6 +1263,7 @@
 			baseConfigurationReference = E6EFBFB819873C01F3CF1024 /* Pods-BraceletKitDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BraceletKitDemo/BraceletKitDemo.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = D6M452FYRP;
 				ENABLE_BITCODE = NO;
@@ -1254,7 +1277,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hinteen.BraceletKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "67339c9d-8aac-4564-887f-3c340a46062f";
+				PROVISIONING_PROFILE = "09d28649-a98e-42af-8f35-7c6a5cca4245";
 				PROVISIONING_PROFILE_SPECIFIER = BraceletKit_Dev;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7s armv7";
@@ -1266,6 +1289,7 @@
 			baseConfigurationReference = FAB7368B52D73BF363A9199C /* Pods-BraceletKitDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BraceletKitDemo/BraceletKitDemo.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;

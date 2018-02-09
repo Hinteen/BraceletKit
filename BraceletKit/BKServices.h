@@ -11,6 +11,13 @@
 #import "BKScanner.h"
 #import "BKConnector.h"
 
+@class BKServices;
+@protocol BKServicesDelegate
+
+- (void)servicesDidLoadFinished:(BKServices *)service;
+
+@end
+
 @interface BKServices : NSObject
 
 /**
@@ -32,7 +39,6 @@
 
 
 
-
 + (instancetype)sharedInstance;
 
 /**
@@ -42,6 +48,24 @@
  */
 - (BOOL)registerServiceWithUser:(BKUser *)user;
 
+/**
+ 上传数据
+ */
+- (void)uploadDataCompletion:(void (^)(BOOL success))completion;
+
+/**
+ 注册服务代理
+ 
+ @param delegate 代理
+ */
+- (void)registerServicesDelegate:(NSObject<BKServicesDelegate> *)delegate;
+
+/**
+ 取消注册服务代理
+ 
+ @param delegate 代理
+ */
+- (void)unRegisterServicesDelegate:(NSObject<BKServicesDelegate> *)delegate;
 
 
 /**

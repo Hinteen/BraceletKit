@@ -11,9 +11,6 @@
 
 @implementation BKSportData
 
-+ (void)load{
-    [self createTableIfNotExists];
-}
 
 
 
@@ -59,7 +56,6 @@
     dispatch_once(&onceToken, ^{
         NSMutableString *column = [NSMutableString string];
         [column appendIntegerColumn:@"date" comma:YES];
-        [column appendVarcharColumn:@"user_id" comma:YES];
         [column appendVarcharColumn:@"device_id" comma:YES];
         [column appendVarcharColumn:@"device_name" comma:YES];
         
@@ -80,14 +76,13 @@
     return columnName;
 }
 + (NSString *)tablePrimaryKey{
-    return @"date, user_id, device_id, seq, sport_type";
+    return @"date, device_id, seq, sport_type";
 }
 
 + (instancetype)modelWithSet:(FMResultSet *)set{
     int i = 0;
     BKSportData *model = [[BKSportData alloc] init];
     i++;// date
-    i++;// user_id
     i++;// device_id
     i++;// device_name
     model.seq = [set longForColumnIndex:i++];
@@ -109,7 +104,6 @@
 - (NSString *)valueString{
     NSMutableString *value = [NSMutableString string];
     [value appendIntegerValue:self.dateInteger comma:YES];
-    [value appendVarcharValue:bk_user_id() comma:YES];
     [value appendVarcharValue:bk_device_id() comma:YES];
     [value appendVarcharValue:bk_device_name() comma:YES];
     
@@ -129,7 +123,7 @@
 }
 
 - (BOOL)cacheable{
-    return bk_user_id().length && bk_device_id().length && self.dateInteger;
+    return bk_device_id().length && self.dateInteger;
 }
 
 

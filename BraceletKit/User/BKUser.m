@@ -15,9 +15,6 @@
 
 @implementation BKUser
 
-+ (void)load{
-    [self createTableIfNotExists];
-}
 
 + (instancetype)currentUser{
     return [BKServices sharedInstance].user;
@@ -40,13 +37,14 @@
 }
 
 + (instancetype)loginWithEmail:(NSString *)email password:(NSString *)password{
-    NSString *savedPsw = [NSUserDefaults ax_readStringForKey:@"login".extension(email)];
-    if ([password isEqualToString:savedPsw]) {
-        BKUser *cachedUser = [self loadUserWithEmail:email];
-        return cachedUser;
-    } else {
-        return nil;
-    }
+    return [self loadUserWithEmail:email];
+//    NSString *savedPsw = [NSUserDefaults ax_readStringForKey:@"login".extension(email)];
+//    if ([password isEqualToString:savedPsw]) {
+//        BKUser *cachedUser = [self loadUserWithEmail:email];
+//        return cachedUser;
+//    } else {
+//        return nil;
+//    }
 }
 
 + (instancetype)registerWithEmail:(NSString *)email password:(NSString *)password{
@@ -80,7 +78,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSMutableString *column = [NSMutableString string];
-        [column appendVarcharColumn:@"user_id" comma:YES];
         [column appendVarcharColumn:@"email" comma:YES];
         [column appendVarcharColumn:@"name" comma:YES];
         [column appendIntegerColumn:@"phone" comma:YES];
@@ -98,13 +95,12 @@
 }
 
 + (NSString *)tablePrimaryKey{
-    return @"user_id";
+    return @"email";
 }
 
 + (instancetype)modelWithSet:(FMResultSet *)set{
     int i = 0;
     BKUser *model = [[BKUser alloc] init];
-    i++; // user id
     model.email = [set stringForColumnIndex:i++];
     model.name = [set stringForColumnIndex:i++];
     model.phone = [set longForColumnIndex:i++];
@@ -120,7 +116,6 @@
 
 - (NSString *)valueString{
     NSMutableString *value = [NSMutableString string];
-    [value appendVarcharValue:self.email comma:YES]; // userid = email
     [value appendVarcharValue:self.email comma:YES];
     [value appendVarcharValue:self.name comma:YES];
     [value appendIntegerValue:self.phone comma:YES];
