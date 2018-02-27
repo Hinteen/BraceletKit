@@ -98,10 +98,6 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
 
 #pragma mark - life circle
 
-+ (void)load{
-    [self createTableIfNotExists];
-}
-
 
 + (instancetype)currentDevice{
     return [BKServices sharedInstance].connector.device;

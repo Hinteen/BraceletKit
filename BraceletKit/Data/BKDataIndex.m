@@ -12,11 +12,6 @@
 
 @implementation BKDataIndex
 
-+ (void)load{
-    [self createTableIfNotExists];
-}
-
-
 
 + (instancetype)modelWithDict:(NSDictionary<NSString *, NSString *> *)dict{
     BKDataIndex *model = [BKDataIndex new];

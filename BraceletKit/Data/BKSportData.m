@@ -11,11 +11,6 @@
 
 @implementation BKSportData
 
-+ (void)load{
-    [self createTableIfNotExists];
-}
-
-
 
 + (instancetype)modelWithDict:(NSDictionary *)dict{
     BKSportData *model = [BKSportData new];

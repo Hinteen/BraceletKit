@@ -12,11 +12,6 @@
 
 @implementation BKHeartRateData
 
-+ (void)load{
-    [self createTableIfNotExists];
-}
-
-
 
 - (instancetype)init{
     if (self = [super init]) {

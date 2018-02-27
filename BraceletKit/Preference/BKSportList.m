@@ -12,14 +12,6 @@
 
 @implementation BKSportList
 
-+ (void)load{
-    [self createTableIfNotExists];
-}
-
-
-
-
-
 + (NSString *)tableName{
     return @"sport_list";
 }

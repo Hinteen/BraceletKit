@@ -15,10 +15,6 @@
 
 @implementation BKUser
 
-+ (void)load{
-    [self createTableIfNotExists];
-}
-
 + (instancetype)currentUser{
     return [BKServices sharedInstance].user;
 }
@@ -40,13 +36,14 @@
 }
 
 + (instancetype)loginWithEmail:(NSString *)email password:(NSString *)password{
-    NSString *savedPsw = [NSUserDefaults ax_readStringForKey:@"login".extension(email)];
-    if ([password isEqualToString:savedPsw]) {
-        BKUser *cachedUser = [self loadUserWithEmail:email];
-        return cachedUser;
-    } else {
-        return nil;
-    }
+    return [self loadUserWithEmail:email];
+//    NSString *savedPsw = [NSUserDefaults ax_readStringForKey:@"login".extension(email)];
+//    if ([password isEqualToString:savedPsw]) {
+//        BKUser *cachedUser = [self loadUserWithEmail:email];
+//        return cachedUser;
+//    } else {
+//        return nil;
+//    }
 }
 
 + (instancetype)registerWithEmail:(NSString *)email password:(NSString *)password{

@@ -11,7 +11,7 @@
 #import "_BKModelHelper.h"
 #import "BKServices.h"
 
-@interface BKConnector() <CBCentralManagerDelegate, BleConnectDelegate>
+@interface BKConnector() <CBCentralManagerDelegate, BleConnectDelegate, BKServicesDelegate>
 
 
 @end
@@ -30,7 +30,6 @@
     if (self = [super init]) {
         _state = BKConnectStateUnknown;
         _central = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-        _device = [BKDevice lastConnectedDevice];
         [BLELib3 shareInstance].connectDelegate = self;
         
         
@@ -46,6 +45,9 @@
     return self;
 }
 
+- (void)servicesDidLoadFinished:(BKServices *)service{
+    _device = [BKDevice lastConnectedDevice];
+}
 
 - (void)connectDevice:(BKDevice *)device{
     AXCachedLogOBJ(@"调用了连接方法");
@@ -104,7 +106,7 @@
     [[BKServices sharedInstance] registerConnectDelegate:self.device];
     _peripheral = device.cbDevice;
     [BLELib3 shareInstance].delegate = self.device;
-    [self.central connectPeripheral:self.peripheral options:@{CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES}];
+    [self.central connectPeripheral:self.peripheral options:@{CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,CBConnectPeripheralOptionNotifyOnConnectionKey:@YES,CBConnectPeripheralOptionNotifyOnNotificationKey:@YES}];
     if ([self.delegate respondsToSelector:@selector(connectorDidConnectedDevice:)]) {
         [self.delegate connectorDidConnectedDevice:device.transformToBKDevice];
     }

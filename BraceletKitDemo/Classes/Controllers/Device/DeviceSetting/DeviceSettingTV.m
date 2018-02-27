@@ -174,7 +174,7 @@
         [self.controller presentViewController:vc animated:YES completion:nil];
         
     } else if ([model.target isEqualToString:@"pushstring"]) {
-        [[BKDevice currentDevice] requestPushMessage:@"DID YOU MISS ME" completion:^{
+        [[BKDevice currentDevice] requestPushMessage:@"DID YOU MISS ME DID YOU MISS ME DID YOU MISS ME DID YOU MISS ME DID YOU MISS ME DID YOU MISS ME DID YOU MISS ME DID YOU MISS ME DID YOU MISS ME" completion:^{
             
         } error:^(NSError * _Nonnull error) {
             

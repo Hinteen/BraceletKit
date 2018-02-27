@@ -11,11 +11,6 @@
 
 @implementation BKDayData
 
-+ (void)load{
-    [self createTableIfNotExists];
-}
-
-
 
 + (instancetype)modelWithDict:(NSDictionary *)dict{
     BKDayData *model = [BKDayData new];

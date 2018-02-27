@@ -11,10 +11,6 @@
 
 @implementation BKPreferences
 
-+ (void)load{
-    [self createTableIfNotExists];
-}
-
 
 - (void)applyToMyDevice{
     [[BLELib3 shareInstance] setFirmwareOption:self.transformToZeronerHWOption];
