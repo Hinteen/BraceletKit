@@ -71,27 +71,27 @@
             row.detail = device.mac;
             row.target = @"bleAddr";
         }];
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"更新时间";
-            row.detail = @"time";
-        }];
     }];
     
     [dataList addSection:^(AXTableSectionModel *section) {
-        section.headerTitle = @"测试";
+        section.headerTitle = @"设置";
         
         [section addRow:^(AXTableRowModel *row) {
-            row.title = @"12";
+            row.title = @"12小时制";
             row.target = @"12";
         }];
         [section addRow:^(AXTableRowModel *row) {
-            row.title = @"24";
+            row.title = @"24小时制";
             row.target = @"24";
         }];
     }];
     
     [dataList addSection:^(AXTableSectionModel *section) {
         section.headerTitle = @"功能";
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"更新时间";
+            row.detail = @"time";
+        }];
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"推送消息";
             row.target = @"pushstring";

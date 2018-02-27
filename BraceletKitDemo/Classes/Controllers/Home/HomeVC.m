@@ -82,7 +82,22 @@ static NSString *reuseIdentifier = @"home table view cell";
     [self.view addSubview:tableView];
     tableView.dataSource = self;
     tableView.delegate = self;
-    
+    tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        if ([BKDevice currentDevice]) {
+            [[BKRefreshView sharedInstance] startAnimating];
+            [[BKDevice currentDevice] requestUpdateBatteryCompletion:nil error:^(NSError * _Nonnull error) {
+                [tableView.mj_header endRefreshing];
+                [[BKRefreshView sharedInstance] stopAnimating];
+            }];
+            [[BKDevice currentDevice] requestUpdateAllHealthDataCompletion:nil error:^(NSError * _Nonnull error) {
+                [tableView.mj_header endRefreshing];
+                [[BKRefreshView sharedInstance] stopAnimating];
+            }];
+        } else {
+            [tableView.mj_header endRefreshing];
+            [[BKRefreshView sharedInstance] stopAnimating];
+        }
+    }];
 }
 
 - (void)setupRefreshView{

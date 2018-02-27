@@ -13,12 +13,10 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MJRefresh.h>
 
-static inline CGSize contentSize(){
-    return CGSizeMake(kScreenW, kScreenH - kTopBarHeight - kTabBarHeight);
-}
-
 
 @interface DeviceVC () <BKDeviceDelegate>
+
+@property (strong, nonatomic) DeviceSettingTV *tableView;
 
 @end
 
@@ -32,6 +30,8 @@ static inline CGSize contentSize(){
     self.view.height -= kTabBarHeight;
     
     [[BKServices sharedInstance] registerDeviceDelegate:self];
+
+    [self setupTableView];
     
     __weak typeof(self) weakSelf = self;
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem ax_itemWithImageName:@"nav_plus" action:^(UIBarButtonItem * _Nonnull sender) {
@@ -71,14 +71,17 @@ static inline CGSize contentSize(){
     [super viewWillAppear:animated];
     if ([BKServices sharedInstance].connector.state != BKConnectStateConnected) {
         dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_header endRefreshing];
         });
     }
 }
 
 
-- (AXTableViewType *)installTableView{
-    return [[DeviceSettingTV alloc] initWithFrame:CGRectMake(0, 0, contentSize().width, contentSize().height) style:UITableViewStyleGrouped];
+- (void)setupTableView{
+    
+    self.tableView = [[DeviceSettingTV alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    [self.view addSubview:self.tableView];
+    
 }
 
 
@@ -86,8 +89,8 @@ static inline CGSize contentSize(){
  更新了设备信息
  */
 - (void)deviceDidUpdateInfo{
-//    [self.tableView reloadDataSourceAndRefreshTableView];
-//    [self.tableView.mj_header endRefreshing];
+    [self.tableView reloadDataSourceAndRefreshTableView];
+    [self.tableView.mj_header endRefreshing];
 }
 
 /**
@@ -96,8 +99,8 @@ static inline CGSize contentSize(){
  @param battery 电池电量
  */
 - (void)deviceDidUpdateBattery:(NSInteger)battery{
-//    [self.tableView reloadDataSourceAndRefreshTableView];
-//    [self.tableView.mj_header endRefreshing];
+    [self.tableView reloadDataSourceAndRefreshTableView];
+    [self.tableView.mj_header endRefreshing];
 }
 
 
@@ -107,6 +110,7 @@ static inline CGSize contentSize(){
 - (void)deviceDidTappedFindMyPhone{
     AudioServicesPlayAlertSound(1008);
 }
+
 
 
 @end
