@@ -7,9 +7,12 @@
 //
 
 #import "MineVC.h"
+#import "UserInfoTV.h"
+
 
 @interface MineVC ()
 
+@property (strong, nonatomic) UserInfoTV *tableView;
 
 @end
 
@@ -19,12 +22,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    [self setupTableView];
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)setupTableView{
+    
+    self.tableView = [[UserInfoTV alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    [self.view addSubview:self.tableView];
+    
 }
 
 

@@ -28,7 +28,7 @@ typedef NS_ENUM(NSUInteger, BKGender) {
 /**
  phone
  */
-@property (assign, nonatomic) NSUInteger phone;
+@property (copy, nonatomic) NSString *phone;
 /**
  gender
  */

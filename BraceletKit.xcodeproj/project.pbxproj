@@ -47,6 +47,7 @@
 		CD2E793B1FA0C54200012CDB /* BraceletKit.h in Headers */ = {isa = PBXBuildFile; fileRef = CD2E79391FA0C54200012CDB /* BraceletKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD2E793E1FA0C54200012CDB /* BraceletKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2E79371FA0C54100012CDB /* BraceletKit.framework */; };
 		CD2E793F1FA0C54200012CDB /* BraceletKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD2E79371FA0C54100012CDB /* BraceletKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CD33896A20457C0100C206C6 /* UserInfoTV.m in Sources */ = {isa = PBXBuildFile; fileRef = CD33896920457C0100C206C6 /* UserInfoTV.m */; };
 		CD37F4532014CCC4009B213B /* BKDayData.h in Headers */ = {isa = PBXBuildFile; fileRef = CD37F4512014CCC3009B213B /* BKDayData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD37F4542014CCC4009B213B /* BKDayData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD37F4522014CCC4009B213B /* BKDayData.m */; };
 		CD37F4572014D7BC009B213B /* BKSportData.h in Headers */ = {isa = PBXBuildFile; fileRef = CD37F4552014D7BC009B213B /* BKSportData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -189,6 +190,8 @@
 		CD2E79391FA0C54200012CDB /* BraceletKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BraceletKit.h; sourceTree = "<group>"; };
 		CD2E793A1FA0C54200012CDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD2E79441FA0C55800012CDB /* BraceletKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BraceletKit.bundle; sourceTree = "<group>"; };
+		CD33896820457C0100C206C6 /* UserInfoTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoTV.h; sourceTree = "<group>"; };
+		CD33896920457C0100C206C6 /* UserInfoTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoTV.m; sourceTree = "<group>"; };
 		CD37F4512014CCC3009B213B /* BKDayData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDayData.h; sourceTree = "<group>"; };
 		CD37F4522014CCC4009B213B /* BKDayData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDayData.m; sourceTree = "<group>"; };
 		CD37F4552014D7BC009B213B /* BKSportData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSportData.h; sourceTree = "<group>"; };
@@ -602,6 +605,8 @@
 			children = (
 				CD3FC0FE1FA20A0B0054B26B /* MineVC.h */,
 				CD3FC0FC1FA20A0B0054B26B /* MineVC.m */,
+				CD33896820457C0100C206C6 /* UserInfoTV.h */,
+				CD33896920457C0100C206C6 /* UserInfoTV.m */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -1035,6 +1040,7 @@
 				CD3FC1241FA20A0B0054B26B /* HTMacros.m in Sources */,
 				CD3FC1911FA20B730054B26B /* NSObject+MJKeyValue.m in Sources */,
 				CD20ADA82024551300475E26 /* CameraViewController.m in Sources */,
+				CD33896A20457C0100C206C6 /* UserInfoTV.m in Sources */,
 				CD6F6DD92024CA91008D91CF /* MyDevicesVC.m in Sources */,
 				CD20ADA32024551300475E26 /* DeviceSettingTV.m in Sources */,
 				CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */,

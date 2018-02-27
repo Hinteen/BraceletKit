@@ -28,6 +28,8 @@
     if (self = [super init]) {
         _name = @"";
         _avatar = @"";
+        _phone = @"";
+        _email = @"";
         _birthday = [NSDate dateWithTimeIntervalSince1970:0];
         _height = 170;
         _weight = 60;
@@ -79,7 +81,7 @@
         NSMutableString *column = [NSMutableString string];
         [column appendVarcharColumn:@"email" comma:YES];
         [column appendVarcharColumn:@"name" comma:YES];
-        [column appendIntegerColumn:@"phone" comma:YES];
+        [column appendVarcharColumn:@"phone" comma:YES];
         
         [column appendIntegerColumn:@"gender" comma:YES];
         [column appendIntegerColumn:@"birthday" comma:YES];
@@ -102,7 +104,7 @@
     BKUser *model = [[BKUser alloc] init];
     model.email = [set stringForColumnIndex:i++];
     model.name = [set stringForColumnIndex:i++];
-    model.phone = [set longForColumnIndex:i++];
+    model.phone = [set stringForColumnIndex:i++];
     
     model.gender = [set longForColumnIndex:i++];
     model.birthday = [NSDate ax_dateWithIntegerValue:[set longForColumnIndex:i++]];
@@ -117,7 +119,7 @@
     NSMutableString *value = [NSMutableString string];
     [value appendVarcharValue:self.email comma:YES];
     [value appendVarcharValue:self.name comma:YES];
-    [value appendIntegerValue:self.phone comma:YES];
+    [value appendVarcharValue:self.phone comma:YES];
     
     [value appendIntegerValue:self.gender comma:YES];
     [value appendIntegerValue:self.birthday.integerValue comma:YES];
