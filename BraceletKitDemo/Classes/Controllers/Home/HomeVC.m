@@ -12,13 +12,22 @@
 #import "BKBatteryView.h"
 #import "DeviceSettingTV.h"
 #import <MJRefresh.h>
+#import "BKSportQuery.h"
+#import "BKSportData.h"
+#import "BKHeartRateQuery.h"
+#import "BKSleepQuery.h"
+#import "BKSleepData.h"
+
+static NSString *reuseIdentifier = @"home table view cell";
 
 
-static inline CGSize contentSize(){
-    return CGSizeMake(kScreenW, kScreenH - kTopBarHeight - kTabBarHeight);
-}
+@interface HomeVC () <BKDeviceDelegate, BKDataObserver, UITableViewDataSource, UITableViewDelegate>
 
-@interface HomeVC () <BKDeviceDelegate, BKDataObserver>
+@property (strong, nonatomic) UITableView *tableView;
+
+@property (strong, nonatomic) BKSportQuery *sport;
+@property (strong, nonatomic) BKSleepQuery *sleep;
+
 
 @end
 
@@ -31,6 +40,7 @@ static inline CGSize contentSize(){
     self.view.width = kScreenW;
     self.view.height -= kTabBarHeight;
     
+    [self setupTableView];
     
     [[BKServices sharedInstance] registerDeviceDelegate:self];
     [[BKServices sharedInstance] registerDataObserver:self];
@@ -43,7 +53,7 @@ static inline CGSize contentSize(){
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.tableView reloadDataSourceAndRefreshTableView];
+    [self reloadData];
     if ([BKServices sharedInstance].connector.state != BKConnectStateConnected) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView.mj_header endRefreshing];
@@ -66,8 +76,13 @@ static inline CGSize contentSize(){
     [[BKServices sharedInstance] unRegisterDataObserver:self];
 }
 
-- (AXTableViewType *)installTableView{
-    return [[HomeTableView alloc] initWithFrame:CGRectMake(0, 0, contentSize().width, contentSize().height) style:UITableViewStyleGrouped];
+- (void)setupTableView{
+    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    self.tableView = tableView;
+    [self.view addSubview:tableView];
+    tableView.dataSource = self;
+    tableView.delegate = self;
+    
 }
 
 - (void)setupRefreshView{
@@ -104,7 +119,93 @@ static inline CGSize contentSize(){
 }
 
 - (void)dataDidUpdated:(__kindof BKData *)data{
-    [self.tableView reloadDataSourceAndRefreshTableView];
+    [self reloadData];
+}
+
+- (void)reloadData{
+    self.sport = [BKSportQuery querySummaryWithDate:[NSDate date] unit:BKQueryUnitDaily].lastObject;
+//    self.sleep = [BKSleepQuery querySummaryWithDate:[NSDate date] unit:BKQueryUnitDaily].lastObject;
+    [self.tableView reloadData];
+}
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    // 今日概览、分段运动、心率数据、睡眠数据
+    return 4;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (section == 0) {
+        return 4;
+    } else if (section == 1) {
+        if (self.sport) {
+            return self.sport.items.count;
+        } else {
+            return 0;
+        }
+    } else if (section == 2) {
+        return 1;
+    } else if (section == 3) {
+        if (self.sleep) {
+            return self.sleep.items.count;
+        } else {
+            return 0;
+        }
+    } else {
+        return 0;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"步数";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d steps", self.sport.steps.intValue];
+        } else if (indexPath.row == 1) {
+            cell.textLabel.text = @"距离";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f km", self.sport.distance.doubleValue / 1000.0f];
+        } else if (indexPath.row == 2) {
+            cell.textLabel.text = @"卡路里";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.1f cal", self.sport.calorie.doubleValue];
+        } else if (indexPath.row == 3) {
+            cell.textLabel.text = @"活动时间";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d minutes", self.sport.activity.intValue];
+        }
+    } else if (indexPath.section == 1) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", self.sport.items[indexPath.row].start.stringValue(@"HH:mm"), self.sport.items[indexPath.row].end.stringValue(@"HH:mm")];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d steps", (int)self.sport.items[indexPath.row].steps];
+    } else if (indexPath.section == 2) {
+        cell.textLabel.text = @"心率图表";
+    } else if (indexPath.section == 3) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", self.sleep.items[indexPath.row].start.stringValue(@"HH:mm"), self.sleep.items[indexPath.row].end.stringValue(@"HH:mm")];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d minutes", (int)self.sleep.items[indexPath.row].duration];
+    }
+    
+    return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return @"今日概览";
+    } else if (section == 1) {
+        return @"分段运动";
+    } else if (section == 2) {
+        return @"心率数据";
+    } else if (section == 3) {
+        return @"睡眠数据";
+    } else {
+        return nil;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

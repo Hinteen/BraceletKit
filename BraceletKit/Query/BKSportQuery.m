@@ -19,6 +19,7 @@
         self.distance = @0;
         self.calorie = @0;
         self.activity = @0;
+        self.items = [NSArray array];
         self.hourSteps = [NSMutableArray arrayWithCapacity:24];
         self.hourDistance = [NSMutableArray arrayWithCapacity:24];
         self.hourCalorie = [NSMutableArray arrayWithCapacity:24];
@@ -71,13 +72,14 @@
             result.calorie = @(day.calorie);
             result.activity = @(day.activity);
         }
+        NSArray<BKSportData *> *sports = [BKSportData selectWithDate:date unit:BKQueryUnitDaily];
+        result.items = sports;
         [results addObject:result];
     }];
+    
     // 如果是一天的查询，还需要查询每小时的运动数据
     if (unit == BKQueryUnitDaily) {
-        // 获取区间内所有运动
-        NSArray<BKSportData *> *sports = [BKSportData selectWithDate:date unit:BKQueryUnitDaily];
-        [sports enumerateObjectsUsingBlock:^(BKSportData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [results.lastObject.items enumerateObjectsUsingBlock:^(BKSportData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [results.lastObject calcDaySport:obj];
         }];
     }

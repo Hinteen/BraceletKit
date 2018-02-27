@@ -32,36 +32,6 @@ typedef NS_ENUM(NSUInteger, ContentViewStyle) {
 
 @end
 
-#pragma mark - 模块化组件库
-@protocol AXModuleKit <NSObject>
-@optional
-
-/**
- 安装右上角刷新按钮
- 
- @param sender 刷新按钮
- */
-- (void)installRightRefreshBarButton:(UIBarButtonItem *)sender;
-
-
-/**
- 安装table view
-
- @return table view
- */
-- (AXTableViewType *)installTableView;
-
-
-/**
- 安装完tableview
- */
-- (void)didTableViewInstalled:(AXTableViewType *)tableView;
-
-@end
-
-@interface BaseViewController : UIViewController <BaseVC,AXModuleKit>
-
-// @xaoxuu: table view
-@property (strong, nonatomic) AXTableView *tableView;
+@interface BaseViewController : UIViewController <BaseVC>
 
 @end

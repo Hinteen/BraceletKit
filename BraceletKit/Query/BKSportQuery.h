@@ -31,6 +31,10 @@
  */
 @property (strong, nonatomic) NSNumber *activity;
 
+/**
+ sport items
+ */
+@property (strong, nonatomic) NSArray<BKSportData *> *items;
 
 /**
  每小时步数详情

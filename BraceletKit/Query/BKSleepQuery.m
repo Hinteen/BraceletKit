@@ -14,7 +14,7 @@
 
 - (instancetype)init{
     if (self = [super init]) {
-        self.detail = [NSMutableArray array];
+        self.items = [NSMutableArray array];
     }
     return self;
 }

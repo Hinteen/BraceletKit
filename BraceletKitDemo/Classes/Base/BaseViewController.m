@@ -37,10 +37,6 @@
     [self baseInitContentView];
     
     
-    // @xaoxuu: 基类 初始化 ModuleKit组件库
-    [self baseInitModuleKitLibrary];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -106,62 +102,6 @@
     
     
     // @xaoxuu: ...
-    
-}
-
-
-
-
-#pragma mark - module kit
-
-
-// @xaoxuu: 初始化ModuleKit组件库
-- (void)baseInitModuleKitLibrary{
-    // @xaoxuu: 导航栏区域的组件
-    [self baseModuleKitNavBar];
-    // @xaoxuu: 内容区域的组件
-    [self baseModuleKitContentView];
-    
-}
-
-// @xaoxuu: module kit for navigation bar
-- (void)baseModuleKitNavBar{
-    // @xaoxuu: refresh button
-    if ([self respondsToSelector:@selector(installRightRefreshBarButton:)]) {
-        __weak typeof(self) weakSelf = self;
-        self.navigationItem.rightBarButtonItem = [UIBarButtonItem ax_itemWithSystem:UIBarButtonSystemItemRefresh action:^(UIBarButtonItem * _Nonnull sender) {
-            sender.enabled = NO;
-            [NSBlockOperation ax_delay:0 cooldown:reloadBtnCooldown token:reloadBtnToken performInMainQueue:^{
-                [weakSelf installRightRefreshBarButton:sender];
-                
-                [NSBlockOperation ax_delay:reloadBtnCooldown performInMainQueue:^{
-                    sender.enabled = YES;
-                }];
-            }];
-        }];
-    }
-}
-
-// @xaoxuu: module kit for content view
-- (void)baseModuleKitContentView{
-    // @xaoxuu: table view
-    if ([self respondsToSelector:@selector(installTableView)]) {
-        [self.view addSubview:UIViewWithHeight(1)];
-        self.tableView = [self installTableView];
-//        // init and add to superview
-//        self.tableView.dataSource = self.tableView;
-//        self.tableView.delegate = self.tableView;
-        self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
-        [self.tableView setAutoresizesSubviews:NO];
-        [self.view addSubview:self.tableView];
-        
-        // @xaoxuu: done
-        if ([self respondsToSelector:@selector(didTableViewInstalled:)]) {
-            [self didTableViewInstalled:self.tableView];
-        }
-        
-    }
-    
     
 }
 

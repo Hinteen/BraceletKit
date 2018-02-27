@@ -71,7 +71,7 @@ static inline CGSize contentSize(){
     [super viewWillAppear:animated];
     if ([BKServices sharedInstance].connector.state != BKConnectStateConnected) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView.mj_header endRefreshing];
+//            [self.tableView.mj_header endRefreshing];
         });
     }
 }
@@ -86,8 +86,8 @@ static inline CGSize contentSize(){
  更新了设备信息
  */
 - (void)deviceDidUpdateInfo{
-    [self.tableView reloadDataSourceAndRefreshTableView];
-    [self.tableView.mj_header endRefreshing];
+//    [self.tableView reloadDataSourceAndRefreshTableView];
+//    [self.tableView.mj_header endRefreshing];
 }
 
 /**
@@ -96,8 +96,8 @@ static inline CGSize contentSize(){
  @param battery 电池电量
  */
 - (void)deviceDidUpdateBattery:(NSInteger)battery{
-    [self.tableView reloadDataSourceAndRefreshTableView];
-    [self.tableView.mj_header endRefreshing];
+//    [self.tableView reloadDataSourceAndRefreshTableView];
+//    [self.tableView.mj_header endRefreshing];
 }
 
 
