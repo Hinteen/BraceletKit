@@ -38,7 +38,6 @@
     dispatch_once(&onceToken, ^{
         NSMutableString *column = [NSMutableString string];
         [column appendIntegerColumn:@"date" comma:YES];
-        [column appendVarcharColumn:@"user_id" comma:YES];
         [column appendVarcharColumn:@"device_id" comma:YES];
         [column appendVarcharColumn:@"device_name" comma:YES];
         
@@ -53,14 +52,13 @@
     return columnName;
 }
 + (NSString *)tablePrimaryKey{
-    return @"date, user_id, device_id, data_type, start";
+    return @"date, device_id, data_type, start";
 }
 
 + (instancetype)modelWithSet:(FMResultSet *)set{
     int i = 0;
     BKDataIndex *model = [[BKDataIndex alloc] init];
     i++;// date
-    i++;// user_id
     i++;// device_id
     i++;// device_name
     model.dataType = [set stringForColumnIndex:i++];
@@ -74,7 +72,6 @@
 - (NSString *)valueString{
     NSMutableString *value = [NSMutableString string];
     [value appendIntegerValue:bk_today().integerValue comma:YES];
-    [value appendVarcharValue:bk_user_id() comma:YES];
     [value appendVarcharValue:bk_device_id() comma:YES];
     [value appendVarcharValue:bk_device_name() comma:YES];
     
@@ -88,7 +85,7 @@
 }
 
 - (BOOL)cacheable{
-    return bk_user_id().length && bk_device_id().length && self.dataType.length;
+    return bk_device_id().length && self.dataType.length;
 }
 
 

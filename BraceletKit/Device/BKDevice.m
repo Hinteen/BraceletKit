@@ -218,7 +218,7 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
 }
 
 - (BOOL)cacheable{
-    return bk_user_id().length && self.mac.length && ![self.mac isEqualToString:@"advertisementData.length is less than 6"] && self.model.length && self.version.length;
+    return self.mac.length && ![self.mac isEqualToString:@"advertisementData.length is less than 6"] && self.model.length && self.version.length;
 }
 
 - (NSString *)whereExists{

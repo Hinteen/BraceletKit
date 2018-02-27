@@ -33,7 +33,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSMutableString *column = [NSMutableString string];
-        [column appendVarcharColumn:@"user_id" comma:YES];
         [column appendVarcharColumn:@"device_id" comma:YES];
         [column appendVarcharColumn:@"device_name" comma:YES];
         
@@ -67,13 +66,12 @@
     return columnName;
 }
 + (NSString *)tablePrimaryKey{
-    return @"user_id, device_id";
+    return @"device_id";
 }
 
 + (instancetype)modelWithSet:(FMResultSet *)set{
     int i = 0;
     BKPreferences *model = [[BKPreferences alloc] init];
-    i++;// user_id
     i++;// device_id
     i++;// device_name
     model.language = [set longForColumnIndex:i++];
@@ -105,7 +103,6 @@
 
 - (NSString *)valueString{
     NSMutableString *value = [NSMutableString string];
-    [value appendVarcharValue:bk_user_id() comma:YES];
     [value appendVarcharValue:bk_device_id() comma:YES];
     [value appendVarcharValue:bk_device_name() comma:YES];
     [value appendIntegerValue:self.language comma:YES];
@@ -137,11 +134,11 @@
 }
 
 - (BOOL)cacheable{
-    return bk_user_id().length && bk_device_id().length;
+    return bk_device_id().length;
 }
 
 - (NSString *)whereExists{
-    return [NSString stringWithFormat:@"user_id = '%@' and device_id = '%@'", bk_user_id(), bk_device_id()];
+    return [NSString stringWithFormat:@"device_id = '%@'", bk_device_id()];
 }
 
 - (instancetype)restoreFromDatabase{

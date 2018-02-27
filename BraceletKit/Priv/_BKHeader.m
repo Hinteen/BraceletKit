@@ -24,10 +24,6 @@ inline NSDate *bk_today(){
     return [NSDate date];
 }
 
-inline NSString *bk_user_id(){
-    return [BKUser currentUser].email;
-}
-
 inline NSString *bk_device_id(){
     return [BKDevice currentDevice].mac;
 }
