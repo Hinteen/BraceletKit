@@ -52,6 +52,10 @@
 		CD33897020465CED00C206C6 /* BKBirthdayPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = CD33896F20465CED00C206C6 /* BKBirthdayPicker.m */; };
 		CD3389732046619100C206C6 /* BKHeightPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3389722046619100C206C6 /* BKHeightPicker.m */; };
 		CD3389762046657500C206C6 /* BKWeightPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3389752046657500C206C6 /* BKWeightPicker.m */; };
+		CD33897A2046BCDE00C206C6 /* HistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3389792046BCDE00C206C6 /* HistoryVC.m */; };
+		CD33897D2046BDBA00C206C6 /* HistoryTV.m in Sources */ = {isa = PBXBuildFile; fileRef = CD33897C2046BDBA00C206C6 /* HistoryTV.m */; };
+		CD3389802046BE9E00C206C6 /* BKDateSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CD33897F2046BE9E00C206C6 /* BKDateSegmentedControl.m */; };
+		CD3389832046C4AC00C206C6 /* BKQueryDateControl.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3389822046C4AC00C206C6 /* BKQueryDateControl.m */; };
 		CD37F4532014CCC4009B213B /* BKDayData.h in Headers */ = {isa = PBXBuildFile; fileRef = CD37F4512014CCC3009B213B /* BKDayData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD37F4542014CCC4009B213B /* BKDayData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD37F4522014CCC4009B213B /* BKDayData.m */; };
 		CD37F4572014D7BC009B213B /* BKSportData.h in Headers */ = {isa = PBXBuildFile; fileRef = CD37F4552014D7BC009B213B /* BKSportData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -69,8 +73,6 @@
 		CD3FC1241FA20A0B0054B26B /* HTMacros.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0E01FA20A0B0054B26B /* HTMacros.m */; };
 		CD3FC1251FA20A0B0054B26B /* HTStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0E11FA20A0B0054B26B /* HTStrings.m */; };
 		CD3FC12A1FA20A0B0054B26B /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0F01FA20A0B0054B26B /* HomeVC.m */; };
-		CD3FC12C1FA20A0B0054B26B /* ActivityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC0F41FA20A0B0054B26B /* ActivityVC.xib */; };
-		CD3FC12D1FA20A0B0054B26B /* ActivityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0F61FA20A0B0054B26B /* ActivityVC.m */; };
 		CD3FC12E1FA20A0B0054B26B /* DefaultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC0F91FA20A0B0054B26B /* DefaultViewController.xib */; };
 		CD3FC12F1FA20A0B0054B26B /* DefaultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0FA1FA20A0B0054B26B /* DefaultViewController.m */; };
 		CD3FC1301FA20A0B0054B26B /* MineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC0FC1FA20A0B0054B26B /* MineVC.m */; };
@@ -84,7 +86,6 @@
 		CD3FC1971FA20B730054B26B /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1571FA20B720054B26B /* NSString+MJExtension.m */; };
 		CD3FC1981FA20B730054B26B /* MJPropertyKey.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC1581FA20B720054B26B /* MJPropertyKey.m */; };
 		CD3FC1991FA20B730054B26B /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3FC15C1FA20B720054B26B /* MJFoundation.m */; };
-		CD3FC1B11FA20F8F0054B26B /* tabbar_controllers.json in Resources */ = {isa = PBXBuildFile; fileRef = CD3FC1B01FA20F8F0054B26B /* tabbar_controllers.json */; };
 		CD5CDDC32029B1D900186014 /* BKRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5CDDC22029B1D900186014 /* BKRefreshView.m */; };
 		CD616CA61FB9E0B300E38244 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616C9E1FB9E0B300E38244 /* RootViewController.m */; };
 		CD616CA71FB9E0B300E38244 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD616C9F1FB9E0B300E38244 /* BaseViewController.m */; };
@@ -204,6 +205,14 @@
 		CD3389722046619100C206C6 /* BKHeightPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKHeightPicker.m; sourceTree = "<group>"; };
 		CD3389742046657500C206C6 /* BKWeightPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKWeightPicker.h; sourceTree = "<group>"; };
 		CD3389752046657500C206C6 /* BKWeightPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKWeightPicker.m; sourceTree = "<group>"; };
+		CD3389782046BCDE00C206C6 /* HistoryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryVC.h; sourceTree = "<group>"; };
+		CD3389792046BCDE00C206C6 /* HistoryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryVC.m; sourceTree = "<group>"; };
+		CD33897B2046BDBA00C206C6 /* HistoryTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryTV.h; sourceTree = "<group>"; };
+		CD33897C2046BDBA00C206C6 /* HistoryTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryTV.m; sourceTree = "<group>"; };
+		CD33897E2046BE9E00C206C6 /* BKDateSegmentedControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDateSegmentedControl.h; sourceTree = "<group>"; };
+		CD33897F2046BE9E00C206C6 /* BKDateSegmentedControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDateSegmentedControl.m; sourceTree = "<group>"; };
+		CD3389812046C4AB00C206C6 /* BKQueryDateControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKQueryDateControl.h; sourceTree = "<group>"; };
+		CD3389822046C4AC00C206C6 /* BKQueryDateControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKQueryDateControl.m; sourceTree = "<group>"; };
 		CD37F4512014CCC3009B213B /* BKDayData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDayData.h; sourceTree = "<group>"; };
 		CD37F4522014CCC4009B213B /* BKDayData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDayData.m; sourceTree = "<group>"; };
 		CD37F4552014D7BC009B213B /* BKSportData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSportData.h; sourceTree = "<group>"; };
@@ -230,9 +239,6 @@
 		CD3FC0E11FA20A0B0054B26B /* HTStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTStrings.m; sourceTree = "<group>"; };
 		CD3FC0F01FA20A0B0054B26B /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
 		CD3FC0F21FA20A0B0054B26B /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
-		CD3FC0F41FA20A0B0054B26B /* ActivityVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityVC.xib; sourceTree = "<group>"; };
-		CD3FC0F51FA20A0B0054B26B /* ActivityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityVC.h; sourceTree = "<group>"; };
-		CD3FC0F61FA20A0B0054B26B /* ActivityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityVC.m; sourceTree = "<group>"; };
 		CD3FC0F81FA20A0B0054B26B /* DefaultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultViewController.h; sourceTree = "<group>"; };
 		CD3FC0F91FA20A0B0054B26B /* DefaultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DefaultViewController.xib; sourceTree = "<group>"; };
 		CD3FC0FA1FA20A0B0054B26B /* DefaultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultViewController.m; sourceTree = "<group>"; };
@@ -259,7 +265,6 @@
 		CD3FC15A1FA20B720054B26B /* NSObject+MJKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJKeyValue.h"; sourceTree = "<group>"; };
 		CD3FC15B1FA20B720054B26B /* NSObject+MJCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJCoding.h"; sourceTree = "<group>"; };
 		CD3FC15C1FA20B720054B26B /* MJFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFoundation.m; sourceTree = "<group>"; };
-		CD3FC1B01FA20F8F0054B26B /* tabbar_controllers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tabbar_controllers.json; sourceTree = "<group>"; };
 		CD5CDDC12029B1D900186014 /* BKRefreshView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKRefreshView.h; sourceTree = "<group>"; };
 		CD5CDDC22029B1D900186014 /* BKRefreshView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKRefreshView.m; sourceTree = "<group>"; };
 		CD616C9E1FB9E0B300E38244 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
@@ -573,7 +578,7 @@
 			children = (
 				CD3FC0F71FA20A0B0054B26B /* Default */,
 				CD3FC0EF1FA20A0B0054B26B /* Home */,
-				CD3FC0F31FA20A0B0054B26B /* Activity */,
+				CD3FC0F31FA20A0B0054B26B /* History */,
 				CD20AD932024551300475E26 /* Device */,
 				CD3FC0FB1FA20A0B0054B26B /* Mine */,
 			);
@@ -592,14 +597,15 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		CD3FC0F31FA20A0B0054B26B /* Activity */ = {
+		CD3FC0F31FA20A0B0054B26B /* History */ = {
 			isa = PBXGroup;
 			children = (
-				CD3FC0F51FA20A0B0054B26B /* ActivityVC.h */,
-				CD3FC0F61FA20A0B0054B26B /* ActivityVC.m */,
-				CD3FC0F41FA20A0B0054B26B /* ActivityVC.xib */,
+				CD3389782046BCDE00C206C6 /* HistoryVC.h */,
+				CD3389792046BCDE00C206C6 /* HistoryVC.m */,
+				CD33897B2046BDBA00C206C6 /* HistoryTV.h */,
+				CD33897C2046BDBA00C206C6 /* HistoryTV.m */,
 			);
-			path = Activity;
+			path = History;
 			sourceTree = "<group>";
 		};
 		CD3FC0F71FA20A0B0054B26B /* Default */ = {
@@ -638,6 +644,10 @@
 				CD3389722046619100C206C6 /* BKHeightPicker.m */,
 				CD3389742046657500C206C6 /* BKWeightPicker.h */,
 				CD3389752046657500C206C6 /* BKWeightPicker.m */,
+				CD33897E2046BE9E00C206C6 /* BKDateSegmentedControl.h */,
+				CD33897F2046BE9E00C206C6 /* BKDateSegmentedControl.m */,
+				CD3389812046C4AB00C206C6 /* BKQueryDateControl.h */,
+				CD3389822046C4AC00C206C6 /* BKQueryDateControl.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -690,7 +700,6 @@
 			isa = PBXGroup;
 			children = (
 				CDA003FB20136A6F00E572A7 /* Calibri.ttf */,
-				CD3FC1B01FA20F8F0054B26B /* tabbar_controllers.json */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -923,9 +932,7 @@
 				CDA003FC20136A6F00E572A7 /* Calibri.ttf in Resources */,
 				CD3FC12E1FA20A0B0054B26B /* DefaultViewController.xib in Resources */,
 				CD20ADA62024551300475E26 /* ScanTableViewCell.xib in Resources */,
-				CD3FC12C1FA20A0B0054B26B /* ActivityVC.xib in Resources */,
 				CD2E79291FA0C53300012CDB /* LaunchScreen.storyboard in Resources */,
-				CD3FC1B11FA20F8F0054B26B /* tabbar_controllers.json in Resources */,
 				CD616CAD1FB9E2FC00E38244 /* BaseTabBarController.json in Resources */,
 				CD2E79261FA0C53300012CDB /* Assets.xcassets in Resources */,
 				CD2E79241FA0C53300012CDB /* Main.storyboard in Resources */,
@@ -1054,6 +1061,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD3FC1941FA20B730054B26B /* MJExtensionConst.m in Sources */,
+				CD3389832046C4AC00C206C6 /* BKQueryDateControl.m in Sources */,
 				CD2E79211FA0C53300012CDB /* ViewController.m in Sources */,
 				CD20ADA52024551300475E26 /* ScanTableViewCell.m in Sources */,
 				CD6B285D2029EACB00A98FE6 /* MainViewController.m in Sources */,
@@ -1070,15 +1078,16 @@
 				CD3FC1161FA20A0B0054B26B /* ServicesLayer.m in Sources */,
 				CD5CDDC32029B1D900186014 /* BKRefreshView.m in Sources */,
 				CD3FC11A1FA20A0B0054B26B /* BaseDataAccess.m in Sources */,
+				CD33897A2046BCDE00C206C6 /* HistoryVC.m in Sources */,
 				CD2E792C1FA0C53300012CDB /* main.m in Sources */,
 				CD3FC1151FA20A0B0054B26B /* DataAccessLayer.m in Sources */,
 				CD3FC1221FA20A0B0054B26B /* UITableView+Creator.m in Sources */,
 				CD3FC1251FA20A0B0054B26B /* HTStrings.m in Sources */,
 				CD3FC1901FA20B730054B26B /* MJPropertyType.m in Sources */,
 				CDDFA3AB1FB5BAC8004C99D5 /* HomeTableView.m in Sources */,
+				CD33897D2046BDBA00C206C6 /* HistoryTV.m in Sources */,
 				CD20ADA42024551300475E26 /* ScanViewController.m in Sources */,
 				CD3FC1981FA20B730054B26B /* MJPropertyKey.m in Sources */,
-				CD3FC12D1FA20A0B0054B26B /* ActivityVC.m in Sources */,
 				CD3FC1931FA20B730054B26B /* NSObject+MJCoding.m in Sources */,
 				CD20ADA92024551300475E26 /* DeviceVC.m in Sources */,
 				CD3FC1231FA20A0B0054B26B /* HTConst.m in Sources */,
@@ -1097,6 +1106,7 @@
 				CD2E791E1FA0C53300012CDB /* AppDelegate.m in Sources */,
 				CD3FC1961FA20B730054B26B /* NSObject+MJClass.m in Sources */,
 				CD3FC11E1FA20A0B0054B26B /* BaseServices.m in Sources */,
+				CD3389802046BE9E00C206C6 /* BKDateSegmentedControl.m in Sources */,
 				CD6F6DDD2024D286008D91CF /* BKBatteryView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

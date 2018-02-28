@@ -41,7 +41,6 @@
     if ([BKDevice currentDevice]) {
         self.navigationItem.title = [BKDevice currentDevice].name;
     }
-//    [self.tableView reloadDataSourceAndRefreshTableView];
     [[BKRefreshView sharedInstance] updateState];
 }
 

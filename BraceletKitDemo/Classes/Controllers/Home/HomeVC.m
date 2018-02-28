@@ -223,7 +223,7 @@ static NSString *reuseIdentifier = @"home table view cell";
     if (section == 0) {
         return @"今日概览";
     } else if (section == 1) {
-        return @"分段运动";
+        return @"活动数据";
     } else if (section == 2) {
         return @"心率数据";
     } else if (section == 3) {

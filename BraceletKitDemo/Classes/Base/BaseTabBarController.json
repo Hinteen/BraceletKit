@@ -6,7 +6,7 @@
       "icon_sel":"",
     },
     {
-      "vc":"ActivityVC",
+      "vc":"HistoryVC",
       "title":"统计",
       "icon":"tabbar_history",
       "icon_sel":"",
