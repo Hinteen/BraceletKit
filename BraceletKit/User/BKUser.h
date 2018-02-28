@@ -14,6 +14,16 @@ typedef NS_ENUM(NSUInteger, BKGender) {
     BKGenderFemale,
 };
 
+@class BKUser;
+
+@protocol BKUserDelegate <NSObject>
+
+@optional
+
+- (void)userDidUpdated:(BKUser *)user;
+
+@end
+
 @interface BKUser : BKData <BKData>
 
 
@@ -50,6 +60,11 @@ typedef NS_ENUM(NSUInteger, BKGender) {
  */
 @property (copy, nonatomic) NSString *avatar;
 
+/**
+ delegate
+ */
+@property (weak, nonatomic) NSObject<BKUserDelegate> *delegate;
+
 + (instancetype)currentUser;
 
 + (instancetype)defaultUser;
@@ -58,5 +73,6 @@ typedef NS_ENUM(NSUInteger, BKGender) {
 
 + (instancetype)loginWithEmail:(NSString *)email password:(NSString *)password;
 
+- (void)transaction:(void (^)(BKUser *user))transaction;
 
 @end

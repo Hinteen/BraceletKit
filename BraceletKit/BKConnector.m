@@ -19,9 +19,6 @@
 @interface BKDevice() <BLELib3Delegate, BKConnectDelegate>
 
 @end
-@interface BKServices() <BKDeviceDelegate>
-
-@end
 
 @implementation BKConnector
 
@@ -102,7 +99,7 @@
     AXCachedLogOBJ(device);
     _state = BKConnectStateConnected;
     _device = device.transformToBKDevice;
-    self.device.delegate = [BKServices sharedInstance];
+    
     [[BKServices sharedInstance] registerConnectDelegate:self.device];
     _peripheral = device.cbDevice;
     [BLELib3 shareInstance].delegate = self.device;

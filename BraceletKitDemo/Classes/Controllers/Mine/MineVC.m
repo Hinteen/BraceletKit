@@ -10,7 +10,7 @@
 #import "UserInfoTV.h"
 
 
-@interface MineVC ()
+@interface MineVC () <BKUserDelegate>
 
 @property (strong, nonatomic) UserInfoTV *tableView;
 
@@ -24,11 +24,16 @@
     
     [self setupTableView];
     
+    [[BKServices sharedInstance] registerUserDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc{
+    [[BKServices sharedInstance] unRegisterUserDelegate:self];
 }
 
 
@@ -37,6 +42,10 @@
     self.tableView = [[UserInfoTV alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     [self.view addSubview:self.tableView];
     
+}
+
+- (void)userDidUpdated:(BKUser *)user{
+    [self.tableView reloadDataSourceAndRefreshTableView];
 }
 
 

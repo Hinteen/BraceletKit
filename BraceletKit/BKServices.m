@@ -13,13 +13,15 @@
 static BKServices *bkServices = nil;
 static BOOL loadFinished = NO;
 
-@interface BKServices() <BKScanDelegate, BKConnectDelegate, BKDeviceDelegate, BKDataObserver>
+@interface BKServices() <BKScanDelegate, BKConnectDelegate, BKUserDelegate, BKDeviceDelegate, BKDataObserver>
 
 @property (strong, nonatomic) NSMutableArray<NSObject<BKServicesDelegate> *> *servicesDelegates;
 
 @property (strong, nonatomic) NSMutableArray<NSObject<BKScanDelegate> *> *scanDelegates;
 
 @property (strong, nonatomic) NSMutableArray<NSObject<BKConnectDelegate> *> *connectDelegates;
+
+@property (strong, nonatomic) NSMutableArray<NSObject<BKUserDelegate> *> *userDelegates;
 
 @property (strong, nonatomic) NSMutableArray<NSObject<BKDeviceDelegate> *> *deviceDelegates;
 
@@ -57,6 +59,7 @@ static BOOL loadFinished = NO;
     self.servicesDelegates = [NSMutableArray array];
     self.scanDelegates = [NSMutableArray array];
     self.connectDelegates = [NSMutableArray array];
+    self.userDelegates = [NSMutableArray array];
     self.deviceDelegates = [NSMutableArray array];
     self.dataObservers = [NSMutableArray array];
     // @xaoxuu: delegate
@@ -135,6 +138,18 @@ static BOOL loadFinished = NO;
     }
 }
 
+- (void)registerUserDelegate:(NSObject<BKUserDelegate> *)delegate{
+    if (delegate && ![self.userDelegates containsObject:delegate]) {
+        [self.userDelegates addObject:delegate];
+    }
+}
+
+- (void)unRegisterUserDelegate:(NSObject<BKUserDelegate> *)delegate{
+    if (delegate && [self.userDelegates containsObject:delegate]) {
+        [self.userDelegates removeObject:delegate];
+    }
+}
+
 - (void)registerDeviceDelegate:(NSObject<BKDeviceDelegate> *)delegate{
     if (delegate && ![self.deviceDelegates containsObject:delegate]) {
         [self.deviceDelegates addObject:delegate];
@@ -184,6 +199,13 @@ static BOOL loadFinished = NO;
         }
     }];
 }
+- (void)allUserDelegates:(void (^)(NSObject<BKUserDelegate> *delegate))handler{
+    [self.userDelegates enumerateObjectsUsingBlock:^(NSObject<BKUserDelegate> *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (handler) {
+            handler(obj);
+        }
+    }];
+}
 - (void)allDeviceDelegates:(void (^)(NSObject<BKDeviceDelegate> *delegate))handler{
     [self.deviceDelegates enumerateObjectsUsingBlock:^(NSObject<BKDeviceDelegate> *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (handler) {
@@ -191,7 +213,6 @@ static BOOL loadFinished = NO;
         }
     }];
 }
-
 - (void)allDataObservers:(void (^)(NSObject<BKDataObserver> *observer))handler{
     [self.dataObservers enumerateObjectsUsingBlock:^(NSObject<BKDataObserver> *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (handler) {
@@ -259,6 +280,16 @@ static BOOL loadFinished = NO;
     }];
 }
 
+
+#pragma mark - user delegate
+
+- (void)userDidUpdated:(BKUser *)user{
+    [self allUserDelegates:^(NSObject<BKUserDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(userDidUpdated:)]) {
+            [delegate userDidUpdated:user];
+        }
+    }];
+}
 
 #pragma mark - device delegate
 

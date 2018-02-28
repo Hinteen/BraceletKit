@@ -48,6 +48,10 @@
 		CD2E793E1FA0C54200012CDB /* BraceletKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2E79371FA0C54100012CDB /* BraceletKit.framework */; };
 		CD2E793F1FA0C54200012CDB /* BraceletKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD2E79371FA0C54100012CDB /* BraceletKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CD33896A20457C0100C206C6 /* UserInfoTV.m in Sources */ = {isa = PBXBuildFile; fileRef = CD33896920457C0100C206C6 /* UserInfoTV.m */; };
+		CD33896D204658A600C206C6 /* BKGenderPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = CD33896C204658A600C206C6 /* BKGenderPicker.m */; };
+		CD33897020465CED00C206C6 /* BKBirthdayPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = CD33896F20465CED00C206C6 /* BKBirthdayPicker.m */; };
+		CD3389732046619100C206C6 /* BKHeightPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3389722046619100C206C6 /* BKHeightPicker.m */; };
+		CD3389762046657500C206C6 /* BKWeightPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3389752046657500C206C6 /* BKWeightPicker.m */; };
 		CD37F4532014CCC4009B213B /* BKDayData.h in Headers */ = {isa = PBXBuildFile; fileRef = CD37F4512014CCC3009B213B /* BKDayData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD37F4542014CCC4009B213B /* BKDayData.m in Sources */ = {isa = PBXBuildFile; fileRef = CD37F4522014CCC4009B213B /* BKDayData.m */; };
 		CD37F4572014D7BC009B213B /* BKSportData.h in Headers */ = {isa = PBXBuildFile; fileRef = CD37F4552014D7BC009B213B /* BKSportData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -192,6 +196,14 @@
 		CD2E79441FA0C55800012CDB /* BraceletKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BraceletKit.bundle; sourceTree = "<group>"; };
 		CD33896820457C0100C206C6 /* UserInfoTV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoTV.h; sourceTree = "<group>"; };
 		CD33896920457C0100C206C6 /* UserInfoTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoTV.m; sourceTree = "<group>"; };
+		CD33896B204658A600C206C6 /* BKGenderPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKGenderPicker.h; sourceTree = "<group>"; };
+		CD33896C204658A600C206C6 /* BKGenderPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKGenderPicker.m; sourceTree = "<group>"; };
+		CD33896E20465CED00C206C6 /* BKBirthdayPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKBirthdayPicker.h; sourceTree = "<group>"; };
+		CD33896F20465CED00C206C6 /* BKBirthdayPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKBirthdayPicker.m; sourceTree = "<group>"; };
+		CD3389712046619100C206C6 /* BKHeightPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKHeightPicker.h; sourceTree = "<group>"; };
+		CD3389722046619100C206C6 /* BKHeightPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKHeightPicker.m; sourceTree = "<group>"; };
+		CD3389742046657500C206C6 /* BKWeightPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKWeightPicker.h; sourceTree = "<group>"; };
+		CD3389752046657500C206C6 /* BKWeightPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKWeightPicker.m; sourceTree = "<group>"; };
 		CD37F4512014CCC3009B213B /* BKDayData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDayData.h; sourceTree = "<group>"; };
 		CD37F4522014CCC4009B213B /* BKDayData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDayData.m; sourceTree = "<group>"; };
 		CD37F4552014D7BC009B213B /* BKSportData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSportData.h; sourceTree = "<group>"; };
@@ -618,6 +630,14 @@
 				CD6F6DDC2024D286008D91CF /* BKBatteryView.m */,
 				CD5CDDC12029B1D900186014 /* BKRefreshView.h */,
 				CD5CDDC22029B1D900186014 /* BKRefreshView.m */,
+				CD33896B204658A600C206C6 /* BKGenderPicker.h */,
+				CD33896C204658A600C206C6 /* BKGenderPicker.m */,
+				CD33896E20465CED00C206C6 /* BKBirthdayPicker.h */,
+				CD33896F20465CED00C206C6 /* BKBirthdayPicker.m */,
+				CD3389712046619100C206C6 /* BKHeightPicker.h */,
+				CD3389722046619100C206C6 /* BKHeightPicker.m */,
+				CD3389742046657500C206C6 /* BKWeightPicker.h */,
+				CD3389752046657500C206C6 /* BKWeightPicker.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1039,6 +1059,7 @@
 				CD6B285D2029EACB00A98FE6 /* MainViewController.m in Sources */,
 				CD3FC1241FA20A0B0054B26B /* HTMacros.m in Sources */,
 				CD3FC1911FA20B730054B26B /* NSObject+MJKeyValue.m in Sources */,
+				CD33897020465CED00C206C6 /* BKBirthdayPicker.m in Sources */,
 				CD20ADA82024551300475E26 /* CameraViewController.m in Sources */,
 				CD33896A20457C0100C206C6 /* UserInfoTV.m in Sources */,
 				CD6F6DD92024CA91008D91CF /* MyDevicesVC.m in Sources */,
@@ -1065,11 +1086,14 @@
 				CD616CA61FB9E0B300E38244 /* RootViewController.m in Sources */,
 				CD616CA91FB9E0B300E38244 /* BaseTabBarController.m in Sources */,
 				CD3FC1951FA20B730054B26B /* NSObject+MJProperty.m in Sources */,
+				CD3389762046657500C206C6 /* BKWeightPicker.m in Sources */,
 				CD3FC12F1FA20A0B0054B26B /* DefaultViewController.m in Sources */,
 				CD616CA81FB9E0B300E38244 /* BaseNavController.m in Sources */,
 				CD3FC1921FA20B730054B26B /* MJProperty.m in Sources */,
+				CD33896D204658A600C206C6 /* BKGenderPicker.m in Sources */,
 				CD3FC1991FA20B730054B26B /* MJFoundation.m in Sources */,
 				CD616CA71FB9E0B300E38244 /* BaseViewController.m in Sources */,
+				CD3389732046619100C206C6 /* BKHeightPicker.m in Sources */,
 				CD2E791E1FA0C53300012CDB /* AppDelegate.m in Sources */,
 				CD3FC1961FA20B730054B26B /* NSObject+MJClass.m in Sources */,
 				CD3FC11E1FA20A0B0054B26B /* BaseServices.m in Sources */,

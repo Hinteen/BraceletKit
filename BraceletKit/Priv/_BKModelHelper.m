@@ -13,6 +13,23 @@
 
 @end
 
+@implementation BKUser (BKExtension)
+
+- (ZeronerPersonal *)transformToZeronerPersonal{
+    ZeronerPersonal *model = [ZeronerPersonal defaultPersonalModel];
+    if (self.gender == BKGenderFemale) {
+        model.gender = 1;
+    } else {
+        model.gender = 0;
+    }
+    model.height = (NSInteger)self.height;
+    model.weight = (NSInteger)self.weight;
+    model.age = [NSDate date].stringValue(@"yy").integerValue - self.birthday.stringValue(@"yy").integerValue;
+    return model;
+}
+
+@end
+
 @implementation ZeronerBlePeripheral (BKExtension)
 
 - (BKDevice *)transformToBKDevice{

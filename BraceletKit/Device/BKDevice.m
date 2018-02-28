@@ -84,7 +84,11 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
     
 }
 
-@interface BKDevice() <BLELib3Delegate, BKConnectDelegate>
+@interface BKServices() <BKDeviceDelegate>
+
+@end
+
+@interface BKDevice() <BLELib3Delegate, BKConnectDelegate, BKUserDelegate>
 
 @property (strong, nonatomic) ZeronerDeviceInfo *deviceInfo;
 
@@ -107,7 +111,7 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
     if (self = [super init]) {
         _languages = [NSMutableArray array];
         _functions = [NSMutableArray array];
-        
+        _delegate = [BKServices sharedInstance];
     }
     return self;
 }
@@ -389,6 +393,16 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
 }
 
 #pragma mark - function
+
+- (void)requestUpdateUserInfoCompletion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
+    bk_ble_option(^{
+        [[BLELib3 shareInstance] setPersonalInfo:[BKUser currentUser].transformToZeronerPersonal];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[BLELib3 shareInstance] readPersonalInfo];
+        });
+    }, completion, error);
+}
+
 /**
  请求立即同步时间
  
@@ -471,6 +485,13 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
 - (void)connectorDidUnconnectedDevice:(BKDevice *)device{
     [self changeSyncState:NO];
 }
+
+#pragma mark - user delegate
+
+- (void)userDidUpdated:(BKUser *)user{
+    [self requestUpdateUserInfoCompletion:nil error:nil];
+}
+
 
 
 #pragma mark - ble delegate -> device setting
