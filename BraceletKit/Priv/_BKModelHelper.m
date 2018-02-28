@@ -24,7 +24,9 @@
     }
     model.height = (NSInteger)self.height;
     model.weight = (NSInteger)self.weight;
-    model.age = [NSDate date].stringValue(@"yy").integerValue - self.birthday.stringValue(@"yy").integerValue;
+    NSInteger year1 = [NSDate date].stringValue(@"yyyy").integerValue;
+    NSInteger year2 = self.birthday.stringValue(@"yyyy").integerValue;
+    model.age = year1 - year2;
     return model;
 }
 

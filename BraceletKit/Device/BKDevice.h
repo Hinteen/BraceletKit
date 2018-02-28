@@ -162,12 +162,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
+ 请求同步用户数据
+ 
+ @param completion 指令已发送到设备
+ @param error 指令发送失败及其原因
+ */
+- (void)requestUpdateUserCompletion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nonnull error))error;
+
+/**
  请求立即同步时间
  
  @param completion 指令已发送到设备
  @param error 指令发送失败及其原因
  */
-- (void)requestSyncTimeAtOnceCompletion:(void(^)(void))completion error:(void (^)(NSError *error))error;
+- (void)requestSyncTimeAtOnceCompletion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error;
 
 /**
  请求进入或退出拍照模式

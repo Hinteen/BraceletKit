@@ -29,11 +29,7 @@
         section.headerTitle = @"基本信息";
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"用户名";
-            if (user.name.length) {
-                row.detail = user.name;
-            } else {
-                row.detail = @"未知";
-            }
+            row.detail = user.name;
             row.target = @"rename.username";
         }];
         [section addRow:^(AXTableRowModel *row) {

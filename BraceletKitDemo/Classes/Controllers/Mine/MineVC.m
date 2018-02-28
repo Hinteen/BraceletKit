@@ -10,7 +10,7 @@
 #import "UserInfoTV.h"
 
 
-@interface MineVC () <BKUserDelegate>
+@interface MineVC () <BKDataObserver>
 
 @property (strong, nonatomic) UserInfoTV *tableView;
 
@@ -24,7 +24,7 @@
     
     [self setupTableView];
     
-    [[BKServices sharedInstance] registerUserDelegate:self];
+    [[BKServices sharedInstance] registerDataObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,7 +33,7 @@
 }
 
 - (void)dealloc{
-    [[BKServices sharedInstance] unRegisterUserDelegate:self];
+    [[BKServices sharedInstance] unRegisterDataObserver:self];
 }
 
 

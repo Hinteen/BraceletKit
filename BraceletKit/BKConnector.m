@@ -16,7 +16,7 @@
 
 @end
 
-@interface BKDevice() <BLELib3Delegate, BKConnectDelegate>
+@interface BKDevice() <BLELib3Delegate, BKConnectDelegate, BKDataObserver>
 
 @end
 
@@ -28,7 +28,6 @@
         _state = BKConnectStateUnknown;
         _central = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         [BLELib3 shareInstance].connectDelegate = self;
-        
         
     }
     return self;
@@ -59,6 +58,7 @@
     _state = BKConnectStateBindingUnconnected;
     _device = device;
     [[BKServices sharedInstance] registerConnectDelegate:device];
+    
     if (self.central.state == CBCentralManagerStatePoweredOn) {
         [[BKServices sharedInstance].scanner scanDevice];
     }
@@ -99,8 +99,8 @@
     AXCachedLogOBJ(device);
     _state = BKConnectStateConnected;
     _device = device.transformToBKDevice;
-    
     [[BKServices sharedInstance] registerConnectDelegate:self.device];
+    [[BKServices sharedInstance] registerDataObserver:self.device];
     _peripheral = device.cbDevice;
     [BLELib3 shareInstance].delegate = self.device;
     [self.central connectPeripheral:self.peripheral options:@{CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,CBConnectPeripheralOptionNotifyOnConnectionKey:@YES,CBConnectPeripheralOptionNotifyOnNotificationKey:@YES}];
@@ -142,6 +142,7 @@
     
     // 移除掉代理，不再接收事件
     [[BKServices sharedInstance] unRegisterConnectDelegate:self.device];
+    [[BKServices sharedInstance] unRegisterDataObserver:self.device];
     _device = nil;
     self.device.delegate = nil;
 }

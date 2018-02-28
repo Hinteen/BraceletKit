@@ -13,7 +13,7 @@
 #import <AXKit/AXKit.h>
 #import "_BKHeader.h"
 
-@interface BKServices() <BKUserDelegate>
+@interface BKServices()
 
 @end
 
@@ -37,7 +37,7 @@
         _birthday = [NSDate dateWithTimeIntervalSince1970:0];
         _height = 170;
         _weight = 60;
-        _delegate = [BKServices sharedInstance];
+        
     }
     return self;
 }
@@ -76,8 +76,8 @@
     if (transaction) {
         transaction(self);
         [self saveToDatabase];
-        if ([self.delegate respondsToSelector:@selector(userDidUpdated:)]) {
-            [self.delegate userDidUpdated:self];
+        if ([[BKServices sharedInstance] respondsToSelector:@selector(userDidUpdated:)]) {
+            [[BKServices sharedInstance] userDidUpdated:self];
         }
     }
 }

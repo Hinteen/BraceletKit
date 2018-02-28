@@ -21,14 +21,11 @@
     if (self = [super initWithFrame:frame]) {
         self.dataSource = self;
         self.delegate = self;
-        [self selectRow:[BKUser currentUser].gender inComponent:0 animated:YES];
         self.values = [NSMutableArray arrayWithCapacity:200];
         for (int i = 0; i <= 200; i++) {
             [self.values addObject:@(i+50)];
         }
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            self.value = @([BKUser currentUser].weight);
-        });
+        self.value = @([BKUser currentUser].weight);
     }
     return self;
 }

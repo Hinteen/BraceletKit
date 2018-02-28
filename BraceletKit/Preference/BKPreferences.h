@@ -102,11 +102,7 @@
 @property (assign, nonatomic) NSInteger wristBlightEnd;
 
 
-
-/**
- 将当前的设置应用到设备
- */
-- (void)applyToMyDevice;
+- (void)transaction:(void (^)(BKPreferences *preferences))transaction;
 
 - (BOOL)saveToDatabaseIfNotExists;
 

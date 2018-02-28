@@ -37,14 +37,12 @@
 
 - (void)ax_tableViewDataSource:(void (^)(AXTableModelType *))dataSource{
     BKDevice *device = [BKDevice currentDevice];
-//    ZeronerBlePeripheral *peripheral = [BraceletManager sharedInstance].bindDevices.firstObject;
-//    ZeronerDeviceInfo *deviceInfo = [BraceletManager sharedInstance].currentDeviceInfo;
-    
+
     AXTableModel *dataList = [[AXTableModel alloc] init];
     [dataList addSection:^(AXTableSectionModel *section) {
         section.headerTitle = @"基本信息";
         [section addRow:^(AXTableRowModel *row) {
-            row.title = @"手环名";
+            row.title = @"设备名";
             row.detail = device.name;
             row.target = @"BraceletNameVC";
         }];
@@ -183,14 +181,14 @@
         [[BKServices sharedInstance].connector disConnectDevice];
     }
     else if ([model.target isEqualToString:@"12"]) {
-        [BKDevice currentDevice].preferences.hourFormat = BKHourFormat12;
-        [[BKDevice currentDevice].preferences saveToDatabase];
-        [[BKDevice currentDevice].preferences applyToMyDevice];
+        [[BKDevice currentDevice].preferences transaction:^(BKPreferences *preferences) {
+            preferences.hourFormat = BKHourFormat12;
+        }];
     }
     else if ([model.target isEqualToString:@"24"]) {
-        [BKDevice currentDevice].preferences.hourFormat = BKHourFormat24;
-        [[BKDevice currentDevice].preferences saveToDatabase];
-        [[BKDevice currentDevice].preferences applyToMyDevice];
+        [[BKDevice currentDevice].preferences transaction:^(BKPreferences *preferences) {
+            preferences.hourFormat = BKHourFormat24;
+        }];
     }
     
     else if ([model.target isEqualToString:@"time"]) {

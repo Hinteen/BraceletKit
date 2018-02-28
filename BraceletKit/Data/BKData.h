@@ -10,9 +10,15 @@
 #import "BKDefines.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@class FMResultSet, BKData;
+@class FMResultSet, BKData, BKUser, BKPreferences;
 
 @protocol BKDataObserver <NSObject>
+
+@optional
+
+- (void)userDidUpdated:(BKUser *)user;
+
+- (void)preferencesDidUpdated:(BKPreferences *)preferences;
 
 /**
  数据更新了

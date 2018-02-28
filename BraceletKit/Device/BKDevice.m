@@ -88,7 +88,7 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
 
 @end
 
-@interface BKDevice() <BLELib3Delegate, BKConnectDelegate, BKUserDelegate>
+@interface BKDevice() <BLELib3Delegate, BKConnectDelegate, BKDataObserver>
 
 @property (strong, nonatomic) ZeronerDeviceInfo *deviceInfo;
 
@@ -112,13 +112,11 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
         _languages = [NSMutableArray array];
         _functions = [NSMutableArray array];
         _delegate = [BKServices sharedInstance];
+        
     }
     return self;
 }
 
-- (void)dealloc{
-    
-}
 
 #pragma mark - db delegate
 
@@ -331,26 +329,6 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
     }
 }
 
-- (void)applyUserInfo{
-    ZeronerPersonal *user = [[ZeronerPersonal alloc] init];
-    user.height = [BKUser currentUser].height;
-    user.weight = [BKUser currentUser].weight;
-    switch ([BKUser currentUser].gender) {
-        case BKGenderMale:
-            user.gender = 0;
-            break;
-        case BKGenderFemale:
-            user.gender = 1;
-            break;
-        default:
-            break;
-    }
-    NSInteger currentYear = [[[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:[NSDate date]] year];
-    NSInteger birthYear = [[[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:[BKUser currentUser].birthday] year];
-    user.age = currentYear - birthYear;
-    [[BLELib3 shareInstance] setPersonalInfo:user];
-}
-
 
 - (void)refreshPreferences{
     [[BLELib3 shareInstance] readFirmwareOption];
@@ -394,7 +372,13 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
 
 #pragma mark - function
 
-- (void)requestUpdateUserInfoCompletion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
+/**
+ 请求同步用户数据
+
+ @param completion 指令已发送到设备
+ @param error 指令发送失败及其原因
+ */
+- (void)requestUpdateUserCompletion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
     bk_ble_option(^{
         [[BLELib3 shareInstance] setPersonalInfo:[BKUser currentUser].transformToZeronerPersonal];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -403,6 +387,20 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
     }, completion, error);
 }
 
+/**
+ 请求更新偏好设置
+ 
+ @param completion 指令已发送到设备
+ @param error 指令发送失败及其原因
+ */
+- (void)requestUpdatePreferencesCompletion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
+    bk_ble_option(^{
+        [[BLELib3 shareInstance] setFirmwareOption:self.preferences.transformToZeronerHWOption];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[BLELib3 shareInstance] readFirmwareOption];
+        });
+    }, completion, error);
+}
 /**
  请求立即同步时间
  
@@ -486,13 +484,15 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
     [self changeSyncState:NO];
 }
 
-#pragma mark - user delegate
+#pragma mark - data observer
 
 - (void)userDidUpdated:(BKUser *)user{
-    [self requestUpdateUserInfoCompletion:nil error:nil];
+    [self requestUpdateUserCompletion:nil error:nil];
 }
 
-
+- (void)preferencesDidUpdated:(BKPreferences *)preferences{
+    [self requestUpdatePreferencesCompletion:nil error:nil];
+}
 
 #pragma mark - ble delegate -> device setting
 
@@ -503,7 +503,7 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
  */
 - (void)setBLEParameterAfterConnect{
     AXCachedLogOBJ(@"setBLEParameterAfterConnect");
-    [self applyUserInfo];
+    [self requestUpdateUserCompletion:nil error:nil];
     [self refreshPreferences];
     
 }
@@ -583,6 +583,7 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
         [self.delegate deviceDidUpdateInfo];
     }
     AXCachedLogOBJ(deviceInfo);
+    _preferences = [[[BKPreferences alloc] init] restoreFromDatabase];
     // 如果是第一次连接
     [self initializeDeviceWhenFirstConnected];
     [self saveToDatabase];
@@ -661,7 +662,9 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
  */
 - (void)responseOfGetHWOption:(ZeronerHWOption *)hwOption{
     _hwOption = hwOption;
-    _preferences = hwOption.transformToBKPreferences;
+    if (!_preferences) {
+        _preferences = hwOption.transformToBKPreferences;
+    }
     [self.preferences saveToDatabaseIfNotExists];
     AXCachedLogOBJ(hwOption);
 }

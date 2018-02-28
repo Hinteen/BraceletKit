@@ -8,17 +8,29 @@
 
 #import "BKPreferences.h"
 #import "_BKHeader.h"
+#import "BKServices.h"
+
 
 @implementation BKPreferences
 
 
-- (void)applyToMyDevice{
-    [[BLELib3 shareInstance] setFirmwareOption:self.transformToZeronerHWOption];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [[BLELib3 shareInstance] readFirmwareOption];
-    });
+- (instancetype)init{
+    if (self = [super init]) {
+        
+    }
+    return self;
 }
 
+- (void)transaction:(void (^)(BKPreferences *user))transaction{
+    if (transaction) {
+        transaction(self);
+        [self saveToDatabase];
+        if ([[BKServices sharedInstance] respondsToSelector:@selector(preferencesDidUpdated:)]) {
+            [[BKServices sharedInstance] preferencesDidUpdated:self];
+        }
+        
+    }
+}
 
 
 + (NSString *)tableName{

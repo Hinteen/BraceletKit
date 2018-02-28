@@ -25,7 +25,7 @@
 
 @end
 
-@interface BKServices : NSObject
+@interface BKServices : NSObject <BKDataObserver>
 
 /**
  用户
@@ -100,22 +100,6 @@
  @param delegate 代理
  */
 - (void)unRegisterConnectDelegate:(NSObject<BKConnectDelegate> *)delegate;
-
-
-/**
- 注册用户代理
- 
- @param delegate 代理
- */
-- (void)registerUserDelegate:(NSObject<BKUserDelegate> *)delegate;
-
-/**
- 取消注册用户代理
- 
- @param delegate 代理
- */
-- (void)unRegisterUserDelegate:(NSObject<BKUserDelegate> *)delegate;
-
 
 /**
  注册设备代理
