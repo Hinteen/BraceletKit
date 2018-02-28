@@ -176,19 +176,28 @@ static NSString *reuseIdentifier = @"home table view cell";
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.tintColor = axThemeManager.color.theme;
     }
     
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
+            cell.imageView.image = UIImageNamed(@"foot");
+            cell.imageView.tintColor = [UIColor md_blue];
             cell.textLabel.text = @"步数";
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d steps", self.sport.steps.intValue];
         } else if (indexPath.row == 1) {
+            cell.imageView.image = UIImageNamed(@"distance");
+            cell.imageView.tintColor = [UIColor md_amber];
             cell.textLabel.text = @"距离";
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f km", self.sport.distance.doubleValue / 1000.0f];
         } else if (indexPath.row == 2) {
+            cell.imageView.image = UIImageNamed(@"calorie");
+            cell.imageView.tintColor = [UIColor md_red];
             cell.textLabel.text = @"卡路里";
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%.1f cal", self.sport.calorie.doubleValue];
         } else if (indexPath.row == 3) {
+            cell.imageView.image = UIImageNamed(@"time");
+            cell.imageView.tintColor = [UIColor md_green];
             cell.textLabel.text = @"活动时间";
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d minutes", self.sport.activity.intValue];
         }
