@@ -66,6 +66,8 @@
 
 - (void)servicesDidLoadFinished:(BKServices *)services{
     
+    
+    
     // 注册和登录用户
     BKUser *user = [BKUser registerWithEmail:@"xaoxuu@gmail.com" password:@"123456"];
     NSString *log = [NSString stringWithFormat:@"注册用户xaoxuu@gmail.com,密码123456.结果：%@", user ? @"成功":@"失败"];

@@ -40,6 +40,24 @@
     [[BKServices sharedInstance] unRegisterScanDelegate:self];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if (![NSUserDefaults ax_readBoolForKey:@"app.guided"]) {
+        [UIAlertController ax_showAlertWithTitle:@"用户条款" message:@"本程序仅供轩霆科技(hinteen.com)内部使用，非轩霆员工请自觉卸载不要使用。" actions:^(UIAlertController * _Nonnull alert) {
+            [alert ax_addDefaultActionWithTitle:@"同意" handler:^(UIAlertAction * _Nonnull sender) {
+                [NSUserDefaults ax_setBool:YES forKey:@"app.guided"];
+            }];
+            [alert ax_addCancelActionWithTitle:@"不同意" handler:^(UIAlertAction * _Nonnull sender) {
+                NSAssert(NO, @"不同意使用条款");
+            }];
+        }];
+    }
+}
 /*
 #pragma mark - Navigation
 

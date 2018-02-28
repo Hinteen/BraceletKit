@@ -106,7 +106,7 @@
         }
         if ([device.functions containsObject:@(BKDeviceFunctionSchedule)]) {
             [section addRow:^(AXTableRowModel *row) {
-                row.title = @"3.schedule";
+                row.title = @"3.日程";
                 row.target = @"schedule";
             }];
         }
@@ -124,31 +124,31 @@
         }
         if ([device.functions containsObject:@(BKDeviceFunctionBackgroundLight)]) {
             [section addRow:^(AXTableRowModel *row) {
-                row.title = @"6.hasBackgroundLightFunction";
+                row.title = @"6.背光";
                 row.target = @"hasBackgroundLightFunction";
             }];
         }
         if ([device.functions containsObject:@(BKDeviceFunctionLedLight)]) {
             [section addRow:^(AXTableRowModel *row) {
-                row.title = @"7.hasLedLightFunction";
+                row.title = @"7.LED灯";
                 row.target = @"hasLedLightFunction";
             }];
         }
         if ([device.functions containsObject:@(BKDeviceFunctionAutoHeartRate)]) {
             [section addRow:^(AXTableRowModel *row) {
-                row.title = @"8.hasAutoHeartRateFunction";
+                row.title = @"8.自动心率监测";
                 row.target = @"hasAutoHeartRateFunction";
             }];
         }
         if ([device.functions containsObject:@(BKDeviceFunctionWristBlight)]) {
             [section addRow:^(AXTableRowModel *row) {
-                row.title = @"9.hasWristBlightFunction";
+                row.title = @"9.抬腕亮屏";
                 row.target = @"hasWristBlightFunction";
             }];
         }
         if ([device.functions containsObject:@(BKDeviceFunctionExerciseHRWarning)]) {
             [section addRow:^(AXTableRowModel *row) {
-                row.title = @"10.hasExerciseHRWarningFunction";
+                row.title = @"10.心率报警";
                 row.target = @"hasExerciseHRWarningFunction";
             }];
         }
