@@ -202,11 +202,16 @@ static NSString *reuseIdentifier = @"home table view cell";
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d minutes", self.sport.activity.intValue];
         }
     } else if (indexPath.section == 1) {
+        cell.imageView.image = UIImageNamed(@"icon_run");
+        cell.imageView.tintColor = [UIColor grayColor];
         cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", self.sport.items[indexPath.row].start.stringValue(@"HH:mm"), self.sport.items[indexPath.row].end.stringValue(@"HH:mm")];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%d steps", (int)self.sport.items[indexPath.row].steps];
     } else if (indexPath.section == 2) {
+        cell.imageView.image = nil;
         cell.textLabel.text = @"心率图表";
+        cell.detailTextLabel.text = @"";
     } else if (indexPath.section == 3) {
+        cell.imageView.image = nil;
         cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", self.sleep.items[indexPath.row].start.stringValue(@"HH:mm"), self.sleep.items[indexPath.row].end.stringValue(@"HH:mm")];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%d minutes", (int)self.sleep.items[indexPath.row].duration];
     }

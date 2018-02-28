@@ -28,7 +28,7 @@
     
     AXTableModel *dataList = [[AXTableModel alloc] init];
     [dataList addSection:^(AXTableSectionModel *section) {
-        section.headerTitle = @"基本信息";
+        section.headerTitle = @"用户信息";
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"用户名";
             row.detail = user.name;
