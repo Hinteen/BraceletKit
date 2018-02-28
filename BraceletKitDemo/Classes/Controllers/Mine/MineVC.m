@@ -21,10 +21,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    self.view.width = kScreenW;
+    self.view.height -= kTabBarHeight;
     [self setupTableView];
     
     [[BKServices sharedInstance] registerDataObserver:self];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

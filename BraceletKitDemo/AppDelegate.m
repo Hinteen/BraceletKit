@@ -69,11 +69,11 @@
     
     
     // 注册和登录用户
-    BKUser *user = [BKUser registerWithEmail:@"xaoxuu@gmail.com" password:@"123456"];
-    NSString *log = [NSString stringWithFormat:@"注册用户xaoxuu@gmail.com,密码123456.结果：%@", user ? @"成功":@"失败"];
+    BKUser *user = [BKUser registerWithEmail:@"me@xaoxuu.com" password:@"123456"];
+    NSString *log = [NSString stringWithFormat:@"注册用户me@xaoxuu.com,密码123456.结果：%@", user ? @"成功":@"失败"];
     AXCachedLogOBJ(log);
-    user = [BKUser loginWithEmail:@"xaoxuu@gmail.com" password:@"123456"];
-    log = [NSString stringWithFormat:@"登录用户xaoxuu@gmail.com,密码123456.结果：%@", user ? @"成功":@"失败"];
+    user = [BKUser loginWithEmail:@"me@xaoxuu.com" password:@"123456"];
+    log = [NSString stringWithFormat:@"登录用户me@xaoxuu.com,密码123456.结果：%@", user ? @"成功":@"失败"];
     AXCachedLogOBJ(log);
     if (user) {
         BOOL ret = [[BKServices sharedInstance] registerServiceWithUser:user];

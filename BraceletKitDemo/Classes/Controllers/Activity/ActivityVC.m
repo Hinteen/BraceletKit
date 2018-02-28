@@ -18,6 +18,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.view.width = kScreenW;
+    self.view.height -= kTabBarHeight;
+    
 }
 
 - (void)didReceiveMemoryWarning {

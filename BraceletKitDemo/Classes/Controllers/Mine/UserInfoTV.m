@@ -11,6 +11,8 @@
 #import "BKBirthdayPicker.h"
 #import "BKHeightPicker.h"
 #import "BKWeightPicker.h"
+#import <AXKit/FeedbackKit.h>
+#import <AXKit/StatusKit.h>
 
 
 @interface UserInfoTV ()
@@ -36,6 +38,7 @@
             row.title = @"邮箱";
             row.detail = user.email;
             row.target = @"rename.email";
+            row.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }];
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"手机";
@@ -73,6 +76,28 @@
             row.target = @"weight";
         }];
         
+    }];
+    
+    [dataList addSection:^(AXTableSectionModel *section) {
+        section.headerTitle = @"应用信息";
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"版本";
+            row.detail = [NSString stringWithFormat:@"%@ (%@)", [NSBundle ax_appVersion], [NSBundle ax_appBuild]];
+            row.target = @"";
+        }];
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"构建日期";
+            NSString *build = [NSBundle ax_appBuild];
+            build = [build substringToIndex:build.length-1];
+            row.detail = [NSDate dateWithString:build format:@"Mdd"].stringValue(@"MM-dd");
+            row.target = @"";
+        }];
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"反馈";
+            row.detail = @"发送邮件";
+            row.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            row.target = @"feedback";
+        }];
     }];
     
     dataSource(dataList);
@@ -162,6 +187,38 @@
                 }];
             }];
             [alert ax_addCancelAction];
+        }];
+    } else if ([model.target isEqualToString:@"feedback"]) {
+        [[EmailManager sharedInstance] sendEmail:^(MFMailComposeViewController * _Nonnull mailCompose) {
+            [mailCompose setToRecipients:@[@"me@xaoxuu.com"]];
+            [mailCompose setSubject:@"Feedback of BraceletKit"];
+            
+            [mailCompose setMessageBody:[NSString stringWithFormat:@"\n\n\n\napp version: %@ (%@)", [NSBundle ax_appVersion], [NSBundle ax_appBuild]] isHTML:NO];
+            
+            // db
+            NSString *path = @"com.xaoxuu.braceletkit.db".docPath;
+            NSData *data = [NSData dataWithContentsOfFile:path];
+            if (data) {
+                [mailCompose addAttachmentData:data mimeType:@"" fileName:path.lastPathComponent];
+            }
+            
+            // 最近7天的log
+            NSArray<NSString *> *logs = [AXCachedLog getLatestCachedLogPathWithDateCount:7];
+            [logs enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSData *data = [NSData dataWithContentsOfFile:obj];
+                if (data) {
+                    [mailCompose addAttachmentData:data mimeType:@"" fileName:obj.lastPathComponent];
+                }
+            }];
+            
+            
+            
+        } completion:^(MFMailComposeResult result) {
+            if (result == MFMailComposeResultSent) {
+                [AXStatusBar showStatusBarMessage:@"反馈邮件发送成功！" textColor:[UIColor whiteColor] backgroundColor:[UIColor md_green] duration:3];
+            }
+        } fail:^(NSError * _Nonnull error) {
+            [AXStatusBar showStatusBarMessage:error.localizedDescription textColor:[UIColor whiteColor] backgroundColor:[UIColor md_red] duration:5];
         }];
     }
     
