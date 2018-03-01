@@ -30,6 +30,7 @@ static UIView *maskView;
     if (self = [super initWithImage:UIImageNamed(@"nav_battery")]) {
         
     }
+    self.alpha = 0.5;
     batteryLevelView = [[UIView alloc] initWithFrame:CGRectMake(3, 8, 17, 8)];
     [self addSubview:batteryLevelView];
     [batteryLevelView.layer ax_cornerRadius:1 shadow:LayerShadowNone];

@@ -12,6 +12,13 @@
 
 @optional
 
+/**
+ 查询日期改变了
+
+ @param queryUnit 查询单位
+ @param start 开始日期
+ @param end 结束日期
+ */
 - (void)queryDateDidChanged:(BKQueryUnit)queryUnit start:(NSDate *)start end:(NSDate *)end;
 
 @end
@@ -36,8 +43,10 @@
 - (instancetype)initWithDelegate:(NSObject<BKQueryDateControlDelegate> *)delegate;
 
 
+/**
+ 刷新查询日期
+ */
 - (void)refreshQueryDate;
 
-- (void)queryDateDidChanged:(void (^)(BKQueryUnit currentQueryUnit, NSDate *start, NSDate *end))op;
 
 @end

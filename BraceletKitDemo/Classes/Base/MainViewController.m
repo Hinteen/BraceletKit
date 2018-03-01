@@ -8,7 +8,7 @@
 
 #import "MainViewController.h"
 #import "BKRefreshView.h"
-
+#import "BKBatteryView.h"
 
 @interface MainViewController () <BKConnectDelegate>
 
@@ -51,12 +51,23 @@
  @param device 设备
  */
 - (void)connectorDidConnectedDevice:(BKDevice *)device{
-    [[BKRefreshView sharedInstance] updateState];
-    self.navigationItem.title = device.name;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.navigationItem.title = device.name;
+        [[BKRefreshView sharedInstance] updateState];
+        [BKBatteryView sharedInstance].alpha = 1;
+    });
 }
 
+/**
+ 断开连接
+
+ @param device 设备
+ */
 - (void)connectorDidUnconnectedDevice:(BKDevice *)device{
-    [[BKRefreshView sharedInstance] updateState];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[BKRefreshView sharedInstance] updateState];
+        [BKBatteryView sharedInstance].alpha = 0.5;
+    });
 }
 
 
