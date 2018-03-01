@@ -17,6 +17,7 @@
 #import "BKHeartRateQuery.h"
 #import "BKSleepQuery.h"
 #import "BKSleepData.h"
+#import <AXKit/StatusKit.h>
 
 static NSString *reuseIdentifier = @"home table view cell";
 

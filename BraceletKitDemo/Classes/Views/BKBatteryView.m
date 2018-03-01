@@ -51,6 +51,7 @@ static UIView *maskView;
         maskView.width = percent * batteryLevelView.width;
         if (percent <= 0.3) {
             batteryLevelView.backgroundColor = [UIColor md_red];
+            [batteryLevelView.layer ax_animatedColor:[UIColor whiteColor] duration:1 repeatCount:HUGE_VALF];
         } else {
             batteryLevelView.backgroundColor = [UIColor whiteColor];
         }
