@@ -53,7 +53,7 @@
     [UINavigationBar appearance].barTintColor = axThemeManager.color.theme;
     [UINavigationBar appearance].tintColor = UIColor.whiteColor;
     [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName:UIColor.whiteColor};
-    
+
     
     [UITabBar appearance].barStyle = UIBarStyleDefault;
     [UITabBar appearance].translucent = NO;

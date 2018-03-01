@@ -47,6 +47,7 @@ static UIView *maskView;
  */
 - (void)updateBatteryPercent:(CGFloat)percent{
     dispatch_async(dispatch_get_main_queue(), ^{
+        self.alpha = 1;
         maskView.width = percent * batteryLevelView.width;
         if (percent <= 0.3) {
             batteryLevelView.backgroundColor = [UIColor md_red];

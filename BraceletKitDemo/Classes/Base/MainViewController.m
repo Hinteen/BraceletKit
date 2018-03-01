@@ -54,7 +54,6 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.navigationItem.title = device.name;
         [[BKRefreshView sharedInstance] updateState];
-        [BKBatteryView sharedInstance].alpha = 1;
     });
 }
 

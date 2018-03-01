@@ -190,6 +190,7 @@
         }];
     } else if ([model.target isEqualToString:@"feedback"]) {
         [[EmailManager sharedInstance] sendEmail:^(MFMailComposeViewController * _Nonnull mailCompose) {
+            mailCompose.navigationBar.tintColor = [UIColor whiteColor];
             [mailCompose setToRecipients:@[@"me@xaoxuu.com"]];
             [mailCompose setSubject:@"Feedback of BraceletKit"];
             
