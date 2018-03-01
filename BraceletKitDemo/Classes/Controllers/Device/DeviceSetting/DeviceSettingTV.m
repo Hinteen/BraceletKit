@@ -72,23 +72,24 @@
     }];
     
     [dataList addSection:^(AXTableSectionModel *section) {
-        section.headerTitle = @"设置";
+        section.headerTitle = @"偏好设置";
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"时间格式";
+            row.target = @"hourFormat";
+            if (device.preferences.hourFormat == BKHourFormat12) {
+                row.detail = @"12小时制";
+            } else {
+                row.detail = @"24小时制";
+            }
+        }];
         
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"12小时制";
-            row.target = @"12";
-        }];
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"24小时制";
-            row.target = @"24";
-        }];
     }];
     
     [dataList addSection:^(AXTableSectionModel *section) {
         section.headerTitle = @"功能";
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"更新时间";
-            row.detail = @"time";
+            row.target = @"update time";
         }];
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"推送消息";
@@ -180,18 +181,25 @@
     } else if ([model.target isEqualToString:@"noti_unbind"]) {
         [[BKServices sharedInstance].connector disConnectDevice];
     }
-    else if ([model.target isEqualToString:@"12"]) {
-        [[BKDevice currentDevice].preferences transaction:^(BKPreferences *preferences) {
-            preferences.hourFormat = BKHourFormat12;
-        }];
-    }
-    else if ([model.target isEqualToString:@"24"]) {
-        [[BKDevice currentDevice].preferences transaction:^(BKPreferences *preferences) {
-            preferences.hourFormat = BKHourFormat24;
+    else if ([model.target isEqualToString:@"hourFormat"]) {
+        NSString *title = [NSString stringWithFormat:@"切换%@", model.title];
+        [UIAlertController ax_showActionSheetWithTitle:title message:nil actions:^(UIAlertController * _Nonnull alert) {
+            [alert ax_addDefaultActionWithTitle:@"12小时制" handler:^(UIAlertAction * _Nonnull sender) {
+                [[BKDevice currentDevice].preferences transaction:^(BKPreferences *preferences) {
+                    preferences.hourFormat = BKHourFormat12;
+                }];
+            }];
+            [alert ax_addDefaultActionWithTitle:@"24小时制" handler:^(UIAlertAction * _Nonnull sender) {
+                [[BKDevice currentDevice].preferences transaction:^(BKPreferences *preferences) {
+                    preferences.hourFormat = BKHourFormat24;
+                }];
+            }];
+            [alert ax_addCancelAction];
         }];
     }
     
-    else if ([model.target isEqualToString:@"time"]) {
+    
+    else if ([model.target isEqualToString:@"update time"]) {
         [[BKDevice currentDevice] requestSyncTimeAtOnceCompletion:^{
             
         } error:^(NSError * _Nonnull error) {

@@ -14,7 +14,7 @@
 #import <MJRefresh.h>
 
 
-@interface DeviceVC () <BKDeviceDelegate>
+@interface DeviceVC () <BKDeviceDelegate, BKDataObserver>
 
 @property (strong, nonatomic) DeviceSettingTV *tableView;
 
@@ -30,7 +30,7 @@
     self.view.height -= kTabBarHeight;
     
     [[BKServices sharedInstance] registerDeviceDelegate:self];
-
+    [[BKServices sharedInstance] registerDataObserver:self];
     [self setupTableView];
     
     __weak typeof(self) weakSelf = self;
@@ -64,6 +64,7 @@
 
 - (void)dealloc{
     [[BKServices sharedInstance] unRegisterDeviceDelegate:self];
+    [[BKServices sharedInstance] unRegisterDataObserver:self];
 }
 
 
@@ -111,6 +112,9 @@
     AudioServicesPlayAlertSound(1008);
 }
 
+- (void)preferencesDidUpdated:(BKPreferences *)preferences{
+    [self.tableView reloadDataSourceAndRefreshTableView];
+}
 
 
 @end
