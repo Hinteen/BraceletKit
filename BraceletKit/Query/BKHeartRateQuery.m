@@ -34,9 +34,9 @@
 
 - (void)calcHeartRateData:(BKHeartRateData *)hrModel{
     for (int i = 0; i < 5; i++) {
-        self.timeDetail[i] = @(self.timeDetail[i].integerValue + hrModel.timeDetail[i].integerValue);
-        self.energyDetail[i] = @(self.energyDetail[i].doubleValue + hrModel.energyDetail[i].doubleValue);
-        self.hrDetail[i] = @(self.hrDetail[i].integerValue + hrModel.hrDetail[i].integerValue);
+//        self.timeDetail[i] = @(self.timeDetail[i].integerValue + hrModel.timeDetail[i].integerValue);
+//        self.energyDetail[i] = @(self.energyDetail[i].doubleValue + hrModel.energyDetail[i].doubleValue);
+//        self.hrDetail[i] = @(self.hrDetail[i].integerValue + hrModel.hrDetail[i].integerValue);
         self.energy += hrModel.energy;
     }
 }

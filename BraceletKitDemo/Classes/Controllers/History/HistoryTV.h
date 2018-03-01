@@ -10,4 +10,15 @@
 
 @interface HistoryTV : AXTableView
 
+/**
+ unit
+ */
+@property (assign, nonatomic) BKQueryUnit currentQueryUnit;
+
+
+@property (strong, nonatomic) NSDate *start;
+@property (strong, nonatomic) NSDate *end;
+
+
+
 @end

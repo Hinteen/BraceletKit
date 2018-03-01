@@ -54,7 +54,7 @@ BKQueryUnit queryUnitWithIndex(int i){
         self.unit.top = 0;
         [self.unit ax_addTouchUpInsideHandler:^(__kindof UIButton * _Nonnull sender) {
             [UIAlertController ax_showActionSheetWithTitle:@"选择单位" message:nil actions:^(UIAlertController * _Nonnull alert) {
-                for (int i = 1; i < self.units.count; i++) {
+                for (int i = 0; i < self.units.count; i++) {
                     [alert ax_addDefaultActionWithTitle:self.units[i] handler:^(UIAlertAction * _Nonnull sender) {
                         [self.unit setTitle:self.units[i] forState:UIControlStateNormal];
                         self.currentQueryUnit = queryUnitWithIndex(i);
@@ -70,16 +70,7 @@ BKQueryUnit queryUnitWithIndex(int i){
         self.previous = [self buttonWithImageName:@"icon_collapse"];
         self.previous.centerY = 0.5 * self.height;
         [self.previous ax_addTouchUpInsideHandler:^(__kindof UIButton * _Nonnull sender) {
-            if (self.currentQueryUnit == BKQueryUnitWeekly) {
-                self.start = self.start.addWeeks(-1);
-                self.end = self.end.addWeeks(-1);
-            } else if (self.currentQueryUnit == BKQueryUnitMonthly) {
-                self.start = self.start.addMonths(-1);
-                self.end = self.end.addMonths(-1);
-            } else if (self.currentQueryUnit == BKQueryUnitYearly) {
-                self.start = self.start.addYears(-1);
-                self.end = self.end.addYears(-1);
-            }
+            [self updateDateToNextQueryUnitWithStep:-1];
             [self refreshQueryDate];
         } animatedScale:1.1 duration:0.8];
         [self addSubview:self.previous];
@@ -87,16 +78,7 @@ BKQueryUnit queryUnitWithIndex(int i){
         self.next = [self buttonWithImageName:@"icon_expand"];
         self.next.bottom = self.height;
         [self.next ax_addTouchUpInsideHandler:^(__kindof UIButton * _Nonnull sender) {
-            if (self.currentQueryUnit == BKQueryUnitWeekly) {
-                self.start = self.start.addWeeks(1);
-                self.end = self.end.addWeeks(1);
-            } else if (self.currentQueryUnit == BKQueryUnitMonthly) {
-                self.start = self.start.addMonths(1);
-                self.end = self.end.addMonths(1);
-            } else if (self.currentQueryUnit == BKQueryUnitYearly) {
-                self.start = self.start.addYears(1);
-                self.end = self.end.addYears(1);
-            }
+            [self updateDateToNextQueryUnitWithStep:1];
             [self refreshQueryDate];
         } animatedScale:1.1 duration:0.8];
         [self addSubview:self.next];
@@ -139,8 +121,26 @@ BKQueryUnit queryUnitWithIndex(int i){
     } else if (self.currentQueryUnit == BKQueryUnitYearly) {
         self.start = today.addDays(-today.month+1);
         self.end = self.start.addYears(1);
+    } else {
+        self.start = today;
+        self.end = self.start.addDays(1);
     }
-    
+}
+
+- (void)updateDateToNextQueryUnitWithStep:(NSInteger)step{
+    if (self.currentQueryUnit == BKQueryUnitWeekly) {
+        self.start = self.start.addWeeks(step);
+        self.end = self.end.addWeeks(step);
+    } else if (self.currentQueryUnit == BKQueryUnitMonthly) {
+        self.start = self.start.addMonths(step);
+        self.end = self.end.addMonths(step);
+    } else if (self.currentQueryUnit == BKQueryUnitYearly) {
+        self.start = self.start.addYears(step);
+        self.end = self.end.addYears(step);
+    } else {
+        self.start = self.start.addDays(step);
+        self.end = self.end.addDays(step);
+    }
 }
 
 - (UIButton *)defaultButtonWithType:(UIButtonType)type{

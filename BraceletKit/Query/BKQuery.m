@@ -41,17 +41,15 @@
         } else if (unit == BKQueryUnitMonthly) {
             int year = (int)[[[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:date] year];
             int month = (int)[[[NSCalendar currentCalendar] components:NSCalendarUnitMonth fromDate:date] month]; // 1~12
-            NSDate *start = [NSDate ax_dateWithIntegerValue:[NSString stringWithFormat:@"%04d%02d00", year, month].integerValue];
-            NSDate *target = start;
-            while ([[[NSCalendar currentCalendar] components:NSCalendarUnitMonth fromDate:target] month] == [[[NSCalendar currentCalendar] components:NSCalendarUnitMonth fromDate:date] month]) {
+            NSDate *target = [NSDate ax_dateWithIntegerValue:[NSString stringWithFormat:@"%04d%02d01", year, month].integerValue];
+            while (target.stringValue(@"MM").intValue == month) {
                 completion(target);
                 target = target.addDays(1);
             }
         } else if (unit == BKQueryUnitYearly) {
             int year = (int)[[[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:date] year];
-            NSDate *start = [NSDate ax_dateWithIntegerValue:[NSString stringWithFormat:@"%04d0000", year].integerValue];
-            NSDate *target = start;
-            while ([[[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:target] year] == [[[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:date] year]) {
+            NSDate *target = [NSDate ax_dateWithIntegerValue:[NSString stringWithFormat:@"%04d0101", year].integerValue];
+            while (target.stringValue(@"yyyy").intValue == year) {
                 completion(target);
                 target = target.addDays(1);
             }
