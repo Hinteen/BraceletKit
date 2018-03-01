@@ -20,8 +20,6 @@ FOUNDATION_EXTERN NSDateFormatter *bk_formatter(void);
 
 FOUNDATION_EXTERN NSDate *bk_today(void);
 
-FOUNDATION_EXTERN NSString *bk_user_id(void);
-
 FOUNDATION_EXTERN NSString *bk_device_id(void);
 
 FOUNDATION_EXTERN NSString *bk_device_name(void);

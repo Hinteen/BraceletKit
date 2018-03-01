@@ -28,7 +28,7 @@ typedef NS_ENUM(NSUInteger, BKGender) {
 /**
  phone
  */
-@property (assign, nonatomic) NSUInteger phone;
+@property (copy, nonatomic) NSString *phone;
 /**
  gender
  */
@@ -50,6 +50,7 @@ typedef NS_ENUM(NSUInteger, BKGender) {
  */
 @property (copy, nonatomic) NSString *avatar;
 
+
 + (instancetype)currentUser;
 
 + (instancetype)defaultUser;
@@ -58,5 +59,6 @@ typedef NS_ENUM(NSUInteger, BKGender) {
 
 + (instancetype)loginWithEmail:(NSString *)email password:(NSString *)password;
 
+- (void)transaction:(void (^)(BKUser *user))transaction;
 
 @end

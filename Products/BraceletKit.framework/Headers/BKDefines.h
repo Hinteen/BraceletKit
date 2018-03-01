@@ -10,6 +10,51 @@
 
 
 /**
+ 手环类型
+
+ - BKDeviceTypeUnknown: 未知
+ - BKDeviceTypeI5: I5
+ - BKDeviceTypeV6: V6
+ - BKDeviceTypeI7: I7
+ - BKDeviceTypeI5PRO: I5PRO
+ - BKDeviceTypeI6PRO: I6PRO
+ - BKDeviceTypeR1: R1
+ - BKDeviceTypeI6HR: I6HR
+ - BKDeviceTypeI6NH: I6NH
+ - BKDeviceTypeI6H9: I6H9
+ - BKDeviceTypeWatchF1: GPS Watch
+ */
+typedef NS_ENUM(NSUInteger, BKDeviceType) {
+    BKDeviceTypeUnknown = 0x00,
+    BKDeviceTypeI5      = 0x01,
+    BKDeviceTypeV6      = 0x02,
+    BKDeviceTypeI7      = 0x03,
+    BKDeviceTypeI5PRO   = 0x04,
+    BKDeviceTypeI6PRO   = 0x05,
+    BKDeviceTypeR1      = 0x06,
+    BKDeviceTypeI6HR    = 0x13,
+    BKDeviceTypeI6NH    = 0x15,
+    BKDeviceTypeI6H9    = 0x16,
+    BKDeviceTypeWatchF1 = 0X17,
+};
+
+
+/**
+ 连接状态
+
+ - BKConnectStateUnknown: 未知
+ - BKConnectStateUnbinding: 未绑定
+ - BKConnectStateBindingUnconnected: 已绑定但未连接
+ - BKConnectStateConnected: 已绑定已连接
+ */
+typedef NS_ENUM(NSUInteger, BKConnectState) {
+    BKConnectStateUnknown,
+    BKConnectStateUnbinding,
+    BKConnectStateBindingUnconnected,
+    BKConnectStateConnected,
+};
+
+/**
  手环功能列表
 
  - BKDeviceFunctionLanguageSelection: 语言切换

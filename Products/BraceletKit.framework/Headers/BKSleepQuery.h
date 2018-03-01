@@ -46,7 +46,7 @@
  
  如果查询单位是周、月或年，则此值为空
  */
-@property (strong, nonatomic) NSMutableArray<BKSleepData *> *detail;
+@property (strong, nonatomic) NSMutableArray<BKSleepData *> *items;
 
 
 @end

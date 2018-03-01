@@ -10,6 +10,7 @@
 #import <AXKit/AXKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <BLE3Framework/BLE3Framework.h>
+#import "BKUser.h"
 #import "BKDevice.h"
 #import "BKPreferences.h"
 
@@ -17,6 +18,12 @@
 
 
 
+
+@end
+
+@interface BKUser (BKExtension)
+
+- (ZeronerPersonal *)transformToZeronerPersonal;
 
 @end
 

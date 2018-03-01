@@ -11,7 +11,21 @@
 #import "BKScanner.h"
 #import "BKConnector.h"
 
-@interface BKServices : NSObject
+
+@class BKServices;
+
+@protocol BKServicesDelegate <NSObject>
+@optional
+/**
+ 服务加载完毕
+
+ @param services 服务
+ */
+- (void)servicesDidLoadFinished:(BKServices *)services;
+
+@end
+
+@interface BKServices : NSObject <BKDataObserver>
 
 /**
  用户
@@ -35,6 +49,7 @@
 
 + (instancetype)sharedInstance;
 
+
 /**
  注册服务
 
@@ -43,6 +58,19 @@
 - (BOOL)registerServiceWithUser:(BKUser *)user;
 
 
+/**
+ 注册服务代理
+ 
+ @param delegate 代理
+ */
+- (void)registerServicesDelegate:(NSObject<BKServicesDelegate> *)delegate;
+
+/**
+ 取消注册服务代理
+ 
+ @param delegate 代理
+ */
+- (void)unRegisterServicesDelegate:(NSObject<BKServicesDelegate> *)delegate;
 
 /**
  注册扫描代理
@@ -73,7 +101,6 @@
  */
 - (void)unRegisterConnectDelegate:(NSObject<BKConnectDelegate> *)delegate;
 
-
 /**
  注册设备代理
 
@@ -87,6 +114,21 @@
  @param delegate 代理
  */
 - (void)unRegisterDeviceDelegate:(NSObject<BKDeviceDelegate> *)delegate;
+
+
+/**
+ 注册数据代理
+ 
+ @param observer 代理
+ */
+- (void)registerDataObserver:(NSObject<BKDataObserver> *)observer;
+
+/**
+ 取消注册数据代理
+ 
+ @param observer 代理
+ */
+- (void)unRegisterDataObserver:(NSObject<BKDataObserver> *)observer;
 
 
 @end
