@@ -28,6 +28,7 @@
 		CD20ADA72024551300475E26 /* DeviceSettingTV.json in Resources */ = {isa = PBXBuildFile; fileRef = CD20AD9C2024551300475E26 /* DeviceSettingTV.json */; };
 		CD20ADA82024551300475E26 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD20AD9F2024551300475E26 /* CameraViewController.m */; };
 		CD20ADA92024551300475E26 /* DeviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD20ADA22024551300475E26 /* DeviceVC.m */; };
+		CD21BFFF2049574300E6F702 /* BKLanguageUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CD21BFFE2049574300E6F702 /* BKLanguageUtilities.m */; };
 		CD25EA1720132FD4009BEFC1 /* _BKHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA1520132FD4009BEFC1 /* _BKHeader.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CD25EA1820132FD4009BEFC1 /* _BKHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA1620132FD4009BEFC1 /* _BKHeader.m */; };
 		CD25EA1B2013301E009BEFC1 /* BKServices.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA192013301E009BEFC1 /* BKServices.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -171,6 +172,8 @@
 		CD20ADA02024551300475E26 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		CD20ADA12024551300475E26 /* DeviceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceVC.h; sourceTree = "<group>"; };
 		CD20ADA22024551300475E26 /* DeviceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceVC.m; sourceTree = "<group>"; };
+		CD21BFFD2049574300E6F702 /* BKLanguageUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKLanguageUtilities.h; sourceTree = "<group>"; };
+		CD21BFFE2049574300E6F702 /* BKLanguageUtilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKLanguageUtilities.m; sourceTree = "<group>"; };
 		CD25EA1520132FD4009BEFC1 /* _BKHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _BKHeader.h; sourceTree = "<group>"; };
 		CD25EA1620132FD4009BEFC1 /* _BKHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _BKHeader.m; sourceTree = "<group>"; };
 		CD25EA192013301E009BEFC1 /* BKServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKServices.h; sourceTree = "<group>"; };
@@ -552,6 +555,8 @@
 				CD3FC0DA1FA20A0B0054B26B /* UITableView+Creator.h */,
 				CD944E871FB0B44600373636 /* FindPhoneManager.h */,
 				CD944E881FB0B44600373636 /* FindPhoneManager.m */,
+				CD21BFFD2049574300E6F702 /* BKLanguageUtilities.h */,
+				CD21BFFE2049574300E6F702 /* BKLanguageUtilities.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1118,6 +1123,7 @@
 				CD3FC11E1FA20A0B0054B26B /* BaseServices.m in Sources */,
 				CD3389802046BE9E00C206C6 /* BKDateSegmentedControl.m in Sources */,
 				CD6F6DDD2024D286008D91CF /* BKBatteryView.m in Sources */,
+				CD21BFFF2049574300E6F702 /* BKLanguageUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

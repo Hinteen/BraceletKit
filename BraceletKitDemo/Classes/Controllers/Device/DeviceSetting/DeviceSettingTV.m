@@ -14,6 +14,8 @@
 #import "CameraViewController.h"
 #import "BKBatteryView.h"
 #import <MJRefresh.h>
+#import "BKLanguageUtilities.h"
+
 
 @interface DeviceSettingTV () 
 
@@ -71,8 +73,10 @@
         }];
     }];
     
+    
     [dataList addSection:^(AXTableSectionModel *section) {
         section.headerTitle = @"偏好设置";
+        
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"时间格式";
             row.target = @"hourFormat";
@@ -82,7 +86,20 @@
                 row.detail = @"24小时制";
             }
         }];
-        
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"温度单位";
+            row.target = @"temperature_unit";
+            if (device.preferences.temperatureUnit == BKTemperatureUnitFahrenheit) {
+                row.detail = @"℉ 华氏度";
+            } else {
+                row.detail = @"℃ 摄氏度";
+            }
+        }];
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"语言";
+            row.target = @"language";
+            row.detail = [BKLanguageUtilities languageDescription:device.preferences.language];
+        }];
     }];
     
     [dataList addSection:^(AXTableSectionModel *section) {
@@ -197,8 +214,35 @@
             [alert ax_addCancelAction];
         }];
     }
-    
-    
+    else if ([model.target isEqualToString:@"temperature_unit"]) {
+        NSString *title = [NSString stringWithFormat:@"切换%@", model.title];
+        [UIAlertController ax_showActionSheetWithTitle:title message:nil actions:^(UIAlertController * _Nonnull alert) {
+            [alert ax_addDefaultActionWithTitle:@"℃ 摄氏度" handler:^(UIAlertAction * _Nonnull sender) {
+                [[BKDevice currentDevice].preferences transaction:^(BKPreferences *preferences) {
+                    preferences.temperatureUnit = BKTemperatureUnitCentigrade;
+                }];
+            }];
+            [alert ax_addDefaultActionWithTitle:@"℉ 华氏度" handler:^(UIAlertAction * _Nonnull sender) {
+                [[BKDevice currentDevice].preferences transaction:^(BKPreferences *preferences) {
+                    preferences.temperatureUnit = BKTemperatureUnitFahrenheit;
+                }];
+            }];
+            [alert ax_addCancelAction];
+        }];
+    }
+    else if ([model.target isEqualToString:@"language"]) {
+        NSString *title = [NSString stringWithFormat:@"切换%@", model.title];
+        [UIAlertController ax_showActionSheetWithTitle:title message:nil actions:^(UIAlertController * _Nonnull alert) {
+            [[BKDevice currentDevice].languages enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [alert ax_addDefaultActionWithTitle:[BKLanguageUtilities languageDescription:obj.integerValue] handler:^(UIAlertAction * _Nonnull sender) {
+                    [[BKDevice currentDevice].preferences transaction:^(BKPreferences *preferences) {
+                        preferences.language = [BKLanguageUtilities languageWithDescription:sender.title];
+                    }];
+                }];
+            }];
+            [alert ax_addCancelAction];
+        }];
+    }
     else if ([model.target isEqualToString:@"update time"]) {
         [[BKDevice currentDevice] requestSyncTimeAtOnceCompletion:^{
             
