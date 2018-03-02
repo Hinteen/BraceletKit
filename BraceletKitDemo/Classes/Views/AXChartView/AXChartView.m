@@ -435,7 +435,7 @@ static CGFloat popViewWeight = 50;
         self.popLabel.frame = frame;
     };
     if (self.currentIndex >= 0) {
-        [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionCurveEaseOut animations:^{
             block();
         } completion:nil];
     } else {

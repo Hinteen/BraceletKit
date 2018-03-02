@@ -7,13 +7,14 @@
 //
 
 #import <AXKit/AXKit.h>
+#import "BraceletKit.h"
 
 @interface HistoryTV : AXTableView
 
 /**
  unit
  */
-@property (assign, nonatomic) BKQueryUnit currentQueryUnit;
+@property (assign, nonatomic) BKQueryViewUnit queryViewUnit;
 
 
 @property (strong, nonatomic) NSDate *start;

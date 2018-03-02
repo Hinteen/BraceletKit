@@ -16,7 +16,7 @@
 static NSString *chartReuseIdentifier = @"history table view cell for chart";
 
 // 每小时显示几条心率
-static NSInteger hourHRCount = 6;
+static NSInteger hourHRCount = 12;
 
 @interface HistoryTV () <AXChartViewDataSource, AXChartViewDelegate>
 
@@ -34,9 +34,13 @@ static NSInteger hourHRCount = 6;
 
 - (void)ax_tableViewDataSource:(void (^)(AXTableModelType *))dataSource{
     
-    self.sport = [BKSportQuery querySummaryWithDate:self.start unit:self.currentQueryUnit];
-    self.hr = [BKHeartRateQuery querySummaryWithDate:self.start unit:self.currentQueryUnit];
-//    self.sleep = [BKSleepQuery querySummaryWithDate:self.start unit:self.currentQueryUnit];
+    BKQuerySelectionUnit unit = BKQuerySelectionUnitDaily;
+    if (self.queryViewUnit == BKQueryViewUnitYearly) {
+        unit = BKQuerySelectionUnitMonthly;
+    }
+    self.sport = [BKSportQuery querySummaryWithStartDate:self.start endDate:self.end selectionUnit:unit];
+    self.hr = [BKHeartRateQuery querySummaryWithStartDate:self.start endDate:self.end selectionUnit:unit];
+//    self.sleep = [BKSleepQuery querySummaryWithDate:self.start unit:self.queryViewUnit];
     
     AXTableModel *dataList = [[AXTableModel alloc] init];
     int sumOfSteps = [[self.sport valueForKeyPath:@"steps.@sum.doubleValue"] intValue];
@@ -116,7 +120,7 @@ static NSInteger hourHRCount = 6;
             row.target = @"chart.steps";
         }];
     }];
-    if (self.currentQueryUnit == BKQueryUnitDaily) {
+    if (self.queryViewUnit == BKQueryViewUnitDaily) {
         [dataList addSection:^(AXTableSectionModel *section) {
             section.headerTitle = @"";
             [section addRow:^(AXTableRowModel *row) {
@@ -196,19 +200,19 @@ static NSInteger hourHRCount = 6;
  */
 - (NSInteger)chartViewItemsCount:(AXChartView *)chartView{
     if ([chartView.title isEqualToString:@"步数详情"]) {
-        if (self.currentQueryUnit == BKQueryUnitDaily) {
+        if (self.queryViewUnit == BKQueryViewUnitDaily) {
             // 当天的步数详情
             return self.sport.lastObject.hourSteps.count + 1;
         } else {
             // 每天的步数
-            if (self.currentQueryUnit == BKQueryUnitYearly) {
+            if (self.queryViewUnit == BKQueryViewUnitYearly) {
                 return 12;
             } else {
                 return self.sport.count;
             }
         }
     } else if ([chartView.title isEqualToString:@"心率详情"]) {
-        if (self.currentQueryUnit == BKQueryUnitDaily) {
+        if (self.queryViewUnit == BKQueryViewUnitDaily) {
             // 当天的心率详情
             return self.hr.lastObject.minuteHR.count / 60 * hourHRCount + 1;
         } else {
@@ -228,7 +232,7 @@ static NSInteger hourHRCount = 6;
  */
 - (NSNumber *)chartView:(AXChartView *)chartView valueForIndex:(NSInteger)index{
     if ([chartView.title isEqualToString:@"步数详情"]) {
-        if (self.currentQueryUnit == BKQueryUnitDaily) {
+        if (self.queryViewUnit == BKQueryViewUnitDaily) {
             // 当天的步数详情
             if (index < self.sport.lastObject.hourSteps.count) {
                 return self.sport.lastObject.hourSteps[index];
@@ -259,12 +263,12 @@ static NSInteger hourHRCount = 6;
  */
 - (NSString *)chartView:(AXChartView *)chartView titleForIndex:(NSInteger)index{
     if ([chartView.title isEqualToString:@"步数详情"]) {
-        if (self.currentQueryUnit == BKQueryUnitWeekly) {
+        if (self.queryViewUnit == BKQueryViewUnitWeekly) {
             return self.start.addDays(index).stringValue(@"EE");
-        } else if (self.currentQueryUnit == BKQueryUnitMonthly) {
+        } else if (self.queryViewUnit == BKQueryViewUnitMonthly) {
             return self.start.addDays(index).stringValue(@"dd");
-        } else if (self.currentQueryUnit == BKQueryUnitYearly) {
-            return self.start.addMonths(index-1).stringValue(@"M").append(@"月");
+        } else if (self.queryViewUnit == BKQueryViewUnitYearly) {
+            return self.start.addMonths(index).stringValue(@"M").append(@"月");
         } else {
             return NSStringFromNSInteger(index);
         }
@@ -277,11 +281,11 @@ static NSInteger hourHRCount = 6;
 
 - (NSInteger)chartViewShowTitleForIndexWithSteps:(AXChartView *)chartView{
     if ([chartView.title isEqualToString:@"步数详情"]) {
-        if (self.currentQueryUnit == BKQueryUnitWeekly) {
+        if (self.queryViewUnit == BKQueryViewUnitWeekly) {
             return 0;
-        } else if (self.currentQueryUnit == BKQueryUnitMonthly) {
+        } else if (self.queryViewUnit == BKQueryViewUnitMonthly) {
             return 5;
-        } else if (self.currentQueryUnit == BKQueryUnitYearly) {
+        } else if (self.queryViewUnit == BKQueryViewUnitYearly) {
             return 1;
         } else {
             return 3;

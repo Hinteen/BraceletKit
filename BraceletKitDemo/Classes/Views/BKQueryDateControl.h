@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+
+
 @protocol BKQueryDateControlDelegate <NSObject>
 
 @optional
@@ -15,11 +17,11 @@
 /**
  查询日期改变了
 
- @param queryUnit 查询单位
+ @param queryViewUnit 天视图、周视图、月视图、年视图
  @param start 开始日期
  @param end 结束日期
  */
-- (void)queryDateDidChanged:(BKQueryUnit)queryUnit start:(NSDate *)start end:(NSDate *)end;
+- (void)queryDateDidChanged:(BKQueryViewUnit)queryViewUnit start:(NSDate *)start end:(NSDate *)end;
 
 @end
 
@@ -28,7 +30,7 @@
 /**
  unit
  */
-@property (assign, nonatomic) BKQueryUnit currentQueryUnit;
+@property (assign, nonatomic) BKQueryViewUnit queryViewUnit;
 
 
 @property (strong, nonatomic) NSDate *start;

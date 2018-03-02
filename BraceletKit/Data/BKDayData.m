@@ -57,7 +57,7 @@
     return columnName;
 }
 + (NSString *)tablePrimaryKey{
-    return @"date, device_id, steps, distance, calorie";
+    return @"date, device_id";
 }
 
 + (NSString *)orderBy{
@@ -67,7 +67,8 @@
 + (instancetype)modelWithSet:(FMResultSet *)set{
     int i = 0;
     BKDayData *model = [[BKDayData alloc] init];
-    i++;// date
+    NSInteger date = [set longForColumnIndex:i++];// date
+    model.dateInteger = date;
     i++;// device_id
     i++;// device_name
     model.steps = [set longForColumnIndex:i++];

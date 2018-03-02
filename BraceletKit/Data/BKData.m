@@ -125,10 +125,10 @@
                 } else if (unit == BKQueryUnitMonthly) {
                     int year = (int)[[[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:date] year];
                     int month = (int)[[[NSCalendar currentCalendar] components:NSCalendarUnitMonth fromDate:date] month]; // 1~12
-                    return [NSString stringWithFormat:@"date >= %04d%02d00 and date < %04d%02d00", year, month, year, month+1];
+                    return [NSString stringWithFormat:@"date >= %04d%02d01 and date < %04d%02d01", year, month, year, month+1];
                 } else if (unit == BKQueryUnitYearly) {
                     int year = (int)[[[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:date] year];
-                    return [NSString stringWithFormat:@"date >= %04d0000 and date < %04d0000", year, year+1];
+                    return [NSString stringWithFormat:@"date >= %04d0101 and date < %04d0101", year, year+1];
                 } else {
                     return nil;
                 }

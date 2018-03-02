@@ -7,7 +7,7 @@
 //
 
 #import "HomeVC.h"
-#import "HomeTableView.h"
+
 #import "BKRefreshView.h"
 #import "BKBatteryView.h"
 #import "DeviceSettingTV.h"
@@ -24,7 +24,7 @@ static NSString *reuseIdentifier = @"home table view cell";
 static NSString *chartReuseIdentifier = @"home table view cell for chart";
 
 // 每小时显示几条心率
-static NSInteger hourHRCount = 6;
+static NSInteger hourHRCount = 12;
 
 @interface HomeVC () <BKDeviceDelegate, BKDataObserver, UITableViewDataSource, UITableViewDelegate, AXChartViewDataSource, AXChartViewDelegate>
 
@@ -144,8 +144,8 @@ static NSInteger hourHRCount = 6;
 }
 
 - (void)reloadData{
-    self.sport = [BKSportQuery querySummaryWithDate:[NSDate date] unit:BKQueryUnitDaily].lastObject;
-    self.hr = [BKHeartRateQuery querySummaryWithDate:[NSDate date] unit:BKQueryUnitDaily].lastObject;
+    self.sport = [BKSportQuery queryDailySummaryWithDate:[NSDate date]];
+    self.hr = [BKHeartRateQuery queryDailySummaryWithDate:[NSDate date]];
 //    self.sleep = [BKSleepQuery querySummaryWithDate:[NSDate date] unit:BKQueryUnitDaily].lastObject;
     [self.tableView reloadData];
 }
@@ -187,6 +187,7 @@ static NSInteger hourHRCount = 6;
         cell.chartView.dataSource = self;
         cell.chartView.delegate = self;
         cell.chartView.title = @"心率详情";
+        [cell.chartView reloadData];
         return cell;
     }
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
