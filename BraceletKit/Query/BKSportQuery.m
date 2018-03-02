@@ -58,6 +58,7 @@
             self.hourCalorie[startHour + i] =  @(self.hourCalorie[startHour + i].integerValue +sport.calorie * ratio);
         }
     }
+    self.activity = @(self.activity.integerValue + sport.activity);
 }
 //
 //+ (NSArray<BKQuery *> *)querySummaryWithDate:(NSDate *)date unit:(BKQueryUnit)unit{
@@ -104,14 +105,10 @@
         if (day) {
             result.date = [NSDate ax_dateWithIntegerValue:day.firstObject.dateInteger];
         }
-        NSArray<BKSportData *> *sportItems = [BKSportData selectWithStartDate:start endDate:end];
-        result.items = sportItems;
-        // 如果是一天的查询，还需要查询每小时的运动数据
-        if (endDate.timeIntervalSince1970 - startDate.timeIntervalSince1970 <= 24 * 60 * 60 + 1) {
-            [result.items enumerateObjectsUsingBlock:^(BKSportData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [result calcDaySport:obj];
-            }];
-        }
+        result.items = [BKSportData selectWithStartDate:start endDate:end];
+        [result.items enumerateObjectsUsingBlock:^(BKSportData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [result calcDaySport:obj];
+        }];
         [results addObject:result];
     }];
     return results;

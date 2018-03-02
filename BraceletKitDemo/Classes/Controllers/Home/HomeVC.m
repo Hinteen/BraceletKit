@@ -146,7 +146,7 @@ static NSInteger hourHRCount = 12;
 - (void)reloadData{
     self.sport = [BKSportQuery queryDailySummaryWithDate:[NSDate date]];
     self.hr = [BKHeartRateQuery queryDailySummaryWithDate:[NSDate date]];
-//    self.sleep = [BKSleepQuery querySummaryWithDate:[NSDate date] unit:BKQueryUnitDaily].lastObject;
+    self.sleep = [BKSleepQuery queryDailySummaryWithDate:[NSDate date]];
     [self.tableView reloadData];
 }
 
@@ -158,7 +158,7 @@ static NSInteger hourHRCount = 12;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
-        return 4;
+        return 5;
     } else if (section == 1) {
         if (self.sport) {
             return self.sport.items.count;
@@ -216,8 +216,13 @@ static NSInteger hourHRCount = 12;
         } else if (indexPath.row == 3) {
             cell.imageView.image = UIImageNamed(@"time");
             cell.imageView.tintColor = [UIColor md_green];
-            cell.textLabel.text = @"活动时间";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d minutes", self.sport.activity.intValue];
+            cell.textLabel.text = @"活动时长";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d min", self.sport.activity.intValue];
+        } else if (indexPath.row == 4) {
+            cell.imageView.image = UIImageNamed(@"icon_sleep");
+            cell.imageView.tintColor = [UIColor md_deepPurple];
+            cell.textLabel.text = @"睡眠时长";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%dh %dmin", (int)self.sleep.duration/60, (int)self.sleep.duration%60];
         }
     } else if (indexPath.section == 1) {
         cell.imageView.image = UIImageNamed(@"icon_run");
@@ -230,8 +235,8 @@ static NSInteger hourHRCount = 12;
         cell.detailTextLabel.text = @"";
     } else if (indexPath.section == 3) {
         cell.imageView.image = nil;
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", self.sleep.items[indexPath.row].start.stringValue(@"HH:mm"), self.sleep.items[indexPath.row].end.stringValue(@"HH:mm")];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d minutes", (int)self.sleep.items[indexPath.row].duration];
+        cell.textLabel.text = [NSString stringWithFormat:@"(type: %d) %@ - %@", (int)self.sleep.items[indexPath.row].sleepType, self.sleep.items[indexPath.row].start.stringValue(@"HH:mm"), self.sleep.items[indexPath.row].end.stringValue(@"HH:mm")];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d min", (int)self.sleep.items[indexPath.row].duration];
     }
     
     return cell;

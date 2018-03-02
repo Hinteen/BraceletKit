@@ -12,6 +12,7 @@
 #import "BKHeartRateQuery.h"
 #import "BKSleepQuery.h"
 #import "BKChartTVC.h"
+#import "BKSleepData.h"
 
 static NSString *chartReuseIdentifier = @"history table view cell for chart";
 
@@ -40,13 +41,19 @@ static NSInteger hourHRCount = 12;
     }
     self.sport = [BKSportQuery querySummaryWithStartDate:self.start endDate:self.end selectionUnit:unit];
     self.hr = [BKHeartRateQuery querySummaryWithStartDate:self.start endDate:self.end selectionUnit:unit];
-//    self.sleep = [BKSleepQuery querySummaryWithDate:self.start unit:self.queryViewUnit];
+    self.sleep = [BKSleepQuery querySummaryWithStartDate:self.start endDate:self.end selectionUnit:unit];
+    int count = (int)self.sport.count;
+    if (self.queryViewUnit == BKQueryViewUnitYearly) {
+        count = 365;
+    }
     
     AXTableModel *dataList = [[AXTableModel alloc] init];
     int sumOfSteps = [[self.sport valueForKeyPath:@"steps.@sum.doubleValue"] intValue];
     double sumOfDistance = [[self.sport valueForKeyPath:@"distance.@sum.doubleValue"] doubleValue] / 1000.0f;
     double sumOfCalorie = [[self.sport valueForKeyPath:@"calorie.@sum.doubleValue"] doubleValue];
     int sumOfActivities = [[self.sport valueForKeyPath:@"activity.@sum.doubleValue"] intValue];
+    int sumOfSleep = [[self.sleep valueForKeyPath:@"duration.@sum.doubleValue"] intValue];
+    
     [dataList addSection:^(AXTableSectionModel *section) {
         section.headerTitle = [NSString stringWithFormat:@"总数据"];
         [section addRow:^(AXTableRowModel *row) {
@@ -65,9 +72,14 @@ static NSInteger hourHRCount = 12;
             row.detail = [NSString stringWithFormat:@"%.1f cal", sumOfCalorie];
         }];
         [section addRow:^(AXTableRowModel *row) {
-            row.title = @"总活动时间";
+            row.title = @"总活动时长";
             row.target = @"";
-            row.detail = [NSString stringWithFormat:@"%d minutes", sumOfActivities];
+            row.detail = [NSString stringWithFormat:@"%d min", sumOfActivities];
+        }];
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"总睡眠时长";
+            row.target = @"";
+            row.detail = [NSString stringWithFormat:@"%dh %dmin", (int)sumOfSleep/60, (int)sumOfSleep%60];
         }];
     }];
     
@@ -76,29 +88,29 @@ static NSInteger hourHRCount = 12;
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"日均步数";
             row.target = @"";
-            row.detail = [NSString stringWithFormat:@"%d steps", sumOfSteps/(int)self.sport.count];
+            row.detail = [NSString stringWithFormat:@"%d steps", sumOfSteps/count];
         }];
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"日均距离";
             row.target = @"";
-            row.detail = [NSString stringWithFormat:@"%.2f km", sumOfDistance/(double)self.sport.count];
+            row.detail = [NSString stringWithFormat:@"%.2f km", sumOfDistance/(double)count];
         }];
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"日均卡路里";
             row.target = @"";
-            row.detail = [NSString stringWithFormat:@"%.1f cal", sumOfCalorie/(double)self.sport.count];
+            row.detail = [NSString stringWithFormat:@"%.1f cal", sumOfCalorie/(double)count];
         }];
         [section addRow:^(AXTableRowModel *row) {
-            row.title = @"日均活动时间";
+            row.title = @"日均活动时长";
             row.target = @"";
-            row.detail = [NSString stringWithFormat:@"%d minutes", sumOfActivities/(int)self.sport.count];
+            row.detail = [NSString stringWithFormat:@"%d min", sumOfActivities/count];
         }];
-//        [section addRow:^(AXTableRowModel *row) {
-//            row.title = @"日均睡眠时长";
-//            row.target = @"";
-//            int sum = [[self.sport valueForKeyPath:@"steps.@sum.doubleValue"] intValue];
-//            row.detail = [NSString stringWithFormat:@"%d", sum/(int)self.sport.count];
-//        }];
+        [section addRow:^(AXTableRowModel *row) {
+            row.title = @"日均睡眠时长";
+            row.target = @"";
+            int min = sumOfSleep/count;
+            row.detail = [NSString stringWithFormat:@"%dh %dmin", (int)min/60, (int)min%60];
+        }];
         
         
     }];
@@ -130,7 +142,23 @@ static NSInteger hourHRCount = 12;
     }
     [dataList addSection:^(AXTableSectionModel *section) {
         section.headerTitle = @"睡眠详情";
-        
+        [self.sleep enumerateObjectsUsingBlock:^(BKSleepQuery * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (self.queryViewUnit == BKQueryViewUnitDaily) {
+                [obj.items enumerateObjectsUsingBlock:^(BKSleepData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [section addRow:^(AXTableRowModel *row) {
+                        row.title = [NSString stringWithFormat:@"(type: %d) %@ - %@", (int)obj.sleepType, obj.start.stringValue(@"HH:mm"), obj.end.stringValue(@"HH:mm")];
+                        row.detail = [NSString stringWithFormat:@"%d min", (int)obj.duration];
+                    }];
+                }];
+            } else {
+                if (obj.items.count) {
+                    [section addRow:^(AXTableRowModel *row) {
+                        row.title = [NSString stringWithFormat:@"%@ (%@ - %@)", obj.start.stringValue(@"MM-dd"), obj.start.stringValue(@"HH:mm"), obj.end.stringValue(@"HH:mm")];
+                        row.detail = [NSString stringWithFormat:@"%dh %dmin", (int)obj.duration/60, (int)obj.duration%60];
+                    }];
+                }
+            }
+        }];
     }];
     
     dataSource(dataList);

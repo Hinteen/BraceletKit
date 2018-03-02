@@ -13,7 +13,7 @@
 
 
 + (nullable __kindof BKQuery *)queryDailySummaryWithDate:(NSDate *)date{
-    NSDate *target = [NSDate ax_dateWithIntegerValue:date.integerValue];
+    NSDate *target = [NSDate ax_dateWithIntegerValue:date.integerValue] ?: date;
     return [self querySummaryWithStartDate:target endDate:target.addDays(1) selectionUnit:BKQuerySelectionUnitDaily].firstObject;
 }
 
