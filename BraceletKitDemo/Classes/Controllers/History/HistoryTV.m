@@ -58,26 +58,31 @@ static NSInteger hourHRCount = 12;
         section.headerTitle = [NSString stringWithFormat:@"总数据"];
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"总步数";
+            row.icon = @"icon_foot";
             row.target = @"";
             row.detail = [NSString stringWithFormat:@"%d steps", sumOfSteps];
         }];
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"总距离";
+            row.icon = @"icon_distance";
             row.target = @"";
             row.detail = [NSString stringWithFormat:@"%.2f km", sumOfDistance];
         }];
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"总卡路里";
+            row.icon = @"icon_calorie";
             row.target = @"";
             row.detail = [NSString stringWithFormat:@"%.1f cal", sumOfCalorie];
         }];
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"总活动时长";
+            row.icon = @"icon_time";
             row.target = @"";
             row.detail = [NSString stringWithFormat:@"%d min", sumOfActivities];
         }];
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"总睡眠时长";
+            row.icon = @"icon_sleep";
             row.target = @"";
             row.detail = [NSString stringWithFormat:@"%dh %dmin", (int)sumOfSleep/60, (int)sumOfSleep%60];
         }];
@@ -87,26 +92,31 @@ static NSInteger hourHRCount = 12;
         section.headerTitle = [NSString stringWithFormat:@"日均数据"];
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"日均步数";
+            row.icon = @"icon_foot";
             row.target = @"";
             row.detail = [NSString stringWithFormat:@"%d steps", sumOfSteps/count];
         }];
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"日均距离";
+            row.icon = @"icon_distance";
             row.target = @"";
             row.detail = [NSString stringWithFormat:@"%.2f km", sumOfDistance/(double)count];
         }];
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"日均卡路里";
+            row.icon = @"icon_calorie";
             row.target = @"";
             row.detail = [NSString stringWithFormat:@"%.1f cal", sumOfCalorie/(double)count];
         }];
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"日均活动时长";
+            row.icon = @"icon_time";
             row.target = @"";
             row.detail = [NSString stringWithFormat:@"%d min", sumOfActivities/count];
         }];
         [section addRow:^(AXTableRowModel *row) {
             row.title = @"日均睡眠时长";
+            row.icon = @"icon_sleep";
             row.target = @"";
             int min = sumOfSleep/count;
             row.detail = [NSString stringWithFormat:@"%dh %dmin", (int)min/60, (int)min%60];
