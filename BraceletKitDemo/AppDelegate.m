@@ -34,7 +34,7 @@
     [ServicesLayer sharedInstance];
     [[UIThemeManager sharedInstance] configDefaultTheme:^(UIThemeManager *theme) {
         theme.color.theme = [UIColor ax_blue];
-        theme.color.accent = [UIColor md_lime];
+        theme.color.accent = [UIColor md_orange];
     }];
     
     // 创建窗口

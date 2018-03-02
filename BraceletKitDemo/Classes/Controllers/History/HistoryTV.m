@@ -32,6 +32,17 @@ static NSInteger hourHRCount = 12;
 
 @implementation HistoryTV
 
+- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
+    if (self = [super initWithFrame:frame style:style]) {
+        self.start = [NSDate date];
+        self.end = [NSDate date];
+        self.queryViewUnit = BKQueryViewUnitWeekly;
+        self.tableFooterView = UIViewWithHeight(60);
+    }
+    return self;
+}
+
+
 
 - (void)ax_tableViewDataSource:(void (^)(AXTableModelType *))dataSource{
     
@@ -125,17 +136,32 @@ static NSInteger hourHRCount = 12;
         
     }];
     
-    [dataList addSection:^(AXTableSectionModel *section) {
-        section.headerTitle = @"活动记录";
-        [self.sport enumerateObjectsUsingBlock:^(BKSportQuery * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [obj.items enumerateObjectsUsingBlock:^(BKSportData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [section addRow:^(AXTableRowModel *row) {
-                    row.title = [NSString stringWithFormat:@"%@ (%@ - %@)", obj.start.stringValue(@"MM-dd"), obj.start.stringValue(@"HH:mm"), obj.end.stringValue(@"HH:mm")];
-                    row.detail = [NSString stringWithFormat:@"%d steps", (int)obj.steps];
+    [self.sport enumerateObjectsUsingBlock:^(BKSportQuery * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.items.count) {
+            [dataList addSection:^(AXTableSectionModel *section) {
+                if (self.queryViewUnit == BKQueryViewUnitYearly) {
+                    section.headerTitle = [NSString stringWithFormat:@"活动记录 - %@", obj.date.stringValue(@"M月份")];
+                } else {
+                    section.headerTitle = [NSString stringWithFormat:@"活动记录 - %@", obj.date.stringValue(@"M月d号")];
+                }
+                [obj.items enumerateObjectsUsingBlock:^(BKSportData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [section addRow:^(AXTableRowModel *row) {
+                        row.title = [NSString stringWithFormat:@"%@ - %@", obj.start.stringValue(@"HH:mm"), obj.end.stringValue(@"HH:mm")];
+                        row.detail = [NSString stringWithFormat:@"%d steps", (int)obj.steps];
+                        if (obj.steps >= 1000) {
+                            row.icon = @"icon_run";
+                            row.target = @"activity.1";
+                        } else {
+                            row.icon = @"icon_walk";
+                            row.target = @"activity.0";
+                        }
+                        
+                    }];
                 }];
             }];
-        }];
+        }
     }];
+    
     [dataList addSection:^(AXTableSectionModel *section) {
         section.headerTitle = @"";
         [section addRow:^(AXTableRowModel *row) {
@@ -195,6 +221,19 @@ static NSInteger hourHRCount = 12;
     } else {
         return [super tableView:tableView cellForRowAtIndexPath:indexPath];
     }
+}
+
+- (void)ax_tableViewCell:(AXTableViewCellType *)cell willSetModel:(AXTableRowModelType *)model forRowAtIndexPath:(NSIndexPath *)indexPath{
+    cell.imageView.tintColor = axThemeManager.color.theme;
+    if ([model.target containsString:@"activity."]) {
+        if ([model.target isEqualToString:@"activity.1"]) {
+            cell.imageView.tintColor = [UIColor md_green];
+        } else if ([model.target isEqualToString:@"activity.0"]) {
+            cell.imageView.tintColor = [UIColor grayColor];
+        }
+    }
+    
+
 }
 
 - (void)ax_tableViewDidSelectedRowAtIndexPath:(NSIndexPath *)indexPath{

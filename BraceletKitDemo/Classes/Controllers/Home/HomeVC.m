@@ -104,6 +104,7 @@ static NSInteger hourHRCount = 12;
             [[BKRefreshView sharedInstance] stopAnimating];
         }
     }];
+    
 }
 
 - (void)setupRefreshView{
@@ -225,15 +226,24 @@ static NSInteger hourHRCount = 12;
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%dh %dmin", (int)self.sleep.duration/60, (int)self.sleep.duration%60];
         }
     } else if (indexPath.section == 1) {
-        cell.imageView.image = UIImageNamed(@"icon_run");
-        cell.imageView.tintColor = [UIColor grayColor];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        if (self.sport.items[indexPath.row].steps >= 1000) {
+            cell.imageView.image = UIImageNamed(@"icon_run");
+            cell.imageView.tintColor = [UIColor md_green];
+        } else {
+            cell.imageView.image = UIImageNamed(@"icon_walk");
+            cell.imageView.tintColor = [UIColor grayColor];
+        }
+        
         cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", self.sport.items[indexPath.row].start.stringValue(@"HH:mm"), self.sport.items[indexPath.row].end.stringValue(@"HH:mm")];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%d steps", (int)self.sport.items[indexPath.row].steps];
     } else if (indexPath.section == 2) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
         cell.imageView.image = nil;
         cell.textLabel.text = @"心率图表";
         cell.detailTextLabel.text = @"";
     } else if (indexPath.section == 3) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
         cell.imageView.image = nil;
         cell.textLabel.text = [NSString stringWithFormat:@"(type: %d) %@ - %@", (int)self.sleep.items[indexPath.row].sleepType, self.sleep.items[indexPath.row].start.stringValue(@"HH:mm"), self.sleep.items[indexPath.row].end.stringValue(@"HH:mm")];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%d min", (int)self.sleep.items[indexPath.row].duration];
