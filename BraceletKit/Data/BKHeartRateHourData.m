@@ -61,7 +61,7 @@
     return columnName;
 }
 + (NSString *)tablePrimaryKey{
-    return @"date, device_id, seq, hour";
+    return @"date, device_id, hour";
 }
 
 + (instancetype)modelWithSet:(FMResultSet *)set{
@@ -91,7 +91,9 @@
     [value appendIntegerValue:self.seq comma:YES];
     [value appendIntegerValue:self.hour comma:YES];
     
-    [value appendVarcharValue:self.hrDetail.description comma:YES];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:self.hrDetail options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [value appendVarcharValue:jsonStr comma:YES];
     
     [value appendVarcharValue:bk_date_string(bk_today()) comma:NO];
     return value;

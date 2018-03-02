@@ -82,7 +82,14 @@
         }];
         if (unit == BKQueryUnitDaily) {
             [hrHourModels enumerateObjectsUsingBlock:^(BKHeartRateHourData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [result.minuteHR addObjectsFromArray:obj.hrDetail];
+                for (int i = 0; i < 60; i++) {
+                    if (obj.hrDetail[i].intValue < 255) {
+                        result.minuteHR[obj.hour * 60 + i] = obj.hrDetail[i];
+                    } else {
+                        result.minuteHR[obj.hour * 60 + i] = @0;
+                    }
+                    
+                }
             }];
         }
         BKDayData *day = [BKDayData selectWithDate:date unit:BKQueryUnitDaily].lastObject;

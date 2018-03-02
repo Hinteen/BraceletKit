@@ -11,15 +11,21 @@
 #import "BKSportQuery.h"
 #import "BKHeartRateQuery.h"
 #import "BKSleepQuery.h"
+#import "BKChartTVC.h"
 
+static NSString *chartReuseIdentifier = @"history table view cell for chart";
 
-@interface HistoryTV ()
+// 每小时显示几条心率
+static NSInteger hourHRCount = 6;
+
+@interface HistoryTV () <AXChartViewDataSource, AXChartViewDelegate>
 
 @property (strong, nonatomic) NSArray<BKSportQuery *> *sport;
 
 @property (strong, nonatomic) NSArray<BKHeartRateQuery *> *hr;
 
 @property (strong, nonatomic) NSArray<BKSleepQuery *> *sleep;
+
 
 @end
 
@@ -105,15 +111,21 @@
         }];
     }];
     [dataList addSection:^(AXTableSectionModel *section) {
-        section.headerTitle = @"步数趋势";
-        
+        section.headerTitle = @"";
+        [section addRow:^(AXTableRowModel *row) {
+            row.target = @"chart.steps";
+        }];
     }];
+    if (self.currentQueryUnit == BKQueryUnitDaily) {
+        [dataList addSection:^(AXTableSectionModel *section) {
+            section.headerTitle = @"";
+            [section addRow:^(AXTableRowModel *row) {
+                row.target = @"chart.hr";
+            }];
+        }];
+    }
     [dataList addSection:^(AXTableSectionModel *section) {
-        section.headerTitle = @"心率记录";
-        
-    }];
-    [dataList addSection:^(AXTableSectionModel *section) {
-        section.headerTitle = @"睡眠记录";
+        section.headerTitle = @"睡眠详情";
         
     }];
     
@@ -121,11 +133,43 @@
     
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    AXTableRowModelType *model = [self tableViewRowModelForIndexPath:indexPath];
+    if ([model.target containsString:@"chart."]) {
+        BKChartTVC *cell = (BKChartTVC *)[tableView dequeueReusableCellWithIdentifier:chartReuseIdentifier];
+        if (!cell) {
+            cell = [[BKChartTVC alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:chartReuseIdentifier];
+        }
+        cell.chartView.dataSource = self;
+        cell.chartView.delegate = self;
+        if ([model.target isEqualToString:@"chart.steps"]) {
+            cell.chartView.title = @"步数详情";
+            cell.chartView.smoothFactor = 0;
+        } else if ([model.target isEqualToString:@"chart.hr"]) {
+            cell.chartView.title = @"心率详情";
+        }
+        [cell.chartView reloadData];
+        return cell;
+    } else {
+        return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    }
+}
+
 - (void)ax_tableViewDidSelectedRowAtIndexPath:(NSIndexPath *)indexPath{
     AXTableRowModelType *model = [self tableViewRowModelForIndexPath:indexPath];
     
     
     
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    AXTableRowModelType *model = [self tableViewRowModelForIndexPath:indexPath];
+    if ([model.target containsString:@"chart."]) {
+        return 200;
+    } else {
+        return -1;
+    }
 }
 
 
@@ -139,6 +183,136 @@
     return self.dataList.sections[section].footerHeight;
 }
 
+
+
+
+
+#pragma mark - chart
+
+/**
+ 总列数
+ 
+ @return 总列数
+ */
+- (NSInteger)chartViewItemsCount:(AXChartView *)chartView{
+    if ([chartView.title isEqualToString:@"步数详情"]) {
+        if (self.currentQueryUnit == BKQueryUnitDaily) {
+            // 当天的步数详情
+            return self.sport.lastObject.hourSteps.count + 1;
+        } else {
+            // 每天的步数
+            if (self.currentQueryUnit == BKQueryUnitYearly) {
+                return 12;
+            } else {
+                return self.sport.count;
+            }
+        }
+    } else if ([chartView.title isEqualToString:@"心率详情"]) {
+        if (self.currentQueryUnit == BKQueryUnitDaily) {
+            // 当天的心率详情
+            return self.hr.lastObject.minuteHR.count / 60 * hourHRCount + 1;
+        } else {
+            return 0;
+        }
+    } else {
+        return 0;
+    }
+}
+
+
+/**
+ 第index列的值
+ 
+ @param index 列索引
+ @return 第index列的值
+ */
+- (NSNumber *)chartView:(AXChartView *)chartView valueForIndex:(NSInteger)index{
+    if ([chartView.title isEqualToString:@"步数详情"]) {
+        if (self.currentQueryUnit == BKQueryUnitDaily) {
+            // 当天的步数详情
+            if (index < self.sport.lastObject.hourSteps.count) {
+                return self.sport.lastObject.hourSteps[index];
+            } else {
+                return @0;
+            }
+        } else {
+            // 每天的步数
+            return self.sport[index].steps;
+        }
+    } else if ([chartView.title isEqualToString:@"心率详情"]) {
+        if (index*60/hourHRCount < self.hr.lastObject.minuteHR.count) {
+            return self.hr.lastObject.minuteHR[index*60/hourHRCount];
+        } else {
+            return @0; // 最后一个0
+        }
+    } else {
+        return @0;
+    }
+}
+
+
+/**
+ 第index列的标题
+ 
+ @param index 列索引
+ @return 第index列的标题
+ */
+- (NSString *)chartView:(AXChartView *)chartView titleForIndex:(NSInteger)index{
+    if ([chartView.title isEqualToString:@"步数详情"]) {
+        if (self.currentQueryUnit == BKQueryUnitWeekly) {
+            return self.start.addDays(index).stringValue(@"EE");
+        } else if (self.currentQueryUnit == BKQueryUnitMonthly) {
+            return self.start.addDays(index).stringValue(@"dd");
+        } else if (self.currentQueryUnit == BKQueryUnitYearly) {
+            return self.start.addMonths(index-1).stringValue(@"M").append(@"月");
+        } else {
+            return NSStringFromNSInteger(index);
+        }
+    } else if ([chartView.title isEqualToString:@"心率详情"]) {
+        return NSStringFromNSInteger(index/hourHRCount);
+    } else {
+        return @"";
+    }
+}
+
+- (NSInteger)chartViewShowTitleForIndexWithSteps:(AXChartView *)chartView{
+    if ([chartView.title isEqualToString:@"步数详情"]) {
+        if (self.currentQueryUnit == BKQueryUnitWeekly) {
+            return 0;
+        } else if (self.currentQueryUnit == BKQueryUnitMonthly) {
+            return 5;
+        } else if (self.currentQueryUnit == BKQueryUnitYearly) {
+            return 1;
+        } else {
+            return 3;
+        }
+    } else if ([chartView.title isEqualToString:@"心率详情"]) {
+        return hourHRCount * 3;// 3个小时
+    } else {
+        return 0;
+    }
+    
+}
+
+- (NSString *)chartView:(AXChartView *)chartView summaryText:(UILabel *)label{
+    if ([chartView.title isEqualToString:@"步数详情"]) {
+        return [NSString stringWithFormat:@"共走了%d步", [[self.sport valueForKeyPath:@"steps.@sum.doubleValue"] intValue]];
+    } else if ([chartView.title isEqualToString:@"心率详情"]) {
+        return @"";
+    } else {
+        return @"";
+    }
+}
+
+- (NSNumber *)chartViewMaxValue:(AXChartView *)chartView{
+    if ([chartView.title isEqualToString:@"步数详情"]) {
+        return @10000;
+    } else if ([chartView.title isEqualToString:@"心率详情"]) {
+        return @255;
+    } else {
+        return @255;
+    }
+}
 
 
 

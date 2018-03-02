@@ -38,6 +38,8 @@
 		CD25EA352013330F009BEFC1 /* BKUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA332013330F009BEFC1 /* BKUser.m */; };
 		CD25EA382013331D009BEFC1 /* BKDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = CD25EA362013331D009BEFC1 /* BKDevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD25EA392013331D009BEFC1 /* BKDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA372013331D009BEFC1 /* BKDevice.m */; };
+		CD272EE7204804E000FB8E1D /* AXChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD272EE5204804E000FB8E1D /* AXChartView.m */; };
+		CD272EEB2048054900FB8E1D /* BKChartTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD272EE92048054900FB8E1D /* BKChartTVC.m */; };
 		CD2E791E1FA0C53300012CDB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2E791D1FA0C53300012CDB /* AppDelegate.m */; };
 		CD2E79211FA0C53300012CDB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2E79201FA0C53300012CDB /* ViewController.m */; };
 		CD2E79241FA0C53300012CDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD2E79221FA0C53300012CDB /* Main.storyboard */; };
@@ -181,6 +183,10 @@
 		CD25EA332013330F009BEFC1 /* BKUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKUser.m; sourceTree = "<group>"; };
 		CD25EA362013331D009BEFC1 /* BKDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDevice.h; sourceTree = "<group>"; };
 		CD25EA372013331D009BEFC1 /* BKDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDevice.m; sourceTree = "<group>"; };
+		CD272EE5204804E000FB8E1D /* AXChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXChartView.m; sourceTree = "<group>"; };
+		CD272EE6204804E000FB8E1D /* AXChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXChartView.h; sourceTree = "<group>"; };
+		CD272EE82048054900FB8E1D /* BKChartTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKChartTVC.h; sourceTree = "<group>"; };
+		CD272EE92048054900FB8E1D /* BKChartTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKChartTVC.m; sourceTree = "<group>"; };
 		CD2E79191FA0C53300012CDB /* BraceletKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BraceletKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD2E791C1FA0C53300012CDB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CD2E791D1FA0C53300012CDB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -396,6 +402,15 @@
 				CD20ADA02024551300475E26 /* CameraViewController.h */,
 			);
 			path = CameraViewController;
+			sourceTree = "<group>";
+		};
+		CD272EE4204804E000FB8E1D /* AXChartView */ = {
+			isa = PBXGroup;
+			children = (
+				CD272EE6204804E000FB8E1D /* AXChartView.h */,
+				CD272EE5204804E000FB8E1D /* AXChartView.m */,
+			);
+			path = AXChartView;
 			sourceTree = "<group>";
 		};
 		CD2E79101FA0C53200012CDB = {
@@ -632,8 +647,11 @@
 		CD3FC10A1FA20A0B0054B26B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CD272EE4204804E000FB8E1D /* AXChartView */,
 				CD6F6DDB2024D286008D91CF /* BKBatteryView.h */,
 				CD6F6DDC2024D286008D91CF /* BKBatteryView.m */,
+				CD272EE82048054900FB8E1D /* BKChartTVC.h */,
+				CD272EE92048054900FB8E1D /* BKChartTVC.m */,
 				CD5CDDC12029B1D900186014 /* BKRefreshView.h */,
 				CD5CDDC22029B1D900186014 /* BKRefreshView.m */,
 				CD33896B204658A600C206C6 /* BKGenderPicker.h */,
@@ -1083,6 +1101,7 @@
 				CD3FC1151FA20A0B0054B26B /* DataAccessLayer.m in Sources */,
 				CD3FC1221FA20A0B0054B26B /* UITableView+Creator.m in Sources */,
 				CD3FC1251FA20A0B0054B26B /* HTStrings.m in Sources */,
+				CD272EEB2048054900FB8E1D /* BKChartTVC.m in Sources */,
 				CD3FC1901FA20B730054B26B /* MJPropertyType.m in Sources */,
 				CDDFA3AB1FB5BAC8004C99D5 /* HomeTableView.m in Sources */,
 				CD33897D2046BDBA00C206C6 /* HistoryTV.m in Sources */,
@@ -1096,6 +1115,7 @@
 				CD616CA91FB9E0B300E38244 /* BaseTabBarController.m in Sources */,
 				CD3FC1951FA20B730054B26B /* NSObject+MJProperty.m in Sources */,
 				CD3389762046657500C206C6 /* BKWeightPicker.m in Sources */,
+				CD272EE7204804E000FB8E1D /* AXChartView.m in Sources */,
 				CD3FC12F1FA20A0B0054B26B /* DefaultViewController.m in Sources */,
 				CD616CA81FB9E0B300E38244 /* BaseNavController.m in Sources */,
 				CD3FC1921FA20B730054B26B /* MJProperty.m in Sources */,

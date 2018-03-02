@@ -18,15 +18,20 @@
 #import "BKSleepQuery.h"
 #import "BKSleepData.h"
 #import <AXKit/StatusKit.h>
+#import "BKChartTVC.h"
 
 static NSString *reuseIdentifier = @"home table view cell";
+static NSString *chartReuseIdentifier = @"home table view cell for chart";
 
+// 每小时显示几条心率
+static NSInteger hourHRCount = 6;
 
-@interface HomeVC () <BKDeviceDelegate, BKDataObserver, UITableViewDataSource, UITableViewDelegate>
+@interface HomeVC () <BKDeviceDelegate, BKDataObserver, UITableViewDataSource, UITableViewDelegate, AXChartViewDataSource, AXChartViewDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
 @property (strong, nonatomic) BKSportQuery *sport;
+@property (strong, nonatomic) BKHeartRateQuery *hr;
 @property (strong, nonatomic) BKSleepQuery *sleep;
 
 
@@ -140,6 +145,7 @@ static NSString *reuseIdentifier = @"home table view cell";
 
 - (void)reloadData{
     self.sport = [BKSportQuery querySummaryWithDate:[NSDate date] unit:BKQueryUnitDaily].lastObject;
+    self.hr = [BKHeartRateQuery querySummaryWithDate:[NSDate date] unit:BKQueryUnitDaily].lastObject;
 //    self.sleep = [BKSleepQuery querySummaryWithDate:[NSDate date] unit:BKQueryUnitDaily].lastObject;
     [self.tableView reloadData];
 }
@@ -173,6 +179,16 @@ static NSString *reuseIdentifier = @"home table view cell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 2) {
+        BKChartTVC *cell = (BKChartTVC *)[tableView dequeueReusableCellWithIdentifier:chartReuseIdentifier];
+        if (!cell) {
+            cell = [[BKChartTVC alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:chartReuseIdentifier];
+        }
+        cell.chartView.dataSource = self;
+        cell.chartView.delegate = self;
+        cell.chartView.title = @"心率详情";
+        return cell;
+    }
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
@@ -226,7 +242,7 @@ static NSString *reuseIdentifier = @"home table view cell";
     } else if (section == 1) {
         return @"活动记录";
     } else if (section == 2) {
-        return @"心率记录";
+        return @"";
     } else if (section == 3) {
         return @"睡眠记录";
     } else {
@@ -237,5 +253,64 @@ static NSString *reuseIdentifier = @"home table view cell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 2) {
+        return 200;
+    } else {
+        return -1;
+    }
+}
+
+#pragma mark - chart
+
+/**
+ 总列数
+ 
+ @return 总列数
+ */
+- (NSInteger)chartViewItemsCount:(AXChartView *)chartView{
+    return self.hr.minuteHR.count / 60 * hourHRCount + 1;
+}
+
+
+/**
+ 第index列的值
+ 
+ @param index 列索引
+ @return 第index列的值
+ */
+- (NSNumber *)chartView:(AXChartView *)chartView valueForIndex:(NSInteger)index{
+    if (index*60/hourHRCount < self.hr.minuteHR.count) {
+        return self.hr.minuteHR[index*60/hourHRCount];
+    } else {
+        return @0; // 最后一个0
+    }
+//    return @(arc4random_uniform(80) + 50);
+}
+
+
+/**
+ 第index列的标题
+ 
+ @param index 列索引
+ @return 第index列的标题
+ */
+- (NSString *)chartView:(AXChartView *)chartView titleForIndex:(NSInteger)index{
+    return NSStringFromNSInteger(index/hourHRCount);
+}
+
+- (NSInteger)chartViewShowTitleForIndexWithSteps:(AXChartView *)chartView{
+    return hourHRCount * 3;// 3个小时
+}
+
+- (NSString *)chartView:(AXChartView *)chartView summaryText:(UILabel *)label{
+    return @"";
+}
+
+- (NSNumber *)chartViewMaxValue:(AXChartView *)chartView{
+    return @255;
+}
+
 
 @end

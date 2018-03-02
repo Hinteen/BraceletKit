@@ -159,25 +159,33 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
     model.type = [set longForColumnIndex:i++];
     model.version = [set stringForColumnIndex:i++];
     model.battery = [set intForColumnIndex:i++];
-//    NSData *data = [set dataForColumnIndex:i++];
-//    model.languages = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-//    data = [set dataForColumnIndex:i++];
-//    model.functions = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    NSString *dataString = [set stringForColumnIndex:i++];
+    NSData *data = [dataString dataUsingEncoding:NSUTF8StringEncoding];
+    if (data) {
+        model.languages = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    }
+    
+    dataString = [set stringForColumnIndex:i++];
+    data = [dataString dataUsingEncoding:NSUTF8StringEncoding];
+    if (data) {
+        model.functions = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    }
 
-    NSString *tmp = [set stringForColumnIndex:i++];
-    NSArray<NSString *> *tmpArr = [tmp componentsSeparatedByString:@","];
-    [tmpArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.length) {
-            [model.languages addObject:@(obj.integerValue)];
-        }
-    }];
-    tmp = [set stringForColumnIndex:i++];
-    tmpArr = [tmp componentsSeparatedByString:@","];
-    [tmpArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.length) {
-            [model.functions addObject:@(obj.integerValue)];
-        }
-    }];
+//    NSString *tmp = [set stringForColumnIndex:i++];
+//    NSArray<NSString *> *tmpArr = [tmp componentsSeparatedByString:@","];
+//    [tmpArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        if (obj.length) {
+//            [model.languages addObject:@(obj.integerValue)];
+//        }
+//    }];
+//    tmp = [set stringForColumnIndex:i++];
+//    tmpArr = [tmp componentsSeparatedByString:@","];
+//    [tmpArr enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        if (obj.length) {
+//            [model.functions addObject:@(obj.integerValue)];
+//        }
+//    }];
     return model;
 }
 
@@ -192,24 +200,33 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
     [value appendVarcharValue:self.version comma:YES];
     [value appendIntegerValue:self.battery comma:YES];
     
-    NSMutableString *languages = [NSMutableString string];
-    [self.languages enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [languages appendFormat:@"%ld,", obj.integerValue];
-    }];
-    NSString *str = @"";
-    if (languages.length) {
-        str = [languages substringToIndex:languages.length-1];
-    }
-    [value appendVarcharValue:str comma:YES];
-    NSMutableString *functions = [NSMutableString string];
-    [self.functions enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [functions appendFormat:@"%ld,", obj.integerValue];
-    }];
-    str = @"";
-    if (functions.length) {
-        str = [functions substringToIndex:functions.length-1];
-    }
-    [value appendVarcharValue:str comma:YES];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:self.languages options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [value appendVarcharValue:jsonStr comma:YES];
+    
+    data = [NSJSONSerialization dataWithJSONObject:self.functions options:NSJSONWritingPrettyPrinted error:nil];
+    jsonStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [value appendVarcharValue:jsonStr comma:YES];
+    
+    
+//    NSMutableString *languages = [NSMutableString string];
+//    [self.languages enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [languages appendFormat:@"%ld,", obj.integerValue];
+//    }];
+//    NSString *str = @"";
+//    if (languages.length) {
+//        str = [languages substringToIndex:languages.length-1];
+//    }
+//    [value appendVarcharValue:str comma:YES];
+//    NSMutableString *functions = [NSMutableString string];
+//    [self.functions enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [functions appendFormat:@"%ld,", obj.integerValue];
+//    }];
+//    str = @"";
+//    if (functions.length) {
+//        str = [functions substringToIndex:functions.length-1];
+//    }
+//    [value appendVarcharValue:str comma:YES];
     
     [value appendVarcharValue:bk_date_string(bk_today()) comma:NO];
     return value;
