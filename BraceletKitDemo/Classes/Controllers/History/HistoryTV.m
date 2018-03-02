@@ -387,11 +387,17 @@ static NSInteger hourHRCount = 12;
 
 - (NSNumber *)chartViewMaxValue:(AXChartView *)chartView{
     if ([chartView.title isEqualToString:@"步数详情"]) {
-        return @10000;
+        if (self.queryViewUnit == BKQueryViewUnitDaily) {
+            return @5000; // 每小时
+        } else if (self.queryViewUnit == BKQueryViewUnitYearly) {
+            return @(10000 * 20); // 每月
+        } else {
+            return @10000; // 每天
+        }
     } else if ([chartView.title isEqualToString:@"心率详情"]) {
-        return @255;
+        return @200;
     } else {
-        return @255;
+        return @200;
     }
 }
 

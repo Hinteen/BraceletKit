@@ -8,6 +8,7 @@
 
 #import "BKData.h"
 #import "BKDefines.h"
+#import "BKWeather.h"
 
 @class CBPeripheral, ZeronerBlePeripheral, BKPreferences, BKData;
 NS_ASSUME_NONNULL_BEGIN
@@ -218,6 +219,16 @@ NS_ASSUME_NONNULL_BEGIN
  @param error 指令发送失败及其原因
  */
 - (void)requestStopUpdateAllHealthDataCompletion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
+
+
+/**
+ 请求更新天气信息
+ 
+ @param completion 指令已发送到设备
+ @param error 指令发送失败及其原因
+ */
+- (void)requestUpdateWeatherInfo:(void (^)(BKWeather *weather))weatherInfo completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
+
 
 @end
 NS_ASSUME_NONNULL_END

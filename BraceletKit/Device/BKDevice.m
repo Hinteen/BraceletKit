@@ -492,6 +492,23 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
     }, completion, error);
 }
 
+/**
+ 请求更新天气信息
+ 
+ @param completion 指令已发送到设备
+ @param error 指令发送失败及其原因
+ */
+- (void)requestUpdateWeatherInfo:(void (^)(BKWeather *weather))weatherInfo completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    if (weatherInfo) {
+        bk_ble_option(^{
+            BKWeather *weather = [[BKWeather alloc] init];
+            weatherInfo(weather);
+            [[BLELib3 shareInstance] setWeather:weather.transformToZeronerWeather];
+        }, completion, error);
+    }
+}
+
+
 
 
 #pragma mark - connect delegate -> device setting

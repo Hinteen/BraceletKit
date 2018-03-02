@@ -199,6 +199,7 @@ static NSInteger hourHRCount = 12;
     }
     
     if (indexPath.section == 0) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         if (indexPath.row == 0) {
             cell.imageView.image = UIImageNamed(@"icon_foot");
             cell.imageView.tintColor = [UIColor md_blue];
@@ -325,7 +326,7 @@ static NSInteger hourHRCount = 12;
 }
 
 - (NSNumber *)chartViewMaxValue:(AXChartView *)chartView{
-    return @255;
+    return @200;
 }
 
 

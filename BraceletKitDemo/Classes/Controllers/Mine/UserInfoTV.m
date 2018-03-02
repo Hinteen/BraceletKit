@@ -112,6 +112,7 @@
             __block UITextField *tf;
             [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
                 tf = textField;
+                tf.returnKeyType = UIReturnKeyDone;
                 if ([model.target containsString:@"phone"]) {
                     textField.keyboardType = UIKeyboardTypePhonePad;
                 }
@@ -145,7 +146,7 @@
             [alert ax_addCancelAction];
         }];
     } else if ([model.target isEqualToString:@"gender"]) {
-        [UIAlertController ax_showActionSheetWithTitle:@"修改性别" message:@"\n\n\n\n\n" actions:^(UIAlertController * _Nonnull alert) {
+        [UIAlertController ax_showActionSheetWithTitle:@"修改性别" message:@"\n\n\n\n\n\n" actions:^(UIAlertController * _Nonnull alert) {
             BKGenderPicker *picker = [[BKGenderPicker alloc] initWithFrame:CGRectMake(8, kNavBarHeight, kScreenW - 10 * 2 - 8 * 2, 100)];
             [alert.view addSubview:picker];
             [alert ax_addDefaultActionWithTitle:nil handler:^(UIAlertAction * _Nonnull sender) {
@@ -156,7 +157,7 @@
             [alert ax_addCancelAction];
         }];
     } else if ([model.target isEqualToString:@"birthday"]) {
-        [UIAlertController ax_showActionSheetWithTitle:@"设置生日" message:@"\n\n\n\n\n" actions:^(UIAlertController * _Nonnull alert) {
+        [UIAlertController ax_showActionSheetWithTitle:@"设置生日" message:@"\n\n\n\n\n\n" actions:^(UIAlertController * _Nonnull alert) {
             BKBirthdayPicker *picker = [[BKBirthdayPicker alloc] initWithFrame:CGRectMake(8, kNavBarHeight, kScreenW - 10 * 2 - 8 * 2, 100)];
             [alert.view addSubview:picker];
             [alert ax_addDefaultActionWithTitle:nil handler:^(UIAlertAction * _Nonnull sender) {
@@ -167,7 +168,7 @@
             [alert ax_addCancelAction];
         }];
     } else if ([model.target isEqualToString:@"height"]) {
-        [UIAlertController ax_showActionSheetWithTitle:@"设置身高" message:@"\n\n\n\n\n" actions:^(UIAlertController * _Nonnull alert) {
+        [UIAlertController ax_showActionSheetWithTitle:@"设置身高" message:@"\n\n\n\n\n\n" actions:^(UIAlertController * _Nonnull alert) {
             BKHeightPicker *picker = [[BKHeightPicker alloc] initWithFrame:CGRectMake(8, kNavBarHeight, kScreenW - 10 * 2 - 8 * 2, 100)];
             [alert.view addSubview:picker];
             [alert ax_addDefaultActionWithTitle:nil handler:^(UIAlertAction * _Nonnull sender) {
@@ -178,7 +179,7 @@
             [alert ax_addCancelAction];
         }];
     } else if ([model.target isEqualToString:@"weight"]) {
-        [UIAlertController ax_showActionSheetWithTitle:@"设置体重" message:@"\n\n\n\n\n" actions:^(UIAlertController * _Nonnull alert) {
+        [UIAlertController ax_showActionSheetWithTitle:@"设置体重" message:@"\n\n\n\n\n\n" actions:^(UIAlertController * _Nonnull alert) {
             BKWeightPicker *picker = [[BKWeightPicker alloc] initWithFrame:CGRectMake(8, kNavBarHeight, kScreenW - 10 * 2 - 8 * 2, 100)];
             [alert.view addSubview:picker];
             [alert ax_addDefaultActionWithTitle:nil handler:^(UIAlertAction * _Nonnull sender) {

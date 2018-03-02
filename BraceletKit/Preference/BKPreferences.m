@@ -54,19 +54,19 @@
         [column appendIntegerColumn:@"auto_heartrate" comma:YES];
         [column appendIntegerColumn:@"auto_sleep" comma:YES];
         
-        [column appendIntegerColumn:@"disConnectTip" comma:YES];
-        [column appendIntegerColumn:@"findPhoneSwitch" comma:YES];
+        [column appendIntegerColumn:@"disconnect_tip" comma:YES];
+        [column appendIntegerColumn:@"find_phone_switch" comma:YES];
         [column appendIntegerColumn:@"led_switch" comma:YES];
         [column appendIntegerColumn:@"left_hand" comma:YES];
-        [column appendIntegerColumn:@"advertisementSwitch" comma:YES];
+        [column appendIntegerColumn:@"advertisement_switch" comma:YES];
         
-        [column appendIntegerColumn:@"backColor" comma:YES];
-        [column appendIntegerColumn:@"backlightStart" comma:YES];
-        [column appendIntegerColumn:@"backlightEnd" comma:YES];
+        [column appendIntegerColumn:@"back_color" comma:YES];
+        [column appendIntegerColumn:@"backlight_start" comma:YES];
+        [column appendIntegerColumn:@"backlight_end" comma:YES];
         
-        [column appendIntegerColumn:@"wristSwitch" comma:YES];
-        [column appendIntegerColumn:@"wristBlightStart" comma:YES];
-        [column appendIntegerColumn:@"wristBlightEnd" comma:YES];
+        [column appendIntegerColumn:@"wrist_switch" comma:YES];
+        [column appendIntegerColumn:@"wrist_blight_start" comma:YES];
+        [column appendIntegerColumn:@"wrist_blight_end" comma:YES];
         
         [column appendVarcharColumn:@"lastmodified" comma:NO];
         columnName = column;
@@ -92,7 +92,7 @@
     model.autoHeartRate = [set longForColumnIndex:i++];
     model.autoSleep = [set longForColumnIndex:i++];
     
-    model.disConnectTip = [set longForColumnIndex:i++];
+    model.disconnectTip = [set longForColumnIndex:i++];
     model.findPhoneSwitch = [set longForColumnIndex:i++];
     model.ledSwitch = [set longForColumnIndex:i++];
     model.leftHand = [set longForColumnIndex:i++];
@@ -123,7 +123,7 @@
     [value appendIntegerValue:self.autoHeartRate comma:YES];
     [value appendIntegerValue:self.autoSleep comma:YES];
     
-    [value appendIntegerValue:self.disConnectTip comma:YES];
+    [value appendIntegerValue:self.disconnectTip comma:YES];
     [value appendIntegerValue:self.findPhoneSwitch comma:YES];
     [value appendIntegerValue:self.ledSwitch comma:YES];
     [value appendIntegerValue:self.leftHand comma:YES];

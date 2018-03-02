@@ -181,9 +181,26 @@ typedef NS_ENUM(NSUInteger, BKDeviceBGColor) {
  
  - BKTemperatureUnitCentigrade: 摄氏温度
  - BKTemperatureUnitFahrenheit: 华氏温度
+ - BKTemperatureUnitKelvin:     开尔文温度
  */
 typedef NS_ENUM(NSUInteger, BKTemperatureUnit) {
     BKTemperatureUnitCentigrade,
     BKTemperatureUnitFahrenheit,
+    BKTemperatureUnitKelvin,
+};
+
+
+typedef NS_ENUM(NSInteger,BKWeatherCondition) {
+    BKWeatherConditionFine = 0,            //晴
+    BKWeatherConditionCloudy = 1,          //多云
+    BKWeatherConditionOvercast = 2,        //阴天
+    BKWeatherConditionLightRain = 3,       //小雨
+    BKWeatherConditionModerateRain = 4,    //中雨
+    BKWeatherConditionHeavyRain = 5,       //大雨
+    BKWeatherConditionShower = 6,          //阵雨
+    BKWeatherConditionSnow = 7,            //雪
+    BKWeatherConditionHaze = 8,            //雾霾
+    BKWeatherConditionSandstorm = 9,        //沙尘暴
+    BKWeatherConditionNotContain = 10,
 };
 

@@ -13,6 +13,7 @@
 #import "BKUser.h"
 #import "BKDevice.h"
 #import "BKPreferences.h"
+#import "BKWeather.h"
 
 @interface _BKModelHelper : NSObject
 
@@ -45,3 +46,8 @@
 
 @end
 
+@interface BKWeather (BKExtension)
+
+- (ZeronerWeather *)transformToZeronerWeather;
+
+@end

@@ -62,7 +62,7 @@
     model.autoSleep = self.autoSleep;
     model.advertisementSwitch = self.advertisementSwitch;
     model.backgroundColor = self.backColor;
-    model.disConnectTip = self.disConnectTip;
+    model.disconnectTip = self.disConnectTip;
     model.autoHeartRate = self.autoHeartRate;
     model.autoSport = self.autoSport;
     model.findPhoneSwitch = self.findPhoneSwitch;
@@ -90,7 +90,7 @@
     model.autoSleep = self.autoSleep;
     model.advertisementSwitch = self.advertisementSwitch;
     model.backColor = self.backgroundColor;
-    model.disConnectTip = self.disConnectTip;
+    model.disConnectTip = self.disconnectTip;
     model.autoHeartRate = self.autoHeartRate;
     model.autoSport = self.autoSport;
     model.findPhoneSwitch = self.findPhoneSwitch;
@@ -107,4 +107,20 @@
 
 @end
 
+@implementation BKWeather (BKExtension)
 
+- (ZeronerWeather *)transformToZeronerWeather{
+    ZeronerWeather *model = [[ZeronerWeather alloc] init];
+    model.temp = self.temperature;
+    if (self.unit == BKTemperatureUnitKelvin) {
+        // 手表暂不支持开尔文温度
+        model.unit = Centigrade;
+    } else {
+        model.unit = (TempUnit)self.unit;
+    }
+    model.type = self.condition;
+    model.pm = self.pm2_5;
+    return model;
+}
+
+@end
