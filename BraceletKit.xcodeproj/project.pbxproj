@@ -365,6 +365,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CD0D17062057DCF4004E8553 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CD63B6D92049A025007FD4F6 /* BKWeather.h */,
+				CD63B6DA2049A025007FD4F6 /* BKWeather.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		CD20AD932024551300475E26 /* Device */ = {
 			isa = PBXGroup;
 			children = (
@@ -468,8 +477,7 @@
 				CDC2EB8D20172A1300C9F77E /* BKScanner.m */,
 				CDC2EB902017312A00C9F77E /* BKConnector.h */,
 				CDC2EB912017312A00C9F77E /* BKConnector.m */,
-				CD63B6D92049A025007FD4F6 /* BKWeather.h */,
-				CD63B6DA2049A025007FD4F6 /* BKWeather.m */,
+				CD0D17062057DCF4004E8553 /* Model */,
 				CDC2EBAC2017556A00C9F77E /* Query */,
 				CDC2EB892016452500C9F77E /* User */,
 				CDC2EB8A2016452D00C9F77E /* Device */,
