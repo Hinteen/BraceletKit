@@ -60,36 +60,6 @@
     }
     self.activity = @(self.activity.integerValue + sport.activity);
 }
-//
-//+ (NSArray<BKQuery *> *)querySummaryWithDate:(NSDate *)date unit:(BKQueryUnit)unit{
-//    NSMutableArray<BKSportQuery *> *results = [NSMutableArray arrayWithCapacity:unit];
-//    [self getAlldateWithDate:date unit:unit completion:^(NSDate * _Nonnull date) {
-//        BKSportQuery *result = [[self alloc] init];
-//        // 如果是年度查询的话，按每个月为一条查询结果，否则按每一天为一条查询结果
-//        BKQueryUnit selectUnit = unit == BKQueryUnitYearly ? BKQueryUnitMonthly : BKQueryUnitDaily;
-//        NSArray<BKDayData *> *day = [BKDayData selectWithDate:date unit:selectUnit];
-//        [day enumerateObjectsUsingBlock:^(BKDayData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            result.steps = @(result.steps.integerValue + obj.steps);
-//            result.distance = @(result.distance.doubleValue + obj.distance);
-//            result.calorie = @(result.distance.doubleValue + obj.calorie);
-//            result.activity = @(result.activity.integerValue + obj.activity);
-//        }];
-//        if (day) {
-//            result.date = [NSDate ax_dateWithIntegerValue:day.firstObject.dateInteger];
-//        }
-//        NSArray<BKSportData *> *sports = [BKSportData selectWithDate:date unit:selectUnit];
-//        result.items = sports;
-//        [results addObject:result];
-//    }];
-//
-//    // 如果是一天的查询，还需要查询每小时的运动数据
-//    if (unit == BKQueryUnitDaily) {
-//        [results.lastObject.items enumerateObjectsUsingBlock:^(BKSportData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            [results.lastObject calcDaySport:obj];
-//        }];
-//    }
-//    return results;
-//}
 
 + (NSArray<BKQuery *> *)querySummaryWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate selectionUnit:(BKQuerySelectionUnit)selectionUnit{
     NSMutableArray<BKSportQuery *> *results = [NSMutableArray array];

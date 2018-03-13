@@ -23,10 +23,6 @@
     return nil;
 }
 
-+ (NSArray<BKQuery *> *)querySummaryWithDate:(NSDate *)date unit:(BKQueryUnit)unit{
-    NSAssert(NO, @"子类必须重写此方法");
-    return nil;
-}
 + (nullable NSArray<__kindof BKQuery *> *)querySummaryWithDate:(NSDate *)date selectionUnit:(BKQuerySelectionUnit)selectionUnit viewUnit:(BKQueryViewUnit)viewUnit{
     NSAssert(NO, @"子类必须重写此方法");
     return nil;
@@ -34,36 +30,6 @@
 + (nullable NSArray<__kindof BKQuery *> *)querySummaryWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate selectionUnit:(BKQuerySelectionUnit)selectionUnit{
     NSAssert(NO, @"子类必须重写此方法");
     return nil;
-}
-
-
-+ (void)getAlldateWithDate:(NSDate *)date unit:(BKQueryUnit)unit completion:(void (^)(NSDate * _Nonnull))completion{
-    if (completion) {
-        if (unit == BKQueryUnitDaily) {
-            completion(date);
-        } else if (unit == BKQueryUnitWeekly) {
-            NSInteger weekday = [[[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:date] weekday]; // 1~7
-            NSDate *start = date.addDays(1-weekday);
-            for (int i = 0; i < 7; i++) {
-                completion(start.addDays(i));
-            }
-        } else if (unit == BKQueryUnitMonthly) {
-            int year = (int)[[[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:date] year];
-            int month = (int)[[[NSCalendar currentCalendar] components:NSCalendarUnitMonth fromDate:date] month]; // 1~12
-            NSDate *target = [NSDate ax_dateWithIntegerValue:[NSString stringWithFormat:@"%04d%02d01", year, month].integerValue];
-            while (target.stringValue(@"MM").intValue == month) {
-                completion(target);
-                target = target.addDays(1);
-            }
-        } else if (unit == BKQueryUnitYearly) {
-            int year = (int)[[[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:date] year];
-            NSDate *target = [NSDate ax_dateWithIntegerValue:[NSString stringWithFormat:@"%04d0101", year].integerValue];
-            while (target.stringValue(@"yyyy").intValue == year) {
-                completion(target);
-                target = target.addMonths(1);
-            }
-        }
-    }
 }
 
 + (void)getQueryItemWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate selectionUnit:(BKQuerySelectionUnit)selectionUnit completion:(void (^)(NSDate * _Nonnull, NSDate * _Nonnull))completion{

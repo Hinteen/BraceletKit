@@ -83,20 +83,13 @@ typedef NS_OPTIONS(NSUInteger, BKDeviceFunction) {
 
 
 /**
- 查询单位
+ 查询单位(查询)
  
  - BKQueryUnitDaily: 每日数据。在查询结果中，一个query对象代表一天
  - BKQueryUnitWeekly: 每周数据。在查询结果中，一个query对象代表一周
  - BKQueryUnitMonthly: 每月数据。在查询结果中，一个query对象代表一月
  - BKQueryUnitYearly: 每年数据。在查询结果中，一个query对象代表一年
  */
-typedef NS_ENUM(NSUInteger, BKQueryUnit) {
-    BKQueryUnitDaily   = 1,
-    BKQueryUnitWeekly  = 7,
-    BKQueryUnitMonthly = 31,
-    BKQueryUnitYearly  = 365,
-};
-
 typedef NS_ENUM(NSUInteger, BKQuerySelectionUnit) {
     BKQuerySelectionUnitDaily,
     BKQuerySelectionUnitWeekly,
@@ -104,6 +97,14 @@ typedef NS_ENUM(NSUInteger, BKQuerySelectionUnit) {
     BKQuerySelectionUnitYearly
 };
 
+/**
+ 查询单位（视图）
+ 
+ - BKQueryViewUnitDaily: 每日数据视图
+ - BKQueryViewUnitWeekly: 周度视图
+ - BKQueryViewUnitMonthly: 月度视图
+ - BKQueryViewUnitYearly: 年度视图
+ */
 typedef NS_ENUM(NSUInteger, BKQueryViewUnit) {
     BKQueryViewUnitDaily   = 1,
     BKQueryViewUnitWeekly  = 7,

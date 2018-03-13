@@ -117,7 +117,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)select:(NSString *)select where:(NSString *(^)(void))where result:(void (^)(FMResultSet *set))result;
 
-+ (void)select:(NSString *)select date:(NSDate *)date unit:(BKQueryUnit)unit result:(void (^)(FMResultSet *set))result;
 
 + (void)select:(NSString *)select startDate:(NSDate *)startDate endDate:(NSDate *)endDate result:(void (^)(FMResultSet *set))result;
 
@@ -129,14 +128,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSArray<__kindof BKData *> *)selectWhere:(NSString *)where;
 
-/**
- 取出若干天的所有原始数据
- 
- @param date 天（日期只需要精确到天）
- @param unit 查询单位
- @return 满足条件的所有原始数据
- */
-+ (NSArray<__kindof BKData *> *)selectWithDate:(NSDate *)date unit:(BKQueryUnit)unit;
 
 /**
  取出从某个时刻到某个时刻的所有原始数据

@@ -109,33 +109,6 @@
     }
 }
 
-+ (void)select:(NSString *)select date:(NSDate *)date unit:(BKQueryUnit)unit result:(void (^)(FMResultSet * _Nonnull))result{
-    if (date) {
-        [self select:select where:^NSString * _Nonnull{
-            if (unit == BKQueryUnitDaily) {
-                return [NSString stringWithFormat:@"date = %08d", date.intValue];
-            } else {
-                NSDate *start;
-                NSDate *end;
-                if (unit == BKQueryUnitWeekly) {
-                    NSInteger weekday = [[[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:date] weekday]; // 1~7
-                    start = date.addDays(1-weekday);
-                    end = start.addWeeks(1);
-                    return [NSString stringWithFormat:@"date >= %08d and date < %08d", start.intValue, end.intValue];
-                } else if (unit == BKQueryUnitMonthly) {
-                    int year = (int)[[[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:date] year];
-                    int month = (int)[[[NSCalendar currentCalendar] components:NSCalendarUnitMonth fromDate:date] month]; // 1~12
-                    return [NSString stringWithFormat:@"date >= %04d%02d01 and date < %04d%02d01", year, month, year, month+1];
-                } else if (unit == BKQueryUnitYearly) {
-                    int year = (int)[[[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:date] year];
-                    return [NSString stringWithFormat:@"date >= %04d0101 and date < %04d0101", year, year+1];
-                } else {
-                    return nil;
-                }
-            }
-        } result:result];
-    }
-}
 
 + (void)select:(NSString *)select startDate:(NSDate *)startDate endDate:(NSDate *)endDate result:(void (^)(FMResultSet *set))result{
     if (startDate && endDate) {
@@ -155,13 +128,6 @@
     return results;
 }
 
-+ (NSArray<BKData *> *)selectWithDate:(NSDate *)date unit:(BKQueryUnit)unit{
-    NSMutableArray *results = [NSMutableArray array];
-    [self select:@"*" date:date unit:unit result:^(FMResultSet * _Nonnull set) {
-        [results addObject:[self modelWithSet:set]];
-    }];
-    return results;
-}
 
 + (NSArray<BKData *> *)selectWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate{
     NSMutableArray *results = [NSMutableArray array];

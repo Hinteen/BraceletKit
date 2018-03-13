@@ -104,37 +104,6 @@
     }];
     return results;
 }
-//+ (NSArray<BKQuery *> *)querySummaryWithDate:(NSDate *)date unit:(BKQueryUnit)unit{
-//    NSMutableArray<BKHeartRateQuery *> *results = [NSMutableArray arrayWithCapacity:unit];
-//    [self getAlldateWithDate:date unit:unit completion:^(NSDate * _Nonnull date) {
-//        BKHeartRateQuery *result = [[self alloc] init];
-//        result.date = date;
-//        NSArray<BKHeartRateData *> *hrModels = [BKHeartRateData selectWithDate:date unit:BKQueryUnitDaily];
-//        NSArray<BKHeartRateHourData *> *hrHourModels = [BKHeartRateHourData selectWithDate:date unit:BKQueryUnitDaily];
-//        [hrModels enumerateObjectsUsingBlock:^(BKHeartRateData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            [result calcHeartRateData:obj];
-//        }];
-//        if (unit == BKQueryUnitDaily) {
-//            [hrHourModels enumerateObjectsUsingBlock:^(BKHeartRateHourData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//                for (int i = 0; i < 60; i++) {
-//                    if (obj.hrDetail[i].intValue < 255) {
-//                        result.minuteHR[obj.hour * 60 + i] = obj.hrDetail[i];
-//                    } else {
-//                        result.minuteHR[obj.hour * 60 + i] = @0;
-//                    }
-//
-//                }
-//            }];
-//        }
-//        BKDayData *day = [BKDayData selectWithDate:date unit:BKQueryUnitDaily].lastObject;
-//        if (day) {
-//            result.maxBpm = day.maxBpm;
-//            result.avgBpm = day.avgBpm;
-//            result.minBpm = day.minBpm;
-//        }
-//        [results addObject:result];
-//    }];
-//    return results;
-//}
+
 
 @end
