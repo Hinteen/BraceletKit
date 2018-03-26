@@ -15,15 +15,15 @@
 
 @implementation BKUser (BKExtension)
 
-- (ZeronerPersonal *)transformToZeronerPersonal{
-    ZeronerPersonal *model = [ZeronerPersonal defaultPersonalModel];
+- (ZRPersonal *)transformToZRPersonal{
+    ZRPersonal *model = [ZRPersonal defaultModel];
+    model.height = (NSInteger)self.height;
+    model.weight = (NSInteger)self.weight;
     if (self.gender == BKGenderFemale) {
         model.gender = 1;
     } else {
         model.gender = 0;
     }
-    model.height = (NSInteger)self.height;
-    model.weight = (NSInteger)self.weight;
     NSInteger year1 = [NSDate date].stringValue(@"yyyy").integerValue;
     NSInteger year2 = self.birthday.stringValue(@"yyyy").integerValue;
     model.age = year1 - year2;
@@ -32,27 +32,36 @@
 
 @end
 
-@implementation ZeronerBlePeripheral (BKExtension)
+@implementation ZRBlePeripheral (BKExtension)
 
 - (BKDevice *)transformToBKDevice{
     BKDevice *bk = [BKDevice new];
     bk.mac = self.mediaAC;
     bk.name = self.deviceName;
     bk.uuid = self.uuidString;
-    bk.type = (BKDeviceType)[BLELib3 shareInstance].deviceType;
+    [BLEAutumn midAutumn:BLEProtocol_Any];
+
+#warning    bk.type = (BKDeviceType)[ble].deviceType;
     bk.peripheral = self.cbDevice;
     bk.rssi = self.RSSI;
-    bk.zeronerBlePeripheral = self;
+    bk.zrPeripheral = self;
     if ([bk.mac isEqualToString:@"advertisementData.length is less than 6"]) {
-        bk.mac = bk.restoreMac;
+//        bk.mac = bk.restoreMac;
     }
     return bk;
 }
 
 @end
 
+@implementation BKDevice (BKModelExtension)
 
-@implementation ZeronerHWOption (BKExtension)
+- (ZRBlePeripheral *)transformToZRBlePeripheral{
+    return nil;
+}
+
+@end
+
+@implementation ZRHWOption (BKExtension)
 
 - (BKPreferences *)transformToBKPreferences{
     BKPreferences *model = [[BKPreferences alloc] init];
@@ -65,7 +74,7 @@
     model.disconnectTip = self.disConnectTip;
     model.autoHeartRate = self.autoHeartRate;
     model.autoSport = self.autoSport;
-    model.findPhoneSwitch = self.findPhoneSwitch;
+//    model.findPhoneSwitch = self.findPhoneSwitch;
     model.distanceUnit = (NSUInteger)self.unitType;
     model.hourFormat = (NSUInteger)self.timeFlag;
     model.language = (NSUInteger)self.language;
@@ -82,8 +91,8 @@
 
 @implementation BKPreferences (BKExtension)
 
-- (ZeronerHWOption *)transformToZeronerHWOption{
-    ZeronerHWOption *model = [ZeronerHWOption defaultHWOption];
+- (ZRHWOption *)transformToZRHWOption{
+    ZRHWOption *model = [ZRHWOption defaultModel];
     model.ledSwitch = self.ledSwitch;
     model.leftHand = self.leftHand;
     model.wristSwitch = self.wristSwitch;
@@ -93,7 +102,7 @@
     model.disConnectTip = self.disconnectTip;
     model.autoHeartRate = self.autoHeartRate;
     model.autoSport = self.autoSport;
-    model.findPhoneSwitch = self.findPhoneSwitch;
+//    model.findPhoneSwitch = self.findPhoneSwitch;
     model.unitType = (int)self.distanceUnit;
     model.timeFlag = (int)self.hourFormat;
     model.language = (int)self.language;
@@ -105,12 +114,19 @@
     return model;
 }
 
+- (ZRCOption *)transformToZRCOption{
+    ZRCOption *model = [ZRCOption defaultModel];
+    model.findPhoneSwitch = self.findPhoneSwitch;
+    
+    return model;
+}
+
 @end
 
 @implementation BKWeather (BKExtension)
 
-- (ZeronerWeather *)transformToZeronerWeather{
-    ZeronerWeather *model = [[ZeronerWeather alloc] init];
+- (ZRWeather *)transformToZeronerWeather{
+    ZRWeather *model = [ZRWeather defaultModel];
     model.temp = self.temperature;
     if (self.unit == BKTemperatureUnitKelvin) {
         // 手表暂不支持开尔文温度
@@ -123,4 +139,17 @@
     return model;
 }
 
+@end
+
+@implementation BKDNDMode (BKModelExtension)
+
+- (ZRDNDModel *)transformToZRDNDModel{
+    ZRDNDModel *model = [ZRDNDModel defaultModel];
+    model.dndType = self.type;
+    model.startHour = self.startHour;
+    model.startMinute = self.startMinute;
+    model.endHour = self.endHour;
+    model.endMinute = self.endMinute;
+    return model;
+}
 @end

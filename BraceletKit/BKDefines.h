@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 
 
+typedef NS_ENUM(NSUInteger, BKDeviceClass) {
+    BKDeviceClassNull       = 0,
+    BKDeviceClassEggRoll    = 1,
+    BKDeviceClassWatch      = 2,
+    BKDeviceClassColorful   = 3,
+    BKDeviceClassAny        = 8,
+};
+
 /**
  手环类型
 
@@ -205,3 +213,19 @@ typedef NS_ENUM(NSInteger,BKWeatherCondition) {
     BKWeatherConditionNotContain = 10,
 };
 
+
+
+typedef NS_ENUM (NSInteger,BKDNDType){
+    BKDNDTypeNull = 0 , // mean closed dndMode
+    BKDNDTypeNormal ,
+    BKDNDTypeSleep ,   //  firmware must be supportted if used
+    BKDNDTypeAllDay,   //  firmware must be supportted if used
+};
+
+/**
+ 高3位是铃声 0~7对应不同铃声
+ 低5位是反复次数 默认0x01
+ High 3 is the ringtone 0 ~ 7 corresponds to different ringtones
+ Low 5 is the number of iterations default 0x01
+ */
+typedef NSInteger BKRingId;

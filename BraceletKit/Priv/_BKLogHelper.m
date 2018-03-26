@@ -7,9 +7,9 @@
 //
 
 #import "_BKLogHelper.h"
+#import <BLEMidAutumn/BLEMidAutumn.h>
 
-#import <BLE3Framework/BLE3Framework.h>
-
+/*
 @implementation ZeronerBlePeripheral (BKLogExtension)
 
 - (NSString *)description{
@@ -255,5 +255,6 @@
     [str appendFormat:@"}"];
     return str;
 }
+*/
+//@end
 
-@end

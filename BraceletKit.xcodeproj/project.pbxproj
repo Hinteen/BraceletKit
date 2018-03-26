@@ -41,6 +41,8 @@
 		CD25EA392013331D009BEFC1 /* BKDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA372013331D009BEFC1 /* BKDevice.m */; };
 		CD272EE7204804E000FB8E1D /* AXChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD272EE5204804E000FB8E1D /* AXChartView.m */; };
 		CD272EEB2048054900FB8E1D /* BKChartTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD272EE92048054900FB8E1D /* BKChartTVC.m */; };
+		CD2B119220664E4E0026B698 /* BKSchedule.h in Headers */ = {isa = PBXBuildFile; fileRef = CD2B119020664E4E0026B698 /* BKSchedule.h */; };
+		CD2B119320664E4E0026B698 /* BKSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2B119120664E4E0026B698 /* BKSchedule.m */; };
 		CD2E791E1FA0C53300012CDB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2E791D1FA0C53300012CDB /* AppDelegate.m */; };
 		CD2E79211FA0C53300012CDB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2E79201FA0C53300012CDB /* ViewController.m */; };
 		CD2E79241FA0C53300012CDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD2E79221FA0C53300012CDB /* Main.storyboard */; };
@@ -99,9 +101,16 @@
 		CD63B6D820499602007FD4F6 /* BKHourBucketPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63B6D720499602007FD4F6 /* BKHourBucketPicker.m */; };
 		CD63B6DB2049A025007FD4F6 /* BKWeather.h in Headers */ = {isa = PBXBuildFile; fileRef = CD63B6D92049A025007FD4F6 /* BKWeather.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD63B6DC2049A025007FD4F6 /* BKWeather.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63B6DA2049A025007FD4F6 /* BKWeather.m */; };
+		CD697ECA2065F03100250A96 /* BLEMidAutumn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD697EC92065F03100250A96 /* BLEMidAutumn.framework */; };
 		CD6B285D2029EACB00A98FE6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6B285C2029EACB00A98FE6 /* MainViewController.m */; };
 		CD6F6DD92024CA91008D91CF /* MyDevicesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6F6DD82024CA91008D91CF /* MyDevicesVC.m */; };
 		CD6F6DDD2024D286008D91CF /* BKBatteryView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6F6DDC2024D286008D91CF /* BKBatteryView.m */; };
+		CD7B9CD2206648C900145608 /* BKAlarmClock.h in Headers */ = {isa = PBXBuildFile; fileRef = CD7B9CD0206648C900145608 /* BKAlarmClock.h */; };
+		CD7B9CD3206648C900145608 /* BKAlarmClock.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7B9CD1206648C900145608 /* BKAlarmClock.m */; };
+		CD824CF320664B2300EAD10C /* BKSedentary.h in Headers */ = {isa = PBXBuildFile; fileRef = CD824CF120664B2300EAD10C /* BKSedentary.h */; };
+		CD824CF420664B2300EAD10C /* BKSedentary.m in Sources */ = {isa = PBXBuildFile; fileRef = CD824CF220664B2300EAD10C /* BKSedentary.m */; };
+		CD8ABA572066092D00BEDC7C /* BKSession.h in Headers */ = {isa = PBXBuildFile; fileRef = CD8ABA552066092D00BEDC7C /* BKSession.h */; };
+		CD8ABA582066092D00BEDC7C /* BKSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8ABA562066092D00BEDC7C /* BKSession.m */; };
 		CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD944E881FB0B44600373636 /* FindPhoneManager.m */; };
 		CDA003FC20136A6F00E572A7 /* Calibri.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDA003FB20136A6F00E572A7 /* Calibri.ttf */; };
 		CDA0040920146EFB00E572A7 /* _BKDatabaseHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = CDA0040720146EFB00E572A7 /* _BKDatabaseHelper.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -132,6 +141,8 @@
 		CDC2EBAA2017553800C9F77E /* BKSleepQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EBA82017553800C9F77E /* BKSleepQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDC2EBAB2017553800C9F77E /* BKSleepQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EBA92017553800C9F77E /* BKSleepQuery.m */; };
 		CDE04B41201C90DA00A29F31 /* BKDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE04B3F201C90DA00A29F31 /* BKDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDEA2D6E206644FC00FE8072 /* BKDNDMode.h in Headers */ = {isa = PBXBuildFile; fileRef = CDEA2D6C206644FC00FE8072 /* BKDNDMode.h */; };
+		CDEA2D6F206644FC00FE8072 /* BKDNDMode.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEA2D6D206644FC00FE8072 /* BKDNDMode.m */; };
 		DEF70E632A2776ACEB30913A /* libPods-BraceletKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D14689FFFFCA37F6DE88DC /* libPods-BraceletKit.a */; };
 		EC05BC38CB898D8E3D73CB74 /* libPods-BraceletKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE1DC049097F75176EA41B0A /* libPods-BraceletKitDemo.a */; };
 /* End PBXBuildFile section */
@@ -191,6 +202,8 @@
 		CD272EE6204804E000FB8E1D /* AXChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXChartView.h; sourceTree = "<group>"; };
 		CD272EE82048054900FB8E1D /* BKChartTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKChartTVC.h; sourceTree = "<group>"; };
 		CD272EE92048054900FB8E1D /* BKChartTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKChartTVC.m; sourceTree = "<group>"; };
+		CD2B119020664E4E0026B698 /* BKSchedule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSchedule.h; sourceTree = "<group>"; };
+		CD2B119120664E4E0026B698 /* BKSchedule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKSchedule.m; sourceTree = "<group>"; };
 		CD2E79191FA0C53300012CDB /* BraceletKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BraceletKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD2E791C1FA0C53300012CDB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CD2E791D1FA0C53300012CDB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -291,12 +304,19 @@
 		CD63B6D720499602007FD4F6 /* BKHourBucketPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKHourBucketPicker.m; sourceTree = "<group>"; };
 		CD63B6D92049A025007FD4F6 /* BKWeather.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKWeather.h; sourceTree = "<group>"; };
 		CD63B6DA2049A025007FD4F6 /* BKWeather.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKWeather.m; sourceTree = "<group>"; };
+		CD697EC92065F03100250A96 /* BLEMidAutumn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BLEMidAutumn.framework; sourceTree = "<group>"; };
 		CD6B285B2029EACB00A98FE6 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		CD6B285C2029EACB00A98FE6 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		CD6F6DD72024CA91008D91CF /* MyDevicesVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyDevicesVC.h; sourceTree = "<group>"; };
 		CD6F6DD82024CA91008D91CF /* MyDevicesVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyDevicesVC.m; sourceTree = "<group>"; };
 		CD6F6DDB2024D286008D91CF /* BKBatteryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKBatteryView.h; sourceTree = "<group>"; };
 		CD6F6DDC2024D286008D91CF /* BKBatteryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKBatteryView.m; sourceTree = "<group>"; };
+		CD7B9CD0206648C900145608 /* BKAlarmClock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKAlarmClock.h; sourceTree = "<group>"; };
+		CD7B9CD1206648C900145608 /* BKAlarmClock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKAlarmClock.m; sourceTree = "<group>"; };
+		CD824CF120664B2300EAD10C /* BKSedentary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSedentary.h; sourceTree = "<group>"; };
+		CD824CF220664B2300EAD10C /* BKSedentary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKSedentary.m; sourceTree = "<group>"; };
+		CD8ABA552066092D00BEDC7C /* BKSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSession.h; sourceTree = "<group>"; };
+		CD8ABA562066092D00BEDC7C /* BKSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKSession.m; sourceTree = "<group>"; };
 		CD944E871FB0B44600373636 /* FindPhoneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindPhoneManager.h; sourceTree = "<group>"; };
 		CD944E881FB0B44600373636 /* FindPhoneManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindPhoneManager.m; sourceTree = "<group>"; };
 		CDA003FB20136A6F00E572A7 /* Calibri.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Calibri.ttf; sourceTree = "<group>"; };
@@ -327,6 +347,8 @@
 		CDC2EBA82017553800C9F77E /* BKSleepQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSleepQuery.h; sourceTree = "<group>"; };
 		CDC2EBA92017553800C9F77E /* BKSleepQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKSleepQuery.m; sourceTree = "<group>"; };
 		CDE04B3F201C90DA00A29F31 /* BKDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDefines.h; sourceTree = "<group>"; };
+		CDEA2D6C206644FC00FE8072 /* BKDNDMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKDNDMode.h; sourceTree = "<group>"; };
+		CDEA2D6D206644FC00FE8072 /* BKDNDMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKDNDMode.m; sourceTree = "<group>"; };
 		DB1E183FFB52344948ECBE59 /* Pods-BraceletKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKit/Pods-BraceletKit.debug.xcconfig"; sourceTree = "<group>"; };
 		E6EFBFB819873C01F3CF1024 /* Pods-BraceletKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKitDemo/Pods-BraceletKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		FAB7368B52D73BF363A9199C /* Pods-BraceletKitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKitDemo/Pods-BraceletKitDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -348,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEF70E632A2776ACEB30913A /* libPods-BraceletKit.a in Frameworks */,
+				CD697ECA2065F03100250A96 /* BLEMidAutumn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +393,14 @@
 			children = (
 				CD63B6D92049A025007FD4F6 /* BKWeather.h */,
 				CD63B6DA2049A025007FD4F6 /* BKWeather.m */,
+				CDEA2D6C206644FC00FE8072 /* BKDNDMode.h */,
+				CDEA2D6D206644FC00FE8072 /* BKDNDMode.m */,
+				CD7B9CD0206648C900145608 /* BKAlarmClock.h */,
+				CD7B9CD1206648C900145608 /* BKAlarmClock.m */,
+				CD2B119020664E4E0026B698 /* BKSchedule.h */,
+				CD2B119120664E4E0026B698 /* BKSchedule.m */,
+				CD824CF120664B2300EAD10C /* BKSedentary.h */,
+				CD824CF220664B2300EAD10C /* BKSedentary.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -477,6 +508,8 @@
 				CDC2EB8D20172A1300C9F77E /* BKScanner.m */,
 				CDC2EB902017312A00C9F77E /* BKConnector.h */,
 				CDC2EB912017312A00C9F77E /* BKConnector.m */,
+				CD8ABA552066092D00BEDC7C /* BKSession.h */,
+				CD8ABA562066092D00BEDC7C /* BKSession.m */,
 				CD0D17062057DCF4004E8553 /* Model */,
 				CDC2EBAC2017556A00C9F77E /* Query */,
 				CDC2EB892016452500C9F77E /* User */,
@@ -484,6 +517,7 @@
 				CD30B49E201CCB2D00EB8C1B /* Preference */,
 				CDC2EB872016428600C9F77E /* Data */,
 				CDC2EB88201642B700C9F77E /* Priv */,
+				CD697EC92065F03100250A96 /* BLEMidAutumn.framework */,
 				CD2E79441FA0C55800012CDB /* BraceletKit.bundle */,
 				CD2E793A1FA0C54200012CDB /* Info.plist */,
 			);
@@ -842,6 +876,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD25EA382013331D009BEFC1 /* BKDevice.h in Headers */,
+				CD824CF320664B2300EAD10C /* BKSedentary.h in Headers */,
 				CD37F4572014D7BC009B213B /* BKSportData.h in Headers */,
 				CDC2EB922017312A00C9F77E /* BKConnector.h in Headers */,
 				CD37F45F2014E993009B213B /* BKHeartRateHourData.h in Headers */,
@@ -850,7 +885,9 @@
 				CDC2EB792015A96E00C9F77E /* BKSleepData.h in Headers */,
 				CDA004112014A99A00E572A7 /* BKDataIndex.h in Headers */,
 				CDC2EBA2201754F100C9F77E /* BKSportQuery.h in Headers */,
+				CDEA2D6E206644FC00FE8072 /* BKDNDMode.h in Headers */,
 				CDC2EBAA2017553800C9F77E /* BKSleepQuery.h in Headers */,
+				CD2B119220664E4E0026B698 /* BKSchedule.h in Headers */,
 				CD25EA342013330F009BEFC1 /* BKUser.h in Headers */,
 				CDC2EB8E20172A1300C9F77E /* BKScanner.h in Headers */,
 				CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */,
@@ -864,9 +901,11 @@
 				CDB94C6620133A0400CB588C /* _BKModelHelper.h in Headers */,
 				CDC2EBA62017552400C9F77E /* BKHeartRateQuery.h in Headers */,
 				CD25EA1720132FD4009BEFC1 /* _BKHeader.h in Headers */,
+				CD7B9CD2206648C900145608 /* BKAlarmClock.h in Headers */,
 				CDC2EB9E2017419C00C9F77E /* BKQuery.h in Headers */,
 				CDA0040920146EFB00E572A7 /* _BKDatabaseHelper.h in Headers */,
 				CD2E793B1FA0C54200012CDB /* BraceletKit.h in Headers */,
+				CD8ABA572066092D00BEDC7C /* BKSession.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1154,6 +1193,7 @@
 			files = (
 				CD25EA392013331D009BEFC1 /* BKDevice.m in Sources */,
 				CDC2EB8620163E4300C9F77E /* BKPreferences.m in Sources */,
+				CD8ABA582066092D00BEDC7C /* BKSession.m in Sources */,
 				CDC2EB9F2017419C00C9F77E /* BKQuery.m in Sources */,
 				CD37F4602014E993009B213B /* BKHeartRateHourData.m in Sources */,
 				CDA004122014A99A00E572A7 /* BKDataIndex.m in Sources */,
@@ -1164,9 +1204,13 @@
 				CDC2EB8F20172A1300C9F77E /* BKScanner.m in Sources */,
 				CDC2EBAB2017553800C9F77E /* BKSleepQuery.m in Sources */,
 				CD63B6DC2049A025007FD4F6 /* BKWeather.m in Sources */,
+				CD2B119320664E4E0026B698 /* BKSchedule.m in Sources */,
+				CD824CF420664B2300EAD10C /* BKSedentary.m in Sources */,
 				CDC2EB822016099400C9F77E /* BKSportList.m in Sources */,
+				CDEA2D6F206644FC00FE8072 /* BKDNDMode.m in Sources */,
 				CDA0040A20146EFB00E572A7 /* _BKDatabaseHelper.m in Sources */,
 				CDC2EBA3201754F100C9F77E /* BKSportQuery.m in Sources */,
+				CD7B9CD3206648C900145608 /* BKAlarmClock.m in Sources */,
 				CDC2EB7A2015A96E00C9F77E /* BKSleepData.m in Sources */,
 				CD25EA1C2013301E009BEFC1 /* BKServices.m in Sources */,
 				CD37F4542014CCC4009B213B /* BKDayData.m in Sources */,

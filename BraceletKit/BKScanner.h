@@ -39,14 +39,19 @@
 
 @interface BKScanner : NSObject
 
+/**
+ 注册扫描代理
+ 
+ @param delegate 代理
+ */
+- (void)registerScanDelegate:(NSObject<BKScanDelegate> *)delegate;
 
 /**
- 代理
+ 取消注册扫描代理
+ 
+ @param delegate 代理
  */
-@property (weak, nonatomic) NSObject<BKScanDelegate> *delegate;
-
-
-- (instancetype)initWithDelegate:(NSObject<BKScanDelegate> *)delegate;
+- (void)unRegisterScanDelegate:(NSObject<BKScanDelegate> *)delegate;
 
 /**
  扫描设备

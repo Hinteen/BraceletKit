@@ -10,12 +10,14 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "_BKModelHelper.h"
 #import "BKServices.h"
+#import "BKSession.h"
 
-@interface BKScanner() <CBCentralManagerDelegate, BleDiscoverDelegate>
 
-@property (strong, nonatomic) CBCentralManager *central;
+@interface BKScanner() <CBCentralManagerDelegate, BleDiscoverDelegate, BKScanDelegate>
 
 @property (strong, nonatomic) NSMutableArray<BKDevice *> *devices;
+
+@property (strong, nonatomic) NSMutableArray<NSObject<BKScanDelegate> *> *scanDelegates;
 
 @end
 
@@ -25,33 +27,90 @@
 - (instancetype)init{
     if (self = [super init]) {
         _devices = [NSMutableArray array];
-        NSDictionary *options = @{CBCentralManagerOptionShowPowerAlertKey:@YES};
-        self.central = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:options];
-//        self.central = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-        
-        [BLELib3 shareInstance].discoverDelegate = self;
+        self.scanDelegates = [NSMutableArray array];
     }
     return self;
 }
 
 
-
-- (instancetype)initWithDelegate:(NSObject<BKScanDelegate> *)delegate{
-    if (self = [self init]) {
-        _delegate = delegate;
+- (void)registerScanDelegate:(NSObject<BKScanDelegate> *)delegate{
+    if (delegate && ![self.scanDelegates containsObject:delegate]) {
+        [self.scanDelegates addObject:delegate];
     }
-    return self;
+}
+
+- (void)unRegisterScanDelegate:(NSObject<BKScanDelegate> *)delegate{
+    if (delegate && [self.scanDelegates containsObject:delegate]) {
+        [self.scanDelegates removeObject:delegate];
+    }
 }
 
 
 - (void)scanDevice{
-    [[BLELib3 shareInstance] scanDevice];
-    AXCachedLogOBJ(@"开始扫描");
+    [[BKSession sharedInstance] requestScanDevice:YES completion:^{
+        AXCachedLogOBJ(@"开始扫描");
+    } error:^(NSError * _Nullable error) {
+        AXCachedLogError(error);
+    }];
 }
 
 - (void)stopScan{
-    [[BLELib3 shareInstance] stopScan];
-    AXCachedLogOBJ(@"停止扫描");
+    [[BKSession sharedInstance] requestScanDevice:NO completion:^{
+        AXCachedLogOBJ(@"停止扫描");
+    } error:^(NSError * _Nullable error) {
+        AXCachedLogError(error);
+    }];
+}
+
+- (void)allScannerDelegates:(void (^)(NSObject<BKScanDelegate> *delegate))handler{
+    [self.scanDelegates enumerateObjectsUsingBlock:^(NSObject<BKScanDelegate> *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (handler) {
+            handler(obj);
+        }
+    }];
+}
+
+#pragma mark - discover delegate
+
+/**
+ SDK发现设备
+ 
+ @param device 设备
+ */
+- (void)scannerDidDiscoverDevice:(BKDevice *)device{
+    [self.devices addObject:device];
+    [self allScannerDelegates:^(NSObject<BKScanDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(scannerDidDiscoverDevice:)]) {
+            [delegate scannerDidDiscoverDevice:device];
+        }
+    }];
+}
+
+
+/**
+ CentralManager状态改变
+ 
+ @param central CentralManager
+ */
+- (void)scannerForCentralManagerDidUpdateState:(CBCentralManager *)central{
+    [self allScannerDelegates:^(NSObject<BKScanDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(scannerForCentralManagerDidUpdateState:)]) {
+            [delegate scannerForCentralManagerDidUpdateState:central];
+        }
+    }];
+}
+
+/**
+ CentralManager发现设备
+ 
+ @param device 设备
+ */
+- (void)scannerForCentralManagerDidDiscoverDevice:(BKDevice *)device{
+    [self allScannerDelegates:^(NSObject<BKScanDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(scannerForCentralManagerDidDiscoverDevice:)]) {
+            [delegate scannerForCentralManagerDidDiscoverDevice:device];
+        }
+    }];
 }
 
 
@@ -59,16 +118,11 @@
 #pragma mark - cbcentral delegate
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central{
-    if ([self.delegate respondsToSelector:@selector(scannerForCentralManagerDidUpdateState:)]) {
-        [self.delegate scannerForCentralManagerDidUpdateState:central];
-    }
+    [self scannerForCentralManagerDidUpdateState:central];
 }
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *, id> *)advertisementData RSSI:(NSNumber *)RSSI{
-    ZeronerBlePeripheral *model = [[ZeronerBlePeripheral alloc] initWith:peripheral andAdvertisementData:advertisementData];
-    if ([self.delegate respondsToSelector:@selector(scannerForCentralManagerDidDiscoverDevice:)]) {
-        [self.delegate scannerForCentralManagerDidDiscoverDevice:model.transformToBKDevice];
-    }
+    
 }
 
 
@@ -80,29 +134,22 @@
  
  @param iwDevice Instance contain a CBPeripheral object and the device's MAC address
  */
-- (void)IWBLEDidDiscoverDeviceWithMAC:(ZeronerBlePeripheral *)iwDevice{
+- (void)solsticeDidDiscoverDeviceWithMAC:(ZRBlePeripheral *)iwDevice{
     AXCachedLogOBJ(iwDevice);
-    BKDevice *device = iwDevice.transformToBKDevice;
-    [self.devices addObject:device];
-    if ([self.delegate respondsToSelector:@selector(scannerDidDiscoverDevice:)]) {
-        [self.delegate scannerDidDiscoverDevice:device];
-    }
-    if ([BKServices sharedInstance].connector.state == BKConnectStateBindingUnconnected) {
-        if ([device.mac isEqualToString:[BKDevice currentDevice].mac]) {
-            [[BKServices sharedInstance].connector connectDevice:device];
-        }
-    }
+    [self scannerDidDiscoverDevice:iwDevice.transformToBKDevice];
+    //    if ([BKServices sharedInstance].connector.state == BKConnectStateBindingUnconnected) {
+    //        if ([device.mac isEqualToString:[BKDevice currentDevice].mac]) {
+    //            [[BKServices sharedInstance].connector connectDevice:device];
+    //        }
+    //    }
 }
 
-
-#pragma mark optional
 /**
- *
- *  @return Specifal services used for communication. For exeample, like bracelet, you should return  @{@"FF20",@"FFE5"}, you also should not implement this method if want to connect with zeroner's bracelet.
+ * Search stopped
  */
-//- (NSArray<NSString *> *)serverUUID{
-//    return @[@"FF20", @"FFE5"];
-//}
+- (void)solsticeStopScan{
+    AXCachedLogOBJ(@"stop scan");
+}
 
 
 @end
