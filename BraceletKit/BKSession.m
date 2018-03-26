@@ -9,6 +9,9 @@
 #import "BKSession.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "_BKHeader.h"
+
+
+
 //static inline void bk_ble_option(void (^option)(void), void(^completion)(void), void (^error)(NSError * __nullable)){
 //    CBCentralManagerState state = (CBCentralManagerState)[BKServices sharedInstance].connector.central.state;
 //    BOOL ble = state == CBCentralManagerStatePoweredOn;
@@ -77,6 +80,8 @@ static BKSession *session;
 
 @property (strong, nonatomic) BLEAutumn *manager;
 
+@property (assign, nonatomic) dispatch_queue_t cmdQueue;
+
 @end
 
 @interface BKScanner() <BleDiscoverDelegate>
@@ -112,6 +117,9 @@ static BKSession *session;
     if (self = [super init]) {
         
     }
+    self.cmdQueue = dispatch_queue_create("com.hinteen.braceletkit.request", DISPATCH_QUEUE_SERIAL);
+    dispatch_set_target_queue(self.cmdQueue, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
+    
     self.manager = [BLEAutumn midAutumn:BLEProtocol_Any];
     
     self.manager.discoverDelegate = self.scanner;
@@ -123,8 +131,14 @@ static BKSession *session;
 }
 
 - (void)safeRequest:(void (^)(BLEAutumn *manager))option completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error{
+    
     if (option) {
-        option(self.manager);
+        dispatch_async(self.cmdQueue, ^{
+            option(self.manager);
+        });
+        if (completion) {
+            completion();
+        }
     }
 }
 
@@ -172,7 +186,7 @@ static BKSession *session;
     if (user.transformToZRPersonal) {
         [self safeRequest:^(BLEAutumn *manager) {
             [manager.solstice setPersonalInfo:user.transformToZRPersonal];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), self.cmdQueue, ^{
                 [manager.solstice readPersonalInfo];
             });
         } completion:completion error:error];
@@ -195,7 +209,7 @@ static BKSession *session;
     [self safeRequest:^(BLEAutumn *manager) {
         [manager.solstice setDeviceOption:preferences.transformToZRHWOption];
         [manager.solstice setCustomOptions:preferences.transformToZRCOption];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), self.cmdQueue, ^{
             [manager.solstice readDeviceOption];
             [manager.solstice readCustomOptions];
         });
@@ -302,7 +316,7 @@ static BKSession *session;
             BKDNDMode *dnd = [[BKDNDMode alloc] init];
             dndMode(dnd);
             [manager.solstice setDNDMode:dnd.transformToZRDNDModel];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), self.cmdQueue, ^{
                 [manager.solstice readDNDModeInfo];
             });
         } completion:completion error:error];
