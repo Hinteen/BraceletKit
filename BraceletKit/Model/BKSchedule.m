@@ -18,7 +18,7 @@
     NSInteger day = date.stringValue(@"dd").integerValue;
     NSInteger hour = date.stringValue(@"HH").integerValue;
     NSInteger minute = date.stringValue(@"mm").integerValue;
-    ZRSchedule *model = [[ZRSchedule alloc] initWithTitile:self.title subTitle:self.subtitle year:year month:month day:date hour:hour minute:minute];
+    ZRSchedule *model = [[ZRSchedule alloc] initWithTitile:self.title subTitle:self.subtitle year:year month:month day:day hour:hour minute:minute];
     return model;
 }
 

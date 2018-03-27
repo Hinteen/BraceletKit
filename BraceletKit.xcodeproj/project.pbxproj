@@ -21,6 +21,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		B0787E652069D68E005FA380 /* BKSport.m in Sources */ = {isa = PBXBuildFile; fileRef = B0787E612069D68E005FA380 /* BKSport.m */; };
+		B0787E662069D68E005FA380 /* BKSportTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = B0787E622069D68E005FA380 /* BKSportTarget.m */; };
+		B0787E672069D68E005FA380 /* BKSport.h in Headers */ = {isa = PBXBuildFile; fileRef = B0787E632069D68E005FA380 /* BKSport.h */; };
+		B0787E682069D68E005FA380 /* BKSportTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = B0787E642069D68E005FA380 /* BKSportTarget.h */; };
 		CD20ADA32024551300475E26 /* DeviceSettingTV.m in Sources */ = {isa = PBXBuildFile; fileRef = CD20AD952024551300475E26 /* DeviceSettingTV.m */; };
 		CD20ADA42024551300475E26 /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD20AD972024551300475E26 /* ScanViewController.m */; };
 		CD20ADA52024551300475E26 /* ScanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD20AD982024551300475E26 /* ScanTableViewCell.m */; };
@@ -174,6 +178,10 @@
 /* Begin PBXFileReference section */
 		45D14689FFFFCA37F6DE88DC /* libPods-BraceletKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BraceletKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B04AE3ABF65FA07B8445BD1 /* Pods-BraceletKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKit/Pods-BraceletKit.release.xcconfig"; sourceTree = "<group>"; };
+		B0787E612069D68E005FA380 /* BKSport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKSport.m; sourceTree = "<group>"; };
+		B0787E622069D68E005FA380 /* BKSportTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKSportTarget.m; sourceTree = "<group>"; };
+		B0787E632069D68E005FA380 /* BKSport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKSport.h; sourceTree = "<group>"; };
+		B0787E642069D68E005FA380 /* BKSportTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKSportTarget.h; sourceTree = "<group>"; };
 		CD20AD952024551300475E26 /* DeviceSettingTV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceSettingTV.m; sourceTree = "<group>"; };
 		CD20AD972024551300475E26 /* ScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanViewController.m; sourceTree = "<group>"; };
 		CD20AD982024551300475E26 /* ScanTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanTableViewCell.m; sourceTree = "<group>"; };
@@ -401,6 +409,10 @@
 				CD2B119120664E4E0026B698 /* BKSchedule.m */,
 				CD824CF120664B2300EAD10C /* BKSedentary.h */,
 				CD824CF220664B2300EAD10C /* BKSedentary.m */,
+				B0787E632069D68E005FA380 /* BKSport.h */,
+				B0787E612069D68E005FA380 /* BKSport.m */,
+				B0787E642069D68E005FA380 /* BKSportTarget.h */,
+				B0787E622069D68E005FA380 /* BKSportTarget.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -879,6 +891,7 @@
 				CD824CF320664B2300EAD10C /* BKSedentary.h in Headers */,
 				CD37F4572014D7BC009B213B /* BKSportData.h in Headers */,
 				CDC2EB922017312A00C9F77E /* BKConnector.h in Headers */,
+				B0787E672069D68E005FA380 /* BKSport.h in Headers */,
 				CD37F45F2014E993009B213B /* BKHeartRateHourData.h in Headers */,
 				CD37F4532014CCC4009B213B /* BKDayData.h in Headers */,
 				CDC2EB812016099400C9F77E /* BKSportList.h in Headers */,
@@ -890,6 +903,7 @@
 				CD2B119220664E4E0026B698 /* BKSchedule.h in Headers */,
 				CD25EA342013330F009BEFC1 /* BKUser.h in Headers */,
 				CDC2EB8E20172A1300C9F77E /* BKScanner.h in Headers */,
+				B0787E682069D68E005FA380 /* BKSportTarget.h in Headers */,
 				CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */,
 				CD25EA1B2013301E009BEFC1 /* BKServices.h in Headers */,
 				CD63B6DB2049A025007FD4F6 /* BKWeather.h in Headers */,
@@ -1035,7 +1049,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AXKit.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1088,7 +1102,9 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AXKit.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AXCameraKit.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1201,6 +1217,7 @@
 				CDB94C6720133A0400CB588C /* _BKModelHelper.m in Sources */,
 				CD25EA1820132FD4009BEFC1 /* _BKHeader.m in Sources */,
 				CD37F4582014D7BC009B213B /* BKSportData.m in Sources */,
+				B0787E662069D68E005FA380 /* BKSportTarget.m in Sources */,
 				CDC2EB8F20172A1300C9F77E /* BKScanner.m in Sources */,
 				CDC2EBAB2017553800C9F77E /* BKSleepQuery.m in Sources */,
 				CD63B6DC2049A025007FD4F6 /* BKWeather.m in Sources */,
@@ -1211,6 +1228,7 @@
 				CDA0040A20146EFB00E572A7 /* _BKDatabaseHelper.m in Sources */,
 				CDC2EBA3201754F100C9F77E /* BKSportQuery.m in Sources */,
 				CD7B9CD3206648C900145608 /* BKAlarmClock.m in Sources */,
+				B0787E652069D68E005FA380 /* BKSport.m in Sources */,
 				CDC2EB7A2015A96E00C9F77E /* BKSleepData.m in Sources */,
 				CD25EA1C2013301E009BEFC1 /* BKServices.m in Sources */,
 				CD37F4542014CCC4009B213B /* BKDayData.m in Sources */,

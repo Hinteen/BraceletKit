@@ -348,10 +348,22 @@ static BKSession *session;
     } completion:completion error:error];
 }
 
-
 - (void)requestUpdateSchedule:(BKSchedule *)schedule completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager) {
         [manager.solstice setSchedule:schedule.transformToZRSchedule];
+    } completion:completion error:error];
+}
+
+
+- (void)requestClearAllClocks:(BKSchedule *)schedule completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    [self safeRequest:^(BLEAutumn *manager) {
+        [manager.solstice clearAllClocks];
+    } completion:completion error:error];
+}
+
+- (void)requestClearAllSchedule:(BKSchedule *)schedule completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    [self safeRequest:^(BLEAutumn *manager) {
+        [manager.solstice clearAllSchedules];
     } completion:completion error:error];
 }
 
