@@ -21,6 +21,15 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		B02507AC206A3EAD00535766 /* BKAction.h in Headers */ = {isa = PBXBuildFile; fileRef = B02507A5206A3EAC00535766 /* BKAction.h */; };
+		B02507AD206A3EAD00535766 /* BKAction.m in Sources */ = {isa = PBXBuildFile; fileRef = B02507A6206A3EAC00535766 /* BKAction.m */; };
+		B02507AE206A3EAD00535766 /* BKAction.m in Sources */ = {isa = PBXBuildFile; fileRef = B02507A6206A3EAC00535766 /* BKAction.m */; };
+		B02507AF206A3EAD00535766 /* BKRoll.h in Headers */ = {isa = PBXBuildFile; fileRef = B02507A7206A3EAC00535766 /* BKRoll.h */; };
+		B02507B0206A3EAD00535766 /* BKMotor.h in Headers */ = {isa = PBXBuildFile; fileRef = B02507A8206A3EAC00535766 /* BKMotor.h */; };
+		B02507B3206A3EAD00535766 /* BKMotor.m in Sources */ = {isa = PBXBuildFile; fileRef = B02507AA206A3EAD00535766 /* BKMotor.m */; };
+		B02507B4206A3EAD00535766 /* BKMotor.m in Sources */ = {isa = PBXBuildFile; fileRef = B02507AA206A3EAD00535766 /* BKMotor.m */; };
+		B02507B5206A3EAD00535766 /* BKRoll.m in Sources */ = {isa = PBXBuildFile; fileRef = B02507AB206A3EAD00535766 /* BKRoll.m */; };
+		B02507B6206A3EAD00535766 /* BKRoll.m in Sources */ = {isa = PBXBuildFile; fileRef = B02507AB206A3EAD00535766 /* BKRoll.m */; };
 		B0787E652069D68E005FA380 /* BKSport.m in Sources */ = {isa = PBXBuildFile; fileRef = B0787E612069D68E005FA380 /* BKSport.m */; };
 		B0787E662069D68E005FA380 /* BKSportTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = B0787E622069D68E005FA380 /* BKSportTarget.m */; };
 		B0787E672069D68E005FA380 /* BKSport.h in Headers */ = {isa = PBXBuildFile; fileRef = B0787E632069D68E005FA380 /* BKSport.h */; };
@@ -178,6 +187,12 @@
 /* Begin PBXFileReference section */
 		45D14689FFFFCA37F6DE88DC /* libPods-BraceletKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BraceletKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B04AE3ABF65FA07B8445BD1 /* Pods-BraceletKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKit/Pods-BraceletKit.release.xcconfig"; sourceTree = "<group>"; };
+		B02507A5206A3EAC00535766 /* BKAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKAction.h; sourceTree = "<group>"; };
+		B02507A6206A3EAC00535766 /* BKAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKAction.m; sourceTree = "<group>"; };
+		B02507A7206A3EAC00535766 /* BKRoll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKRoll.h; sourceTree = "<group>"; };
+		B02507A8206A3EAC00535766 /* BKMotor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKMotor.h; sourceTree = "<group>"; };
+		B02507AA206A3EAD00535766 /* BKMotor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKMotor.m; sourceTree = "<group>"; };
+		B02507AB206A3EAD00535766 /* BKRoll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKRoll.m; sourceTree = "<group>"; };
 		B0787E612069D68E005FA380 /* BKSport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKSport.m; sourceTree = "<group>"; };
 		B0787E622069D68E005FA380 /* BKSportTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKSportTarget.m; sourceTree = "<group>"; };
 		B0787E632069D68E005FA380 /* BKSport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKSport.h; sourceTree = "<group>"; };
@@ -413,6 +428,12 @@
 				B0787E612069D68E005FA380 /* BKSport.m */,
 				B0787E642069D68E005FA380 /* BKSportTarget.h */,
 				B0787E622069D68E005FA380 /* BKSportTarget.m */,
+				B02507A5206A3EAC00535766 /* BKAction.h */,
+				B02507A6206A3EAC00535766 /* BKAction.m */,
+				B02507A8206A3EAC00535766 /* BKMotor.h */,
+				B02507AA206A3EAD00535766 /* BKMotor.m */,
+				B02507A7206A3EAC00535766 /* BKRoll.h */,
+				B02507AB206A3EAD00535766 /* BKRoll.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -908,12 +929,15 @@
 				CD25EA1B2013301E009BEFC1 /* BKServices.h in Headers */,
 				CD63B6DB2049A025007FD4F6 /* BKWeather.h in Headers */,
 				CDA0040D201491DF00E572A7 /* BKData.h in Headers */,
+				B02507AC206A3EAD00535766 /* BKAction.h in Headers */,
 				CD37F45B2014E1BF009B213B /* BKHeartRateData.h in Headers */,
 				CDE04B41201C90DA00A29F31 /* BKDefines.h in Headers */,
 				CDC2EB8520163E4300C9F77E /* BKPreferences.h in Headers */,
+				B02507B0206A3EAD00535766 /* BKMotor.h in Headers */,
 				CD25EA2720133083009BEFC1 /* _BKLogHelper.h in Headers */,
 				CDB94C6620133A0400CB588C /* _BKModelHelper.h in Headers */,
 				CDC2EBA62017552400C9F77E /* BKHeartRateQuery.h in Headers */,
+				B02507AF206A3EAD00535766 /* BKRoll.h in Headers */,
 				CD25EA1720132FD4009BEFC1 /* _BKHeader.h in Headers */,
 				CD7B9CD2206648C900145608 /* BKAlarmClock.h in Headers */,
 				CDC2EB9E2017419C00C9F77E /* BKQuery.h in Headers */,
@@ -1193,12 +1217,15 @@
 				CD33896D204658A600C206C6 /* BKGenderPicker.m in Sources */,
 				CD3FC1991FA20B730054B26B /* MJFoundation.m in Sources */,
 				CD616CA71FB9E0B300E38244 /* BaseViewController.m in Sources */,
+				B02507AD206A3EAD00535766 /* BKAction.m in Sources */,
 				CD3389732046619100C206C6 /* BKHeightPicker.m in Sources */,
 				CD2E791E1FA0C53300012CDB /* AppDelegate.m in Sources */,
 				CD3FC1961FA20B730054B26B /* NSObject+MJClass.m in Sources */,
 				CD3FC11E1FA20A0B0054B26B /* BaseServices.m in Sources */,
 				CD3389802046BE9E00C206C6 /* BKDateSegmentedControl.m in Sources */,
 				CD6F6DDD2024D286008D91CF /* BKBatteryView.m in Sources */,
+				B02507B3206A3EAD00535766 /* BKMotor.m in Sources */,
+				B02507B5206A3EAD00535766 /* BKRoll.m in Sources */,
 				CD21BFFF2049574300E6F702 /* BKDescriptionUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1212,6 +1239,7 @@
 				CD8ABA582066092D00BEDC7C /* BKSession.m in Sources */,
 				CDC2EB9F2017419C00C9F77E /* BKQuery.m in Sources */,
 				CD37F4602014E993009B213B /* BKHeartRateHourData.m in Sources */,
+				B02507B6206A3EAD00535766 /* BKRoll.m in Sources */,
 				CDA004122014A99A00E572A7 /* BKDataIndex.m in Sources */,
 				CDC2EB932017312A00C9F77E /* BKConnector.m in Sources */,
 				CDB94C6720133A0400CB588C /* _BKModelHelper.m in Sources */,
@@ -1220,6 +1248,7 @@
 				B0787E662069D68E005FA380 /* BKSportTarget.m in Sources */,
 				CDC2EB8F20172A1300C9F77E /* BKScanner.m in Sources */,
 				CDC2EBAB2017553800C9F77E /* BKSleepQuery.m in Sources */,
+				B02507B4206A3EAD00535766 /* BKMotor.m in Sources */,
 				CD63B6DC2049A025007FD4F6 /* BKWeather.m in Sources */,
 				CD2B119320664E4E0026B698 /* BKSchedule.m in Sources */,
 				CD824CF420664B2300EAD10C /* BKSedentary.m in Sources */,
@@ -1236,6 +1265,7 @@
 				CDC2EBA72017552400C9F77E /* BKHeartRateQuery.m in Sources */,
 				CD25EA2820133083009BEFC1 /* _BKLogHelper.m in Sources */,
 				CDA0040E201491DF00E572A7 /* BKData.m in Sources */,
+				B02507AE206A3EAD00535766 /* BKAction.m in Sources */,
 				CD37F45C2014E1BF009B213B /* BKHeartRateData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

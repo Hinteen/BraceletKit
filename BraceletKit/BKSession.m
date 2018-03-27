@@ -334,6 +334,30 @@ static BKSession *session;
     } completion:completion error:error];
 }
 
+- (void)requestReadSportTargets:(BKSportTarget *)sportTarget completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    [self safeRequest:^(BLEAutumn *manager) {
+        [manager.solstice readSportTargets];
+    } completion:completion error:error];
+}
+
+- (void)requestReadSedentary:(BKSedentary *)sedentary completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    [self safeRequest:^(BLEAutumn *manager) {
+        [manager.solstice readSedentary];
+    } completion:completion error:error];
+}
+
+- (void)requestReadSpecialList:(NSInteger)rId completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    [self safeRequest:^(BLEAutumn *manager) {
+        [manager.solstice readSpecialList:rId];
+    } completion:completion error:error];
+}
+
+- (void)requestReadAllList:(BKRoll *)roll completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    [self safeRequest:^(BLEAutumn *manager) {
+        [manager.solstice readAllList];
+    } completion:completion error:error];
+}
+
 
 
 - (void)requestUpdateAlarmClock:(BKAlarmClock *)alarmClock completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
@@ -354,6 +378,27 @@ static BKSession *session;
     } completion:completion error:error];
 }
 
+- (void)requestUpdateMotor:(BKMotor *)motor completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    [self safeRequest:^(BLEAutumn *manager) {
+        [manager.solstice setMotors:[BKMotor defaultMotors]];
+    } completion:completion error:error];
+}
+
+- (void)requestUpdateSportTarget:(BKSportTarget *)sportTarget completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    [self safeRequest:^(BLEAutumn *manager) {
+        [manager.solstice setSportTarget:(ZRSportTarget *)sportTarget];
+    } completion:completion error:error];
+}
+
+- (void)requestUpdateSpecialList:(NSArray <BKRoll *>*)rolls completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    [self safeRequest:^(BLEAutumn *manager) {
+        [manager.solstice addSpecialList:(NSArray <ZRRoll *>*)rolls];
+    } completion:completion error:error];
+}
+
+
+
+
 
 - (void)requestClearAllClocks:(BKSchedule *)schedule completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager) {
@@ -364,6 +409,28 @@ static BKSession *session;
 - (void)requestClearAllSchedule:(BKSchedule *)schedule completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager) {
         [manager.solstice clearAllSchedules];
+    } completion:completion error:error];
+}
+
+- (void)requestRemoveSpecialList:(NSArray <BKRoll *>*)rolls completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    [self safeRequest:^(BLEAutumn *manager) {
+        [manager.solstice removeSpecialList:(NSArray <ZRRoll *>*)rolls];
+    } completion:completion error:error];
+}
+
+- (void)requestClearAllLists:(BKRoll *)roll completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    [self safeRequest:^(BLEAutumn *manager) {
+        [manager.solstice clearAllLists];
+    } completion:completion error:error];
+}
+
+
+
+
+
+- (void)requestFeelMotor:(BKMotor *)motor completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    [self safeRequest:^(BLEAutumn *manager) {
+        [manager.solstice feelMotor:motor];
     } completion:completion error:error];
 }
 

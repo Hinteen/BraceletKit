@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <BLEMidAutumn/ZRModel.h>
 
-@class SportModel;
+//@class SportModel;
 @interface BKSport : SportModel
 
 //@property (nonatomic,assign,readonly)NSString *sportName;

@@ -19,6 +19,8 @@
 #import "BKAlarmClock.h"
 #import "BKSedentary.h"
 #import "BKSchedule.h"
+#import "BKSportTarget.h"
+#import "BKMotor.h"
 // 私有工具类
 #import "_BKDatabaseHelper.h"
 #import "_BKModelHelper.h"

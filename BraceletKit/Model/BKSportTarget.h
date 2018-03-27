@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <BLEMidAutumn/ZRModel.h>
+//#import <BLEMidAutumn/ZRModel.h>
 
 @class ZRSportTarget;
-@interface BKSportTarget : ZRSportTarget
+@interface BKSportTarget : NSObject
 
 
 
