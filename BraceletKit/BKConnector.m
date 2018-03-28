@@ -12,6 +12,8 @@
 #import "BKServices.h"
 #import "BKSession.h"
 
+static BKConnector *instance;
+
 @interface BKConnector() <CBCentralManagerDelegate, BleConnectDelegate, BKServicesDelegate>
 
 @property (strong, nonatomic) NSMutableArray<NSObject<BKConnectDelegate> *> *connectDelegates;
@@ -23,6 +25,17 @@
 @end
 
 @implementation BKConnector
+
+
++ (instancetype)sharedInstance{
+    if (!instance) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            instance = [[BKConnector alloc] init];
+        });
+    }
+    return instance;
+}
 
 
 - (instancetype)init{
@@ -116,6 +129,7 @@
  @param device 设备
  */
 - (void)connectorDidConnectedDevice:(BKDevice *)device{
+    _device = device;
     [self allConnectDelegates:^(NSObject<BKConnectDelegate> *delegate) {
         if ([delegate respondsToSelector:@selector(connectorDidConnectedDevice:)]) {
             [delegate connectorDidConnectedDevice:device];

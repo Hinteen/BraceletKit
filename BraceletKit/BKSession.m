@@ -80,7 +80,7 @@ static BKSession *session;
 
 @property (strong, nonatomic) BLEAutumn *manager;
 
-@property (assign, nonatomic) dispatch_queue_t cmdQueue;
+@property (strong, nonatomic) dispatch_queue_t cmdQueue;
 
 @end
 
@@ -121,6 +121,12 @@ static BKSession *session;
     dispatch_set_target_queue(self.cmdQueue, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
     
     self.manager = [BLEAutumn midAutumn:BLEProtocol_Any];
+
+    
+    _scanner = [BKScanner sharedInstance];
+    _connector = [BKConnector sharedInstance];
+    
+    
     
     self.manager.discoverDelegate = self.scanner;
     self.manager.connectDelegate = self.connector;

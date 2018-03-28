@@ -27,13 +27,13 @@
 - (void)ax_tableViewDidLoadFinished:(UITableView<AXTableView> *)tableView{
     self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         __weak typeof(self) weakSelf = self;
-        if ([BKDevice currentDevice]) {
-//            [[BKDevice currentDevice] requestUpdateBatteryCompletion:nil error:^(NSError * _Nonnull error) {
-//                [weakSelf.mj_header endRefreshing];
-//            }];
-        } else {
+//        if ([BKDevice currentDevice]) {
+            [[BKSession sharedInstance] requestUpdateBatteryCompletion:nil error:^(NSError * _Nonnull error) {
+                [weakSelf.mj_header endRefreshing];
+            }];
+//        } else {
             [weakSelf.mj_header endRefreshing];
-        }
+//        }
     }];
 }
 

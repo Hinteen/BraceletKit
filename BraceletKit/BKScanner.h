@@ -39,6 +39,10 @@
 
 @interface BKScanner : NSObject
 
+
+
++ (instancetype)sharedInstance;
+
 /**
  注册扫描代理
  

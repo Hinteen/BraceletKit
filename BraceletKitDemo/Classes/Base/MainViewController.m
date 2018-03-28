@@ -20,7 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    [[BKServices sharedInstance] registerConnectDelegate:self];
+    [[BKConnector sharedInstance] registerConnectDelegate:self];
     
     
 }
@@ -32,7 +32,7 @@
 
 
 - (void)dealloc{
-//    [[BKServices sharedInstance] unRegisterConnectDelegate:self];
+    [[BKConnector sharedInstance] unRegisterConnectDelegate:self];
 }
 
 

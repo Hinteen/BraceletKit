@@ -64,6 +64,9 @@
  */
 @property (strong, readonly, nonatomic) CBPeripheral *peripheral;
 
+
++ (instancetype)sharedInstance;
+
 /**
  注册连接代理
  

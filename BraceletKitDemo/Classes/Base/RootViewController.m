@@ -22,8 +22,8 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = axThemeManager.color.background;
     
-//    [[BKServices sharedInstance] registerScanDelegate:self];
-//    [[BKServices sharedInstance] registerConnectDelegate:self];
+    [[BKScanner sharedInstance] registerScanDelegate:self];
+    [[BKConnector sharedInstance] registerConnectDelegate:self];
 //    [[BKServices sharedInstance] registerDeviceDelegate:self];
     
     self.mainTabBarVC = [[BaseTabBarController alloc] init];
@@ -35,8 +35,8 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-//    [[BKServices sharedInstance] unRegisterScanDelegate:self];
-//    [[BKServices sharedInstance] unRegisterConnectDelegate:self];
+    [[BKScanner sharedInstance] unRegisterScanDelegate:self];
+    [[BKConnector sharedInstance] unRegisterConnectDelegate:self];
 //    [[BKServices sharedInstance] unRegisterScanDelegate:self];
 }
 

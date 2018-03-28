@@ -47,9 +47,9 @@ static BOOL loadFinished = NO;
     if (self = [super init]) {
         
     }
-    _scanner = [[BKScanner alloc] init];
-    _connector = [[BKConnector alloc] init];
-    _session = [[BKSession alloc] init];
+    _scanner = [BKScanner sharedInstance];
+    _connector = [BKConnector sharedInstance];
+    _session = [BKSession sharedInstance];
     
     
 //     // 初始化数据库所有表

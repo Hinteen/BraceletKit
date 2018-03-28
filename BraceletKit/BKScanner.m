@@ -12,6 +12,7 @@
 #import "BKServices.h"
 #import "BKSession.h"
 
+static BKScanner *instance;
 
 @interface BKScanner() <CBCentralManagerDelegate, BleDiscoverDelegate, BKScanDelegate>
 
@@ -30,6 +31,16 @@
         self.scanDelegates = [NSMutableArray array];
     }
     return self;
+}
+
++ (instancetype)sharedInstance{
+    if (!instance) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            instance = [[BKScanner alloc] init];
+        });
+    }
+    return instance;
 }
 
 

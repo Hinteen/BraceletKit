@@ -24,7 +24,7 @@
 
 
 - (void)ax_tableViewDataSource:(void (^)(AXTableModelType *))dataSource{
-    BKUser *user = [BKUser currentUser];
+    /*BKUser *user = [BKUser currentUser];
     
     AXTableModel *dataList = [[AXTableModel alloc] init];
     [dataList addSection:^(AXTableSectionModel *section) {
@@ -100,7 +100,7 @@
         }];
     }];
     
-    dataSource(dataList);
+    dataSource(dataList);*/
     
 }
 
