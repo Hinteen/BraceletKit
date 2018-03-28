@@ -33,6 +33,7 @@
             }];
 //        } else {
             [weakSelf.mj_header endRefreshing];
+        [weakSelf reloadDataSourceAndRefreshTableView];
 //        }
     }];
 }
@@ -59,175 +60,175 @@
             row.title = @"电量";
             row.detail = [NSString stringWithFormat:@"%d%%", (int)device.battery];
         }];
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"model";
-            row.detail = device.model;
-        }];
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"版本";
-            row.detail = device.version;
-            row.target = @"version";
-        }];
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"mac地址";
-            row.detail = device.mac;
-            row.target = @"bleAddr";
-        }];
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"model";
+//            row.detail = device.model;
+//        }];
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"版本";
+//            row.detail = device.version;
+//            row.target = @"version";
+//        }];
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"mac地址";
+//            row.detail = device.mac;
+//            row.target = @"bleAddr";
+//        }];
     }];
     
     
     
-    [dataList addSection:^(AXTableSectionModel *section) {
-        section.headerTitle = @"偏好设置";
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"日期格式";
-            row.target = @"dateFormat";
-            row.detail = [BKDescriptionUtilities dateFormatDescription:device.preferences.dateFormat];
-        }];
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"时间格式";
-            row.target = @"hourFormat";
-            row.detail = [BKDescriptionUtilities hourFormatDescription:device.preferences.hourFormat];
-        }];
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"温度单位";
-            row.target = @"temperature_unit";
-            row.detail = [BKDescriptionUtilities tempUnitDescription:device.preferences.temperatureUnit];
-        }];
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"公英制单位";
-            row.target = @"distance_unit";
-            if (device.preferences.distanceUnit == BKDistanceUnitImperial) {
-                row.detail = @"英制";
-            } else {
-                row.detail = @"公制";
-            }
-        }];
-        if ([device.functions containsObject:@(BKDeviceFunctionWristBlight)]) {
-            [section addRow:^(AXTableRowModel *row) {
-                row.title = @"抬腕亮屏";
-                row.target = @"switch.wrist_blight";
-            }];
-            [section addRow:^(AXTableRowModel *row) {
-                row.title = @"抬腕亮屏时段";
-                row.target = @"wrist_blight_time";
-                if (device.preferences.wristBlightStart > 0 || device.preferences.wristBlightEnd > 0) {
-                    row.detail = [NSString stringWithFormat:@"%d:00 ~ %d:00", (int)device.preferences.wristBlightStart, (int)device.preferences.wristBlightEnd];
-                } else {
-                    row.detail = @"全天支持";
-                }
-            }];
-        }
-        
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"自动运动识别";
-            row.target = @"switch.auto_sport";
-        }];
-        if ([device.functions containsObject:@(BKDeviceFunctionAutoHeartRate)]) {
-            [section addRow:^(AXTableRowModel *row) {
-                row.title = @"自动心率监测";
-                row.target = @"switch.auto_hr";
-            }];
-        }
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"自动睡眠识别";
-            row.target = @"switch.auto_sleep";
-        }];
-        if ([device.functions containsObject:@(BKDeviceFunctionExerciseHRWarning)]) {
-            [section addRow:^(AXTableRowModel *row) {
-                row.title = @"运动心率报警设置";
-                row.target = @"ExerciseHRWarning";
-            }];
-        }
-        
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"断连提醒";
-            row.target = @"switch.disconnect_tip";
-        }];
-        if ([device.functions containsObject:@(BKDeviceFunctionLedLight)]) {
-            [section addRow:^(AXTableRowModel *row) {
-                row.title = @"LED开关";
-                row.target = @"switch.led";
-            }];
-        }
-        
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"advertisement开关";
-            row.target = @"switch.advertisement";
-        }];
-        
-        if ([device.functions containsObject:@(BKDeviceFunctionBackgroundLight)]) {
-            [section addRow:^(AXTableRowModel *row) {
-                row.title = @"背光颜色";
-                row.target = @"backlight";
-                row.detail = [BKDescriptionUtilities bgColorDescription:device.preferences.backgroundColor];
-            }];
-        }
-        
-        if ([device.functions containsObject:@(BKDeviceFunctionMotorControl)]) {
-            [section addRow:^(AXTableRowModel *row) {
-                row.title = @"振动设置";
-                row.target = @"motor_setting";
-            }];
-        }
-        
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"勿扰模式设置";
-            row.target = @"dnd_mode";
-        }];
-        
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"语言";
-            row.target = @"language";
-            row.detail = [BKDescriptionUtilities languageDescription:device.preferences.language];
-        }];
-    }];
+//    [dataList addSection:^(AXTableSectionModel *section) {
+//        section.headerTitle = @"偏好设置";
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"日期格式";
+//            row.target = @"dateFormat";
+//            row.detail = [BKDescriptionUtilities dateFormatDescription:device.preferences.dateFormat];
+//        }];
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"时间格式";
+//            row.target = @"hourFormat";
+//            row.detail = [BKDescriptionUtilities hourFormatDescription:device.preferences.hourFormat];
+//        }];
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"温度单位";
+//            row.target = @"temperature_unit";
+//            row.detail = [BKDescriptionUtilities tempUnitDescription:device.preferences.temperatureUnit];
+//        }];
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"公英制单位";
+//            row.target = @"distance_unit";
+//            if (device.preferences.distanceUnit == BKDistanceUnitImperial) {
+//                row.detail = @"英制";
+//            } else {
+//                row.detail = @"公制";
+//            }
+//        }];
+//        if ([device.functions containsObject:@(BKDeviceFunctionWristBlight)]) {
+//            [section addRow:^(AXTableRowModel *row) {
+//                row.title = @"抬腕亮屏";
+//                row.target = @"switch.wrist_blight";
+//            }];
+//            [section addRow:^(AXTableRowModel *row) {
+//                row.title = @"抬腕亮屏时段";
+//                row.target = @"wrist_blight_time";
+//                if (device.preferences.wristBlightStart > 0 || device.preferences.wristBlightEnd > 0) {
+//                    row.detail = [NSString stringWithFormat:@"%d:00 ~ %d:00", (int)device.preferences.wristBlightStart, (int)device.preferences.wristBlightEnd];
+//                } else {
+//                    row.detail = @"全天支持";
+//                }
+//            }];
+//        }
     
-    [dataList addSection:^(AXTableSectionModel *section) {
-        section.headerTitle = @"功能";
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"更新时间";
-            row.target = @"update time";
-        }];
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"推送消息";
-            row.target = @"pushstring";
-        }];
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"智拍";
-            row.target = @"zhipai";
-        }];
-        
-        
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"久坐提醒";
-            row.target = @"sedentariness";
-        }];
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"日程提醒";
-            row.target = @"schedule";
-        }];
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"闹钟";
-            row.target = @"alarm_clock";
-        }];
-        
-        
-        if ([device.functions containsObject:@(BKDeviceFunctionWeather)]) {
-            [section addRow:^(AXTableRowModel *row) {
-                row.title = @"更新天气";
-                row.target = @"weather";
-            }];
-        }
-        
-        
-        [section addRow:^(AXTableRowModel *row) {
-            row.title = @"提醒手环和系统解绑";
-            row.target = @"noti_unbind";
-        }];
-        
-        
-    }];
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"自动运动识别";
+//            row.target = @"switch.auto_sport";
+//        }];
+//        if ([device.functions containsObject:@(BKDeviceFunctionAutoHeartRate)]) {
+//            [section addRow:^(AXTableRowModel *row) {
+//                row.title = @"自动心率监测";
+//                row.target = @"switch.auto_hr";
+//            }];
+//        }
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"自动睡眠识别";
+//            row.target = @"switch.auto_sleep";
+//        }];
+//        if ([device.functions containsObject:@(BKDeviceFunctionExerciseHRWarning)]) {
+//            [section addRow:^(AXTableRowModel *row) {
+//                row.title = @"运动心率报警设置";
+//                row.target = @"ExerciseHRWarning";
+//            }];
+//        }
+//
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"断连提醒";
+//            row.target = @"switch.disconnect_tip";
+//        }];
+//        if ([device.functions containsObject:@(BKDeviceFunctionLedLight)]) {
+//            [section addRow:^(AXTableRowModel *row) {
+//                row.title = @"LED开关";
+//                row.target = @"switch.led";
+//            }];
+//        }
+//
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"advertisement开关";
+//            row.target = @"switch.advertisement";
+//        }];
+//
+//        if ([device.functions containsObject:@(BKDeviceFunctionBackgroundLight)]) {
+//            [section addRow:^(AXTableRowModel *row) {
+//                row.title = @"背光颜色";
+//                row.target = @"backlight";
+//                row.detail = [BKDescriptionUtilities bgColorDescription:device.preferences.backgroundColor];
+//            }];
+//        }
+//
+//        if ([device.functions containsObject:@(BKDeviceFunctionMotorControl)]) {
+//            [section addRow:^(AXTableRowModel *row) {
+//                row.title = @"振动设置";
+//                row.target = @"motor_setting";
+//            }];
+//        }
+//
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"勿扰模式设置";
+//            row.target = @"dnd_mode";
+//        }];
+//
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"语言";
+//            row.target = @"language";
+//            row.detail = [BKDescriptionUtilities languageDescription:device.preferences.language];
+//        }];
+//    }];
+//
+//    [dataList addSection:^(AXTableSectionModel *section) {
+//        section.headerTitle = @"功能";
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"更新时间";
+//            row.target = @"update time";
+//        }];
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"推送消息";
+//            row.target = @"pushstring";
+//        }];
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"智拍";
+//            row.target = @"zhipai";
+//        }];
+//
+//
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"久坐提醒";
+//            row.target = @"sedentariness";
+//        }];
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"日程提醒";
+//            row.target = @"schedule";
+//        }];
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"闹钟";
+//            row.target = @"alarm_clock";
+//        }];
+//
+//
+//        if ([device.functions containsObject:@(BKDeviceFunctionWeather)]) {
+//            [section addRow:^(AXTableRowModel *row) {
+//                row.title = @"更新天气";
+//                row.target = @"weather";
+//            }];
+//        }
+//
+//
+//        [section addRow:^(AXTableRowModel *row) {
+//            row.title = @"提醒手环和系统解绑";
+//            row.target = @"noti_unbind";
+//        }];
+//
+//
+//    }];
     
     dataSource(dataList);
     

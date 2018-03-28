@@ -15,4 +15,3 @@ FOUNDATION_EXTERN NSString *NSLocalizedStringFromAXKit(NSString *key);
 + (instancetype)axkitBundle;
 
 @end
-
