@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import <BraceletKit/BraceletKit.h>
-#import <BLE3Framework/BLE3Framework.h>
+//#import <BLE3Framework/BLE3Framework.h>
 #import <AXKit/AXKit.h>
 #import "ServicesLayer.h"
 #import "RootViewController.h"
@@ -27,9 +27,9 @@
     AXCachedLogOBJ(@"启动");
     // 加载数据库
 //    [BKData loadDatabase];
-    [[BLELib3 shareInstance] applicationDidFinishLaunchingWithOptions];
+//    [[BLELib3 shareInstance] applicationDidFinishLaunchingWithOptions];
     // @xaoxuu: 启动服务
-    [[BKServices sharedInstance] registerServicesDelegate:self];
+//    [[BKServices sharedInstance] registerServicesDelegate:self];
     
     [ServicesLayer sharedInstance];
     [[UIThemeManager sharedInstance] configDefaultTheme:^(UIThemeManager *theme) {
@@ -76,8 +76,8 @@
     log = [NSString stringWithFormat:@"登录用户me@xaoxuu.com,密码123456.结果：%@", user ? @"成功":@"失败"];
     AXCachedLogOBJ(log);
     if (user) {
-        BOOL ret = [[BKServices sharedInstance] registerServiceWithUser:user];
-        log = [NSString stringWithFormat:@"使用用户<%@>注册服务，结果：%@", user.email, ret ? @"成功":@"失败"];
+//        BOOL ret = [[BKServices sharedInstance] registerServiceWithUser:user];
+//        log = [NSString stringWithFormat:@"使用用户<%@>注册服务，结果：%@", user.email, ret ? @"成功":@"失败"];
         AXCachedLogOBJ(log);
     }
 }
@@ -102,7 +102,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     AXCachedLogOBJ(@"即将进入前台");
-    [[BKDevice currentDevice] requestSyncTimeAtOnceCompletion:nil error:nil];
+//    [[BKDevice currentDevice] requestSyncTimeAtOnceCompletion:nil error:nil];
 }
 
 

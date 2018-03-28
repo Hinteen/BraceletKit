@@ -1,14 +1,10 @@
 PODS:
   - AXCameraKit (0.1.4)
   - AXKit (0.2.0)
-  - BLE3Framework (4.9.2)
   - FMDB (2.7.2):
     - FMDB/standard (= 2.7.2)
   - FMDB/standard (2.7.2)
   - MJRefresh (3.1.15.3)
-  - Realm (3.3.0):
-    - Realm/Headers (= 3.3.0)
-  - Realm/Headers (3.3.0)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -16,21 +12,17 @@ PODS:
 DEPENDENCIES:
   - AXCameraKit
   - AXKit
-  - BLE3Framework
   - FMDB
   - MJRefresh
-  - Realm
   - YYKit
 
 SPEC CHECKSUMS:
   AXCameraKit: b7b9efb0394e94356ceb7e4ac85085903f9603c7
   AXKit: cc75f3530aeb86d16b280a5e2640bba90b4fde82
-  BLE3Framework: 2a8f1d7ba2648e7d09bc6c4176a95911e768044e
   FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
-  Realm: 7d74ad6c5020432f58fe5e1df90bb6d97b2c7fef
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 0e2b7903244b17ea0c042644ca60a448d2ea3024
+PODFILE CHECKSUM: a762c2edbfead8c3602861ba97e66122040ce751
 
 COCOAPODS: 1.4.0

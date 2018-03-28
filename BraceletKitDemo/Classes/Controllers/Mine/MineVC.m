@@ -25,7 +25,7 @@
     self.view.height -= kTabBarHeight;
     [self setupTableView];
     
-    [[BKServices sharedInstance] registerDataObserver:self];
+//    [[BKServices sharedInstance] registerDataObserver:self];
     
     
 }
@@ -36,7 +36,7 @@
 }
 
 - (void)dealloc{
-    [[BKServices sharedInstance] unRegisterDataObserver:self];
+//    [[BKServices sharedInstance] unRegisterDataObserver:self];
 }
 
 

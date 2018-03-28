@@ -29,8 +29,8 @@
     self.view.width = kScreenW;
     self.view.height -= kTabBarHeight;
     
-    [[BKServices sharedInstance] registerDeviceDelegate:self];
-    [[BKServices sharedInstance] registerDataObserver:self];
+//    [[BKServices sharedInstance] registerDeviceDelegate:self];
+//    [[BKServices sharedInstance] registerDataObserver:self];
     [self setupTableView];
     
     __weak typeof(self) weakSelf = self;
@@ -63,8 +63,8 @@
 
 
 - (void)dealloc{
-    [[BKServices sharedInstance] unRegisterDeviceDelegate:self];
-    [[BKServices sharedInstance] unRegisterDataObserver:self];
+//    [[BKServices sharedInstance] unRegisterDeviceDelegate:self];
+//    [[BKServices sharedInstance] unRegisterDataObserver:self];
 }
 
 

@@ -22,9 +22,9 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = axThemeManager.color.background;
     
-    [[BKServices sharedInstance] registerScanDelegate:self];
-    [[BKServices sharedInstance] registerConnectDelegate:self];
-    [[BKServices sharedInstance] registerDeviceDelegate:self];
+//    [[BKServices sharedInstance] registerScanDelegate:self];
+//    [[BKServices sharedInstance] registerConnectDelegate:self];
+//    [[BKServices sharedInstance] registerDeviceDelegate:self];
     
     self.mainTabBarVC = [[BaseTabBarController alloc] init];
     [self addChildViewController:self.mainTabBarVC];
@@ -35,9 +35,9 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    [[BKServices sharedInstance] unRegisterScanDelegate:self];
-    [[BKServices sharedInstance] unRegisterConnectDelegate:self];
-    [[BKServices sharedInstance] unRegisterScanDelegate:self];
+//    [[BKServices sharedInstance] unRegisterScanDelegate:self];
+//    [[BKServices sharedInstance] unRegisterConnectDelegate:self];
+//    [[BKServices sharedInstance] unRegisterScanDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

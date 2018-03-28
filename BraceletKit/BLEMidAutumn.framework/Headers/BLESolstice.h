@@ -311,6 +311,9 @@
  * Clear user's data on device.
  */
 - (void)clearData DEPRECATED_ATTRIBUTE;
+
+
+-(void)testECGModel;
 @end
 
 

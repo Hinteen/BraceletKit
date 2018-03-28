@@ -28,9 +28,9 @@
     self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         __weak typeof(self) weakSelf = self;
         if ([BKDevice currentDevice]) {
-            [[BKDevice currentDevice] requestUpdateBatteryCompletion:nil error:^(NSError * _Nonnull error) {
-                [weakSelf.mj_header endRefreshing];
-            }];
+//            [[BKDevice currentDevice] requestUpdateBatteryCompletion:nil error:^(NSError * _Nonnull error) {
+//                [weakSelf.mj_header endRefreshing];
+//            }];
         } else {
             [weakSelf.mj_header endRefreshing];
         }
@@ -310,13 +310,13 @@
                 tf.returnKeyType = UIReturnKeySend;
                 textField.placeholder = @"DID YOU MISS ME DID YOU MISS ME DID YOU MISS ME DID YOU MISS ME DID YOU MISS ME DID YOU MISS ME";
                 [textField ax_addEditingEndOnExitHandler:^(__kindof UITextField * _Nonnull sender) {
-                    [[BKDevice currentDevice] requestPushMessage:tf.text.length?tf.text:tf.placeholder completion:nil error:nil];
+//                    [[BKDevice currentDevice] requestPushMessage:tf.text.length?tf.text:tf.placeholder completion:nil error:nil];
                 }];
             }];
             [alert ax_addDefaultActionWithTitle:nil handler:^(UIAlertAction * _Nonnull sender) {
                 if (tf) {
                     [tf endEditing:YES];
-                    [[BKDevice currentDevice] requestPushMessage:tf.text.length?tf.text:tf.placeholder completion:nil error:nil];
+//                    [[BKDevice currentDevice] requestPushMessage:tf.text.length?tf.text:tf.placeholder completion:nil error:nil];
                 }
             }];
             [alert ax_addCancelAction];
@@ -440,30 +440,30 @@
     }
     
     else if ([model.target isEqualToString:@"update time"]) {
-        [[BKDevice currentDevice] requestSyncTimeAtOnceCompletion:^{
-            
-        } error:^(NSError * _Nonnull error) {
-            
-        }];
+//        [[BKDevice currentDevice] requestSyncTimeAtOnceCompletion:^{
+//
+//        } error:^(NSError * _Nonnull error) {
+//
+//        }];
     }
     
     else if ([model.target isEqualToString:@"weather"]) {
         [UIAlertController ax_showActionSheetWithTitle:model.title message:nil actions:^(UIAlertController * _Nonnull alert) {
             [alert ax_addDefaultActionWithTitle:@"晴 25 PM 28" handler:^(UIAlertAction * _Nonnull sender) {
-                [[BKDevice currentDevice] requestUpdateWeatherInfo:^(BKWeather * _Nonnull weather) {
-                    weather.condition = BKWeatherConditionFine;
-                    weather.temperature = 25;
-                    weather.unit = [BKDevice currentDevice].preferences.temperatureUnit;
-                    weather.pm2_5 = 28;
-                } completion:nil error:nil];
-            }];
-            [alert ax_addDefaultActionWithTitle:@"阵雨 20 PM 20" handler:^(UIAlertAction * _Nonnull sender) {
-                [[BKDevice currentDevice] requestUpdateWeatherInfo:^(BKWeather * _Nonnull weather) {
-                    weather.condition = BKWeatherConditionShower;
-                    weather.temperature = 20;
-                    weather.unit = [BKDevice currentDevice].preferences.temperatureUnit;
-                    weather.pm2_5 = 20;
-                } completion:nil error:nil];
+//                [[BKDevice currentDevice] requestUpdateWeatherInfo:^(BKWeather * _Nonnull weather) {
+//                    weather.condition = BKWeatherConditionFine;
+//                    weather.temperature = 25;
+//                    weather.unit = [BKDevice currentDevice].preferences.temperatureUnit;
+//                    weather.pm2_5 = 28;
+//                } completion:nil error:nil];
+//            }];
+//            [alert ax_addDefaultActionWithTitle:@"阵雨 20 PM 20" handler:^(UIAlertAction * _Nonnull sender) {
+//                [[BKDevice currentDevice] requestUpdateWeatherInfo:^(BKWeather * _Nonnull weather) {
+//                    weather.condition = BKWeatherConditionShower;
+//                    weather.temperature = 20;
+//                    weather.unit = [BKDevice currentDevice].preferences.temperatureUnit;
+//                    weather.pm2_5 = 20;
+//                } completion:nil error:nil];
             }];
             [alert ax_addCancelAction];
         }];

@@ -53,7 +53,7 @@
 
 - (void)reloadData{
     [self.devices removeAllObjects];
-    [self.devices addObjectsFromArray:[BKDevice allMyDevices]];
+//    [self.devices addObjectsFromArray:[BKDevice allMyDevices]];
     [self.tableView2 reloadData];
     [self.tableView2.mj_header endRefreshing];
 }

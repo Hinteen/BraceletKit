@@ -70,7 +70,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [[BKServices sharedInstance] registerScanDelegate:self];
+//    [[BKServices sharedInstance] registerScanDelegate:self];
     [[BKServices sharedInstance].scanner scanDevice];
 }
 
@@ -78,7 +78,7 @@
     [super viewWillDisappear:animated];
     [self.devices removeAllObjects];
     [[BKServices sharedInstance].scanner stopScan];
-    [[BKServices sharedInstance] unRegisterScanDelegate:self];
+//    [[BKServices sharedInstance] unRegisterScanDelegate:self];
 }
 
 

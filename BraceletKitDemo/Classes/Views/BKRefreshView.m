@@ -38,12 +38,12 @@ static BKRefreshView *instance;
     if (self = [super initWithImage:UIImageNamed(@"nav_refresh")]) {
         
     }
-    [[BKServices sharedInstance] registerDeviceDelegate:self];
+//    [[BKServices sharedInstance] registerDeviceDelegate:self];
     return self;
 }
 
 - (void)dealloc{
-    [[BKServices sharedInstance] unRegisterDeviceDelegate:self];
+//    [[BKServices sharedInstance] unRegisterDeviceDelegate:self];
 }
 
 - (BOOL)isEnable{

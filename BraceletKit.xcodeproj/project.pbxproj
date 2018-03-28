@@ -21,19 +21,20 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		B02507AC206A3EAD00535766 /* BKAction.h in Headers */ = {isa = PBXBuildFile; fileRef = B02507A5206A3EAC00535766 /* BKAction.h */; };
+		B02507AC206A3EAD00535766 /* BKAction.h in Headers */ = {isa = PBXBuildFile; fileRef = B02507A5206A3EAC00535766 /* BKAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B02507AD206A3EAD00535766 /* BKAction.m in Sources */ = {isa = PBXBuildFile; fileRef = B02507A6206A3EAC00535766 /* BKAction.m */; };
 		B02507AE206A3EAD00535766 /* BKAction.m in Sources */ = {isa = PBXBuildFile; fileRef = B02507A6206A3EAC00535766 /* BKAction.m */; };
-		B02507AF206A3EAD00535766 /* BKRoll.h in Headers */ = {isa = PBXBuildFile; fileRef = B02507A7206A3EAC00535766 /* BKRoll.h */; };
-		B02507B0206A3EAD00535766 /* BKMotor.h in Headers */ = {isa = PBXBuildFile; fileRef = B02507A8206A3EAC00535766 /* BKMotor.h */; };
+		B02507AF206A3EAD00535766 /* BKRoll.h in Headers */ = {isa = PBXBuildFile; fileRef = B02507A7206A3EAC00535766 /* BKRoll.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B02507B0206A3EAD00535766 /* BKMotor.h in Headers */ = {isa = PBXBuildFile; fileRef = B02507A8206A3EAC00535766 /* BKMotor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B02507B3206A3EAD00535766 /* BKMotor.m in Sources */ = {isa = PBXBuildFile; fileRef = B02507AA206A3EAD00535766 /* BKMotor.m */; };
 		B02507B4206A3EAD00535766 /* BKMotor.m in Sources */ = {isa = PBXBuildFile; fileRef = B02507AA206A3EAD00535766 /* BKMotor.m */; };
 		B02507B5206A3EAD00535766 /* BKRoll.m in Sources */ = {isa = PBXBuildFile; fileRef = B02507AB206A3EAD00535766 /* BKRoll.m */; };
 		B02507B6206A3EAD00535766 /* BKRoll.m in Sources */ = {isa = PBXBuildFile; fileRef = B02507AB206A3EAD00535766 /* BKRoll.m */; };
 		B0787E652069D68E005FA380 /* BKSport.m in Sources */ = {isa = PBXBuildFile; fileRef = B0787E612069D68E005FA380 /* BKSport.m */; };
 		B0787E662069D68E005FA380 /* BKSportTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = B0787E622069D68E005FA380 /* BKSportTarget.m */; };
-		B0787E672069D68E005FA380 /* BKSport.h in Headers */ = {isa = PBXBuildFile; fileRef = B0787E632069D68E005FA380 /* BKSport.h */; };
-		B0787E682069D68E005FA380 /* BKSportTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = B0787E642069D68E005FA380 /* BKSportTarget.h */; };
+		B0787E672069D68E005FA380 /* BKSport.h in Headers */ = {isa = PBXBuildFile; fileRef = B0787E632069D68E005FA380 /* BKSport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B0787E682069D68E005FA380 /* BKSportTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = B0787E642069D68E005FA380 /* BKSportTarget.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B0ED1DFD206B49BE00F051C3 /* BLEMidAutumn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD697EC92065F03100250A96 /* BLEMidAutumn.framework */; };
 		CD20ADA32024551300475E26 /* DeviceSettingTV.m in Sources */ = {isa = PBXBuildFile; fileRef = CD20AD952024551300475E26 /* DeviceSettingTV.m */; };
 		CD20ADA42024551300475E26 /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD20AD972024551300475E26 /* ScanViewController.m */; };
 		CD20ADA52024551300475E26 /* ScanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD20AD982024551300475E26 /* ScanTableViewCell.m */; };
@@ -54,7 +55,7 @@
 		CD25EA392013331D009BEFC1 /* BKDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25EA372013331D009BEFC1 /* BKDevice.m */; };
 		CD272EE7204804E000FB8E1D /* AXChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD272EE5204804E000FB8E1D /* AXChartView.m */; };
 		CD272EEB2048054900FB8E1D /* BKChartTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD272EE92048054900FB8E1D /* BKChartTVC.m */; };
-		CD2B119220664E4E0026B698 /* BKSchedule.h in Headers */ = {isa = PBXBuildFile; fileRef = CD2B119020664E4E0026B698 /* BKSchedule.h */; };
+		CD2B119220664E4E0026B698 /* BKSchedule.h in Headers */ = {isa = PBXBuildFile; fileRef = CD2B119020664E4E0026B698 /* BKSchedule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD2B119320664E4E0026B698 /* BKSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2B119120664E4E0026B698 /* BKSchedule.m */; };
 		CD2E791E1FA0C53300012CDB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2E791D1FA0C53300012CDB /* AppDelegate.m */; };
 		CD2E79211FA0C53300012CDB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2E79201FA0C53300012CDB /* ViewController.m */; };
@@ -114,15 +115,14 @@
 		CD63B6D820499602007FD4F6 /* BKHourBucketPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63B6D720499602007FD4F6 /* BKHourBucketPicker.m */; };
 		CD63B6DB2049A025007FD4F6 /* BKWeather.h in Headers */ = {isa = PBXBuildFile; fileRef = CD63B6D92049A025007FD4F6 /* BKWeather.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD63B6DC2049A025007FD4F6 /* BKWeather.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63B6DA2049A025007FD4F6 /* BKWeather.m */; };
-		CD697ECA2065F03100250A96 /* BLEMidAutumn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD697EC92065F03100250A96 /* BLEMidAutumn.framework */; };
 		CD6B285D2029EACB00A98FE6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6B285C2029EACB00A98FE6 /* MainViewController.m */; };
 		CD6F6DD92024CA91008D91CF /* MyDevicesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6F6DD82024CA91008D91CF /* MyDevicesVC.m */; };
 		CD6F6DDD2024D286008D91CF /* BKBatteryView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6F6DDC2024D286008D91CF /* BKBatteryView.m */; };
-		CD7B9CD2206648C900145608 /* BKAlarmClock.h in Headers */ = {isa = PBXBuildFile; fileRef = CD7B9CD0206648C900145608 /* BKAlarmClock.h */; };
+		CD7B9CD2206648C900145608 /* BKAlarmClock.h in Headers */ = {isa = PBXBuildFile; fileRef = CD7B9CD0206648C900145608 /* BKAlarmClock.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD7B9CD3206648C900145608 /* BKAlarmClock.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7B9CD1206648C900145608 /* BKAlarmClock.m */; };
-		CD824CF320664B2300EAD10C /* BKSedentary.h in Headers */ = {isa = PBXBuildFile; fileRef = CD824CF120664B2300EAD10C /* BKSedentary.h */; };
+		CD824CF320664B2300EAD10C /* BKSedentary.h in Headers */ = {isa = PBXBuildFile; fileRef = CD824CF120664B2300EAD10C /* BKSedentary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD824CF420664B2300EAD10C /* BKSedentary.m in Sources */ = {isa = PBXBuildFile; fileRef = CD824CF220664B2300EAD10C /* BKSedentary.m */; };
-		CD8ABA572066092D00BEDC7C /* BKSession.h in Headers */ = {isa = PBXBuildFile; fileRef = CD8ABA552066092D00BEDC7C /* BKSession.h */; };
+		CD8ABA572066092D00BEDC7C /* BKSession.h in Headers */ = {isa = PBXBuildFile; fileRef = CD8ABA552066092D00BEDC7C /* BKSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD8ABA582066092D00BEDC7C /* BKSession.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8ABA562066092D00BEDC7C /* BKSession.m */; };
 		CD944E891FB0B44600373636 /* FindPhoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD944E881FB0B44600373636 /* FindPhoneManager.m */; };
 		CDA003FC20136A6F00E572A7 /* Calibri.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDA003FB20136A6F00E572A7 /* Calibri.ttf */; };
@@ -154,7 +154,7 @@
 		CDC2EBAA2017553800C9F77E /* BKSleepQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC2EBA82017553800C9F77E /* BKSleepQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDC2EBAB2017553800C9F77E /* BKSleepQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC2EBA92017553800C9F77E /* BKSleepQuery.m */; };
 		CDE04B41201C90DA00A29F31 /* BKDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE04B3F201C90DA00A29F31 /* BKDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CDEA2D6E206644FC00FE8072 /* BKDNDMode.h in Headers */ = {isa = PBXBuildFile; fileRef = CDEA2D6C206644FC00FE8072 /* BKDNDMode.h */; };
+		CDEA2D6E206644FC00FE8072 /* BKDNDMode.h in Headers */ = {isa = PBXBuildFile; fileRef = CDEA2D6C206644FC00FE8072 /* BKDNDMode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDEA2D6F206644FC00FE8072 /* BKDNDMode.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEA2D6D206644FC00FE8072 /* BKDNDMode.m */; };
 		DEF70E632A2776ACEB30913A /* libPods-BraceletKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45D14689FFFFCA37F6DE88DC /* libPods-BraceletKit.a */; };
 		EC05BC38CB898D8E3D73CB74 /* libPods-BraceletKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE1DC049097F75176EA41B0A /* libPods-BraceletKitDemo.a */; };
@@ -393,7 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEF70E632A2776ACEB30913A /* libPods-BraceletKit.a in Frameworks */,
-				CD697ECA2065F03100250A96 /* BLEMidAutumn.framework in Frameworks */,
+				B0ED1DFD206B49BE00F051C3 /* BLEMidAutumn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -909,41 +909,41 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD25EA382013331D009BEFC1 /* BKDevice.h in Headers */,
-				CD824CF320664B2300EAD10C /* BKSedentary.h in Headers */,
 				CD37F4572014D7BC009B213B /* BKSportData.h in Headers */,
 				CDC2EB922017312A00C9F77E /* BKConnector.h in Headers */,
-				B0787E672069D68E005FA380 /* BKSport.h in Headers */,
 				CD37F45F2014E993009B213B /* BKHeartRateHourData.h in Headers */,
 				CD37F4532014CCC4009B213B /* BKDayData.h in Headers */,
 				CDC2EB812016099400C9F77E /* BKSportList.h in Headers */,
 				CDC2EB792015A96E00C9F77E /* BKSleepData.h in Headers */,
 				CDA004112014A99A00E572A7 /* BKDataIndex.h in Headers */,
 				CDC2EBA2201754F100C9F77E /* BKSportQuery.h in Headers */,
-				CDEA2D6E206644FC00FE8072 /* BKDNDMode.h in Headers */,
 				CDC2EBAA2017553800C9F77E /* BKSleepQuery.h in Headers */,
-				CD2B119220664E4E0026B698 /* BKSchedule.h in Headers */,
 				CD25EA342013330F009BEFC1 /* BKUser.h in Headers */,
 				CDC2EB8E20172A1300C9F77E /* BKScanner.h in Headers */,
-				B0787E682069D68E005FA380 /* BKSportTarget.h in Headers */,
 				CD616CAB1FB9E16D00E38244 /* PrefixHeader.pch in Headers */,
 				CD25EA1B2013301E009BEFC1 /* BKServices.h in Headers */,
 				CD63B6DB2049A025007FD4F6 /* BKWeather.h in Headers */,
 				CDA0040D201491DF00E572A7 /* BKData.h in Headers */,
-				B02507AC206A3EAD00535766 /* BKAction.h in Headers */,
 				CD37F45B2014E1BF009B213B /* BKHeartRateData.h in Headers */,
 				CDE04B41201C90DA00A29F31 /* BKDefines.h in Headers */,
 				CDC2EB8520163E4300C9F77E /* BKPreferences.h in Headers */,
+				CD824CF320664B2300EAD10C /* BKSedentary.h in Headers */,
+				B0787E672069D68E005FA380 /* BKSport.h in Headers */,
+				CDEA2D6E206644FC00FE8072 /* BKDNDMode.h in Headers */,
+				CD2B119220664E4E0026B698 /* BKSchedule.h in Headers */,
+				B0787E682069D68E005FA380 /* BKSportTarget.h in Headers */,
+				B02507AC206A3EAD00535766 /* BKAction.h in Headers */,
 				B02507B0206A3EAD00535766 /* BKMotor.h in Headers */,
+				B02507AF206A3EAD00535766 /* BKRoll.h in Headers */,
+				CD7B9CD2206648C900145608 /* BKAlarmClock.h in Headers */,
+				CD8ABA572066092D00BEDC7C /* BKSession.h in Headers */,
 				CD25EA2720133083009BEFC1 /* _BKLogHelper.h in Headers */,
 				CDB94C6620133A0400CB588C /* _BKModelHelper.h in Headers */,
 				CDC2EBA62017552400C9F77E /* BKHeartRateQuery.h in Headers */,
-				B02507AF206A3EAD00535766 /* BKRoll.h in Headers */,
 				CD25EA1720132FD4009BEFC1 /* _BKHeader.h in Headers */,
-				CD7B9CD2206648C900145608 /* BKAlarmClock.h in Headers */,
 				CDC2EB9E2017419C00C9F77E /* BKQuery.h in Headers */,
 				CDA0040920146EFB00E572A7 /* _BKDatabaseHelper.h in Headers */,
 				CD2E793B1FA0C54200012CDB /* BraceletKit.h in Headers */,
-				CD8ABA572066092D00BEDC7C /* BKSession.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
