@@ -105,7 +105,8 @@
 }
 
 - (void)ax_tableViewDidSelectedRowAtIndexPath:(NSIndexPath *)indexPath{
-    AXTableRowModelType *model = [self tableViewRowModelForIndexPath:indexPath];
+//    AXTableRowModelType *model = [self tableViewRowModelForIndexPath:indexPath];
+    AXTableRowModelType *model = [self modelForRowAtIndexPath:indexPath];
     
     if ([model.target containsString:@"rename"]) {
         [UIAlertController ax_showAlertWithTitle:[NSString stringWithFormat:@"修改%@", model.title] message:[NSString stringWithFormat:@"请输入新的%@", model.title] actions:^(UIAlertController * _Nonnull alert) {

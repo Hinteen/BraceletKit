@@ -202,7 +202,8 @@ static NSInteger hourHRCount = 12;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    AXTableRowModelType *model = [self tableViewRowModelForIndexPath:indexPath];
+//    AXTableRowModelType *model = [self tableViewRowModelForIndexPath:indexPath];
+    AXTableRowModelType *model = [self modelForRowAtIndexPath:indexPath];
     if ([model.target containsString:@"chart."]) {
         BKChartTVC *cell = (BKChartTVC *)[tableView dequeueReusableCellWithIdentifier:chartReuseIdentifier];
         if (!cell) {
@@ -237,7 +238,8 @@ static NSInteger hourHRCount = 12;
 }
 
 - (void)ax_tableViewDidSelectedRowAtIndexPath:(NSIndexPath *)indexPath{
-    AXTableRowModelType *model = [self tableViewRowModelForIndexPath:indexPath];
+//    AXTableRowModelType *model = [self tableViewRowModelForIndexPath:indexPath];
+    AXTableRowModelType *model = [self modelForRowAtIndexPath:indexPath];
     
     
     
@@ -245,7 +247,8 @@ static NSInteger hourHRCount = 12;
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    AXTableRowModelType *model = [self tableViewRowModelForIndexPath:indexPath];
+//    AXTableRowModelType *model = [self tableViewRowModelForIndexPath:indexPath];
+    AXTableRowModelType *model = [self modelForRowAtIndexPath:indexPath];
     if ([model.target containsString:@"chart."]) {
         return 200;
     } else {

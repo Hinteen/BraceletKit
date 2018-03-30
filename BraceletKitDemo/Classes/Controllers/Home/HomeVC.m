@@ -26,7 +26,7 @@ static NSString *chartReuseIdentifier = @"home table view cell for chart";
 // 每小时显示几条心率
 static NSInteger hourHRCount = 12;
 
-@interface HomeVC () <BKDeviceDelegate, BKDataObserver, UITableViewDataSource, UITableViewDelegate, AXChartViewDataSource, AXChartViewDelegate>
+@interface HomeVC () <BKSessionDelegate, BKDataObserver, UITableViewDataSource, UITableViewDelegate, AXChartViewDataSource, AXChartViewDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
@@ -48,7 +48,7 @@ static NSInteger hourHRCount = 12;
     
     [self setupTableView];
     
-//    [[BKServices sharedInstance] registerDeviceDelegate:self];
+    [[BKSession sharedInstance] registerDelegate:self];
 //    [[BKServices sharedInstance] registerDataObserver:self];
     
     [self setupRefreshView];
@@ -78,7 +78,7 @@ static NSInteger hourHRCount = 12;
 }
 
 - (void)dealloc{
-//    [[BKServices sharedInstance] unRegisterDeviceDelegate:self];
+    [[BKSession sharedInstance] unRegisterDelegate:self];
 //    [[BKServices sharedInstance] unRegisterDataObserver:self];
 }
 
@@ -91,14 +91,14 @@ static NSInteger hourHRCount = 12;
     tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         if ([BKDevice currentDevice]) {
             [[BKRefreshView sharedInstance] startAnimating];
-//            [[BKDevice currentDevice] requestUpdateBatteryCompletion:nil error:^(NSError * _Nonnull error) {
+//            [[BKSession sharedInstance] requestUpdateBatteryCompletion:nil error:^(NSError * _Nonnull error) {
 //                [tableView.mj_header endRefreshing];
 //                [[BKRefreshView sharedInstance] stopAnimating];
 //            }];
-//            [[BKDevice currentDevice] requestUpdateAllHealthDataCompletion:nil error:^(NSError * _Nonnull error) {
-//                [tableView.mj_header endRefreshing];
-//                [[BKRefreshView sharedInstance] stopAnimating];
-//            }];
+            [[BKSession sharedInstance] requestUpdateAllHealthDataCompletion:nil error:^(NSError * _Nonnull error) {
+                [tableView.mj_header endRefreshing];
+                [[BKRefreshView sharedInstance] stopAnimating];
+            }];
         } else {
             [tableView.mj_header endRefreshing];
             [[BKRefreshView sharedInstance] stopAnimating];
@@ -110,8 +110,8 @@ static NSInteger hourHRCount = 12;
 - (void)setupRefreshView{
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem ax_itemWithCustomView:[BKRefreshView sharedInstance] action:^(UIBarButtonItem * _Nonnull sender) {
         [[BKRefreshView sharedInstance] startAnimating];
-//        [[BKDevice currentDevice] requestUpdateBatteryCompletion:nil error:nil];
-//        [[BKDevice currentDevice] requestUpdateAllHealthDataCompletion:nil error:nil];
+        [[BKSession sharedInstance] requestUpdateBatteryCompletion:nil error:nil];
+        [[BKSession sharedInstance] requestUpdateAllHealthDataCompletion:nil error:nil];
     }];
 }
 - (void)setupBatteryView{

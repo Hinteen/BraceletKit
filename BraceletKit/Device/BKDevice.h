@@ -12,54 +12,6 @@
 
 @class CBPeripheral, ZRBlePeripheral, BKPreferences, BKData;
 NS_ASSUME_NONNULL_BEGIN
-@protocol BKDeviceDelegate <NSObject>
-
-@optional
-
-/**
- 设备是否正在同步
-
- @param synchronizing 正在同步
- */
-- (void)deviceDidSynchronizing:(BOOL)synchronizing;
-
-/**
- 更新了同步进度
-
- @param progress 进度(0~1)
- */
-- (void)deviceDidUpdateSynchronizeProgress:(CGFloat)progress;
-
-/**
- 更新了设备信息
- */
-- (void)deviceDidUpdateInfo;
-
-/**
- 更新了电池信息
-
- @param battery 电池电量
- */
-- (void)deviceDidUpdateBattery:(NSInteger)battery;
-
-/**
- 手环点击了拍照
- */
-- (void)deviceDidTappedTakePicture;
-
-/**
- 手环点击了查找手机
- */
-- (void)deviceDidTappedFindMyPhone;
-
-/**
- 更新了数据
-
- @param data 数据
- */
-- (void)deviceDidUpdateData:(__kindof BKData *)data;
-
-@end
 
 
 @interface BKDevice : BKData <BKData>
@@ -129,9 +81,10 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  delegate
  */
-@property (weak, nonatomic) NSObject<BKDeviceDelegate> *delegate;
+//@property (weak, nonatomic) NSObject<BKSessionDelegate> *delegate;
 
 + (instancetype)currentDevice;
+
 
 
 

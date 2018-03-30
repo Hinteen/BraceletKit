@@ -8,7 +8,7 @@
 
 #import "CameraViewController.h"
 
-@interface CameraViewController () <BKDeviceDelegate>
+@interface CameraViewController () <BKSessionDelegate>
 
 @end
 
@@ -26,22 +26,22 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    [[BKServices sharedInstance] registerDeviceDelegate:self];
-//    [[BKDevice currentDevice] requestCameraMode:YES completion:^{
-//
-//    } error:^(NSError *error) {
-//
-//    }];
+    [[BKSession sharedInstance] registerDelegate:self];
+    [[BKSession sharedInstance] requestCameraMode:YES completion:^{
+
+    } error:^(NSError *error) {
+
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-//    [[BKServices sharedInstance] unRegisterDeviceDelegate:self];
-//    [[BKDevice currentDevice] requestCameraMode:NO completion:^{
-//        
-//    } error:^(NSError *error) {
-//        
-//    }];
+    [[BKSession sharedInstance] unRegisterDelegate:self];
+    [[BKSession sharedInstance] requestCameraMode:NO completion:^{
+        
+    } error:^(NSError *error) {
+        
+    }];
 }
 
 /**

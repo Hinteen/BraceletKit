@@ -76,11 +76,15 @@
 static BKSession *session;
 
 
-@interface BKSession() <BLEquinox>
+@interface BKSession() <BLEquinox, BKConnectDelegate>
 
 @property (strong, nonatomic) BLEAutumn *manager;
 
 @property (strong, nonatomic) dispatch_queue_t cmdQueue;
+
+@property (strong, nonatomic) id<BLESolstice>solstice;
+
+@property (nonatomic, strong) NSMutableArray <NSObject<BKSessionDelegate> *> *delegates;
 
 @end
 
@@ -88,6 +92,9 @@ static BKSession *session;
 @end
 
 @interface BKConnector() <BleConnectDelegate>
+@end
+
+@interface BKDevice() <BLEquinox>
 @end
 
 @implementation BKSession
@@ -120,27 +127,49 @@ static BKSession *session;
     self.cmdQueue = dispatch_queue_create("com.hinteen.braceletkit.request", DISPATCH_QUEUE_SERIAL);
     dispatch_set_target_queue(self.cmdQueue, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
     
+    _delegates = [NSMutableArray array];
+    
     self.manager = [BLEAutumn midAutumn:BLEProtocol_Any];
 
     
     _scanner = [BKScanner sharedInstance];
     _connector = [BKConnector sharedInstance];
     
-    
+    [_connector registerConnectDelegate:self];
     
     self.manager.discoverDelegate = self.scanner;
     self.manager.connectDelegate = self.connector;
     
-    [self.manager registerSolsticeEquinox:self];
+//    bool bl = [self.manager registerSolsticeEquinox:self];
     
     return self;
 }
 
-- (void)safeRequest:(void (^)(BLEAutumn *manager))option completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error{
+- (void)registerDelegate:(NSObject<BKSessionDelegate> *)delegate{
+    if (delegate && ![self.delegates containsObject:delegate]) {
+        [self.delegates addObject:delegate];
+    }
+}
+
+- (void)unRegisterDelegate:(NSObject<BKSessionDelegate> *)delegate{
+    if (delegate && [self.delegates containsObject:delegate]) {
+        [self.delegates removeObject:delegate];
+    }
+}
+
+- (void)allDelegates:(void (^)(NSObject<BKSessionDelegate> *delegate))handler{
+    [self.delegates enumerateObjectsUsingBlock:^(NSObject<BKSessionDelegate> *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (handler) {
+            handler(obj);
+        }
+    }];
+}
+
+- (void)safeRequest:(void (^)(BLEAutumn *manager, id<BLESolstice>solstice))option completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error{
     
     if (option) {
         dispatch_async(self.cmdQueue, ^{
-            option(self.manager);
+            option(self.manager, self.solstice);
         });
         if (completion) {
             completion();
@@ -149,7 +178,7 @@ static BKSession *session;
 }
 
 - (void)requestScanDevice:(BOOL)scan completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
         if (scan) {
             [manager startScan];
         } else {
@@ -160,7 +189,7 @@ static BKSession *session;
 
 - (void)requestBindDevice:(BKDevice *)device completion:(void (^)(void))completion error:(void (^)(NSError * _Nullable))error{
     if (device.zrPeripheral) {
-        [self safeRequest:^(BLEAutumn *manager) {
+        [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
             [manager bindDevice:device.zrPeripheral];
         } completion:completion error:error];
     } else {
@@ -174,9 +203,9 @@ static BKSession *session;
 }
 
 - (void)requestUnbindDevice:(BKDevice *)device completion:(void (^)(void))completion error:(void (^)(NSError * _Nullable))error{
-    [self safeRequest:^(BLEAutumn *manager) {
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
         [manager unbind];
-        [manager.solstice debindFromSystem];
+        [solstice debindFromSystem];
     } completion:completion error:error];
 }
 
@@ -190,10 +219,10 @@ static BKSession *session;
  */
 - (void)requestUpdateUser:(BKUser *)user completion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
     if (user.transformToZRPersonal) {
-        [self safeRequest:^(BLEAutumn *manager) {
-            [manager.solstice setPersonalInfo:user.transformToZRPersonal];
+        [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+            [solstice setPersonalInfo:user.transformToZRPersonal];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), self.cmdQueue, ^{
-                [manager.solstice readPersonalInfo];
+                [solstice readPersonalInfo];
             });
         } completion:completion error:error];
     } else {
@@ -212,12 +241,12 @@ static BKSession *session;
  @param error 指令发送失败及其原因
  */
 - (void)requestUpdatePreferences:(BKPreferences *)preferences completion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice setDeviceOption:preferences.transformToZRHWOption];
-        [manager.solstice setCustomOptions:preferences.transformToZRCOption];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice setDeviceOption:preferences.transformToZRHWOption];
+        [solstice setCustomOptions:preferences.transformToZRCOption];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), self.cmdQueue, ^{
-            [manager.solstice readDeviceOption];
-            [manager.solstice readCustomOptions];
+            [solstice readDeviceOption];
+            [solstice readCustomOptions];
         });
     } completion:completion error:error];
 }
@@ -229,8 +258,8 @@ static BKSession *session;
  @param error 指令发送失败及其原因
  */
 - (void)requestSyncTimeAtOnceCompletion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice syscTimeAtOnce];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice syscTimeAtOnce];
     } completion:completion error:error];
 }
 
@@ -242,13 +271,13 @@ static BKSession *session;
  @param error 操作失败
  */
 - (void)requestCameraMode:(BOOL)cameraMode completion:(void(^)(void))completion error:(void (^)(NSError * _Nonnull))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice setKeyNotify:(BKeyNotify)(cameraMode * BKN_SET_SmartPhoto)];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice setKeyNotify:(BKeyNotify)(cameraMode * BKN_SET_SmartPhoto)];
     } completion:completion error:error];
 }
 - (void)requestFindPhoneMode:(BOOL)findPhoneMode completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice setKeyNotify:(BKeyNotify)(findPhoneMode * BKN_GET_SearchPhone)];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice setKeyNotify:(BKeyNotify)(findPhoneMode * BKN_GET_SearchPhone)];
     } completion:completion error:error];
 }
 /**
@@ -259,8 +288,8 @@ static BKSession *session;
  @param error 指令发送失败及其原因
  */
 - (void)requestPushMessage:(NSString *)message completion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice pushStr:message];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice pushStr:message];
     } completion:completion error:error];
 }
 
@@ -271,8 +300,8 @@ static BKSession *session;
  @param error 指令发送失败及其原因
  */
 - (void)requestUpdateBatteryCompletion:(void(^)(void))completion error:(void (^)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice readDeviceBattery];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice readDeviceBattery];
     } completion:completion error:error];
 }
 
@@ -283,8 +312,8 @@ static BKSession *session;
  @param error 指令发送失败及其原因
  */
 - (void)requestUpdateAllHealthDataCompletion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice getDataStoreDate];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice getDataStoreDate];
     } completion:completion error:error];
 }
 
@@ -295,7 +324,7 @@ static BKSession *session;
  @param error 指令发送失败及其原因
  */
 - (void)requestStopUpdateAllHealthDataCompletion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
 //        [[BLELib3 shareInstance] stopSyncData];
     } completion:completion error:error];
 }
@@ -308,97 +337,97 @@ static BKSession *session;
  */
 - (void)requestUpdateWeatherInfo:(void (^)(BKWeather *weather))weatherInfo completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     if (weatherInfo) {
-        [self safeRequest:^(BLEAutumn *manager) {
+        [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
             BKWeather *weather = [[BKWeather alloc] init];
             weatherInfo(weather);
-            [manager.solstice setWeather:weather.transformToZRWeather];
+            [solstice setWeather:weather.transformToZRWeather];
         } completion:completion error:error];
     }
 }
 
 - (void)requestUpdateDNDMode:(void (^)(BKDNDMode * _Nonnull))dndMode completion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
     if (dndMode) {
-        [self safeRequest:^(BLEAutumn *manager) {
+        [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
             BKDNDMode *dnd = [[BKDNDMode alloc] init];
             dndMode(dnd);
-            [manager.solstice setDNDMode:dnd.transformToZRDNDModel];
+            [solstice setDNDMode:dnd.transformToZRDNDModel];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), self.cmdQueue, ^{
-                [manager.solstice readDNDModeInfo];
+                [solstice readDNDModeInfo];
             });
         } completion:completion error:error];
     }
 }
 - (void)requestReadDeviceInfo:(BKDevice *)device completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice readDeviceInfo];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice readDeviceInfo];
     } completion:completion error:error];
 }
 
 - (void)requestReadDeviceBattery:(BKDevice *)device completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice readDeviceBattery];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice readDeviceBattery];
     } completion:completion error:error];
 }
 
 - (void)requestReadSportTargets:(BKSportTarget *)sportTarget completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice readSportTargets];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice readSportTargets];
     } completion:completion error:error];
 }
 
 - (void)requestReadSedentary:(BKSedentary *)sedentary completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice readSedentary];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice readSedentary];
     } completion:completion error:error];
 }
 
 - (void)requestReadSpecialList:(NSInteger)rId completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice readSpecialList:rId];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice readSpecialList:rId];
     } completion:completion error:error];
 }
 
 - (void)requestReadAllList:(BKRoll *)roll completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice readAllList];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice readAllList];
     } completion:completion error:error];
 }
 
 
 
 - (void)requestUpdateAlarmClock:(BKAlarmClock *)alarmClock completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice setAlarmClock:alarmClock.transformToZRClock];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice setAlarmClock:alarmClock.transformToZRClock];
     } completion:completion error:error];
 }
 
 - (void)requestUpdateSedentary:(BKSedentary *)sedentary completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice setSedentary:sedentary.transformToZRSedentary];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice setSedentary:sedentary.transformToZRSedentary];
     } completion:completion error:error];
 }
 
 - (void)requestUpdateSchedule:(BKSchedule *)schedule completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice setSchedule:schedule.transformToZRSchedule];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice setSchedule:schedule.transformToZRSchedule];
     } completion:completion error:error];
 }
 
 - (void)requestUpdateMotor:(BKMotor *)motor completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice setMotors:[BKMotor defaultMotors]];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice setMotors:[BKMotor defaultMotors]];
     } completion:completion error:error];
 }
 
 - (void)requestUpdateSportTarget:(BKSportTarget *)sportTarget completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice setSportTarget:(ZRSportTarget *)sportTarget];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice setSportTarget:(ZRSportTarget *)sportTarget];
     } completion:completion error:error];
 }
 
 - (void)requestUpdateSpecialList:(NSArray <BKRoll *>*)rolls completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice addSpecialList:(NSArray <ZRRoll *>*)rolls];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice addSpecialList:(NSArray <ZRRoll *>*)rolls];
     } completion:completion error:error];
 }
 
@@ -407,26 +436,26 @@ static BKSession *session;
 
 
 - (void)requestClearAllClocks:(BKSchedule *)schedule completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice clearAllClocks];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice clearAllClocks];
     } completion:completion error:error];
 }
 
 - (void)requestClearAllSchedule:(BKSchedule *)schedule completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice clearAllSchedules];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice clearAllSchedules];
     } completion:completion error:error];
 }
 
 - (void)requestRemoveSpecialList:(NSArray <BKRoll *>*)rolls completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice removeSpecialList:(NSArray <ZRRoll *>*)rolls];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice removeSpecialList:(NSArray <ZRRoll *>*)rolls];
     } completion:completion error:error];
 }
 
 - (void)requestClearAllLists:(BKRoll *)roll completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice clearAllLists];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice clearAllLists];
     } completion:completion error:error];
 }
 
@@ -435,11 +464,19 @@ static BKSession *session;
 
 
 - (void)requestFeelMotor:(BKMotor *)motor completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    [self safeRequest:^(BLEAutumn *manager) {
-        [manager.solstice feelMotor:motor];
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice feelMotor:motor];
     } completion:completion error:error];
 }
 
+#pragma mark - Connect Delegate
+
+
+- (void)connectorDidConnectedDevice:(BKDevice *)device{
+    self.solstice = self.manager.solstice;
+    [self.manager registerSolsticeEquinox:self];
+    //    [self.manager registerSolsticeEquinox:device];
+}
 
 #pragma mark - ble delegate
 
@@ -513,10 +550,19 @@ static BKSession *session;
  
  @param response  @{"type" : BLECmdResponse,"data" : id}
  */
+
 - (void)readResponseFromDevice:(ZRReadResponse *)response{
     AXCachedLogOBJ(response);
+    if (response.cmdResponse == CMD_RESPONSE_DEVICE_GET_BATTERY) {
+        ZRDeviceInfo *dataInfo = response.data;
+        [BKDevice currentDevice].battery = dataInfo.batLevel;
+        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+            if ([delegate respondsToSelector:@selector(deviceDidUpdateBattery:)]) {
+                [delegate deviceDidUpdateBattery:[BKDevice currentDevice].battery];
+            }
+        }];
+    }
 }
-
 
 /**
  *  Method would be invoked when syscData state changed
@@ -575,8 +621,6 @@ static BKSession *session;
 - (void)responseOfGetDataTimeOutWithDataType:(NSInteger)type{
     AXCachedLogOBJ(NSStringFromNSInteger(type));
 }
-
-
 
 #pragma mark -FOTA
 

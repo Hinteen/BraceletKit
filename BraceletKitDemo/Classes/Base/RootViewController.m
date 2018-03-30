@@ -10,7 +10,7 @@
 #import <AXKit/StatusKit.h>
 
 
-@interface RootViewController () <BKScanDelegate, BKConnectDelegate, BKDeviceDelegate>
+@interface RootViewController () <BKScanDelegate, BKConnectDelegate, BKSessionDelegate>
 
 
 @end
@@ -24,7 +24,7 @@
     
     [[BKScanner sharedInstance] registerScanDelegate:self];
     [[BKConnector sharedInstance] registerConnectDelegate:self];
-//    [[BKServices sharedInstance] registerDeviceDelegate:self];
+    [[BKSession sharedInstance] registerDelegate:self];
     
     self.mainTabBarVC = [[BaseTabBarController alloc] init];
     [self addChildViewController:self.mainTabBarVC];

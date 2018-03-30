@@ -102,7 +102,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     AXCachedLogOBJ(@"即将进入前台");
-//    [[BKDevice currentDevice] requestSyncTimeAtOnceCompletion:nil error:nil];
+    [[BKSession sharedInstance] requestSyncTimeAtOnceCompletion:nil error:nil];
 }
 
 

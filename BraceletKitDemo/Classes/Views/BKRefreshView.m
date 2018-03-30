@@ -13,7 +13,7 @@
 static BKRefreshView *instance;
 
 
-@interface BKRefreshView()<BKDeviceDelegate>
+@interface BKRefreshView()<BKSessionDelegate>
 
 
 
@@ -38,12 +38,12 @@ static BKRefreshView *instance;
     if (self = [super initWithImage:UIImageNamed(@"nav_refresh")]) {
         
     }
-//    [[BKServices sharedInstance] registerDeviceDelegate:self];
+    [[BKSession sharedInstance] registerDelegate:self];
     return self;
 }
 
 - (void)dealloc{
-//    [[BKServices sharedInstance] unRegisterDeviceDelegate:self];
+    [[BKSession sharedInstance] unRegisterDelegate:self];
 }
 
 - (BOOL)isEnable{

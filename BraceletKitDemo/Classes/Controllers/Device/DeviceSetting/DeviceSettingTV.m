@@ -33,12 +33,11 @@
             }];
 //        } else {
             [weakSelf.mj_header endRefreshing];
-        [weakSelf reloadDataSourceAndRefreshTableView];
 //        }
     }];
 }
 
-- (void)ax_tableViewDataSource:(void (^)(AXTableModelType *))dataSource{
+- (void)ax_tableView:(AXTableViewType *)tableView dataSource:(void (^)(AXTableModelType * _Nonnull))dataSource{
     BKDevice *device = [BKDevice currentDevice];
     if (!device) {
         return;
@@ -298,7 +297,7 @@
 
 
 - (void)ax_tableViewDidSelectedRowAtIndexPath:(NSIndexPath *)indexPath{
-    AXTableRowModelType *model = [self tableViewRowModelForIndexPath:indexPath];
+    AXTableRowModelType *model = [self modelForRowAtIndexPath:indexPath];
     if ([model.target isEqualToString:@"zhipai"]) {
         CameraViewController *vc = [[CameraViewController alloc] init];
         [self.controller presentViewController:vc animated:YES completion:nil];
@@ -311,13 +310,13 @@
                 tf.returnKeyType = UIReturnKeySend;
                 textField.placeholder = @"DID YOU MISS ME DID YOU MISS ME DID YOU MISS ME DID YOU MISS ME DID YOU MISS ME DID YOU MISS ME";
                 [textField ax_addEditingEndOnExitHandler:^(__kindof UITextField * _Nonnull sender) {
-//                    [[BKDevice currentDevice] requestPushMessage:tf.text.length?tf.text:tf.placeholder completion:nil error:nil];
+                    [[BKSession sharedInstance] requestPushMessage:tf.text.length?tf.text:tf.placeholder completion:nil error:nil];
                 }];
             }];
             [alert ax_addDefaultActionWithTitle:nil handler:^(UIAlertAction * _Nonnull sender) {
                 if (tf) {
                     [tf endEditing:YES];
-//                    [[BKDevice currentDevice] requestPushMessage:tf.text.length?tf.text:tf.placeholder completion:nil error:nil];
+                    [[BKSession sharedInstance] requestPushMessage:tf.text.length?tf.text:tf.placeholder completion:nil error:nil];
                 }
             }];
             [alert ax_addCancelAction];
@@ -441,30 +440,30 @@
     }
     
     else if ([model.target isEqualToString:@"update time"]) {
-//        [[BKDevice currentDevice] requestSyncTimeAtOnceCompletion:^{
-//
-//        } error:^(NSError * _Nonnull error) {
-//
-//        }];
+        [[BKSession sharedInstance] requestSyncTimeAtOnceCompletion:^{
+
+        } error:^(NSError * _Nonnull error) {
+
+        }];
     }
     
     else if ([model.target isEqualToString:@"weather"]) {
         [UIAlertController ax_showActionSheetWithTitle:model.title message:nil actions:^(UIAlertController * _Nonnull alert) {
             [alert ax_addDefaultActionWithTitle:@"晴 25 PM 28" handler:^(UIAlertAction * _Nonnull sender) {
-//                [[BKDevice currentDevice] requestUpdateWeatherInfo:^(BKWeather * _Nonnull weather) {
-//                    weather.condition = BKWeatherConditionFine;
-//                    weather.temperature = 25;
-//                    weather.unit = [BKDevice currentDevice].preferences.temperatureUnit;
-//                    weather.pm2_5 = 28;
-//                } completion:nil error:nil];
-//            }];
-//            [alert ax_addDefaultActionWithTitle:@"阵雨 20 PM 20" handler:^(UIAlertAction * _Nonnull sender) {
-//                [[BKDevice currentDevice] requestUpdateWeatherInfo:^(BKWeather * _Nonnull weather) {
-//                    weather.condition = BKWeatherConditionShower;
-//                    weather.temperature = 20;
-//                    weather.unit = [BKDevice currentDevice].preferences.temperatureUnit;
-//                    weather.pm2_5 = 20;
-//                } completion:nil error:nil];
+                [[BKSession sharedInstance] requestUpdateWeatherInfo:^(BKWeather * _Nonnull weather) {
+                    weather.condition = BKWeatherConditionFine;
+                    weather.temperature = 25;
+                    weather.unit = [BKDevice currentDevice].preferences.temperatureUnit;
+                    weather.pm2_5 = 28;
+                } completion:nil error:nil];
+            }];
+            [alert ax_addDefaultActionWithTitle:@"阵雨 20 PM 20" handler:^(UIAlertAction * _Nonnull sender) {
+                [[BKSession sharedInstance] requestUpdateWeatherInfo:^(BKWeather * _Nonnull weather) {
+                    weather.condition = BKWeatherConditionShower;
+                    weather.temperature = 20;
+                    weather.unit = [BKDevice currentDevice].preferences.temperatureUnit;
+                    weather.pm2_5 = 20;
+                } completion:nil error:nil];
             }];
             [alert ax_addCancelAction];
         }];

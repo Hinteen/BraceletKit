@@ -12,9 +12,10 @@
 #import <AXCameraKit/AXCameraKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MJRefresh.h>
+#import "BraceletKit.h"
 
 
-@interface DeviceVC () <BKDeviceDelegate, BKDataObserver>
+@interface DeviceVC () <BKSessionDelegate>
 
 @property (strong, nonatomic) DeviceSettingTV *tableView;
 
@@ -29,8 +30,9 @@
     self.view.width = kScreenW;
     self.view.height -= kTabBarHeight;
     
-//    [[BKServices sharedInstance] registerDeviceDelegate:self];
+    [[BKSession sharedInstance] registerDelegate:self];
 //    [[BKServices sharedInstance] registerDataObserver:self];
+//    [[BKSession sharedInstance] registerDelegate:self];
     [self setupTableView];
     
     __weak typeof(self) weakSelf = self;
@@ -63,8 +65,9 @@
 
 
 - (void)dealloc{
-//    [[BKServices sharedInstance] unRegisterDeviceDelegate:self];
+    [[BKSession sharedInstance] unRegisterDelegate:self];
 //    [[BKServices sharedInstance] unRegisterDataObserver:self];
+//    [[BKSession sharedInstance] unRegisterDelegate:self];
 }
 
 

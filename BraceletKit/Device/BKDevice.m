@@ -84,11 +84,11 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
     
 }
 
-@interface BKServices() <BKDeviceDelegate>
+@interface BKServices()
 
 @end
 
-@interface BKDevice() //<BKConnectDelegate, BKDataObserver>
+@interface BKDevice()
 
 //@property (strong, nonatomic) ZeronerDeviceInfo *deviceInfo;
 //
@@ -111,14 +111,11 @@ static inline void bk_ble_option(void (^option)(void), void(^completion)(void), 
     if (self = [super init]) {
         _languages = [NSMutableArray array];
         _functions = [NSMutableArray array];
-        _delegate = [BKServices sharedInstance];
+//        _delegate = [BKServices sharedInstance];
         
     }
     return self;
 }
-
-
-
 
 @end
 
