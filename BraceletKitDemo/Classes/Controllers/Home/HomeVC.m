@@ -19,6 +19,7 @@
 #import "BKSleepData.h"
 #import <AXKit/StatusKit.h>
 #import "BKChartTVC.h"
+#import "BraceletKit.h"
 
 static NSString *reuseIdentifier = @"home table view cell";
 static NSString *chartReuseIdentifier = @"home table view cell for chart";
@@ -91,10 +92,10 @@ static NSInteger hourHRCount = 12;
     tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         if ([BKDevice currentDevice]) {
             [[BKRefreshView sharedInstance] startAnimating];
-//            [[BKSession sharedInstance] requestUpdateBatteryCompletion:nil error:^(NSError * _Nonnull error) {
-//                [tableView.mj_header endRefreshing];
-//                [[BKRefreshView sharedInstance] stopAnimating];
-//            }];
+            [[BKSession sharedInstance] requestUpdateBatteryCompletion:nil error:^(NSError * _Nonnull error) {
+                [tableView.mj_header endRefreshing];
+                [[BKRefreshView sharedInstance] stopAnimating];
+            }];
             [[BKSession sharedInstance] requestUpdateAllHealthDataCompletion:nil error:^(NSError * _Nonnull error) {
                 [tableView.mj_header endRefreshing];
                 [[BKRefreshView sharedInstance] stopAnimating];
@@ -140,15 +141,37 @@ static NSInteger hourHRCount = 12;
     }
 }
 
+- (void) deviceDidUpdateNormalHealthDataInf:(NSDate *)zrDInfo{
+    ;
+    [[BKSession sharedInstance] requestUpdateSpecialDataCompletion:zrDInfo completion:nil error:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
+- (void) deviceDidUpdateSummaryData:(BKSummaryData *)summaryData{
+    
+    _sport = [[BKSportQuery alloc] init];
+    
+    self.sport.steps = [NSNumber numberWithInt:summaryData.steps];
+    self.sport.distance = [NSNumber numberWithInt:summaryData.distance];
+    self.sport.calorie = [NSNumber numberWithInt:summaryData.calorie];
+    
+    [self reloadData];
+}
+
 - (void)dataDidUpdated:(__kindof BKData *)data{
     [self reloadData];
 }
 
 - (void)reloadData{
-    self.sport = [BKSportQuery queryDailySummaryWithDate:[NSDate date]];
-    self.hr = [BKHeartRateQuery queryDailySummaryWithDate:[NSDate date]];
-    self.sleep = [BKSleepQuery queryDailySummaryWithDate:[NSDate date]];
-    [self.tableView reloadData];
+//    self.sport = [BKSportQuery queryDailySummaryWithDate:[NSDate date]];
+//    self.hr = [BKHeartRateQuery queryDailySummaryWithDate:[NSDate date]];
+//    self.sleep = [BKSleepQuery queryDailySummaryWithDate:[NSDate date]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+        [[BKRefreshView sharedInstance] stopAnimating];
+    });
+    [self deviceDidSynchronizing:false];
 }
 
 

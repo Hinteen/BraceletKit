@@ -21,6 +21,11 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		B020A19E206E213500D61AA3 /* BKHealthData.h in Headers */ = {isa = PBXBuildFile; fileRef = B020A19C206E213500D61AA3 /* BKHealthData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B020A19F206E213500D61AA3 /* BKHealthData.m in Sources */ = {isa = PBXBuildFile; fileRef = B020A19D206E213500D61AA3 /* BKHealthData.m */; };
+		B020A1A0206E213500D61AA3 /* BKHealthData.m in Sources */ = {isa = PBXBuildFile; fileRef = B020A19D206E213500D61AA3 /* BKHealthData.m */; };
+		B020A1A4206E226400D61AA3 /* BKSummaryData.h in Headers */ = {isa = PBXBuildFile; fileRef = B020A1A2206E226400D61AA3 /* BKSummaryData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B020A1A5206E226400D61AA3 /* BKSummaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = B020A1A3206E226400D61AA3 /* BKSummaryData.m */; };
 		B02507AC206A3EAD00535766 /* BKAction.h in Headers */ = {isa = PBXBuildFile; fileRef = B02507A5206A3EAC00535766 /* BKAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B02507AD206A3EAD00535766 /* BKAction.m in Sources */ = {isa = PBXBuildFile; fileRef = B02507A6206A3EAC00535766 /* BKAction.m */; };
 		B02507AE206A3EAD00535766 /* BKAction.m in Sources */ = {isa = PBXBuildFile; fileRef = B02507A6206A3EAC00535766 /* BKAction.m */; };
@@ -187,6 +192,10 @@
 /* Begin PBXFileReference section */
 		45D14689FFFFCA37F6DE88DC /* libPods-BraceletKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BraceletKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B04AE3ABF65FA07B8445BD1 /* Pods-BraceletKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKit/Pods-BraceletKit.release.xcconfig"; sourceTree = "<group>"; };
+		B020A19C206E213500D61AA3 /* BKHealthData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKHealthData.h; sourceTree = "<group>"; };
+		B020A19D206E213500D61AA3 /* BKHealthData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKHealthData.m; sourceTree = "<group>"; };
+		B020A1A2206E226400D61AA3 /* BKSummaryData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSummaryData.h; sourceTree = "<group>"; };
+		B020A1A3206E226400D61AA3 /* BKSummaryData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKSummaryData.m; sourceTree = "<group>"; };
 		B02507A5206A3EAC00535766 /* BKAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKAction.h; sourceTree = "<group>"; };
 		B02507A6206A3EAC00535766 /* BKAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKAction.m; sourceTree = "<group>"; };
 		B02507A7206A3EAC00535766 /* BKRoll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKRoll.h; sourceTree = "<group>"; };
@@ -434,6 +443,10 @@
 				B02507AA206A3EAD00535766 /* BKMotor.m */,
 				B02507A7206A3EAC00535766 /* BKRoll.h */,
 				B02507AB206A3EAD00535766 /* BKRoll.m */,
+				B020A19C206E213500D61AA3 /* BKHealthData.h */,
+				B020A19D206E213500D61AA3 /* BKHealthData.m */,
+				B020A1A2206E226400D61AA3 /* BKSummaryData.h */,
+				B020A1A3206E226400D61AA3 /* BKSummaryData.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -939,6 +952,8 @@
 				CD8ABA572066092D00BEDC7C /* BKSession.h in Headers */,
 				CD25EA2720133083009BEFC1 /* _BKLogHelper.h in Headers */,
 				CDB94C6620133A0400CB588C /* _BKModelHelper.h in Headers */,
+				B020A19E206E213500D61AA3 /* BKHealthData.h in Headers */,
+				B020A1A4206E226400D61AA3 /* BKSummaryData.h in Headers */,
 				CDC2EBA62017552400C9F77E /* BKHeartRateQuery.h in Headers */,
 				CD25EA1720132FD4009BEFC1 /* _BKHeader.h in Headers */,
 				CDC2EB9E2017419C00C9F77E /* BKQuery.h in Headers */,
@@ -1222,6 +1237,7 @@
 				CD2E791E1FA0C53300012CDB /* AppDelegate.m in Sources */,
 				CD3FC1961FA20B730054B26B /* NSObject+MJClass.m in Sources */,
 				CD3FC11E1FA20A0B0054B26B /* BaseServices.m in Sources */,
+				B020A19F206E213500D61AA3 /* BKHealthData.m in Sources */,
 				CD3389802046BE9E00C206C6 /* BKDateSegmentedControl.m in Sources */,
 				CD6F6DDD2024D286008D91CF /* BKBatteryView.m in Sources */,
 				B02507B3206A3EAD00535766 /* BKMotor.m in Sources */,
@@ -1234,6 +1250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B020A1A5206E226400D61AA3 /* BKSummaryData.m in Sources */,
 				CD25EA392013331D009BEFC1 /* BKDevice.m in Sources */,
 				CDC2EB8620163E4300C9F77E /* BKPreferences.m in Sources */,
 				CD8ABA582066092D00BEDC7C /* BKSession.m in Sources */,
@@ -1254,6 +1271,7 @@
 				CD824CF420664B2300EAD10C /* BKSedentary.m in Sources */,
 				CDC2EB822016099400C9F77E /* BKSportList.m in Sources */,
 				CDEA2D6F206644FC00FE8072 /* BKDNDMode.m in Sources */,
+				B020A1A0206E213500D61AA3 /* BKHealthData.m in Sources */,
 				CDA0040A20146EFB00E572A7 /* _BKDatabaseHelper.m in Sources */,
 				CDC2EBA3201754F100C9F77E /* BKSportQuery.m in Sources */,
 				CD7B9CD3206648C900145608 /* BKAlarmClock.m in Sources */,

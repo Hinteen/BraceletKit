@@ -11,6 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class BKScanner, BKConnector, BKDeviceManager, BKDevice, BKUser, BKPreferences, BKWeather;
+@class BKDNDMode, BKAlarmClock, BKSedentary, BKSchedule,BKSportTarget, BKMotor, BKRoll, BKSummaryData;
 @protocol BKSessionDelegate <NSObject>
 
 @optional
@@ -58,10 +60,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 //- (void)deviceDidUpdateData:(__kindof BKData *)data;
 
+/**
+Receive general data from the watch (Date that will be used for the more specific reauest)
+ */
+- (void) deviceDidUpdateNormalHealthDataInf:(NSDate *)zrDInfo;
+
+
+- (void) deviceDidUpdateSummaryData:(BKSummaryData *)summaryData;
+
 @end
 
-@class BKScanner, BKConnector, BKDeviceManager, BKDevice, BKUser, BKPreferences, BKWeather;
-@class BKDNDMode, BKAlarmClock, BKSedentary, BKSchedule,BKSportTarget, BKMotor, BKRoll;
+
 @interface BKSession : NSObject
 
 /**
@@ -157,6 +166,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param error 指令发送失败及其原因
  */
 - (void)requestUpdateAllHealthDataCompletion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
+
+- (void) requestUpdateSpecialDataCompletion:(NSDate *)date completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
 /**
  请求立即停止更新所有健康数据

@@ -317,6 +317,12 @@ static BKSession *session;
     } completion:completion error:error];
 }
 
+- (void) requestUpdateSpecialDataCompletion:(NSDate *)date completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice> solstice) {
+        [solstice startSpecialData:SD_TYPE_DATA_NORMAL withDate:date];
+    } completion:completion error:error];
+}
+
 /**
  请求立即停止更新所有健康数据
  
@@ -554,8 +560,8 @@ static BKSession *session;
 - (void)readResponseFromDevice:(ZRReadResponse *)response{
     AXCachedLogOBJ(response);
     if (response.cmdResponse == CMD_RESPONSE_DEVICE_GET_BATTERY) {
-        ZRDeviceInfo *dataInfo = response.data;
-        [BKDevice currentDevice].battery = dataInfo.batLevel;
+        ZRDeviceInfo *deviceInfo = response.data;
+        [BKDevice currentDevice].battery = deviceInfo.batLevel;
         [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
             if ([delegate respondsToSelector:@selector(deviceDidUpdateBattery:)]) {
                 [delegate deviceDidUpdateBattery:[BKDevice currentDevice].battery];
@@ -581,6 +587,14 @@ static BKSession *session;
  */
 - (void)updateNormalHealthDataInfo:(ZRDataInfo *)zrDInfo{
     AXCachedLogOBJ(zrDInfo);
+    if (zrDInfo.dataType == ZRDITypeHbridHealth || zrDInfo.dataType == ZRDITypeNormalData) {
+        NSDate *dateInfo =zrDInfo.ddInfos[0].date;
+        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+            if ([delegate respondsToSelector:@selector(deviceDidUpdateNormalHealthDataInf:)]) {
+                [delegate deviceDidUpdateNormalHealthDataInf:dateInfo];
+            }
+        }];
+    }
 }
 
 
@@ -591,6 +605,15 @@ static BKSession *session;
  */
 - (void)updateNormalHealthData:(ZRHealthData *)zrhData{
     AXCachedLogOBJ(zrhData);
+    if ([zrhData isKindOfClass:[ZRSummaryData class]]) {
+        BKSummaryData *summaryData = (BKSummaryData *)zrhData;
+        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+            if ([delegate respondsToSelector:@selector(deviceDidUpdateSummaryData:)]) {
+                [delegate deviceDidUpdateSummaryData:summaryData];
+            }
+        }];
+    }
+    
 }
 
 
