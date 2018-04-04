@@ -227,6 +227,9 @@ Receive general data from the watch (Date that will be used for the more specifi
 
 - (void)requestClearAllLists:(BKRoll *)roll completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
+- (void)requestCloseSchedule:(BKSchedule *)schedule completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
+
+
 
 - (void)requestFeelMotor:(BKMotor *)motor completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 

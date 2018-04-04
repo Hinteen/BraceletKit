@@ -465,6 +465,11 @@ static BKSession *session;
     } completion:completion error:error];
 }
 
+- (void)requestCloseSchedule:(BKSchedule *)schedule completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice closeSchedule:(ZRSchedule *)schedule];
+    } completion:completion error:error];
+}
 
 
 
