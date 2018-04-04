@@ -9,10 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <AXKit/AXKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-#import <BLE3Framework/BLE3Framework.h>
+#import <BLEMidAutumn/BLEMidAutumn.h>
 #import "BKUser.h"
 #import "BKDevice.h"
 #import "BKPreferences.h"
+#import "BKWeather.h"
+#import "BKDNDMode.h"
+
 
 @interface _BKModelHelper : NSObject
 
@@ -23,17 +26,22 @@
 
 @interface BKUser (BKExtension)
 
-- (ZeronerPersonal *)transformToZeronerPersonal;
+- (ZRPersonal *)transformToZRPersonal;
 
 @end
 
-@interface ZeronerBlePeripheral (BKExtension)
+@interface ZRBlePeripheral (BKExtension)
 
 - (BKDevice *)transformToBKDevice;
 
 @end
+@interface BKDevice (BKModelExtension)
 
-@interface ZeronerHWOption (BKExtension)
+- (ZRBlePeripheral *)transformToZRBlePeripheral;
+
+@end
+
+@interface ZRHWOption (BKExtension)
 
 - (BKPreferences *)transformToBKPreferences;
 
@@ -41,7 +49,20 @@
 
 @interface BKPreferences (BKExtension)
 
-- (ZeronerHWOption *)transformToZeronerHWOption;
+- (ZRHWOption *)transformToZRHWOption;
+- (ZRCOption *)transformToZRCOption;
 
 @end
 
+@interface BKWeather (BKExtension)
+
+- (ZRWeather *)transformToZRWeather;
+
+@end
+
+
+@interface BKDNDMode (BKModelExtension)
+
+- (ZRDNDModel *)transformToZRDNDModel;
+
+@end

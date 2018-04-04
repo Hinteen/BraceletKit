@@ -37,7 +37,7 @@
     // Dispose of any resources that can be recreated.
     [[BKScanner sharedInstance] unRegisterScanDelegate:self];
     [[BKConnector sharedInstance] unRegisterConnectDelegate:self];
-//    [[BKServices sharedInstance] unRegisterScanDelegate:self];
+    [[BKSession sharedInstance] unRegisterDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

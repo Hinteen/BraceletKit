@@ -26,14 +26,14 @@
  
  @param device 设备
  */
-- (void)connectorDidUnconnectedDevice:(BKDevice *)device;
+- (void)connectorDidUnconnectedDevice:(BKDevice *)device error:(NSError *)error;
 
 /**
  与设备连接失败
  
  @param device 设备
  */
-- (void)connectorDidFailToConnectDevice:(BKDevice *)device;
+- (void)connectorDidFailToConnectDevice:(BKDevice *)device error:(NSError *)error;
 
 /**
  连接超时
@@ -44,12 +44,6 @@
 
 @class CBCentralManager, CBPeripheral;
 @interface BKConnector : NSObject
-
-
-/**
- 代理
- */
-@property (weak, nonatomic) NSObject<BKConnectDelegate> *delegate;
 
 /**
  设备
@@ -70,13 +64,22 @@
  */
 @property (strong, readonly, nonatomic) CBPeripheral *peripheral;
 
+
++ (instancetype)sharedInstance;
+
 /**
- 初始化连接
+ 注册连接代理
  
  @param delegate 代理
- @return 连接实例
  */
-- (instancetype)initWithDelegate:(NSObject<BKConnectDelegate> *)delegate;
+- (void)registerConnectDelegate:(NSObject<BKConnectDelegate> *)delegate;
+
+/**
+ 取消注册连接代理
+ 
+ @param delegate 代理
+ */
+- (void)unRegisterConnectDelegate:(NSObject<BKConnectDelegate> *)delegate;
 
 /**
  连接设备

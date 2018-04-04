@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 
 
+typedef NS_ENUM(NSUInteger, BKDeviceClass) {
+    BKDeviceClassNull       = 0,
+    BKDeviceClassEggRoll    = 1,
+    BKDeviceClassWatch      = 2,
+    BKDeviceClassColorful   = 3,
+    BKDeviceClassAny        = 8,
+};
+
 /**
  手环类型
 
@@ -81,21 +89,36 @@ typedef NS_OPTIONS(NSUInteger, BKDeviceFunction) {
     BKDeviceFunctionExerciseHRWarning,
 };
 
+
 /**
- 查询单位
+ 查询单位(查询)
  
- - BKQueryUnitDaily: 每日数据
- - BKQueryUnitWeekly: 每周数据
- - BKQueryUnitMonthly: 每月数据
- - BKQueryUnitYearly: 每年数据
+ - BKQueryUnitDaily: 每日数据。在查询结果中，一个query对象代表一天
+ - BKQueryUnitWeekly: 每周数据。在查询结果中，一个query对象代表一周
+ - BKQueryUnitMonthly: 每月数据。在查询结果中，一个query对象代表一月
+ - BKQueryUnitYearly: 每年数据。在查询结果中，一个query对象代表一年
  */
-typedef NS_ENUM(NSUInteger, BKQueryUnit) {
-    BKQueryUnitDaily   = 1,
-    BKQueryUnitWeekly  = 7,
-    BKQueryUnitMonthly = 31,
-    BKQueryUnitYearly  = 365,
+typedef NS_ENUM(NSUInteger, BKQuerySelectionUnit) {
+    BKQuerySelectionUnitDaily,
+    BKQuerySelectionUnitWeekly,
+    BKQuerySelectionUnitMonthly,
+    BKQuerySelectionUnitYearly
 };
 
+/**
+ 查询单位（视图）
+ 
+ - BKQueryViewUnitDaily: 每日数据视图
+ - BKQueryViewUnitWeekly: 周度视图
+ - BKQueryViewUnitMonthly: 月度视图
+ - BKQueryViewUnitYearly: 年度视图
+ */
+typedef NS_ENUM(NSUInteger, BKQueryViewUnit) {
+    BKQueryViewUnitDaily   = 1,
+    BKQueryViewUnitWeekly  = 7,
+    BKQueryViewUnitMonthly = 31,
+    BKQueryViewUnitYearly  = 365,
+};
 
 /**
  计量单位
@@ -167,9 +190,42 @@ typedef NS_ENUM(NSUInteger, BKDeviceBGColor) {
  
  - BKTemperatureUnitCentigrade: 摄氏温度
  - BKTemperatureUnitFahrenheit: 华氏温度
+ - BKTemperatureUnitKelvin:     开尔文温度
  */
 typedef NS_ENUM(NSUInteger, BKTemperatureUnit) {
     BKTemperatureUnitCentigrade,
     BKTemperatureUnitFahrenheit,
+    BKTemperatureUnitKelvin,
 };
 
+
+typedef NS_ENUM(NSInteger,BKWeatherCondition) {
+    BKWeatherConditionFine = 0,            //晴
+    BKWeatherConditionCloudy = 1,          //多云
+    BKWeatherConditionOvercast = 2,        //阴天
+    BKWeatherConditionLightRain = 3,       //小雨
+    BKWeatherConditionModerateRain = 4,    //中雨
+    BKWeatherConditionHeavyRain = 5,       //大雨
+    BKWeatherConditionShower = 6,          //阵雨
+    BKWeatherConditionSnow = 7,            //雪
+    BKWeatherConditionHaze = 8,            //雾霾
+    BKWeatherConditionSandstorm = 9,        //沙尘暴
+    BKWeatherConditionNotContain = 10,
+};
+
+
+
+typedef NS_ENUM (NSInteger,BKDNDType){
+    BKDNDTypeNull = 0 , // mean closed dndMode
+    BKDNDTypeNormal ,
+    BKDNDTypeSleep ,   //  firmware must be supportted if used
+    BKDNDTypeAllDay,   //  firmware must be supportted if used
+};
+
+/**
+ 高3位是铃声 0~7对应不同铃声
+ 低5位是反复次数 默认0x01
+ High 3 is the ringtone 0 ~ 7 corresponds to different ringtones
+ Low 5 is the number of iterations default 0x01
+ */
+typedef NSInteger BKRingId;

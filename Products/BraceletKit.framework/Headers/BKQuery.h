@@ -24,56 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 运动
 
++ (nullable __kindof BKQuery *)queryDailySummaryWithDate:(NSDate *)date;
 
-/**
- 查询某一天/一周/一个月/一年的统计数据
- 
- unit = daily    查询某一天的摘要数据
- unit = weekly   查询date所在的一整周的统计数据
- unit = monthly  查询date所在的一整月的统计数据
- unit = yearly   查询date所在的一整年的统计数据
- @param date 天（只需要精确到天）
- @param unit 查询单位
- @return 满足条件的统计数据（某一天/一周/一个月/一年）
- */
-+ (nullable NSArray<__kindof BKQuery *> *)querySummaryWithDate:(NSDate *)date unit:(BKQueryUnit)unit;
++ (nullable NSArray<__kindof BKQuery *> *)querySummaryWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate selectionUnit:(BKQuerySelectionUnit)selectionUnit;
 
 
-+ (void)getAlldateWithDate:(NSDate *)date unit:(BKQueryUnit)unit completion:(void (^)(NSDate *date))completion;
-
-///**
-// 查询某一天的摘要数据
-//
-// @param date 天（只需要精确到天）
-// @return 一天的摘要数据
-// */
-//+ (nullable NSArray<__kindof BKQuery *> *)queryDailySummaryWithDate:(NSDate *)date;
-//
-///**
-// 查询date所在的一整周的统计数据
-//
-// @param date 天（只需要精确到天）
-// @return 一整周的统计数据
-// */
-//+ (nullable NSArray<__kindof BKQuery *> *)queryWeeklySummaryWithDate:(NSDate *)date;
-//
-///**
-// 查询date所在的一整月的统计数据
-//
-// @param date 天（只需要精确到天）
-// @return 一整月的统计数据
-// */
-//+ (nullable NSArray<__kindof BKQuery *> *)queryMonthlySummaryWithDate:(NSDate *)date;
-//
-///**
-// 查询date所在的一整年的统计数据
-//
-// @param date 天（只需要精确到天）
-// @return 一整年的统计数据
-// */
-//+ (nullable NSArray<__kindof BKQuery *> *)queryYearlySummaryWithDate:(NSDate *)date;
-
-
++ (void)getQueryItemWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate selectionUnit:(BKQuerySelectionUnit)selectionUnit completion:(void (^)(NSDate * start, NSDate * end))completion;
 
 
 @end

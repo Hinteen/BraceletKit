@@ -10,7 +10,7 @@
 #import "BKUser.h"
 #import "BKScanner.h"
 #import "BKConnector.h"
-
+#import "BKSession.h"
 
 @class BKServices;
 
@@ -44,91 +44,36 @@
  */
 @property (strong, readonly, nonatomic) BKConnector *connector;
 
-
+/**
+ session
+ */
+@property (strong, readonly, nonatomic) BKSession *session;
 
 
 + (instancetype)sharedInstance;
 
 
-/**
- 注册服务
-
- @param user 用户
- */
-- (BOOL)registerServiceWithUser:(BKUser *)user;
-
-
-/**
- 注册服务代理
- 
- @param delegate 代理
- */
-- (void)registerServicesDelegate:(NSObject<BKServicesDelegate> *)delegate;
-
-/**
- 取消注册服务代理
- 
- @param delegate 代理
- */
-- (void)unRegisterServicesDelegate:(NSObject<BKServicesDelegate> *)delegate;
-
-/**
- 注册扫描代理
- 
- @param delegate 代理
- */
-- (void)registerScanDelegate:(NSObject<BKScanDelegate> *)delegate;
-
-/**
- 取消注册扫描代理
- 
- @param delegate 代理
- */
-- (void)unRegisterScanDelegate:(NSObject<BKScanDelegate> *)delegate;
-
-
-/**
- 注册连接代理
- 
- @param delegate 代理
- */
-- (void)registerConnectDelegate:(NSObject<BKConnectDelegate> *)delegate;
-
-/**
- 取消注册连接代理
- 
- @param delegate 代理
- */
-- (void)unRegisterConnectDelegate:(NSObject<BKConnectDelegate> *)delegate;
-
-/**
- 注册设备代理
-
- @param delegate 代理
- */
-- (void)registerDeviceDelegate:(NSObject<BKDeviceDelegate> *)delegate;
-
-/**
- 取消注册设备代理
-
- @param delegate 代理
- */
-- (void)unRegisterDeviceDelegate:(NSObject<BKDeviceDelegate> *)delegate;
-
-
-/**
- 注册数据代理
- 
- @param observer 代理
- */
-- (void)registerDataObserver:(NSObject<BKDataObserver> *)observer;
-
-/**
- 取消注册数据代理
- 
- @param observer 代理
- */
-- (void)unRegisterDataObserver:(NSObject<BKDataObserver> *)observer;
+///**
+// 注册服务
+//
+// @param user 用户
+// */
+//- (BOOL)registerServiceWithUser:(BKUser *)user;
+//
+//
+///**
+// 注册服务代理
+//
+// @param delegate 代理
+// */
+//- (void)registerServicesDelegate:(NSObject<BKServicesDelegate> *)delegate;
+//
+///**
+// 取消注册服务代理
+//
+// @param delegate 代理
+// */
+//- (void)unRegisterServicesDelegate:(NSObject<BKServicesDelegate> *)delegate;
 
 
 @end

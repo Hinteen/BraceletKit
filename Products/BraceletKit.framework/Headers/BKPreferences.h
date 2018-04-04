@@ -35,7 +35,7 @@
 
 
 /**
- 找手机功能的开关 ,自动运动识别 （同一个字段，不同协议固件支持内容不同，findPhoneSwitch仅少量固件支持）
+ 找手机功能的开关 和 自动运动识别 （同一个字段，不同协议固件支持内容不同，findPhoneSwitch仅少量固件支持）
  */
 @property (assign, nonatomic) BOOL autoSport;
 /**
@@ -52,9 +52,9 @@
 /**
  断连提醒，默认为NO,也就是关闭提醒。
  */
-@property (assign, nonatomic) BOOL disConnectTip;
+@property (assign, nonatomic) BOOL disconnectTip;
 /**
- findPhoneSwitch
+ 找手机功能的开关
  */
 @property (assign, nonatomic) BOOL findPhoneSwitch;
 /**

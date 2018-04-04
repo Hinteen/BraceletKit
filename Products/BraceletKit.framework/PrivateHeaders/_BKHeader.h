@@ -8,8 +8,19 @@
 
 // 依赖库
 #import <UIKit/UIKit.h>
-#import <BLE3Framework/BLE3Framework.h>
+#import <BLEMidAutumn/BLEMidAutumn.h>
 #import <AXKit/AXKit.h>
+
+#import "BKSession.h"
+#import "BKScanner.h"
+#import "BKConnector.h"
+#import "BKUser.h"
+#import "BKDNDMode.h"
+#import "BKAlarmClock.h"
+#import "BKSedentary.h"
+#import "BKSchedule.h"
+#import "BKSportTarget.h"
+#import "BKMotor.h"
 // 私有工具类
 #import "_BKDatabaseHelper.h"
 #import "_BKModelHelper.h"

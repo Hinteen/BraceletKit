@@ -151,10 +151,14 @@ static NSInteger hourHRCount = 12;
 - (void) deviceDidUpdateSummaryData:(BKSummaryData *)summaryData{
     
     _sport = [[BKSportQuery alloc] init];
+    _sleep = [[BKSleepQuery alloc] init];
     
     self.sport.steps = [NSNumber numberWithInt:summaryData.steps];
     self.sport.distance = [NSNumber numberWithInt:summaryData.distance];
     self.sport.calorie = [NSNumber numberWithInt:summaryData.calorie];
+    self.sport.activity = summaryData.exerciseMinutes;
+    
+    self.sleep.duration = (int)summaryData.sleepMinutes;
     
     [self reloadData];
 }
