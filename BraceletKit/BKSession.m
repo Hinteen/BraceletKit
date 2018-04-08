@@ -363,7 +363,7 @@ static BKSession *session;
         } completion:completion error:error];
     }
 }
-- (void)requestReadDeviceInfo:(BKDevice *)device completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+- (void)requestReadDeviceInfo:(BKDevice * _Nullable)device completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
         [solstice readDeviceInfo];
     } completion:completion error:error];

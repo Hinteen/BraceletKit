@@ -184,7 +184,7 @@ Receive general data from the watch (Date that will be used for the more specifi
  @param completion 指令已发送到设备
  @param error 指令发送失败及其原因
  */
-- (void)requestReadDeviceInfo:(BKDevice *)device completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
+- (void)requestReadDeviceInfo:(BKDevice * _Nullable)device completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
 - (void)requestReadDeviceBattery:(BKDevice *)device completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
