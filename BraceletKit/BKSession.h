@@ -102,9 +102,9 @@ Receive general data from the watch (Date that will be used for the more specifi
 
 - (void)requestBindDevice:(BKDevice *)device completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error;
 
-- (void)requestUnbindDevice:(nullable BKDevice *)device completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error;
+- (void)requestUnbindDevice:(BKDevice * _Nullable)device completion:(void (^)(void))completion error:(void (^)(NSError * _Nullable))error;
 
-
+- (void)requestReconnectDevice:(BKDevice * _Nullable)device completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error;
 /**
  请求同步用户数据
  
@@ -140,7 +140,7 @@ Receive general data from the watch (Date that will be used for the more specifi
  */
 - (void)requestCameraMode:(BOOL)cameraMode completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error;
 - (void)requestFindPhoneMode:(BOOL)findPhoneMode completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error;
-
+- (void)requestUpdateNotifyMode:(NSInteger)keyNotify completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error;
 
 /**
  请求向手环推送消息（不要超过手环一屏内容，否则显示不全）
@@ -196,6 +196,8 @@ Receive general data from the watch (Date that will be used for the more specifi
 
 - (void)requestReadAllList:(BKRoll *)roll completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
+- (void)requestReadSupportedSport:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
+
 
 
 
@@ -221,7 +223,7 @@ Receive general data from the watch (Date that will be used for the more specifi
 
 - (void)requestClearAllClocks:(BKSchedule *)schedule completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
-- (void)requestClearAllSchedule:(BKSchedule *)schedule completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
+- (void)requestClearAllSchedule:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
 - (void)requestRemoveSpecialList:(NSArray <BKRoll *>*)rolls completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
@@ -232,6 +234,8 @@ Receive general data from the watch (Date that will be used for the more specifi
 
 
 - (void)requestFeelMotor:(BKMotor *)motor completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
+
+- (void)requestUpdateDevice:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
 @end
 NS_ASSUME_NONNULL_END

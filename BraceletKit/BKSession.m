@@ -103,7 +103,7 @@ static BKSession *session;
     if (!session) {
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            session = [self requestWithDeviceClass:BKDeviceClassAny];
+            session = [self requestWithDeviceClass:BKDeviceClassColorful];
         });
     }
     return session;
@@ -202,13 +202,18 @@ static BKSession *session;
     
 }
 
-- (void)requestUnbindDevice:(BKDevice *)device completion:(void (^)(void))completion error:(void (^)(NSError * _Nullable))error{
+- (void)requestUnbindDevice:(BKDevice * _Nullable)device completion:(void (^)(void))completion error:(void (^)(NSError * _Nullable))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
         [manager unbind];
         [solstice debindFromSystem];
     } completion:completion error:error];
 }
 
+- (void)requestReconnectDevice:(BKDevice * _Nullable)device completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error{
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [manager reConnectDevice];
+    } completion:completion error:error];
+}
 
 
 /**
@@ -278,6 +283,11 @@ static BKSession *session;
 - (void)requestFindPhoneMode:(BOOL)findPhoneMode completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
         [solstice setKeyNotify:(BKeyNotify)(findPhoneMode * BKN_GET_SearchPhone)];
+    } completion:completion error:error];
+}
+- (void)requestUpdateNotifyMode:(NSInteger)keyNotify completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error{
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice setKeyNotify:keyNotify];
     } completion:completion error:error];
 }
 /**
@@ -399,6 +409,12 @@ static BKSession *session;
     } completion:completion error:error];
 }
 
+- (void)requestReadSupportedSport:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice readSupportSports];
+    } completion:completion error:error];
+}
+
 
 
 - (void)requestUpdateAlarmClock:(BKAlarmClock *)alarmClock completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
@@ -447,7 +463,7 @@ static BKSession *session;
     } completion:completion error:error];
 }
 
-- (void)requestClearAllSchedule:(BKSchedule *)schedule completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+- (void)requestClearAllSchedule:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
         [solstice clearAllSchedules];
     } completion:completion error:error];
@@ -477,6 +493,12 @@ static BKSession *session;
 - (void)requestFeelMotor:(BKMotor *)motor completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
         [solstice feelMotor:motor];
+    } completion:completion error:error];
+}
+
+- (void)requestUpdateDevice:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice deviceUpgrade];
     } completion:completion error:error];
 }
 
