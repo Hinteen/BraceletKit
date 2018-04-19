@@ -356,7 +356,7 @@ static BKSession *session;
         [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
             BKWeather *weather = [[BKWeather alloc] init];
             weatherInfo(weather);
-            [solstice setWeather:weather.transformToZRWeather];
+            [solstice setWeather:(ZRWeather *)weather];
         } completion:completion error:error];
     }
 }
@@ -592,6 +592,15 @@ static BKSession *session;
         [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
             if ([delegate respondsToSelector:@selector(deviceDidUpdateBattery:)]) {
                 [delegate deviceDidUpdateBattery:[BKDevice currentDevice].battery];
+            }
+        }];
+    } else if (response.cmdResponse == CMD_RESPONSE_DEVICE_GET_INFORMATION){
+        ZRDeviceInfo *deviceInfo = response.data;
+        [BKDevice currentDevice].model =deviceInfo.model;
+        [BKDevice currentDevice].version =deviceInfo.version;
+        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+            if ([delegate respondsToSelector:@selector(deviceDidUpdateInfo)]) {
+                [delegate deviceDidUpdateInfo];
             }
         }];
     }

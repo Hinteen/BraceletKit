@@ -31,6 +31,10 @@
             [[BKSession sharedInstance] requestUpdateBatteryCompletion:nil error:^(NSError * _Nonnull error) {
                 [weakSelf.mj_header endRefreshing];
             }];
+
+//        [[BKSession sharedInstance] requestReadDeviceInfo:nil completion:nil error:^(NSError * _Nonnull error) {
+//
+//        }];
 //        } else {
             [weakSelf.mj_header endRefreshing];
 //        }
