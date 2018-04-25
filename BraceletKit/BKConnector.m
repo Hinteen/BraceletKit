@@ -43,7 +43,7 @@ static BKConnector *instance;
         _state = BKConnectStateUnknown;
         _central = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
 //        [BLELib3 shareInstance].connectDelegate = self;
-        [[BLEAutumn midAutumn:BLEProtocol_Any] registerSolsticeEquinox:self];
+//        [[BLEAutumn midAutumn:BLEProtocol_Any] registerSolsticeEquinox:self];
         self.connectDelegates = [NSMutableArray array];
     }
     return self;
@@ -130,6 +130,7 @@ static BKConnector *instance;
  */
 - (void)connectorDidConnectedDevice:(BKDevice *)device{
     _device = device;
+    _state = BKConnectStateConnected;
     [self allConnectDelegates:^(NSObject<BKConnectDelegate> *delegate) {
         if ([delegate respondsToSelector:@selector(connectorDidConnectedDevice:)]) {
             [delegate connectorDidConnectedDevice:device];
@@ -143,6 +144,7 @@ static BKConnector *instance;
  @param device 设备
  */
 - (void)connectorDidUnconnectedDevice:(BKDevice *)device error:(NSError *)error{
+    _state = BKConnectStateUnbinding;
     [self allConnectDelegates:^(NSObject<BKConnectDelegate> *delegate) {
         if ([delegate respondsToSelector:@selector(connectorDidUnconnectedDevice:error:)]) {
             [delegate connectorDidUnconnectedDevice:device error:error];

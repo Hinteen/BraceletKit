@@ -142,7 +142,6 @@ static NSInteger hourHRCount = 12;
 }
 
 - (void) deviceDidUpdateNormalHealthDataInf:(NSDate *)zrDInfo{
-    ;
     [[BKSession sharedInstance] requestUpdateSpecialDataCompletion:zrDInfo completion:nil error:^(NSError * _Nonnull error) {
         
     }];
