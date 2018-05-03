@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BKDefines.h"
-
+#import <BLEMidAutumn/ZRHealthData.h>
 NS_ASSUME_NONNULL_BEGIN
 
 @class BKScanner, BKConnector, BKDeviceManager, BKDevice, BKUser, BKPreferences, BKWeather;
@@ -59,6 +59,19 @@ NS_ASSUME_NONNULL_BEGIN
  @param data 数据
  */
 //- (void)deviceDidUpdateData:(__kindof BKData *)data;
+/**
+ Return data.
+ 
+ @param zrhData See more in ZRHealthData.h
+ */
+- (void)updateNormalHealthData:(ZRHealthData *)zrhData;
+
+/**
+ Return data information
+ 
+ @param zrDInfo Contain dataType,date,seqStart,seqEnd and more.
+ */
+- (void)updateNormalHealthDataInfo:(ZRDataInfo *)zrDInfo;
 
 /**
 Receive general data from the watch (Date that will be used for the more specific reauest)
