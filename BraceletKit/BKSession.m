@@ -623,6 +623,11 @@ static BKSession *session;
  */
 - (void)updateNormalHealthDataInfo:(ZRDataInfo *)zrDInfo{
     AXCachedLogOBJ(zrDInfo);
+    [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(updateNormalHealthDataInfo:)]) {
+            [delegate updateNormalHealthDataInfo:zrDInfo];
+        }
+    }];
     if (zrDInfo.dataType == ZRDITypeHbridHealth || zrDInfo.dataType == ZRDITypeNormalData) {
         NSDate *dateInfo =zrDInfo.ddInfos[0].date;
         [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
@@ -641,6 +646,11 @@ static BKSession *session;
  */
 - (void)updateNormalHealthData:(ZRHealthData *)zrhData{
     AXCachedLogOBJ(zrhData);
+    [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(updateNormalHealthData:)]) {
+            [delegate updateNormalHealthData:zrhData];
+        }
+    }];
     if ([zrhData isKindOfClass:[ZRSummaryData class]]) {
         BKSummaryData *summaryData = (BKSummaryData *)zrhData;
         [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
@@ -648,6 +658,9 @@ static BKSession *session;
                 [delegate deviceDidUpdateSummaryData:summaryData];
             }
         }];
+    }
+    else if ([zrhData isKindOfClass:[ZRHRateHoursData class]]) {
+    
     }
     
 }
