@@ -647,6 +647,11 @@ static BKSession *session;
  */
 - (void)updateNormalHealthData:(ZRHealthData *)zrhData{
     AXCachedLogOBJ(zrhData);
+    [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(deviceDidUpdateSummaryData:)]) {
+            [delegate updateNormalHealthData:(BKHealthData *)zrhData];
+        }
+    }];
     if ([zrhData isKindOfClass:[ZRSummaryData class]]) {
         BKSummaryData *summaryData = (BKSummaryData *)zrhData;
         [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
