@@ -82,9 +82,11 @@ static BKSession *session;
 
 @property (strong, nonatomic) dispatch_queue_t cmdQueue;
 
-@property (strong, nonatomic) id<BLESolstice>solstice;
+@property (weak, nonatomic) id<BLESolstice>solstice;
 
 @property (nonatomic, strong) NSMutableArray <NSObject<BKSessionDelegate> *> *delegates;
+
++ (id<BLESolstice>)solstice;
 
 @end
 
@@ -107,6 +109,10 @@ static BKSession *session;
         });
     }
     return session;
+}
+
++ (id<BLESolstice>)solstice {
+    return [[BKSession sharedInstance] solstice];
 }
 
 + (instancetype)requestWithDeviceClass:(BKDeviceClass)deviceClass{
@@ -166,7 +172,7 @@ static BKSession *session;
 }
 
 - (void)safeRequest:(void (^)(BLEAutumn *manager, id<BLESolstice>solstice))option completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error{
-    
+//    NSLog(@"Manager : %@_________Solstice : %@",_manager,_solstice);
     if (option) {
         dispatch_async(self.cmdQueue, ^{
             option(self.manager, self.solstice);
@@ -311,7 +317,7 @@ static BKSession *session;
  */
 - (void)requestUpdateBatteryCompletion:(void(^)(void))completion error:(void (^)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
-        [solstice readDeviceBattery];
+        [self.solstice readDeviceBattery];
     } completion:completion error:error];
 }
 
@@ -329,7 +335,7 @@ static BKSession *session;
 
 - (void) requestUpdateSpecialDataCompletion:(NSDate *)date completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice> solstice) {
-        [solstice startSpecialData:SD_TYPE_DATA_NORMAL withDate:date];
+        [solstice startSpecialData:SD_TYPE_SPORT withDate:date];
     } completion:completion error:error];
 }
 
@@ -649,6 +655,14 @@ static BKSession *session;
             }
         }];
     }
+    else if ([zrhData isKindOfClass:[ZRSportData class]]) {
+        BKSportData *sportData = (BKSportData *)zrhData;
+        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+            if ([delegate respondsToSelector:@selector(deviceDidUpdateSportData:)]) {
+                [delegate deviceDidUpdateSportData:sportData];
+            }
+        }];
+    }
     
 }
 
@@ -667,9 +681,32 @@ static BKSession *session;
  @param isReady YES means communication is OK, or you need call setBleConnectStatus to let device in ready.
  */
 - (void)responseOfConnectStatus:(BOOL)isReady{
-    AXCachedLogOBJ(NSStringFromBool(isReady));
+//    AXCachedLogOBJ(NSStringFromBool(isReady));
+    NSLog(@"Ready : %d",isReady);
+    if (isReady) {
+        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+            if ([delegate respondsToSelector:@selector(connectionIsReadyToSend)]) {
+                [delegate connectionIsReadyToSend];
+            }
+        }];
+    }else{
+        [self.solstice setBleConnectStatus];
+        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+            if ([delegate respondsToSelector:@selector(connectionIsNotReadyToSend)]) {
+                [delegate connectionIsNotReadyToSend];
+            }
+        }];
+    }
 }
 
+- (void)responseOfGetDataTimeOutWithDataType:(NSInteger)type {
+    [self.solstice setBleConnectStatus];
+    [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(connectionIsReadyToSend)]) {
+            [delegate connectionTimeOut:type];
+        }
+    }];
+}
 
 /**
  当获取8900、8901、8902、8903、8904类型的数据的时候，写指令发出后，没有收到手环传回的数据，就会调取这个回调；
@@ -677,9 +714,9 @@ static BKSession *session;
  
  @param type 8900、8901、8902、8903、8904
  */
-- (void)responseOfGetDataTimeOutWithDataType:(NSInteger)type{
-    AXCachedLogOBJ(NSStringFromNSInteger(type));
-}
+//- (void)responseOfGetDataTimeOutWithDataType:(NSInteger)type{
+//    AXCachedLogOBJ(NSStringFromNSInteger(type));
+//}
 
 #pragma mark -FOTA
 

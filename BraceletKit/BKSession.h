@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class BKScanner, BKConnector, BKDeviceManager, BKDevice, BKUser, BKPreferences, BKWeather;
-@class BKDNDMode, BKAlarmClock, BKSedentary, BKSchedule,BKSportTarget, BKMotor, BKRoll, BKSummaryData;
+@class BKDNDMode, BKAlarmClock, BKSedentary, BKSchedule,BKSportTarget, BKMotor, BKRoll, BKSummaryData, BKSportData;
 @protocol BKSessionDelegate <NSObject>
 
 @optional
@@ -67,6 +67,15 @@ Receive general data from the watch (Date that will be used for the more specifi
 
 
 - (void) deviceDidUpdateSummaryData:(BKSummaryData *)summaryData;
+
+
+- (void) deviceDidUpdateSportData:(BKSportData *)sportData;
+
+
+- (void) connectionIsReadyToSend;
+- (void) connectionIsNotReadyToSend;
+- (void) connectionTimeOut:(NSInteger)type;
+
 
 @end
 
