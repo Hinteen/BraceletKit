@@ -22,6 +22,7 @@
 #import "BKSummaryData.h"
 #import "BKSportData.h"
 #import "BKHealthData.h"
+#import "BKSedentary.h"
 
 
 //! Project version number for BraceletKit.

@@ -640,6 +640,37 @@ static BKSession *session;
 }
 
 
+///**
+// Return data.
+// 
+// @param zrhData See more in ZRHealthData.h
+// */
+//- (void)updateNormalHealthData:(ZRHealthData *)zrhData{
+//    AXCachedLogOBJ(zrhData);
+//    [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+//        if ([delegate respondsToSelector:@selector(deviceDidUpdateSummaryData:)]) {
+//            [delegate updateNormalHealthData:(BKHealthData *)zrhData];
+//        }
+//    }];
+//    if ([zrhData isKindOfClass:[ZRSummaryData class]]) {
+//        BKSummaryData *summaryData = (BKSummaryData *)zrhData;
+//        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+//            if ([delegate respondsToSelector:@selector(deviceDidUpdateSummaryData:)]) {
+//                [delegate deviceDidUpdateSummaryData:summaryData];
+//            }
+//        }];
+//    }
+//    else if ([zrhData isKindOfClass:[ZRSportData class]]) {
+//        BKSportData *sportData = (BKSportData *)zrhData;
+//        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+//            if ([delegate respondsToSelector:@selector(deviceDidUpdateSportData:)]) {
+//                [delegate deviceDidUpdateSportData:sportData];
+//            }
+//        }];
+//    }
+//    
+//}
+
 /**
  Return data.
  
@@ -648,10 +679,26 @@ static BKSession *session;
 - (void)updateNormalHealthData:(ZRHealthData *)zrhData{
     AXCachedLogOBJ(zrhData);
     [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
-        if ([delegate respondsToSelector:@selector(deviceDidUpdateSummaryData:)]) {
-            [delegate updateNormalHealthData:(BKHealthData *)zrhData];
+        if ([delegate respondsToSelector:@selector(updateNormalHealthData:)]) {
+            [delegate updateNormalHealthData:zrhData];
         }
     }];
+    if ([zrhData isKindOfClass:[ZRHRateHoursData class]]){
+        ZRHRateHoursData *hRateHoursData = (ZRHRateHoursData*) zrhData;
+        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+            if ([delegate respondsToSelector:@selector(deviceDidUpdateHRateHoursData:)]) {
+                [delegate deviceDidUpdateHRateHoursData:hRateHoursData];
+            }
+        }];
+    }
+    if ([zrhData isKindOfClass:[ZRSleepData class]]){
+        ZRSleepData *sleepData = (ZRSleepData*) zrhData;
+        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+            if ([delegate respondsToSelector:@selector(deviceDidUpdateSleepData:)]) {
+                [delegate deviceDidUpdateSleepData:sleepData];
+            }
+        }];
+    }
     if ([zrhData isKindOfClass:[ZRSummaryData class]]) {
         BKSummaryData *summaryData = (BKSummaryData *)zrhData;
         [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
@@ -709,6 +756,15 @@ static BKSession *session;
     [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
         if ([delegate respondsToSelector:@selector(connectionIsReadyToSend)]) {
             [delegate connectionTimeOut:type];
+        }
+    }];
+}
+
+- (void)solsticeConnectTimeOut {
+    [self.solstice setBleConnectStatus];
+    [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(connectionIsReadyToSend)]) {
+            [delegate bindingConnectionTimeOut];
         }
     }];
 }

@@ -1442,7 +1442,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hinteen.BraceletKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "67339c9d-8aac-4564-887f-3c340a46062f";
+				PROVISIONING_PROFILE = "ee9b5f79-a60c-4de5-9fd6-79540831161b";
 				PROVISIONING_PROFILE_SPECIFIER = BraceletKit_Dev;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7s armv7";
@@ -1469,7 +1469,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hinteen.BraceletKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b0d26708-3831-4226-9c95-3466e0af80d9";
+				PROVISIONING_PROFILE = "6ca8561c-d5f5-45e2-a973-0fae659fa0c7";
 				PROVISIONING_PROFILE_SPECIFIER = BraceletKit_Dis;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7s armv7";

@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "BKDefines.h"
+#import <BLEMidAutumn/BLEMidAutumn.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class BKScanner, BKConnector, BKDeviceManager, BKDevice, BKUser, BKPreferences, BKWeather;
-@class BKDNDMode, BKAlarmClock, BKSedentary, BKSchedule,BKSportTarget, BKMotor, BKRoll, BKSummaryData, BKSportData, BKHealthData;
+@class BKDNDMode, BKAlarmClock, BKSedentary, BKSchedule,BKSportTarget, BKMotor, BKRoll, BKSummaryData, BKSportData,ZRHRateHoursData,ZRSleepData, ZRHealthData;
 @protocol BKSessionDelegate <NSObject>
 
 @optional
@@ -63,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
 Receive general data from the watch (Date that will be used for the more specific reauest)
  */
-- (void) updateNormalHealthData:(BKHealthData *)zrData;
+- (void) updateNormalHealthData:(ZRHealthData *)zrData;
 
 - (void) deviceDidUpdateNormalHealthDataInf:(NSDate *)zrDInfo;
 
@@ -77,12 +78,24 @@ Receive general data from the watch (Date that will be used for the more specifi
 - (void) connectionIsReadyToSend;
 - (void) connectionIsNotReadyToSend;
 - (void) connectionTimeOut:(NSInteger)type;
+- (void) bindingConnectionTimeOut;
+
+- (void) deviceDidUpdateHRateHoursData:(ZRHRateHoursData*) hRateHoursData;
+
+- (void) deviceDidUpdateSleepData:(ZRSleepData *)sleepData;
 
 
 @end
 
 
-@interface BKSession : NSObject
+@interface BKSession : NSObject 
+
+// temporary variable
+@property (weak, nonatomic) id<BLESolstice>solstice;
+
+@property (strong, nonatomic) BLEAutumn *manager;
+
++ (id<BLESolstice>)solstice;
 
 /**
  device class
