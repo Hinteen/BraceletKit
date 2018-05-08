@@ -78,11 +78,11 @@ static BKSession *session;
 
 @interface BKSession() <BLEquinox, BKConnectDelegate>
 
-@property (strong, nonatomic) BLEAutumn *manager;
+//@property (strong, nonatomic) BLEAutumn *manager;
 
 @property (strong, nonatomic) dispatch_queue_t cmdQueue;
 
-@property (weak, nonatomic) id<BLESolstice>solstice;
+//@property (weak, nonatomic) id<BLESolstice>solstice;
 
 @property (nonatomic, strong) NSMutableArray <NSObject<BKSessionDelegate> *> *delegates;
 
@@ -254,7 +254,8 @@ static BKSession *session;
 - (void)requestUpdatePreferences:(BKPreferences *)preferences completion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
         [solstice setDeviceOption:preferences.transformToZRHWOption];
-        [solstice setCustomOptions:preferences.transformToZRCOption];
+        //to modify
+//        [solstice setCustomOptions:preferences.transformToZRCOption];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), self.cmdQueue, ^{
             [solstice readDeviceOption];
             [solstice readCustomOptions];
