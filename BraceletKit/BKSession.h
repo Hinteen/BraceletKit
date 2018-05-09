@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class BKScanner, BKConnector, BKDeviceManager, BKDevice, BKUser, BKPreferences, BKWeather;
-@class BKDNDMode, BKAlarmClock, BKSedentary, BKSchedule,BKSportTarget, BKMotor, BKRoll, BKSummaryData, BKSportData, BKHealthData;
+@class BKDNDMode, BKAlarmClock, BKSedentary, BKSchedule,BKSportTarget, BKMotor, BKRoll, BKSummaryData, BKSportData, BKHealthData, BKSedentary,ZRSportData, ZRHRateHoursData, ZRSleepData, ZRStepData;
 @protocol BKSessionDelegate <NSObject>
 
 @optional
@@ -76,16 +76,19 @@ NS_ASSUME_NONNULL_BEGIN
 /**
 Receive general data from the watch (Date that will be used for the more specific reauest)
  */
-- (void) updateNormalHealthData:(BKHealthData *)zrData;
 
 - (void) deviceDidUpdateNormalHealthDataInf:(NSDate *)zrDInfo;
 
 
 - (void) deviceDidUpdateSummaryData:(BKSummaryData *)summaryData;
 
+- (void) deviceDidUpdateSleepData:(ZRSleepData *) sleepData;
 
-- (void) deviceDidUpdateSportData:(BKSportData *)sportData;
+- (void) deviceDidUpdateHRateHoursData:(ZRHRateHoursData *) hRatehoursData;
 
+- (void) deviceDidUpdateStepData:(ZRStepData *) stepData;
+
+- (void) deviceDidUpdateSportData:(ZRSportData *) sportData;
 
 - (void) connectionIsReadyToSend;
 - (void) connectionIsNotReadyToSend;

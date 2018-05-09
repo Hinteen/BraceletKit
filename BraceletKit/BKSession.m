@@ -660,8 +660,32 @@ static BKSession *session;
             }
         }];
     }
+    else if ([zrhData isKindOfClass:[ZRSleepData class]]) {
+        ZRSleepData *sleepData = (ZRSleepData *)zrhData;
+        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+            if ([delegate respondsToSelector:@selector(deviceDidUpdateSleepData:)]) {
+                [delegate deviceDidUpdateSleepData:sleepData];
+            }
+        }];
+    }
+    else if ([zrhData isKindOfClass:[ZRHRateHoursData class]]) {
+        ZRHRateHoursData *hRateHoursData = (ZRHRateHoursData *)zrhData;
+        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+            if ([delegate respondsToSelector:@selector(deviceDidUpdateHRateHoursData:)]) {
+                [delegate deviceDidUpdateHRateHoursData:hRateHoursData];
+            }
+        }];
+    }
+    else if ([zrhData isKindOfClass:[ZRStepData class]]) {
+        ZRStepData *stepData = (ZRStepData *)zrhData;
+        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+            if ([delegate respondsToSelector:@selector(deviceDidUpdateStepData:)]) {
+                [delegate deviceDidUpdateStepData:stepData];
+            }
+        }];
+    }
     else if ([zrhData isKindOfClass:[ZRSportData class]]) {
-        BKSportData *sportData = (BKSportData *)zrhData;
+        ZRSportData *sportData = (ZRSportData *)zrhData;
         [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
             if ([delegate respondsToSelector:@selector(deviceDidUpdateSportData:)]) {
                 [delegate deviceDidUpdateSportData:sportData];
