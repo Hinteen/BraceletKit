@@ -430,6 +430,12 @@ static BKSession *session;
     } completion:completion error:error];
 }
 
+- (void)requestUpdateAlarmClockAndSchedule:(NSArray<BKAlarmClock *> *)clockModels andSchedules:(NSArray<BKSchedule *> *)schedules completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice setAlarmClocks:(NSArray <ZRClock *>*)clockModels andSchedules:(NSArray <ZRSchedule *>*)schedules];
+    } completion:completion error:error];
+}
+
 - (void)requestUpdateSedentary:(BKSedentary *)sedentary completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
         [solstice setSedentary:sedentary.transformToZRSedentary];

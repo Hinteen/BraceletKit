@@ -13,7 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class BKScanner, BKConnector, BKDeviceManager, BKDevice, BKUser, BKPreferences, BKWeather;
-@class BKDNDMode, BKAlarmClock, BKSedentary, BKSchedule,BKSportTarget, BKMotor, BKRoll, BKSummaryData, BKSportData,ZRHRateHoursData,ZRSleepData, ZRHealthData;
+@class BKDNDMode, BKAlarmClock, BKSedentary, BKSchedule,BKSportTarget, BKMotor, BKRoll, BKSummaryData, BKSportData,ZRHRateHoursData,ZRSleepData, ZRHealthData, BKAlarmClock;
 @protocol BKSessionDelegate <NSObject>
 
 @optional
@@ -230,6 +230,8 @@ Receive general data from the watch (Date that will be used for the more specifi
 - (void)requestUpdateDNDMode:(void (^)(BKDNDMode *dnd))dndMode completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
 - (void)requestUpdateAlarmClock:(BKAlarmClock *)alarmClock completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
+
+- (void)requestUpdateAlarmClockAndSchedule:(NSArray<BKAlarmClock *> *)clockModels andSchedules:(NSArray<BKSchedule *> *)schedules completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
 - (void)requestUpdateSedentary:(BKSedentary *)sedentary completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
