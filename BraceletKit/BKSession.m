@@ -432,7 +432,15 @@ static BKSession *session;
 
 - (void)requestUpdateAlarmClockAndSchedule:(NSArray<BKAlarmClock *> *)clockModels andSchedules:(NSArray<BKSchedule *> *)schedules completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
-        [solstice setAlarmClocks:(NSArray <ZRClock *>*)clockModels andSchedules:(NSArray <ZRSchedule *>*)schedules];
+        NSMutableArray <ZRClock *> *zrClocks =  [[NSMutableArray alloc] init];
+        NSMutableArray <ZRSchedule *> *zrSchedules =  [[NSMutableArray alloc] init];
+        for (BKAlarmClock *model in clockModels) {
+            [zrClocks addObject:model.transformToZRClock];
+        }
+        for (BKSchedule *model in schedules) {
+            [zrSchedules addObject:model.transformToZRSchedule];
+        }
+        [solstice setAlarmClocks:zrClocks andSchedules:zrSchedules];
     } completion:completion error:error];
 }
 
