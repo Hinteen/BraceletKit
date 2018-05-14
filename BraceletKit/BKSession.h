@@ -13,7 +13,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class BKScanner, BKConnector, BKDeviceManager, BKDevice, BKUser, BKPreferences, BKWeather;
-@class BKDNDMode, BKAlarmClock, BKSedentary, BKSchedule,BKSportTarget, BKMotor, BKRoll, BKSummaryData, BKSportData, BKHealthData, BKSedentary,ZRSportData, ZRHRateHoursData, ZRSleepData, ZRStepData;
+
+@class BKDNDMode, BKAlarmClock, BKSedentary, BKSchedule,BKSportTarget, BKMotor, BKRoll, BKSummaryData, BKSportData, BKHealthData, BKSedentary,ZRSportData, ZRHRateHoursData, ZRSleepData, ZRStepData,BKAlarmClock;
 
 @protocol BKSessionDelegate <NSObject>
 
@@ -78,10 +79,6 @@ NS_ASSUME_NONNULL_BEGIN
 /**
 Receive general data from the watch (Date that will be used for the more specific reauest)
  */
-<<<<<<< HEAD
-=======
-- (void) updateNormalHealthData:(ZRHealthData *)zrData;
->>>>>>> 07fc1e5d16135d705385a18f5f0e8d707d1a4ea8
 
 - (void) deviceDidUpdateNormalHealthDataInf:(NSDate *)zrDInfo;
 
@@ -100,10 +97,6 @@ Receive general data from the watch (Date that will be used for the more specifi
 - (void) connectionIsNotReadyToSend;
 - (void) connectionTimeOut:(NSInteger)type;
 - (void) bindingConnectionTimeOut;
-
-- (void) deviceDidUpdateHRateHoursData:(ZRHRateHoursData*) hRateHoursData;
-
-- (void) deviceDidUpdateSleepData:(ZRSleepData *)sleepData;
 
 
 @end
@@ -251,6 +244,8 @@ Receive general data from the watch (Date that will be used for the more specifi
 - (void)requestUpdateDNDMode:(void (^)(BKDNDMode *dnd))dndMode completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
 - (void)requestUpdateAlarmClock:(BKAlarmClock *)alarmClock completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
+
+- (void)requestUpdateAlarmClockAndSchedule:(NSArray<BKAlarmClock *> *)clockModels andSchedules:(NSArray<BKSchedule *> *)schedules completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
 - (void)requestUpdateSedentary:(BKSedentary *)sedentary completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 

@@ -8,15 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "BKDefines.h"
+#import <BLEMidAutumn/ZRModel.h>
 
 
-@class ZRSchedule;
-@interface BKSchedule : NSObject
+//@class ZRSchedule;
+@interface BKSchedule : ZRSchedule
 
 /**
  title
  */
-@property (copy, nonatomic) NSString *title;
+//@property (copy, nonatomic) NSString *title;
 /**
  subtitle
  */
@@ -40,7 +41,7 @@
 /**
  invalidDate
  */
-@property (strong, nonatomic) NSDate *invalidDate;
+//@property (strong, nonatomic) NSDate *invalidDate;
 
 
 - (ZRSchedule *)transformToZRSchedule;
