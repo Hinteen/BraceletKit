@@ -157,6 +157,9 @@
  */
 - (void)updateNormalHealthData:(ZRHealthData *)zrhData;
 
+/**! Simple progress in Percent<##>*/
+- (void)updateDataProgress:(NSInteger)progress;
+
 /**! Successfully disconnected, you can call the unbinding method here.<##>*/
 - (void)debindFromBraceletSuccessful;
 
@@ -188,6 +191,8 @@
 - (void)responseOfMTKBtNotifyData:(CBCharacteristic *)cbc;
 /**! Simlar to responseOfMTKBtNotifyData:*/
 - (void)responseOfMTKBtWriteData:(CBCharacteristic *)cbc;
+/**! Secretly Upgreade epo events*/
+- (void)itIsBestTimeForEpoSecretly;
 
 @end
 

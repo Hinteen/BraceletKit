@@ -18,6 +18,7 @@
 #define PEDOMETER_WATCH_SERVICE_UUID        @"18A0"
 #define PEDOMETER_MTK_SERVICE_UUID          @"181A"
 #define Z4_SERVICE_ID                       @"6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
+#define HEARTRATE_SERVICE_ID                @"180D"
 
 #define PEDOMETER_NEW_CHARACT_SET_UUID      @"FF21"
 #define PEDOMETER_OLD_CHARACT_TEST          @"FF22"
@@ -68,7 +69,8 @@ typedef NS_ENUM(NSInteger ,KSyscDataState){
     KSyscDataStateGNSSEnd,
     KSyscDataStateECGEnd,
     KSyscDataStateIsFinished ,
-    
+    KSyscDataDateIsFinished ,
+
     KSyscDataState61End = 0x80,     //61结束
     KSyscDataState62End,     //62结束
     KSyscDataState64End,     //64结束
@@ -130,6 +132,8 @@ typedef NS_ENUM(NSInteger ,BLECmdResponse) {
     CMD_RESPONSE_DEVICE_SYNCDATA = 0x08,
     CMD_RESPONSE_DEVICE_HEARTBEAT_SIGNAL = 0x09,
     CMD_RESPONSE_DEVICE_HW_OPTION_SUPPERT = 0x0a, // Hardware Option type Support
+    CMD_RESPONSE_DEVICE_MANUFACTURE_DATE = 0x0b,
+    CMD_RESPONSE_DEVICE_FACTORY_CONF = 0x0c,
     
     CMD_RESPONSE_CONFIG_SET_TIME = 0x10,                 // Time
     CMD_RESPONSE_CONFIG_GET_TIME = 0x11,
@@ -153,7 +157,7 @@ typedef NS_ENUM(NSInteger ,BLECmdResponse) {
     CMD_RESPONSE_DATALOG_GET_BODY_PARAM = 0x21,    // Read body Parmameters
     CMD_RESPONSE_DATALOG_CLEAR_ALL = 0x22,
     CMD_RESPONSE_DATALOG_START_GET_DAY_DATA = 0x23,
-    CMD_RESPONSE_DATALOG_STOP_GET_DAY_DATA = 0x24,
+    CMD_RESPONSE_DATALOG_GET_WARNING_PARAM = 0x24,
     CMD_RESPONSE_DATALOG_SET_GNSS = 0x25,
     CMD_RESPONSE_DATALOG_GET_GNSS = 0x26,
     CMD_RESPONSE_DATALOG_GET_CUR_DAY_DATA = 0x27,

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class BKScanner, BKConnector, BKDeviceManager, BKDevice, BKUser, BKPreferences, BKWeather;
 
-@class BKDNDMode, BKAlarmClock, BKSedentary, BKSchedule,BKSportTarget, BKMotor, BKRoll, BKSummaryData, BKSportData, BKHealthData, BKSedentary,ZRSportData, ZRHRateHoursData, ZRSleepData, ZRStepData,BKAlarmClock;
+@class BKDNDMode, BKAlarmClock, BKSedentary, BKSchedule,BKSportTarget, BKMotor, BKRoll, BKSummaryData, BKSportData, BKHealthData, BKSedentary,ZRSportData, ZRHRateHoursData, ZRSleepData, ZRStepData,BKAlarmClock,ZRSportTarget;
 
 @protocol BKSessionDelegate <NSObject>
 

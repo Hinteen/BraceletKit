@@ -394,7 +394,8 @@ static BKSession *session;
 
 - (void)requestReadSportTargets:(BKSportTarget *)sportTarget completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
-        [solstice readSportTargets];
+        //knightly : 新sdk不支持
+        //[solstice readSportTargets];
     } completion:completion error:error];
 }
 
@@ -464,7 +465,8 @@ static BKSession *session;
 
 - (void)requestUpdateSportTarget:(BKSportTarget *)sportTarget completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
-        [solstice setSportTarget:(ZRSportTarget *)sportTarget];
+         //knightly : 新sdk不支持
+        //[solstice setSportTarget:(ZRSportTarget *)sportTarget];
     } completion:completion error:error];
 }
 

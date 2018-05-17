@@ -69,7 +69,7 @@
 @property (nonatomic ,assign) NSUInteger endHour;
 
 /**
- * the monitor duration ,unit is minute . your may demanded set a num is multiple of 5.
+ * the monitor duration ,unit is minute . your may demanded set a num is multiple of 5. 
  * default duration is 60 minutes and threshold is 50 steps if you set both zero.
  * Special device support
  */
@@ -106,6 +106,16 @@
  */
 @property (nonatomic ,assign) NSUInteger age;
 
+@property (nonatomic ,assign)NSUInteger stepOnceDay;
+/**
+ * 步行步幅校正 范围 【50，200】
+ */
+@property (nonatomic ,assign) NSUInteger distanceSize;
+
+/**
+ * 跑行步幅校正 范围 【50，200】
+ */
+@property (nonatomic ,assign) NSUInteger distanceSizeRun;
 @end
 
 @interface ZRTargetOnceDay : ZRModel
@@ -122,6 +132,7 @@
 
 @end
 
+
 @interface SportModel : ZRModel <NSCoding>
 @property (nonatomic,assign,readonly)NSString *sportName;
 @property (nonatomic,strong,readonly)NSString *unit;
@@ -129,7 +140,7 @@
 @property (nonatomic,assign)NSInteger targetNum;
 @end
 
-@interface ZRSportTarget : ZRModel <NSCoding>
+@interface ZRSportLists : ZRModel <NSCoding>
 
 /*
  * 0-6 monday-sunday
@@ -200,6 +211,7 @@ typedef NS_ENUM (NSInteger,ShakeWay){
 
 @interface ZRMotor : ZRModel<NSCoding>
 + (NSArray <ZRMotor *> *)defaultMotors;
+/**! Used for device bleProtocol_colorful */
 + (NSArray <ZRMotor *> *)zgDefaultMotors;
 
 @property (nonatomic,assign)ShakeType   type;
@@ -207,7 +219,13 @@ typedef NS_ENUM (NSInteger,ShakeWay){
 @property (nonatomic,assign)NSInteger   shakeCount;
 
 + (NSString *)chineseNameForShakeWay:(ShakeWay)modelIndex;
+/**! Used for bleProtocol_colorful device, set in ZRSchedule & ZRClock*/
++ (NSInteger)getRingSettingWithShakeWay:(ShakeWay)way andCount:(NSInteger)count;
 
++ (ShakeWay)shakeWayFromRing:(NSInteger)ringSetting;
++ (NSInteger)shakeCountFromRing:(NSInteger)ringSetting;
++ (NSInteger)shakeIndexFrom:(ShakeWay)sWay;
++ (NSArray *)modelArray;
 @end
 
 @interface ZRCOption : ZRModel
@@ -269,7 +287,7 @@ typedef NS_ENUM(NSInteger,TempUnit) {
     Fahrenheit = 1, //华氏温度
 };
 
-@interface ZRWeather : ZRModel
+@interface ZRWeather : ZRModel <NSCopying>
 
 @property (nonatomic,assign)NSInteger temp;//温度值
 @property (nonatomic,assign)TempUnit unit;
@@ -306,6 +324,7 @@ typedef NS_ENUM(NSInteger,TempUnit) {
 /**! Phone numbers, numbers only, no more than 20 digits*/
 @property (nonatomic ,copy) NSString *number;
 @end
+
 
 @interface ZRRoll : ZRModel
 /**! rollId (hash_id): Please use an integer, the size should not exceed 0xFFFFFFFF*/
@@ -349,6 +368,26 @@ typedef NS_ENUM(NSInteger,TempUnit) {
 
 @end
 
+
+
+typedef NS_ENUM (NSInteger,ZRRollMsgType){
+    ZRRollMsgForQQ          = (1<<15),
+    ZRRollMsgForWechat      = (1<<14),
+    ZRRollMsgForSina        = (1<<13),
+    ZRRollMsgForFacebook    = (1<<12),
+    ZRRollMsgForLine        = (1<<11),
+    ZRRollMsgForInstagram   = (1<<10),
+    ZRRollMsgForKakaoTalk   = (1<<9),
+    ZRRollMsgForGmail       = (1<<8),
+    ZRRollMsgForTwitter     = (1<<7),
+    ZRRollMsgForLinkin      = (1<<6),
+    ZRRollMsgForWhatsapp    = (1<<5),
+    ZRRollMsgForSkype       = (1<<4),
+    ZRRollMsgForMobileSMS   = (1<<3),
+    ZRRollMsgForMoblieEmail = (1<<2),
+};
+
+
 @interface ZRMesgPush : ZRModel
 
 /**
@@ -375,6 +414,14 @@ typedef NS_ENUM(NSInteger,TempUnit) {
  */
 @property (nonatomic, assign) NSInteger messageStart;
 @property (nonatomic, assign) NSInteger messageEnd;
+
+/**
+ * Valid only if @ \ messageEnable is YES, and at the set time interval. List of supported blacklist apps, ZRRollMsgType cannot be repeated;
+ * 仅在 @\messageEnable 为YES, 并且在设置的时间间隔内有效。支持的黑名单的APP列表，ZRRollMsgType不能重复;
+ */
+@property (nonatomic, strong) NSArray  *rollMsgList;
+@property (nonatomic, strong) NSString *rollMsgListJsonString;
+
 
 @end
 

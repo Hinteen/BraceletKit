@@ -15,7 +15,7 @@
 @class ZRDNDModel;
 @class ZRPersonal;
 @class ZRHWOption;
-@class ZRSportTarget;
+@class ZRSportLists;
 @class ZRRoll;
 @class ZRCOption;
 @class ZRGPSPoint;
@@ -30,6 +30,7 @@
 @class ZRTargetOnceDay;
 @class ZRMesgPush;
 
+typedef void(^ReadDeviceSettingComplementation)(id obj);
 
 /**
  Communication agent, holding peripheral connection object, make a protocol conversion between the app and the device, so that the API is easier to understand than the binary.
@@ -70,7 +71,10 @@
 - (void)readDNDModeInfo;
 /**! Sent weather info to device for show in screen ,special devices support*/
 - (void)setWeather:(ZRWeather *)weather;
-
+/**!Appearance time of the device, Got the response in method readResponseFromDevice:*/
+- (void)readManufactureDate;
+/**! Factory configuration, Got the response in method readResponseFromDevice:<##>*/
+- (void)readFactoryConfiguration;
 #pragma mark -SETTING ACTION-设置操作
 
 /**
@@ -147,14 +151,15 @@
 - (void)setDeviceOption:(ZRHWOption *)deOption;
 /**! Read device option. Got the response in method readResponseFromDevice:*/
 - (void)readDeviceOption;
+- (void)readDeviceOptionWithBlock:(ReadDeviceSettingComplementation)rdsComplemention;
 
 /**! Get sport type list that device support. Got the response in method readResponseFromDevice:*/
 - (void)readSupportSports;
 
 /**! Add a moving target to the device, and then you can see the type of motion you added on the device's exercise screen*/
-- (void)setSportTarget:(ZRSportTarget *)st;
+- (void)setSportLists:(ZRSportLists *)st;
 /**! Read Sport target in device. Got the response in method readResponseFromDevice:*/
-- (void)readSportTargets;
+- (void)readSportLists;
 
 
 /** Add contacts to the device ,special device support.*/
@@ -211,7 +216,7 @@
              "com.tencent.mqq" - QQ
              "com.apple.mobilephone" - Incoming call
              "com.apple.MobileSMS" - message
- For more build identify for third part apps. use 【ios-deploy --id [udid] --list_bundle_id 】in Ternimal got them. Links:http://www.bijishequ.com/detail/430052
+ For more build identify for third part apps. use 【ios-deploy --id [udid] --list_bundle_id 】in Ternimal got them. Links:https://segmentfault.com/a/1190000010205616
     @code
              NSArray * arr = @ [@ "com.apple.mobilephone",
                                 @ "com.apple.MobileSMS"
@@ -314,6 +319,14 @@
 
 
 -(void)testECGModel;
+
+
+//微教练
+- (void)startExercise;
+- (void)endExercise;
+- (void)pauseExercise;
+
+
 @end
 
 
