@@ -336,7 +336,7 @@ static BKSession *session;
 
 - (void) requestUpdateSpecialDataCompletion:(NSDate *)date completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice> solstice) {
-        [solstice startSpecialData:SD_TYPE_SPORT withDate:date];
+        [solstice startSpecialData:SD_TYPE_DATA_NORMAL withDate:date];
     } completion:completion error:error];
 }
 
@@ -466,6 +466,7 @@ static BKSession *session;
 - (void)requestUpdateSportTarget:(BKSportTarget *)sportTarget completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
          //knightly : 新sdk不支持
+        //[solstice setSportLists:(ZRSportLists *)sportTarget];
         //[solstice setSportTarget:(ZRSportTarget *)sportTarget];
     } completion:completion error:error];
 }
