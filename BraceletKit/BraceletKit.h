@@ -26,6 +26,8 @@
 #import "BKSportTarget.h"
 #import "BKAlarmClock.h"
 #import "BKSchedule.h"
+#import "BKMotor.h"
+#import "BKDNDMode.h"
 
 
 //! Project version number for BraceletKit.

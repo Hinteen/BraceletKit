@@ -19,6 +19,8 @@
     NSInteger hour = date.stringValue(@"HH").integerValue;
     NSInteger minute = date.stringValue(@"mm").integerValue;
     ZRSchedule *model = [[ZRSchedule alloc] initWithTitile:self.title subTitle:self.subtitle year:year month:month day:day hour:hour minute:minute];
+    model.ringSetting = self.ringSetting;
+    model.state = self.state;
     return model;
 }
 

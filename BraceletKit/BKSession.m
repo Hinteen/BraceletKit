@@ -255,7 +255,7 @@ static BKSession *session;
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
         [solstice setDeviceOption:preferences.transformToZRHWOption];
         //to modify
-//        [solstice setCustomOptions:preferences.transformToZRCOption];
+        //[solstice setCustomOptions:preferences.transformToZRCOption];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), self.cmdQueue, ^{
             [solstice readDeviceOption];
             [solstice readCustomOptions];
@@ -358,14 +358,10 @@ static BKSession *session;
  @param completion 指令已发送到设备
  @param error 指令发送失败及其原因
  */
-- (void)requestUpdateWeatherInfo:(void (^)(BKWeather *weather))weatherInfo completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
-    if (weatherInfo) {
+- (void)requestUpdateWeatherInfo:(BKWeather *)weather completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
         [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
-            BKWeather *weather = [[BKWeather alloc] init];
-            weatherInfo(weather);
-            [solstice setWeather:(ZRWeather *)weather];
+            [solstice setWeather:weather];
         } completion:completion error:error];
-    }
 }
 
 - (void)requestUpdateDNDMode:(void (^)(BKDNDMode * _Nonnull))dndMode completion:(void (^)(void))completion error:(void (^)(NSError * _Nonnull))error{
@@ -648,12 +644,14 @@ static BKSession *session;
 - (void)updateNormalHealthDataInfo:(ZRDataInfo *)zrDInfo{
     AXCachedLogOBJ(zrDInfo);
     if (zrDInfo.dataType == ZRDITypeHbridHealth || zrDInfo.dataType == ZRDITypeNormalData) {
-        NSDate *dateInfo =zrDInfo.ddInfos[0].date;
-        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
-            if ([delegate respondsToSelector:@selector(deviceDidUpdateNormalHealthDataInf:)]) {
-                [delegate deviceDidUpdateNormalHealthDataInf:dateInfo];
-            }
-        }];
+        for(int i=0; i<[zrDInfo.ddInfos count] && i < 3; i++){
+            NSDate *dateInfo =zrDInfo.ddInfos[0].date;
+            [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+                if ([delegate respondsToSelector:@selector(deviceDidUpdateNormalHealthDataInf:)]) {
+                    [delegate deviceDidUpdateNormalHealthDataInf:dateInfo];
+                }
+            }];
+        }
     }
 }
 

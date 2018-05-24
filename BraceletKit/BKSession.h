@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class BKScanner, BKConnector, BKDeviceManager, BKDevice, BKUser, BKPreferences, BKWeather;
 
-@class BKDNDMode, BKAlarmClock, BKSedentary, BKSchedule,BKSportTarget, BKMotor, BKRoll, BKSummaryData, BKSportData, BKHealthData, BKSedentary,ZRSportData, ZRHRateHoursData, ZRSleepData, ZRStepData,BKAlarmClock,ZRSportTarget;
+@class BKDNDMode, BKAlarmClock, BKSedentary, BKSchedule,BKSportTarget, BKMotor, BKRoll, BKSummaryData, BKSportData, BKHealthData, BKSedentary,ZRSportData, ZRHRateHoursData, ZRSleepData, ZRStepData,BKAlarmClock,ZRSportTarget,ZRDataInfo;
 
 @protocol BKSessionDelegate <NSObject>
 
@@ -239,7 +239,7 @@ Receive general data from the watch (Date that will be used for the more specifi
 
 
 
-- (void)requestUpdateWeatherInfo:(void (^)(BKWeather *weather))weatherInfo completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
+- (void)requestUpdateWeatherInfo:(BKWeather *)weather completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
 - (void)requestUpdateDNDMode:(void (^)(BKDNDMode *dnd))dndMode completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
@@ -276,6 +276,7 @@ Receive general data from the watch (Date that will be used for the more specifi
 - (void)requestFeelMotor:(BKMotor *)motor completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
 - (void)requestUpdateDevice:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
+
 
 @end
 NS_ASSUME_NONNULL_END

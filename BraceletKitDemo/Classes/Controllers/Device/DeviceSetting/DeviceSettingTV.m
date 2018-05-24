@@ -453,22 +453,22 @@
     
     else if ([model.target isEqualToString:@"weather"]) {
         [UIAlertController ax_showActionSheetWithTitle:model.title message:nil actions:^(UIAlertController * _Nonnull alert) {
-            [alert ax_addDefaultActionWithTitle:@"晴 25 PM 28" handler:^(UIAlertAction * _Nonnull sender) {
-                [[BKSession sharedInstance] requestUpdateWeatherInfo:^(BKWeather * _Nonnull weather) {
-                    weather.condition = BKWeatherConditionFine;
-                    weather.temperature = 25;
-                    weather.unit = [BKDevice currentDevice].preferences.temperatureUnit;
-                    weather.pm2_5 = 28;
-                } completion:nil error:nil];
-            }];
-            [alert ax_addDefaultActionWithTitle:@"阵雨 20 PM 20" handler:^(UIAlertAction * _Nonnull sender) {
-                [[BKSession sharedInstance] requestUpdateWeatherInfo:^(BKWeather * _Nonnull weather) {
-                    weather.condition = BKWeatherConditionShower;
-                    weather.temperature = 20;
-                    weather.unit = [BKDevice currentDevice].preferences.temperatureUnit;
-                    weather.pm2_5 = 20;
-                } completion:nil error:nil];
-            }];
+//            [alert ax_addDefaultActionWithTitle:@"晴 25 PM 28" handler:^(UIAlertAction * _Nonnull sender) {
+//                [[BKSession sharedInstance] requestUpdateWeatherInfo:^(BKWeather * _Nonnull weather) {
+//                    weather.type = BKWeatherConditionFine;
+//                    weather.temp = 25;
+//                    weather.unit = [BKDevice currentDevice].preferences.temperatureUnit;
+//                    weather.pm = 28;
+//                } completion:nil error:nil];
+//            }];
+//            [alert ax_addDefaultActionWithTitle:@"阵雨 20 PM 20" handler:^(UIAlertAction * _Nonnull sender) {
+//                [[BKSession sharedInstance] requestUpdateWeatherInfo:^(BKWeather * _Nonnull weather) {
+//                    weather.type = BKWeatherConditionShower;
+//                    weather.temp = 20;
+//                    weather.unit = [BKDevice currentDevice].preferences.temperatureUnit;
+//                    weather.pm = 20;
+//                } completion:nil error:nil];
+//            }];
             [alert ax_addCancelAction];
         }];
         

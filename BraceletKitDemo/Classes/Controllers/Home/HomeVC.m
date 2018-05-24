@@ -56,6 +56,7 @@ static NSInteger hourHRCount = 12;
     
     [self setupBatteryView];
     
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -111,6 +112,7 @@ static NSInteger hourHRCount = 12;
 - (void)setupRefreshView{
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem ax_itemWithCustomView:[BKRefreshView sharedInstance] action:^(UIBarButtonItem * _Nonnull sender) {
         [[BKRefreshView sharedInstance] startAnimating];
+        [[BKSession sharedInstance] requestReadSupportedSport:nil error:nil];
         [[BKSession sharedInstance] requestUpdateBatteryCompletion:nil error:nil];
         [[BKSession sharedInstance] requestUpdateAllHealthDataCompletion:nil error:nil];
     }];
@@ -145,6 +147,13 @@ static NSInteger hourHRCount = 12;
     [[BKSession sharedInstance] requestUpdateSpecialDataCompletion:zrDInfo completion:nil error:^(NSError * _Nonnull error) {
         
     }];
+    BKWeather *weather = [BKWeather new];
+    weather.temp = 30;
+    weather.type = 0;
+    weather.unit = 0;
+    weather.pm = 0;
+    [[BKSession sharedInstance] requestUpdateWeatherInfo:weather completion:nil error:nil];
+    
 }
 
 - (void) deviceDidUpdateSummaryData:(BKSummaryData *)summaryData{

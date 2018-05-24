@@ -123,23 +123,23 @@
 
 @end
 
-@implementation BKWeather (BKExtension)
-
-- (ZRWeather *)transformToZeronerWeather{
-    ZRWeather *model = [ZRWeather defaultModel];
-    model.temp = self.temperature;
-    if (self.unit == BKTemperatureUnitKelvin) {
-        // 手表暂不支持开尔文温度
-        model.unit = Centigrade;
-    } else {
-        model.unit = (TempUnit)self.unit;
-    }
-    model.type = self.condition;
-    model.pm = self.pm2_5;
-    return model;
-}
-
-@end
+//@implementation BKWeather (BKExtension)
+//
+//- (ZRWeather *)transformToZeronerWeather{
+//    ZRWeather *model = [ZRWeather defaultModel];
+//    model.temp = self.temperature;
+//    if (self.unit == BKTemperatureUnitKelvin) {
+//        // 手表暂不支持开尔文温度
+//        model.unit = Centigrade;
+//    } else {
+//        model.unit = (TempUnit)self.unit;
+//    }
+//    model.type = self.condition;
+//    model.pm = self.pm2_5;
+//    return model;
+//}
+//
+//@end
 
 @implementation BKDNDMode (BKModelExtension)
 
