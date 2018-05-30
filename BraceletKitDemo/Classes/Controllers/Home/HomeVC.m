@@ -35,6 +35,7 @@ static NSInteger hourHRCount = 12;
 @property (strong, nonatomic) BKHeartRateQuery *hr;
 @property (strong, nonatomic) BKSleepQuery *sleep;
 
+@property (strong,nonatomic) NSMutableArray <DDInfo *> *ddInfosPool;
 
 @end
 
@@ -143,17 +144,17 @@ static NSInteger hourHRCount = 12;
     }
 }
 
-- (void) deviceDidUpdateNormalHealthDataInf:(NSDate *)zrDInfo{
-    [[BKSession sharedInstance] requestUpdateSpecialDataCompletion:zrDInfo completion:nil error:^(NSError * _Nonnull error) {
-        
+- (void) deviceDidUpdateNormalHealthDataInf:(ZRDataInfo *)zrDInfo{
+    if(self.ddInfosPool != nil && [self.ddInfosPool count] != 0){
+        //不为空， 上一次同步数据没完成， 先不处理同步
+    }else{
+        self.ddInfosPool = [NSMutableArray arrayWithArray:zrDInfo.ddInfos];
+    }
+    DDInfo * ddInfo = self.ddInfosPool[0];
+    NSDate *dateInfo =self.ddInfosPool[0].date;
+    [[BKSession sharedInstance] requestUpdateSpecialDataCompletion:dateInfo completion:nil error:^(NSError * _Nonnull error) {
     }];
-    BKWeather *weather = [BKWeather new];
-    weather.temp = 30;
-    weather.type = 0;
-    weather.unit = 0;
-    weather.pm = 0;
-    [[BKSession sharedInstance] requestUpdateWeatherInfo:weather completion:nil error:nil];
-    
+    [self.ddInfosPool removeObject:ddInfo];
 }
 
 - (void) deviceDidUpdateSummaryData:(BKSummaryData *)summaryData{
@@ -171,8 +172,38 @@ static NSInteger hourHRCount = 12;
     [self reloadData];
 }
 
+- (void)deviceDidUpdateSleepData:(ZRSleepData*)sleepData{
+    AXLogOBJ(sleepData);
+}
+
+- (void)deviceDidUpdateHRateHoursData:(ZRHRateHoursData*)hRateData{
+    AXLogOBJ(hRateData);
+}
+
+- (void)deviceDidUpdateStepData:(ZRStepData *)stepData{
+    AXLogOBJ(stepData);
+}
+
+- (void)deviceDidUpdateSportData:(ZRSportData *)sportData{
+    AXLogOBJ(sportData);
+}
+
 - (void)dataDidUpdated:(__kindof BKData *)data{
     [self reloadData];
+}
+
+- (void)deviceDidUpdateSynchronizeProgress:(NSInteger) progress{
+    //前一天同步完成，开始尝试同步下一天的
+    if(progress == 100){
+        if(self.ddInfosPool != nil && [self.ddInfosPool count] != 0){
+            //不为空，尝试同步下一天的
+            DDInfo * ddInfo = self.ddInfosPool[0];
+            NSDate *dateInfo =self.ddInfosPool[0].date;
+            [[BKSession sharedInstance] requestUpdateSpecialDataCompletion:dateInfo completion:nil error:^(NSError * _Nonnull error) {
+            }];
+            [self.ddInfosPool removeObject:ddInfo];
+        }
+    }
 }
 
 - (void)reloadData{

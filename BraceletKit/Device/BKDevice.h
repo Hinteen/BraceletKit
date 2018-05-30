@@ -86,7 +86,5 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)currentDevice;
 
 
-
-
 @end
 NS_ASSUME_NONNULL_END

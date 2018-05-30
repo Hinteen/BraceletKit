@@ -41,7 +41,9 @@
     bk.uuid = self.uuidString;
     [BLEAutumn midAutumn:BLEProtocol_Any];
 
-#warning    bk.type = (BKDeviceType)[ble].deviceType;
+//#warning    bk.type = (BKDeviceType)[ble].deviceType;
+    //knightly: 默认为unknown,在获取到model后更加model进行设置
+    bk.type = BKDeviceTypeUnknown;
     bk.peripheral = self.cbDevice;
     bk.rssi = self.RSSI;
     bk.zrPeripheral = self;
@@ -50,7 +52,6 @@
     }
     return bk;
 }
-
 @end
 
 @implementation BKDevice (BKModelExtension)

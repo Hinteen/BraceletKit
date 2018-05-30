@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param progress 进度(0~1)
  */
-- (void)deviceDidUpdateSynchronizeProgress:(CGFloat)progress;
+- (void)deviceDidUpdateSynchronizeProgress:(NSInteger)progress;
 
 /**
  更新了设备信息
@@ -80,7 +80,7 @@ NS_ASSUME_NONNULL_BEGIN
 Receive general data from the watch (Date that will be used for the more specific reauest)
  */
 
-- (void) deviceDidUpdateNormalHealthDataInf:(NSDate *)zrDInfo;
+- (void) deviceDidUpdateNormalHealthDataInf:(ZRDataInfo *)zrDInfo;
 
 
 - (void) deviceDidUpdateSummaryData:(BKSummaryData *)summaryData;
@@ -224,7 +224,7 @@ Receive general data from the watch (Date that will be used for the more specifi
  */
 - (void)requestReadDeviceInfo:(BKDevice * _Nullable)device completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
-- (void)requestReadDeviceBattery:(BKDevice *)device completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
+- (void)requestReadDeviceBattery:(BKDevice * _Nullable)device completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
 - (void)requestReadSportTargets:(BKSportTarget *)sportTarget completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 

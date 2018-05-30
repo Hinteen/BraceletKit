@@ -35,6 +35,7 @@
 		B02507B4206A3EAD00535766 /* BKMotor.m in Sources */ = {isa = PBXBuildFile; fileRef = B02507AA206A3EAD00535766 /* BKMotor.m */; };
 		B02507B5206A3EAD00535766 /* BKRoll.m in Sources */ = {isa = PBXBuildFile; fileRef = B02507AB206A3EAD00535766 /* BKRoll.m */; };
 		B02507B6206A3EAD00535766 /* BKRoll.m in Sources */ = {isa = PBXBuildFile; fileRef = B02507AB206A3EAD00535766 /* BKRoll.m */; };
+		B04B3C8320BE568700A428BC /* products.plist in Resources */ = {isa = PBXBuildFile; fileRef = B04B3C8220BE568700A428BC /* products.plist */; };
 		B0787E652069D68E005FA380 /* BKSport.m in Sources */ = {isa = PBXBuildFile; fileRef = B0787E612069D68E005FA380 /* BKSport.m */; };
 		B0787E662069D68E005FA380 /* BKSportTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = B0787E622069D68E005FA380 /* BKSportTarget.m */; };
 		B0787E672069D68E005FA380 /* BKSport.h in Headers */ = {isa = PBXBuildFile; fileRef = B0787E632069D68E005FA380 /* BKSport.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -202,6 +203,7 @@
 		B02507A8206A3EAC00535766 /* BKMotor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKMotor.h; sourceTree = "<group>"; };
 		B02507AA206A3EAD00535766 /* BKMotor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKMotor.m; sourceTree = "<group>"; };
 		B02507AB206A3EAD00535766 /* BKRoll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKRoll.m; sourceTree = "<group>"; };
+		B04B3C8220BE568700A428BC /* products.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = products.plist; sourceTree = "<group>"; };
 		B0787E612069D68E005FA380 /* BKSport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKSport.m; sourceTree = "<group>"; };
 		B0787E622069D68E005FA380 /* BKSportTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKSportTarget.m; sourceTree = "<group>"; };
 		B0787E632069D68E005FA380 /* BKSport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKSport.h; sourceTree = "<group>"; };
@@ -895,6 +897,7 @@
 			children = (
 				CD25EA362013331D009BEFC1 /* BKDevice.h */,
 				CD25EA372013331D009BEFC1 /* BKDevice.m */,
+				B04B3C8220BE568700A428BC /* products.plist */,
 			);
 			path = Device;
 			sourceTree = "<group>";
@@ -1070,6 +1073,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B04B3C8320BE568700A428BC /* products.plist in Resources */,
 				CDA527931FECB269009C39EC /* BraceletKit.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -382,7 +382,7 @@ static BKSession *session;
     } completion:completion error:error];
 }
 
-- (void)requestReadDeviceBattery:(BKDevice *)device completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+- (void)requestReadDeviceBattery:(BKDevice * _Nullable)device completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
         [solstice readDeviceBattery];
     } completion:completion error:error];
@@ -596,7 +596,6 @@ static BKSession *session;
     AXCachedLogOBJ(NSStringFromNSInteger(bkn));
 }
 
-
 /**
  Most read status operations will be returned in this method, including device information, device power and so on.
  Distinguished by the type of BLECmdResponse.
@@ -616,8 +615,9 @@ static BKSession *session;
         }];
     } else if (response.cmdResponse == CMD_RESPONSE_DEVICE_GET_INFORMATION){
         ZRDeviceInfo *deviceInfo = response.data;
-        [BKDevice currentDevice].model =deviceInfo.model;
+        [BKDevice currentDevice].model =deviceInfo.model.uppercaseString;
         [BKDevice currentDevice].version =deviceInfo.version;
+        [BKDevice currentDevice].type = [self getDeviceTypeByModel:deviceInfo.model.uppercaseString];
         [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
             if ([delegate respondsToSelector:@selector(deviceDidUpdateInfo)]) {
                 [delegate deviceDidUpdateInfo];
@@ -626,14 +626,55 @@ static BKSession *session;
     }
 }
 
+-(BKDeviceType) getDeviceTypeByModel:(NSString*) model{
+    //knightly： 该方法后期修改为使用数据库保存设备配置信息
+    
+    if([model isEqualToString:@"I6HC"]){
+        return BKDeviceTypeI6HC;
+    }else if([model isEqualToString:@"I6"]){
+        //??
+    }else if([model isEqualToString:@"I5"]){
+        return BKDeviceTypeI5;
+    }else if([model isEqualToString:@"I6PRO"]){
+        //??
+        return BKDeviceTypeI6PRO;
+    }else if([model hasPrefix:@"V6"]){
+        return BKDeviceTypeV6;
+    }else if([model hasPrefix:@"I5H"]){
+        return BKDeviceTypeI5H3;
+    }else if([model hasPrefix:@"P"]){
+        return BKDeviceTypeWatchF1;
+    }else if([model isEqualToString:@"I6H9"]){
+        return BKDeviceTypeI6H9;
+    }else if([model isEqualToString:@"I6NH"]){
+        return BKDeviceTypeI6NH;
+    }else if([model hasPrefix:@"I6"]){
+        return BKDeviceTypeI6HR;
+    }
+    return BKDeviceTypeUnknown;
+    
+}
+
+
 /**
  *  Method would be invoked when syscData state changed
  *  @param ksdState type means sysc finished process.
  */
 - (void)syscDataFinishedStateChange:(KSyscDataState)ksdState{
     AXCachedLogOBJ(NSStringFromNSInteger(ksdState));
+    NSLog(@"syscDataFinishedStateChange : %u", ksdState);
 }
 
+/**! Simple progress in Percent<##>*/
+- (void)updateDataProgress:(NSInteger)progress{
+    AXCachedLogOBJ(NSStringFromNSInteger(progress));
+    NSLog(@"updateDataProgress %u", progress);
+    [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(deviceDidUpdateSynchronizeProgress:)]) {
+            [delegate deviceDidUpdateSynchronizeProgress:progress];
+        }
+    }];
+}
 
 
 /**
@@ -644,48 +685,23 @@ static BKSession *session;
 - (void)updateNormalHealthDataInfo:(ZRDataInfo *)zrDInfo{
     AXCachedLogOBJ(zrDInfo);
     if (zrDInfo.dataType == ZRDITypeHbridHealth || zrDInfo.dataType == ZRDITypeNormalData) {
-        for(int i=0; i<[zrDInfo.ddInfos count] && i < 3; i++){
-            NSDate *dateInfo =zrDInfo.ddInfos[0].date;
-            [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
-                if ([delegate respondsToSelector:@selector(deviceDidUpdateNormalHealthDataInf:)]) {
-                    [delegate deviceDidUpdateNormalHealthDataInf:dateInfo];
-                }
-            }];
-        }
+        //kngihtly : 将整个ZRDataInfo抛给外部处理， 一些同步逻辑需要用到
+        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+            if ([delegate respondsToSelector:@selector(deviceDidUpdateNormalHealthDataInf:)]) {
+                [delegate deviceDidUpdateNormalHealthDataInf:zrDInfo];
+            }
+        }];
+//        for(int i=0; i<[zrDInfo.ddInfos count] && i < 3; i++){
+//            NSDate *dateInfo =zrDInfo.ddInfos[0].date;
+//            [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+//                if ([delegate respondsToSelector:@selector(deviceDidUpdateNormalHealthDataInf:)]) {
+//                    [delegate deviceDidUpdateNormalHealthDataInf:dateInfo];
+//                }
+//            }];
+//        }
     }
 }
 
-
-///**
-// Return data.
-// 
-// @param zrhData See more in ZRHealthData.h
-// */
-//- (void)updateNormalHealthData:(ZRHealthData *)zrhData{
-//    AXCachedLogOBJ(zrhData);
-//    [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
-//        if ([delegate respondsToSelector:@selector(deviceDidUpdateSummaryData:)]) {
-//            [delegate updateNormalHealthData:(BKHealthData *)zrhData];
-//        }
-//    }];
-//    if ([zrhData isKindOfClass:[ZRSummaryData class]]) {
-//        BKSummaryData *summaryData = (BKSummaryData *)zrhData;
-//        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
-//            if ([delegate respondsToSelector:@selector(deviceDidUpdateSummaryData:)]) {
-//                [delegate deviceDidUpdateSummaryData:summaryData];
-//            }
-//        }];
-//    }
-//    else if ([zrhData isKindOfClass:[ZRSportData class]]) {
-//        BKSportData *sportData = (BKSportData *)zrhData;
-//        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
-//            if ([delegate respondsToSelector:@selector(deviceDidUpdateSportData:)]) {
-//                [delegate deviceDidUpdateSportData:sportData];
-//            }
-//        }];
-//    }
-//    
-//}
 
 /**
  Return data.
@@ -699,22 +715,7 @@ static BKSession *session;
             [delegate updateNormalHealthData:zrhData];
         }
     }];
-    if ([zrhData isKindOfClass:[ZRHRateHoursData class]]){
-        ZRHRateHoursData *hRateHoursData = (ZRHRateHoursData*) zrhData;
-        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
-            if ([delegate respondsToSelector:@selector(deviceDidUpdateHRateHoursData:)]) {
-                [delegate deviceDidUpdateHRateHoursData:hRateHoursData];
-            }
-        }];
-    }
-    if ([zrhData isKindOfClass:[ZRSleepData class]]){
-        ZRSleepData *sleepData = (ZRSleepData*) zrhData;
-        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
-            if ([delegate respondsToSelector:@selector(deviceDidUpdateSleepData:)]) {
-                [delegate deviceDidUpdateSleepData:sleepData];
-            }
-        }];
-    }
+
     if ([zrhData isKindOfClass:[ZRSummaryData class]]) {
         BKSummaryData *summaryData = (BKSummaryData *)zrhData;
         [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {

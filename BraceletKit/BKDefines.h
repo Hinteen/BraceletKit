@@ -41,6 +41,7 @@ typedef NS_ENUM(NSUInteger, BKDeviceType) {
     BKDeviceTypeI6PRO   = 0x05,
     BKDeviceTypeR1      = 0x06,
     BKDeviceTypeI5H3    = 0x09,
+    BKDeviceTypeI6HC    = 0x10,
     BKDeviceTypeI6HR    = 0x13,
     BKDeviceTypeI6NH    = 0x15,
     BKDeviceTypeI6H9    = 0x16,
