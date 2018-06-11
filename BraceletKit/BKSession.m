@@ -221,6 +221,9 @@ static BKSession *session;
     } completion:completion error:error];
 }
 
+- (BOOL)requestBindState:(BKDevice *)device completion:(void (^)(void))completion error:(void (^)(NSError * _Nullable))error{
+    return [self.manager isBound];
+}
 
 /**
  请求同步用户数据
@@ -337,6 +340,8 @@ static BKSession *session;
 - (void) requestUpdateSpecialDataCompletion:(NSDate *)date completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice> solstice) {
         [solstice startSpecialData:SD_TYPE_DATA_NORMAL withDate:date];
+        [solstice startSpecialData:SD_TYPE_ECG withDate:date];
+        [solstice startSpecialData:SD_TYPE_GNSS_SEGMENT withDate:date];
     } completion:completion error:error];
 }
 
@@ -684,22 +689,14 @@ static BKSession *session;
  */
 - (void)updateNormalHealthDataInfo:(ZRDataInfo *)zrDInfo{
     AXCachedLogOBJ(zrDInfo);
-    if (zrDInfo.dataType == ZRDITypeHbridHealth || zrDInfo.dataType == ZRDITypeNormalData) {
+    //if (zrDInfo.dataType == ZRDITypeHbridHealth || zrDInfo.dataType == ZRDITypeNormalData) {
         //kngihtly : 将整个ZRDataInfo抛给外部处理， 一些同步逻辑需要用到
         [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
             if ([delegate respondsToSelector:@selector(deviceDidUpdateNormalHealthDataInf:)]) {
                 [delegate deviceDidUpdateNormalHealthDataInf:zrDInfo];
             }
         }];
-//        for(int i=0; i<[zrDInfo.ddInfos count] && i < 3; i++){
-//            NSDate *dateInfo =zrDInfo.ddInfos[0].date;
-//            [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
-//                if ([delegate respondsToSelector:@selector(deviceDidUpdateNormalHealthDataInf:)]) {
-//                    [delegate deviceDidUpdateNormalHealthDataInf:dateInfo];
-//                }
-//            }];
-//        }
-    }
+    //}
 }
 
 

@@ -40,7 +40,7 @@ static BKConnector *instance;
 
 - (instancetype)init{
     if (self = [super init]) {
-        _state = BKConnectStateBindingUnconnected;
+        _state = BKConnectStateUnknown;
         _central = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
 //        [BLELib3 shareInstance].connectDelegate = self;
 //        [[BLEAutumn midAutumn:BLEProtocol_Any] registerSolsticeEquinox:self];
@@ -96,6 +96,7 @@ static BKConnector *instance;
 }
 
 - (void)disConnectDevice{
+    //knighlty: 这不是断开连接，是解除绑定
     if (self.state == BKConnectStateConnected) {
         AXCachedLogOBJ(@"调用了断开连接方法");
         [[BKSession sharedInstance] requestUnbindDevice:nil completion:^{
@@ -103,7 +104,9 @@ static BKConnector *instance;
         } error:^(NSError * _Nullable error) {
             AXCachedLogError(error);
         }];
+        _state = BKConnectStateUnbinding;
     } else {
+        _state = BKConnectStateUnbinding;
         AXCachedLogOBJ(@"尝试断开连接，但当前已经是离线模式");
         // 如果是离线模式，断开的动作实际上只是remove当前的离线设备
 //        [[BKServices sharedInstance] unRegisterConnectDelegate:self.device];
@@ -144,7 +147,11 @@ static BKConnector *instance;
  @param device 设备
  */
 - (void)connectorDidUnconnectedDevice:(BKDevice *)device error:(NSError *)error{
-    _state = BKConnectStateBindingUnconnected;
+    if([[BKSession sharedInstance] requestBindState:nil completion:nil error:nil]){
+        _state = BKConnectStateBindingUnconnected;
+    }else{
+        _state = BKConnectStateUnbinding;
+    }
     [self allConnectDelegates:^(NSObject<BKConnectDelegate> *delegate) {
         if ([delegate respondsToSelector:@selector(connectorDidUnconnectedDevice:error:)]) {
             [delegate connectorDidUnconnectedDevice:device error:error];

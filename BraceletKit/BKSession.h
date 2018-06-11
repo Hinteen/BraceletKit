@@ -143,6 +143,8 @@ Receive general data from the watch (Date that will be used for the more specifi
 - (void)requestUnbindDevice:(BKDevice * _Nullable)device completion:(void (^)(void))completion error:(void (^)(NSError * _Nullable))error;
 
 - (void)requestReconnectDevice:(BKDevice * _Nullable)device completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error;
+
+- (BOOL)requestBindState:(BKDevice * _Nullable)device completion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError * _Nullable error))error;
 /**
  请求同步用户数据
  
