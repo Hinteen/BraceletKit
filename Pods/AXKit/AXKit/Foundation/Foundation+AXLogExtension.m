@@ -187,15 +187,20 @@ static inline NSString *logPath(LogTypeString *type){
     if (!input) {
         return;
     }
-    dispatch_async(logQueue(), ^{
-        // @xaoxuu: in log queue
-        //会导致闪退 kngithly
-           // NSString *str = [NSString stringWithFormat:@"-> [%@] func:%@\n%@\n\n", getCurrentTimeString(), [NSString stringWithFormat:@"%s", func], input.description];
+    NSString *str = [NSString stringWithFormat:@"-> [%@] func:%@\n%@\n\n", getCurrentTimeString(), [NSString stringWithFormat:@"%s", func], input.description];
+#ifdef DEBUG
+    NSLog(@"%@",str);
+#endif
+    logPath(type).saveStringByAppendingToEndOfFile(str);
+//    dispatch_async(logQueue(), ^{
+//        // @xaoxuu: in log queue
+//        //会导致闪退 kngithly
+//            NSString *str = [NSString stringWithFormat:@"-> [%@] func:%@\n%@\n\n", getCurrentTimeString(), [NSString stringWithFormat:@"%s", func], input.description];
 //#ifdef DEBUG
 //        NSLog(@"%@",str);
 //#endif
 //        logPath(type).saveStringByAppendingToEndOfFile(str);
-    });
+//    });
 }
 
 @end

@@ -86,12 +86,9 @@
    In <BLEProtocol_colorful> device ,these methods would not be invoked when you had implement method responseOfConnectStatus:
  */
 - (void)readRequiredInfoAfterConnect;
-/**
- *  I suggest you here to complete the need for other operations.
- */
-- (void)setBLEParameterAfterConnect;
 
 @optional
+- (void)setBLEParameterAfterConnect DEPRECATED_ATTRIBUTE/*{SDK WILL COMPLEDTED WHEN REVEIVED (readRequiredInfoAfterConnect:). YOU MUST CONTROL ALL CMD YOUR NEED, MESS CMDS MIGHT CAUSE COMMUNICATE BREAKDOWN}*/;
 
 /**
  *  This method would be invoked when the app connected a device who is supportted by protocol2_0
@@ -160,6 +157,13 @@
 /**! Simple progress in Percent<##>*/
 - (void)updateDataProgress:(NSInteger)progress;
 
+
+/**
+ * Heart Rate Protocol  心率标准协议
+ * @param hr  Real-time heart rate 实时心率
+ */
+- (void)responseHeartRateData:(NSInteger)hr;
+
 /**! Successfully disconnected, you can call the unbinding method here.<##>*/
 - (void)debindFromBraceletSuccessful;
 
@@ -193,6 +197,18 @@
 - (void)responseOfMTKBtWriteData:(CBCharacteristic *)cbc;
 /**! Secretly Upgreade epo events*/
 - (void)itIsBestTimeForEpoSecretly;
+
+
+#pragma mark -
+- (void)responseOfExercise:(NSString *)string;
+/*
+ @param status (0:SUCCESS, 1:ERROR, 2:NOT_SUPPORTED, 3:INVALID_PARAM, 5:INVALID_STATE, 6:DELAY_REPLAY, 7:NOT_FOUND, 8:IS_BUSY)
+ */
+- (void)responseOfExerciseStatus:(NSInteger)status;
+/*
+ @param sportType
+ */
+- (void)responseOfExerciseSport:(sd_sportType)sportType;
 
 @end
 

@@ -249,24 +249,28 @@ typedef NS_ENUM (NSInteger,ShakeWay){
 @end
 
 typedef NS_ENUM (NSInteger,DNDType){
-    DNDTypeNull = 0 , // mean closed dndMode
-    DNDTypeNormal ,
-    DNDTypeSleep ,   //  firmware must be supportted if used
-    DNDTypeAllDay,   //  firmware must be supportted if used
+    DNDTypeNull = 0 ,         // mean closed dndMode
+    DNDTypeOnlyNotSave ,
+    DNDTypeNotSaveAndShow ,
 };
 @interface ZRDNDModel : ZRModel
-
 
 /**
  When dndtype == DNDTypeNull, mean this smartBand has not set dnd model; you can also set dndType = 0 to close dnd model
  */
 @property(nonatomic,assign)NSInteger dndType;
+
+/**
+ Hour取值范围：0~23
+ Minute取值范围：0~59
+ */
 @property(nonatomic,assign)NSInteger startHour;
 @property(nonatomic,assign)NSInteger startMinute;
-
 @property(nonatomic,assign)NSInteger endHour;
 @property(nonatomic,assign)NSInteger endMinute;
+
 @end
+
 
 typedef NS_ENUM(NSInteger,WeatherType) {
     WeatherFine = 0,            //晴
@@ -278,8 +282,10 @@ typedef NS_ENUM(NSInteger,WeatherType) {
     WeatherShower = 6,          //阵雨
     WeatherSnow = 7,            //雪
     WeatherHaze = 8,            //雾霾
-    WeatherSandstorm = 9,        //沙尘暴
-    WeatherNotContain = 10,
+    WeatherSandstorm = 9,       //沙尘暴
+    WeatherSunCloud = 10,       //多云转晴
+    WeatherThunderStorm = 11,   //雷雨
+    WeatherNotContain = 0xff,
 };
 
 typedef NS_ENUM(NSInteger,TempUnit) {
@@ -293,6 +299,34 @@ typedef NS_ENUM(NSInteger,TempUnit) {
 @property (nonatomic,assign)TempUnit unit;
 @property (nonatomic,assign)WeatherType  type;
 @property (nonatomic,assign)NSInteger pm;
+
+- (NSInteger)celsiusDegree;
+- (NSInteger)fahrenheitDegree;
+
+@end
+
+
+@interface ZRDayWeather : ZRModel 
+
+@property (nonatomic,assign)NSInteger tempMax;
+@property (nonatomic,assign)NSInteger tempMin;
+@property (nonatomic,assign)WeatherType type;
+
+@end
+
+
+@interface ZR24Weather : ZRModel
+
+@property (nonatomic,assign)NSInteger year;
+@property (nonatomic,assign)NSInteger month;
+@property (nonatomic,assign)NSInteger day;
+@property (nonatomic,assign)NSInteger hour;
+
+@property (nonatomic,assign)TempUnit unit;
+/**! Groups numbers 24, means 24 hours weather data ,You must sort the data by date*/
+@property (nonatomic,strong)NSArray <ZRWeather *>*weather24Arrs;
+
+@property (nonatomic,strong)NSArray <ZRDayWeather *>*weather7Arrs;
 
 @end
 
@@ -422,6 +456,30 @@ typedef NS_ENUM (NSInteger,ZRRollMsgType){
 @property (nonatomic, strong) NSArray  *rollMsgList;
 @property (nonatomic, strong) NSString *rollMsgListJsonString;
 
+
+@end
+
+
+@interface ZRStartSetting : ZRModel
+
+/**
+ * Set the offset of the current GPS time zone, for example, Beijing is +8.
+ * 设置 GPS 当前时区的偏移, 比如说北京是+8。
+ */
+@property (nonatomic, assign) NSInteger utc_offset;
+
+/**
+ * Greeting display content, max 10 bytes;
+ * 问候语的显示内容, 开机显示问候语最大10个byte。
+ */
+@property (nonatomic, strong) NSString *username_data;
+
+/**
+ * 13BYTE 备用
+ */
+@property (nonatomic, strong) NSString *blank;
+
+- (NSString *)getSetCmdStr;
 
 @end
 

@@ -334,12 +334,16 @@ static BKSession *session;
 - (void)requestUpdateAllHealthDataCompletion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
         [solstice getDataStoreDate];
+        [solstice syscGPSDataInfo];
     } completion:completion error:error];
 }
 
 - (void) requestUpdateSpecialDataCompletion:(NSDate *)date completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice> solstice) {
         [solstice startSpecialData:SD_TYPE_DATA_NORMAL withDate:date];
+//        [solstice syscGPSDetailDataWithday:0];
+//        [solstice syscGPSDetailDataWithday:1];
+//        [solstice syscGPSDetailDataWithday:2];
         [solstice startSpecialData:SD_TYPE_ECG withDate:date];
         [solstice startSpecialData:SD_TYPE_GNSS_SEGMENT withDate:date];
     } completion:completion error:error];
@@ -460,7 +464,7 @@ static BKSession *session;
 
 - (void)requestUpdateMotor:(BKMotor *)motor completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
-        [solstice setMotors:[BKMotor defaultMotors]];
+        [solstice setMotors:@[motor]];
     } completion:completion error:error];
 }
 
@@ -527,6 +531,12 @@ static BKSession *session;
     } completion:completion error:error];
 }
 
+- (void)requestGPSDetails:(NSInteger) date completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice syscGPSDetailDataWithday:date];
+    } completion:completion error:error];
+}
+
 #pragma mark - Connect Delegate
 
 
@@ -570,6 +580,10 @@ static BKSession *session;
  * 连接状态异常，通常不会发生，如有出现，请重启蓝牙和设备。
  */
 - (void)responseOfConnectStateError{
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [manager cancelConnect];
+        [manager reConnectDevice];
+    } completion:nil error:nil];
     AXCachedLogError(@"");
 }
 
@@ -584,7 +598,9 @@ static BKSession *session;
  @endcode
  */
 - (NSString *)bleLogPath{
-    return nil;
+    NSString *documentsPath =[NSString stringWithFormat:@"%@/Documents", NSHomeDirectory()];
+    NSString *blePath = [documentsPath stringByAppendingPathComponent:@"BLE.txt"];
+    return blePath;;
 }
 
 /**
@@ -634,7 +650,7 @@ static BKSession *session;
 -(BKDeviceType) getDeviceTypeByModel:(NSString*) model{
     //knightly： 该方法后期修改为使用数据库保存设备配置信息
     
-    if([model isEqualToString:@"I6HC"]){
+    if([model isEqualToString:@"I6HC"] || [model isEqualToString:@"I6H6"]){
         return BKDeviceTypeI6HC;
     }else if([model isEqualToString:@"I6"]){
         //??
@@ -750,6 +766,15 @@ static BKSession *session;
         [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
             if ([delegate respondsToSelector:@selector(deviceDidUpdateSportData:)]) {
                 [delegate deviceDidUpdateSportData:sportData];
+            }
+        }];
+    }
+    
+    else if ([zrhData isKindOfClass:[ZRGPSModel class]]) {
+        ZRGPSModel *gpsData = (ZRGPSModel *)zrhData;
+        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+            if ([delegate respondsToSelector:@selector(deviceDidUpdateGPSData:)]) {
+                [delegate deviceDidUpdateGPSData:gpsData];
             }
         }];
     }

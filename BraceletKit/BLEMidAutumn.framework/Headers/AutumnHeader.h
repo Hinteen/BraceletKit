@@ -18,7 +18,10 @@
 #define PEDOMETER_WATCH_SERVICE_UUID        @"18A0"
 #define PEDOMETER_MTK_SERVICE_UUID          @"181A"
 #define Z4_SERVICE_ID                       @"6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
+
 #define HEARTRATE_SERVICE_ID                @"180D"
+#define HEARTRATE_CHARACT_ID                @"2A37"
+#define NEW_HEARTRATE_CHARACT_ID            @"2AFF"
 
 #define PEDOMETER_NEW_CHARACT_SET_UUID      @"FF21"
 #define PEDOMETER_OLD_CHARACT_TEST          @"FF22"
@@ -63,9 +66,10 @@ typedef NS_ENUM(NSInteger ,SD_TYPE) {
 typedef NS_ENUM(NSInteger ,KSyscDataState){
     KSyscDataStateBegin = 0,
     KSyscDataStateSummaryEnd,
+    KSyscDataStateStepEnd,
     KSyscDataStateSportEnd,
-    KSyscDataStateSleepEnd ,
-    KSyscDataStateHeartRateEnd ,
+    KSyscDataStateSleepEnd,
+    KSyscDataStateHeartRateEnd,
     KSyscDataStateGNSSEnd,
     KSyscDataStateECGEnd,
     KSyscDataStateIsFinished ,
@@ -75,6 +79,7 @@ typedef NS_ENUM(NSInteger ,KSyscDataState){
     KSyscDataState62End,     //62结束
     KSyscDataState64End,     //64结束
     KSyscDataStateStartSyscF1Data,
+    KSyscDataState68End
 };
 
 
@@ -134,6 +139,7 @@ typedef NS_ENUM(NSInteger ,BLECmdResponse) {
     CMD_RESPONSE_DEVICE_HW_OPTION_SUPPERT = 0x0a, // Hardware Option type Support
     CMD_RESPONSE_DEVICE_MANUFACTURE_DATE = 0x0b,
     CMD_RESPONSE_DEVICE_FACTORY_CONF = 0x0c,
+    CMD_RESPONSE_HEADSET_PARAM = 0x0e,
     
     CMD_RESPONSE_CONFIG_SET_TIME = 0x10,                 // Time
     CMD_RESPONSE_CONFIG_GET_TIME = 0x11,
@@ -195,9 +201,11 @@ typedef NS_ENUM(NSInteger ,BLECmdResponse) {
     CMD_RESPONSE_HEALTH_MINUTE_DATA = 0x61,
     CMD_RESPONSE_GNSS_MINUTE_DATA = 0x62,
     CMD_RESPONSE_GNSS_MINUTE_DATA_TEST = 0x63,
+    CMD_RESPONSE_GNSS_READ_TARGET = 0x67,
     
     CMD_RESPONSE_CLOCK_AND_SCHEDULE = 0x84,   //NSDictionary 闹钟&日程数组
     CMD_RESPONSE_USERINFO_GET = 0x85,//ZGUserInfoModle
+    CMD_RESPONSE_STARTSETTING_GET = 0x8D,//ZRStartSetting
 };
 
 /**
@@ -233,6 +241,7 @@ typedef NS_ENUM(NSInteger, sd_sportType) {
     SD_SPORT_TYPE_SLEEP                          = 0x00 ,//睡眠
     
     SD_SPORT_TYPE_WALKING                        = 0x01 ,//走路
+    SD_SPORT_TYPE_NORMAL_MODE                    = 0x01 ,//彩屏非运动模式  
     SD_SPORT_TYPE_SITE_UPS                       = 0x02 ,//仰卧起坐
     SD_SPORT_TYPE_PUSH_UP                        = 0x03 ,//俯卧撑
     SD_SPORT_TYPE_ROPE_SKIPPING                  = 0x04 ,//跳绳
@@ -312,6 +321,10 @@ typedef NS_ENUM(NSInteger, sd_sportType) {
     
     SD_SPORT_TYPE_MASK                           = 0x80 ,//掩码
     
+    SD_SPORT_TYPE_GROUPCLASS                     = 0x30 ,//团课
+    SD_SPORT_TYPE_PERSONALEDUCATION              = 0x31 ,//私教
+    SD_SPORT_TYPE_TREADMILL                      = 0x32 ,//跑步机
+    SD_SPORT_TYPE_FREETRAINING                   = 0x33 ,//自由训练
     SD_SPORT_TYPE_BADMINTON                      = 0x80 ,//羽毛球
     SD_SPORT_TYPE_BASKETBALL                     = 0x81 ,//篮球
     SD_SPORT_TYPE_FOOTBALL                       = 0x82 ,//足球
@@ -337,7 +350,9 @@ typedef NS_ENUM(NSInteger, sd_sportType) {
     
     SD_SPORT_TYPE_HEART_RATE                     = 0xf0 ,//心率
     
-    SD_SPORT_TYPE_WALKING_SAVE                   = 0x100 ,//走路
+    SD_SPORT_TYPE_OTHER                          = 0xFF ,//其他'
+    SD_SPORT_TYPE_WALKING_SAVE                   = 0x100 ,//步行
+
 } ;
 
 

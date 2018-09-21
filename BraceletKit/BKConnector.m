@@ -97,6 +97,7 @@ static BKConnector *instance;
 
 - (void)disConnectDevice{
     //knighlty: 这不是断开连接，是解除绑定
+    NSLog(@"disConnectDevice");
     if (self.state == BKConnectStateConnected) {
         AXCachedLogOBJ(@"调用了断开连接方法");
         [[BKSession sharedInstance] requestUnbindDevice:nil completion:^{
@@ -147,11 +148,17 @@ static BKConnector *instance;
  @param device 设备
  */
 - (void)connectorDidUnconnectedDevice:(BKDevice *)device error:(NSError *)error{
-    if([[BKSession sharedInstance] requestBindState:nil completion:nil error:nil]){
+    if(_state == BKConnectStateConnected){
         _state = BKConnectStateBindingUnconnected;
-    }else{
-        _state = BKConnectStateUnbinding;
     }
+//    if([[BKSession sharedInstance] requestBindState:nil completion:nil error:nil]){
+//        AXCachedLogOBJ(@"connectorDidUnconnectedDevice device is bound, change state to BKConnectStateBindingUnconnected");
+//        _state = BKConnectStateBindingUnconnected;
+//    }else{
+//        AXCachedLogOBJ(@"connectorDidUnconnectedDevice device is not bound, change state to BKConnectStateUnbinding");
+//        _state = BKConnectStateUnbinding;
+//    }
+    NSLog(@"connectorDidUnconnectedDevice %lu", _state);
     [self allConnectDelegates:^(NSObject<BKConnectDelegate> *delegate) {
         if ([delegate respondsToSelector:@selector(connectorDidUnconnectedDevice:error:)]) {
             [delegate connectorDidUnconnectedDevice:device error:error];
@@ -239,6 +246,11 @@ static BKConnector *instance;
 /**! Bluetooth state changed off.*/
 - (void)centralManagerStatePoweredOff{
     AXCachedLogOBJ(@"power off");
+    NSLog(@"BKConnectState:%lu",(unsigned long)_state);
+    if(_state == BKConnectStateConnected){
+        _state = BKConnectStateBindingUnconnected;
+    }
+    NSLog(@"After BKConnectState:%lu",(unsigned long)_state);
 }
 /**! Bluetooth state changed on.*/
 - (void)centralManagerStatePoweredOn{

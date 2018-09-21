@@ -445,9 +445,9 @@
     
     else if ([model.target isEqualToString:@"update time"]) {
         [[BKSession sharedInstance] requestSyncTimeAtOnceCompletion:^{
-
+                
         } error:^(NSError * _Nonnull error) {
-
+            
         }];
     }
     

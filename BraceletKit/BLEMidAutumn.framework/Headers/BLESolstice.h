@@ -20,6 +20,7 @@
 @class ZRCOption;
 @class ZRGPSPoint;
 @class ZRWeather;
+@class ZR24Weather;
 @class ZRSchedule;
 @class ZRContacts;
 @class ZREHRWP;
@@ -29,6 +30,7 @@
 @class ZGUserInfoModle;
 @class ZRTargetOnceDay;
 @class ZRMesgPush;
+@class ZRStartSetting;
 
 typedef void(^ReadDeviceSettingComplementation)(id obj);
 
@@ -71,6 +73,10 @@ typedef void(^ReadDeviceSettingComplementation)(id obj);
 - (void)readDNDModeInfo;
 /**! Sent weather info to device for show in screen ,special devices support*/
 - (void)setWeather:(ZRWeather *)weather;
+/**! Set Weather Unit ,0-Centigrade ,1-Fahrenheit @see TempUnit ,speacial devices support*/
+- (void)setWeatherUnit:(NSInteger)unit;
+/**! Set 24 hours weather data ,speacial devices support*/
+- (void)set24Weathers:(ZR24Weather *)weather;
 /**!Appearance time of the device, Got the response in method readResponseFromDevice:*/
 - (void)readManufactureDate;
 /**! Factory configuration, Got the response in method readResponseFromDevice:<##>*/
@@ -153,6 +159,10 @@ typedef void(^ReadDeviceSettingComplementation)(id obj);
 - (void)readDeviceOption;
 - (void)readDeviceOptionWithBlock:(ReadDeviceSettingComplementation)rdsComplemention;
 
+/** read/set r1 option */
+- (void)readEarPhoneDeviceOptionWithBlock:(ReadDeviceSettingComplementation)rdsComplemention;
+- (void)setEarPhoneDeviceOption:(ZRHWOption *)deOption;
+
 /**! Get sport type list that device support. Got the response in method readResponseFromDevice:*/
 - (void)readSupportSports;
 
@@ -195,6 +205,17 @@ typedef void(^ReadDeviceSettingComplementation)(id obj);
 - (void)setMessagePush:(ZRMesgPush *)messagePush;
 /**! Read. Got the response in method readResponseFromDevice:*/
 - (void)readMessagePush;
+
+/** Set boot screen */
+- (void)setStartSetting:(ZRStartSetting *)sset;
+/**! Read. Got the response in method readResponseFromDevice:*/
+- (void)readStartSetting;
+
+
+/** Read. Got the response in method readResponseFromDevice:
+ *  获取彩屏手环的所有设置信息
+ */
+- (void)readUserInfo;
 
 #pragma mark -MESSAGE ACTION-消息操作
 /*!
@@ -308,23 +329,23 @@ typedef void(^ReadDeviceSettingComplementation)(id obj);
 /**! SDK internal use, do not need to use it*/
 - (void)stopSpecialData:(SD_TYPE)sdType;
 
-/*
- * Developer test api
- */
-- (void)write09WithBOOL:(BOOL)isOpen DEPRECATED_ATTRIBUTE;
-/*
- * Clear user's data on device.
- */
-- (void)clearData DEPRECATED_ATTRIBUTE;
-
-
 -(void)testECGModel;
-
 
 //微教练
 - (void)startExercise;
+- (void)startExerciseWithType:(sd_sportType)sportType;
 - (void)endExercise;
 - (void)pauseExercise;
+
+
+- (void)switchStandardHeartRate:(BOOL)open;
+
+
+#pragma mark - 彩屏GPS
+//GPS 数据纪录范围
+- (void)syscGPSDataInfo;
+- (void)syscGPSDetailDataWithday:(NSInteger)day;
+
 
 
 @end

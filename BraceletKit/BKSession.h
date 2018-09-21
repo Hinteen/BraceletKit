@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class BKScanner, BKConnector, BKDeviceManager, BKDevice, BKUser, BKPreferences, BKWeather;
 
-@class BKDNDMode, BKAlarmClock, BKSedentary, BKSchedule,BKSportTarget, BKMotor, BKRoll, BKSummaryData, BKSportData, BKHealthData, BKSedentary,ZRSportData, ZRHRateHoursData, ZRSleepData, ZRStepData,BKAlarmClock,ZRSportTarget,ZRDataInfo;
+@class BKDNDMode, BKAlarmClock, BKSedentary, BKSchedule,BKSportTarget, BKMotor, BKRoll, BKSummaryData, BKSportData, BKHealthData, BKSedentary,ZRSportData, ZRHRateHoursData, ZRSleepData, ZRStepData,BKAlarmClock,ZRSportTarget,ZRDataInfo,ZRGPSModel;
 
 @protocol BKSessionDelegate <NSObject>
 
@@ -92,6 +92,8 @@ Receive general data from the watch (Date that will be used for the more specifi
 - (void) deviceDidUpdateStepData:(ZRStepData *) stepData;
 
 - (void) deviceDidUpdateSportData:(ZRSportData *) sportData;
+
+- (void) deviceDidUpdateGPSData:(ZRGPSModel *)gpsData;
 
 - (void) connectionIsReadyToSend;
 - (void) connectionIsNotReadyToSend;
@@ -278,6 +280,8 @@ Receive general data from the watch (Date that will be used for the more specifi
 - (void)requestFeelMotor:(BKMotor *)motor completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
 - (void)requestUpdateDevice:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
+
+- (void)requestGPSDetails:(NSInteger) date completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
 
 @end
