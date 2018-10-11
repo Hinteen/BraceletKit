@@ -348,11 +348,19 @@ typedef void(^ReadDeviceSettingComplementation)(id obj);
 - (void)syscGPSDetailDataWithday:(NSInteger)day;
 
 #pragma mark - 辅助定位
+/*
+ * AGPS升级
+ * @pram path cep文件本地路径
+ */
 - (void)writeGPSCEPFile:(NSString *)path;
 
+//拆包，发文件
 - (void)sendAGPSFile;
+//开始AGPS升级
 - (void)startAGPS;
+//结束AGPS升级
 - (void)endAGPS;
+//校验AGPS升级结果
 - (void)checkAGPS;
 
 @end

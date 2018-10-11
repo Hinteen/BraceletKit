@@ -213,14 +213,20 @@
 
 #pragma mark -
 /**!
+ AGPS升级校验结果
  @param status (0:SUCCESS, 1:ERROR)
  */
 - (void)responseOfZgAGPSUpdatedStatus:(NSInteger)status;
 
-/**! Simple progress in Percent<##>*/
+/**!
+ AGPS升级进度
+ Simple progress in Percent
+ */
 - (void)updateAGPSDataProgress:(NSInteger)progress;
 
-
+/*
+ AGPS升级结束
+ */
 - (void)endUpdateAGPSData;
 
 @end
