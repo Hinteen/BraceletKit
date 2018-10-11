@@ -653,6 +653,18 @@ static BKSession *session;
     }
 }
 
+- (void)responseOfZgAGPSUpdatedStatus:(NSInteger)status{
+    NSLog(@"responseOfZgAGPSUpdatedStatus : %ld", (long)status);
+}
+
+- (void)updateAGPSDataProgress:(NSInteger)progress{
+    NSLog(@"updateAGPSDataProgress : %ld", (long)progress);
+}
+
+- (void)endUpdateAGPSData{
+    NSLog(@"endUpdateAGPSData");
+}
+
 -(BKDeviceType) getDeviceTypeByModel:(NSString*) model{
     //knightly： 该方法后期修改为使用数据库保存设备配置信息
     
