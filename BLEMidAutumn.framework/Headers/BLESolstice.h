@@ -347,7 +347,13 @@ typedef void(^ReadDeviceSettingComplementation)(id obj);
 
 - (void)syscGPSDetailDataWithday:(NSInteger)day;
 
+#pragma mark - 辅助定位
+- (void)writeGPSCEPFile:(NSString *)path;
 
+- (void)sendAGPSFile;
+- (void)startAGPS;
+- (void)endAGPS;
+- (void)checkAGPS;
 
 @end
 

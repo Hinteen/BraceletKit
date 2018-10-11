@@ -537,6 +537,12 @@ static BKSession *session;
     } completion:completion error:error];
 }
 
+- (void)requestWriteGPSCEPFile:(NSString *) path completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
+    [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
+        [solstice writeGPSCEPFile:path];
+    } completion:completion error:error];
+}
+
 #pragma mark - Connect Delegate
 
 

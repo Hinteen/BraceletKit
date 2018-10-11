@@ -220,5 +220,8 @@
 /**! Simple progress in Percent<##>*/
 - (void)updateAGPSDataProgress:(NSInteger)progress;
 
+
+- (void)endUpdateAGPSData;
+
 @end
 

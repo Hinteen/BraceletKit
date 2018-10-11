@@ -283,6 +283,8 @@ Receive general data from the watch (Date that will be used for the more specifi
 
 - (void)requestGPSDetails:(NSInteger) date completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
 
+- (void)requestWriteGPSCEPFile:(NSString *) path completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error;
+
 
 @end
 NS_ASSUME_NONNULL_END
