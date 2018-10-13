@@ -12,7 +12,7 @@
 typedef struct {
     uint16_t seqStart;
     uint16_t seqEnd;
-    RecorDate storeDate;
+    RecortDate storeDate;
 }DateDataInfo;
 
 typedef struct {

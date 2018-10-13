@@ -21,8 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		B0195022216F6C98002A4E48 /* BLEMidAutumn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0195021216F6C98002A4E48 /* BLEMidAutumn.framework */; };
-		B0195023216F6C98002A4E48 /* BLEMidAutumn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0195021216F6C98002A4E48 /* BLEMidAutumn.framework */; };
 		B020A19E206E213500D61AA3 /* BKHealthData.h in Headers */ = {isa = PBXBuildFile; fileRef = B020A19C206E213500D61AA3 /* BKHealthData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B020A19F206E213500D61AA3 /* BKHealthData.m in Sources */ = {isa = PBXBuildFile; fileRef = B020A19D206E213500D61AA3 /* BKHealthData.m */; };
 		B020A1A0206E213500D61AA3 /* BKHealthData.m in Sources */ = {isa = PBXBuildFile; fileRef = B020A19D206E213500D61AA3 /* BKHealthData.m */; };
@@ -38,6 +36,8 @@
 		B02507B5206A3EAD00535766 /* BKRoll.m in Sources */ = {isa = PBXBuildFile; fileRef = B02507AB206A3EAD00535766 /* BKRoll.m */; };
 		B02507B6206A3EAD00535766 /* BKRoll.m in Sources */ = {isa = PBXBuildFile; fileRef = B02507AB206A3EAD00535766 /* BKRoll.m */; };
 		B04B3C8320BE568700A428BC /* products.plist in Resources */ = {isa = PBXBuildFile; fileRef = B04B3C8220BE568700A428BC /* products.plist */; };
+		B04B3DD22171908600123A88 /* BLEMidAutumn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B04B3DD12171908600123A88 /* BLEMidAutumn.framework */; };
+		B04B3DD32171908600123A88 /* BLEMidAutumn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B04B3DD12171908600123A88 /* BLEMidAutumn.framework */; };
 		B0787E652069D68E005FA380 /* BKSport.m in Sources */ = {isa = PBXBuildFile; fileRef = B0787E612069D68E005FA380 /* BKSport.m */; };
 		B0787E662069D68E005FA380 /* BKSportTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = B0787E622069D68E005FA380 /* BKSportTarget.m */; };
 		B0787E672069D68E005FA380 /* BKSport.h in Headers */ = {isa = PBXBuildFile; fileRef = B0787E632069D68E005FA380 /* BKSport.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -194,7 +194,6 @@
 /* Begin PBXFileReference section */
 		45D14689FFFFCA37F6DE88DC /* libPods-BraceletKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BraceletKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B04AE3ABF65FA07B8445BD1 /* Pods-BraceletKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraceletKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-BraceletKit/Pods-BraceletKit.release.xcconfig"; sourceTree = "<group>"; };
-		B0195021216F6C98002A4E48 /* BLEMidAutumn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BLEMidAutumn.framework; sourceTree = "<group>"; };
 		B020A19C206E213500D61AA3 /* BKHealthData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKHealthData.h; sourceTree = "<group>"; };
 		B020A19D206E213500D61AA3 /* BKHealthData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BKHealthData.m; sourceTree = "<group>"; };
 		B020A1A2206E226400D61AA3 /* BKSummaryData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BKSummaryData.h; sourceTree = "<group>"; };
@@ -206,6 +205,7 @@
 		B02507AA206A3EAD00535766 /* BKMotor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKMotor.m; sourceTree = "<group>"; };
 		B02507AB206A3EAD00535766 /* BKRoll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKRoll.m; sourceTree = "<group>"; };
 		B04B3C8220BE568700A428BC /* products.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = products.plist; sourceTree = "<group>"; };
+		B04B3DD12171908600123A88 /* BLEMidAutumn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BLEMidAutumn.framework; sourceTree = "<group>"; };
 		B0787E612069D68E005FA380 /* BKSport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKSport.m; sourceTree = "<group>"; };
 		B0787E622069D68E005FA380 /* BKSportTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKSportTarget.m; sourceTree = "<group>"; };
 		B0787E632069D68E005FA380 /* BKSport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKSport.h; sourceTree = "<group>"; };
@@ -397,7 +397,7 @@
 			files = (
 				CD2E793E1FA0C54200012CDB /* BraceletKit.framework in Frameworks */,
 				EC05BC38CB898D8E3D73CB74 /* libPods-BraceletKitDemo.a in Frameworks */,
-				B0195022216F6C98002A4E48 /* BLEMidAutumn.framework in Frameworks */,
+				B04B3DD22171908600123A88 /* BLEMidAutumn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,7 +406,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEF70E632A2776ACEB30913A /* libPods-BraceletKit.a in Frameworks */,
-				B0195023216F6C98002A4E48 /* BLEMidAutumn.framework in Frameworks */,
+				B04B3DD32171908600123A88 /* BLEMidAutumn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,7 +511,7 @@
 		CD2E79101FA0C53200012CDB = {
 			isa = PBXGroup;
 			children = (
-				B0195021216F6C98002A4E48 /* BLEMidAutumn.framework */,
+				B04B3DD12171908600123A88 /* BLEMidAutumn.framework */,
 				CD2E791B1FA0C53300012CDB /* BraceletKitDemo */,
 				CD2E79381FA0C54200012CDB /* BraceletKit */,
 				CD2E791A1FA0C53300012CDB /* Products */,

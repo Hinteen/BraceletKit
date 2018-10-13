@@ -146,6 +146,8 @@ static BKSession *session;
     self.manager.discoverDelegate = self.scanner;
     self.manager.connectDelegate = self.connector;
     
+    self.isAGPSUploaded = YES;
+    
 //    bool bl = [self.manager registerSolsticeEquinox:self];
     
     return self;
@@ -539,7 +541,7 @@ static BKSession *session;
 
 - (void)requestWriteGPSCEPFile:(NSString *) path completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
-        [solstice endAGPS];
+//        [solstice endAGPS];
         [solstice writeGPSCEPFile:path];
     } completion:completion error:error];
 }
@@ -656,14 +658,31 @@ static BKSession *session;
 
 - (void)responseOfZgAGPSUpdatedStatus:(NSInteger)status{
     NSLog(@"responseOfZgAGPSUpdatedStatus : %ld", (long)status);
+    [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(responseOfZgAGPSUpdatedStatus:)]) {
+            [delegate responseOfZgAGPSUpdatedStatus:status];
+        }
+    }];
 }
 
 - (void)updateAGPSDataProgress:(NSInteger)progress{
+    self.isAGPSUploaded = NO;
     NSLog(@"updateAGPSDataProgress : %ld", (long)progress);
+    [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(updateAGPSDataProgress:)]) {
+            [delegate updateAGPSDataProgress:progress];
+        }
+    }];
 }
 
 - (void)endUpdateAGPSData{
+    self.isAGPSUploaded = YES;
     NSLog(@"endUpdateAGPSData");
+    [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(endUpdateAGPSData)]) {
+            [delegate endUpdateAGPSData];
+        }
+    }];
 }
 
 -(BKDeviceType) getDeviceTypeByModel:(NSString*) model{
