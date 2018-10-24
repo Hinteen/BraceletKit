@@ -88,7 +88,7 @@
  */
 - (void)connectDevice:(BKDevice *)device;
 
-
+- (void)reconnectDevice;
 /**
  恢复离线设备
  用于数据调试，以这台设备的身份查看数据以及app展示效果

@@ -83,6 +83,15 @@ static BKConnector *instance;
     }];
 }
 
+- (void)reconnectDevice{
+    AXCachedLogOBJ(@"ReconnectDevice");
+    [[BKSession sharedInstance] requestReconnectDevice:nil completion:^{
+        AXCachedLogOBJ(@"Reconnect Success");
+    } error:^(NSError * _Nullable error) {
+        AXCachedLogError(error);
+    }];
+}
+
 - (void)restoreOfflineDevice:(BKDevice *)device{
     AXCachedLogOBJ(@"调用了恢复离线设备的方法");
     _state = BKConnectStateBindingUnconnected;
