@@ -106,6 +106,7 @@ Receive general data from the watch (Date that will be used for the more specifi
 - (void)responseOfZgAGPSUpdatedStatus:(NSInteger)status;
 - (void)updateAGPSDataProgress:(NSInteger)progress;
 - (void)endUpdateAGPSData;
+- (void)syscDataFinishedStateChange:(KSyscDataState)ksdState;
 
 
 @end

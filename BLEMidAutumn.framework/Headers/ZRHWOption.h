@@ -20,7 +20,7 @@ typedef enum{
 
 typedef enum{
     braceletLanguageDefault = 0, //default is english equal @code braceletLanguageEnglish
-    braceletLanguageEnglish = braceletLanguageDefault,// some smartband did not support it ,use braceletLanguageDefault if you don't want set in simple chinese.
+    braceletLanguageEnglish ,// some smartband did not support it ,use braceletLanguageDefault if you don't want set in simple chinese.
     braceletLanguageSimpleChinese = 1,
     braceletLanguageItalian = 2,
     braceletLanguageJapanese = 3,
@@ -32,11 +32,7 @@ typedef enum{
     braceletLanguageKorean = 9,
     braceletLanguageArabic = 10,
     braceletLanguageVietnamese = 11,
-    braceletLanguagePolish = 12,
-    braceletLanguageRomanian = 13,
-    braceletLanguageSwedish = 14,
-    braceletLanguageThai = 15,
-    braceletLanguageTurkish = 16,
+    braceletLanguageThai = 12,
     braceletLanguageSimpleMarkings = 0xff, //This setting means no char ,all information replaced by figure. show simple icon only.
 }braceletLanguage;
 
@@ -129,21 +125,5 @@ typedef enum{
  * 自动运动识别
  */
 @property (nonatomic ,assign) BOOL autoSport;
-
-/**
- * switch that control whether double touch AP work
- * 双击触摸开关
- */
-@property (nonatomic ,assign) BOOL doubleTouch;
-
-/**
- * switch that control whether wear recognize work
- * 佩戴识别开关
- */
-@property (nonatomic ,assign) BOOL wearRecognize;
-
-- (void)copyOptionForWatch:(ZRHWOption *)hwOption;
-
-- (void)copyOptionForHeadSet:(ZRHWOption *)hwOption;
 
 @end

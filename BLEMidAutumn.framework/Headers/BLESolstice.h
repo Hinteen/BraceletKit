@@ -15,12 +15,11 @@
 @class ZRDNDModel;
 @class ZRPersonal;
 @class ZRHWOption;
-@class ZRSportLists;
+@class ZRSportTarget;
 @class ZRRoll;
 @class ZRCOption;
 @class ZRGPSPoint;
 @class ZRWeather;
-@class ZR24Weather;
 @class ZRSchedule;
 @class ZRContacts;
 @class ZREHRWP;
@@ -30,9 +29,7 @@
 @class ZGUserInfoModle;
 @class ZRTargetOnceDay;
 @class ZRMesgPush;
-@class ZRStartSetting;
 
-typedef void(^ReadDeviceSettingComplementation)(id obj);
 
 /**
  Communication agent, holding peripheral connection object, make a protocol conversion between the app and the device, so that the API is easier to understand than the binary.
@@ -73,14 +70,7 @@ typedef void(^ReadDeviceSettingComplementation)(id obj);
 - (void)readDNDModeInfo;
 /**! Sent weather info to device for show in screen ,special devices support*/
 - (void)setWeather:(ZRWeather *)weather;
-/**! Set Weather Unit ,0-Centigrade ,1-Fahrenheit @see TempUnit ,speacial devices support*/
-- (void)setWeatherUnit:(NSInteger)unit;
-/**! Set 24 hours weather data ,speacial devices support*/
-- (void)set24Weathers:(ZR24Weather *)weather;
-/**!Appearance time of the device, Got the response in method readResponseFromDevice:*/
-- (void)readManufactureDate;
-/**! Factory configuration, Got the response in method readResponseFromDevice:<##>*/
-- (void)readFactoryConfiguration;
+
 #pragma mark -SETTING ACTION-设置操作
 
 /**
@@ -157,19 +147,14 @@ typedef void(^ReadDeviceSettingComplementation)(id obj);
 - (void)setDeviceOption:(ZRHWOption *)deOption;
 /**! Read device option. Got the response in method readResponseFromDevice:*/
 - (void)readDeviceOption;
-- (void)readDeviceOptionWithBlock:(ReadDeviceSettingComplementation)rdsComplemention;
-
-/** read/set r1 option */
-- (void)readEarPhoneDeviceOptionWithBlock:(ReadDeviceSettingComplementation)rdsComplemention;
-- (void)setEarPhoneDeviceOption:(ZRHWOption *)deOption;
 
 /**! Get sport type list that device support. Got the response in method readResponseFromDevice:*/
 - (void)readSupportSports;
 
 /**! Add a moving target to the device, and then you can see the type of motion you added on the device's exercise screen*/
-- (void)setSportLists:(ZRSportLists *)st;
+- (void)setSportTarget:(ZRSportTarget *)st;
 /**! Read Sport target in device. Got the response in method readResponseFromDevice:*/
-- (void)readSportLists;
+- (void)readSportTargets;
 
 
 /** Add contacts to the device ,special device support.*/
@@ -206,17 +191,6 @@ typedef void(^ReadDeviceSettingComplementation)(id obj);
 /**! Read. Got the response in method readResponseFromDevice:*/
 - (void)readMessagePush;
 
-/** Set boot screen */
-- (void)setStartSetting:(ZRStartSetting *)sset;
-/**! Read. Got the response in method readResponseFromDevice:*/
-- (void)readStartSetting;
-
-
-/** Read. Got the response in method readResponseFromDevice:
- *  获取彩屏手环的所有设置信息
- */
-- (void)readUserInfo;
-
 #pragma mark -MESSAGE ACTION-消息操作
 /*!
  * Push string, Example: [ZRBLE pushStr:@"This is a test string"];
@@ -237,7 +211,7 @@ typedef void(^ReadDeviceSettingComplementation)(id obj);
              "com.tencent.mqq" - QQ
              "com.apple.mobilephone" - Incoming call
              "com.apple.MobileSMS" - message
- For more build identify for third part apps. use 【ios-deploy --id [udid] --list_bundle_id 】in Ternimal got them. Links:https://segmentfault.com/a/1190000010205616
+ For more build identify for third part apps. use 【ios-deploy --id [udid] --list_bundle_id 】in Ternimal got them. Links:http://www.bijishequ.com/detail/430052
     @code
              NSArray * arr = @ [@ "com.apple.mobilephone",
                                 @ "com.apple.MobileSMS"
@@ -329,40 +303,17 @@ typedef void(^ReadDeviceSettingComplementation)(id obj);
 /**! SDK internal use, do not need to use it*/
 - (void)stopSpecialData:(SD_TYPE)sdType;
 
--(void)testECGModel;
-
-//微教练
-- (void)startExercise;
-- (void)startExerciseWithType:(sd_sportType)sportType;
-- (void)endExercise;
-- (void)pauseExercise;
-
-
-- (void)switchStandardHeartRate:(BOOL)open;
-
-
-#pragma mark - 彩屏GPS
-//GPS 数据纪录范围
-- (void)syscGPSDataInfo;
-
-- (void)syscGPSDetailDataWithday:(NSInteger)day;
-
-#pragma mark - 辅助定位
 /*
- * AGPS升级
- * @pram path cep文件本地路径
+ * Developer test api
  */
-- (void)writeGPSCEPFile:(NSString *)path;
+- (void)write09WithBOOL:(BOOL)isOpen DEPRECATED_ATTRIBUTE;
+/*
+ * Clear user's data on device.
+ */
+- (void)clearData DEPRECATED_ATTRIBUTE;
 
-//拆包，发文件
-- (void)sendAGPSFile;
-//开始AGPS升级
-- (void)startAGPS;
-//结束AGPS升级
-- (void)endAGPS;
-//校验AGPS升级结果
-- (void)checkAGPS;
 
+-(void)testECGModel;
 @end
 
 

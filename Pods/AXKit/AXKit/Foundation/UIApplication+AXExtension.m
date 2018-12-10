@@ -4,7 +4,7 @@
 //
 //  Created by xaoxuu on 10/10/2017.
 //  Copyright © 2017 Titan Studio. All rights reserved.
-//
+//a
 
 #import "UIApplication+AXExtension.h"
 #import <SafariServices/SafariServices.h>
@@ -20,13 +20,7 @@ typedef void(^ __nullable BlockType)(BOOL success);
  @return 跳转的URLString
  */
 static inline NSString *urlStringWithKey(NSString *key){
-    if (@available(iOS 10.0, *)) {
-        // on newer versions
-        return [NSString stringWithFormat:@"App-Prefs:root=%@", key];
-    } else {
-        // Fallback on earlier versions
-        return [NSString stringWithFormat:@"Prefs:root=%@", key];
-    }
+    return UIApplicationOpenSettingsURLString;
 }
 
 /**

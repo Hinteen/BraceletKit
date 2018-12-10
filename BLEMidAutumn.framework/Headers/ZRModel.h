@@ -69,7 +69,7 @@
 @property (nonatomic ,assign) NSUInteger endHour;
 
 /**
- * the monitor duration ,unit is minute . your may demanded set a num is multiple of 5. 
+ * the monitor duration ,unit is minute . your may demanded set a num is multiple of 5.
  * default duration is 60 minutes and threshold is 50 steps if you set both zero.
  * Special device support
  */
@@ -106,16 +106,6 @@
  */
 @property (nonatomic ,assign) NSUInteger age;
 
-@property (nonatomic ,assign)NSUInteger stepOnceDay;
-/**
- * 步行步幅校正 范围 【50，200】
- */
-@property (nonatomic ,assign) NSUInteger distanceSize;
-
-/**
- * 跑行步幅校正 范围 【50，200】
- */
-@property (nonatomic ,assign) NSUInteger distanceSizeRun;
 @end
 
 @interface ZRTargetOnceDay : ZRModel
@@ -132,7 +122,6 @@
 
 @end
 
-
 @interface SportModel : ZRModel <NSCoding>
 @property (nonatomic,assign,readonly)NSString *sportName;
 @property (nonatomic,strong,readonly)NSString *unit;
@@ -140,7 +129,7 @@
 @property (nonatomic,assign)NSInteger targetNum;
 @end
 
-@interface ZRSportLists : ZRModel <NSCoding>
+@interface ZRSportTarget : ZRModel <NSCoding>
 
 /*
  * 0-6 monday-sunday
@@ -211,7 +200,6 @@ typedef NS_ENUM (NSInteger,ShakeWay){
 
 @interface ZRMotor : ZRModel<NSCoding>
 + (NSArray <ZRMotor *> *)defaultMotors;
-/**! Used for device bleProtocol_colorful */
 + (NSArray <ZRMotor *> *)zgDefaultMotors;
 
 @property (nonatomic,assign)ShakeType   type;
@@ -219,13 +207,7 @@ typedef NS_ENUM (NSInteger,ShakeWay){
 @property (nonatomic,assign)NSInteger   shakeCount;
 
 + (NSString *)chineseNameForShakeWay:(ShakeWay)modelIndex;
-/**! Used for bleProtocol_colorful device, set in ZRSchedule & ZRClock*/
-+ (NSInteger)getRingSettingWithShakeWay:(ShakeWay)way andCount:(NSInteger)count;
 
-+ (ShakeWay)shakeWayFromRing:(NSInteger)ringSetting;
-+ (NSInteger)shakeCountFromRing:(NSInteger)ringSetting;
-+ (NSInteger)shakeIndexFrom:(ShakeWay)sWay;
-+ (NSArray *)modelArray;
 @end
 
 @interface ZRCOption : ZRModel
@@ -249,28 +231,24 @@ typedef NS_ENUM (NSInteger,ShakeWay){
 @end
 
 typedef NS_ENUM (NSInteger,DNDType){
-    DNDTypeNull = 0 ,         // mean closed dndMode
-    DNDTypeOnlyNotSave ,
-    DNDTypeNotSaveAndShow ,
+    DNDTypeNull = 0 , // mean closed dndMode
+    DNDTypeNormal ,
+    DNDTypeSleep ,   //  firmware must be supportted if used
+    DNDTypeAllDay,   //  firmware must be supportted if used
 };
 @interface ZRDNDModel : ZRModel
+
 
 /**
  When dndtype == DNDTypeNull, mean this smartBand has not set dnd model; you can also set dndType = 0 to close dnd model
  */
 @property(nonatomic,assign)NSInteger dndType;
-
-/**
- Hour取值范围：0~23
- Minute取值范围：0~59
- */
 @property(nonatomic,assign)NSInteger startHour;
 @property(nonatomic,assign)NSInteger startMinute;
+
 @property(nonatomic,assign)NSInteger endHour;
 @property(nonatomic,assign)NSInteger endMinute;
-
 @end
-
 
 typedef NS_ENUM(NSInteger,WeatherType) {
     WeatherFine = 0,            //晴
@@ -282,10 +260,8 @@ typedef NS_ENUM(NSInteger,WeatherType) {
     WeatherShower = 6,          //阵雨
     WeatherSnow = 7,            //雪
     WeatherHaze = 8,            //雾霾
-    WeatherSandstorm = 9,       //沙尘暴
-    WeatherSunCloud = 10,       //多云转晴
-    WeatherThunderStorm = 11,   //雷雨
-    WeatherNotContain = 0xff,
+    WeatherSandstorm = 9,        //沙尘暴
+    WeatherNotContain = 10,
 };
 
 typedef NS_ENUM(NSInteger,TempUnit) {
@@ -293,40 +269,12 @@ typedef NS_ENUM(NSInteger,TempUnit) {
     Fahrenheit = 1, //华氏温度
 };
 
-@interface ZRWeather : ZRModel <NSCopying>
+@interface ZRWeather : ZRModel
 
 @property (nonatomic,assign)NSInteger temp;//温度值
 @property (nonatomic,assign)TempUnit unit;
 @property (nonatomic,assign)WeatherType  type;
 @property (nonatomic,assign)NSInteger pm;
-
-- (NSInteger)celsiusDegree;
-- (NSInteger)fahrenheitDegree;
-
-@end
-
-
-@interface ZRDayWeather : ZRModel 
-
-@property (nonatomic,assign)NSInteger tempMax;
-@property (nonatomic,assign)NSInteger tempMin;
-@property (nonatomic,assign)WeatherType type;
-
-@end
-
-
-@interface ZR24Weather : ZRModel
-
-@property (nonatomic,assign)NSInteger year;
-@property (nonatomic,assign)NSInteger month;
-@property (nonatomic,assign)NSInteger day;
-@property (nonatomic,assign)NSInteger hour;
-
-@property (nonatomic,assign)TempUnit unit;
-/**! Groups numbers 24, means 24 hours weather data ,You must sort the data by date*/
-@property (nonatomic,strong)NSArray <ZRWeather *>*weather24Arrs;
-
-@property (nonatomic,strong)NSArray <ZRDayWeather *>*weather7Arrs;
 
 @end
 
@@ -358,7 +306,6 @@ typedef NS_ENUM(NSInteger,TempUnit) {
 /**! Phone numbers, numbers only, no more than 20 digits*/
 @property (nonatomic ,copy) NSString *number;
 @end
-
 
 @interface ZRRoll : ZRModel
 /**! rollId (hash_id): Please use an integer, the size should not exceed 0xFFFFFFFF*/
@@ -402,26 +349,6 @@ typedef NS_ENUM(NSInteger,TempUnit) {
 
 @end
 
-
-
-typedef NS_ENUM (NSInteger,ZRRollMsgType){
-    ZRRollMsgForQQ          = (1<<15),
-    ZRRollMsgForWechat      = (1<<14),
-    ZRRollMsgForSina        = (1<<13),
-    ZRRollMsgForFacebook    = (1<<12),
-    ZRRollMsgForLine        = (1<<11),
-    ZRRollMsgForInstagram   = (1<<10),
-    ZRRollMsgForKakaoTalk   = (1<<9),
-    ZRRollMsgForGmail       = (1<<8),
-    ZRRollMsgForTwitter     = (1<<7),
-    ZRRollMsgForLinkin      = (1<<6),
-    ZRRollMsgForWhatsapp    = (1<<5),
-    ZRRollMsgForSkype       = (1<<4),
-    ZRRollMsgForMobileSMS   = (1<<3),
-    ZRRollMsgForMoblieEmail = (1<<2),
-};
-
-
 @interface ZRMesgPush : ZRModel
 
 /**
@@ -448,59 +375,6 @@ typedef NS_ENUM (NSInteger,ZRRollMsgType){
  */
 @property (nonatomic, assign) NSInteger messageStart;
 @property (nonatomic, assign) NSInteger messageEnd;
-
-/**
- * Valid only if @ \ messageEnable is YES, and at the set time interval. List of supported blacklist apps, ZRRollMsgType cannot be repeated;
- * 仅在 @\messageEnable 为YES, 并且在设置的时间间隔内有效。支持的黑名单的APP列表，ZRRollMsgType不能重复;
- */
-@property (nonatomic, strong) NSArray  *rollMsgList;
-@property (nonatomic, strong) NSString *rollMsgListJsonString;
-
-
-@end
-
-
-@interface ZRStartSetting : ZRModel
-
-/**
- * Set the offset of the current GPS time zone, for example, Beijing is +8.
- * 设置 GPS 当前时区的偏移, 比如说北京是+8。
- */
-@property (nonatomic, assign) NSInteger utc_offset;
-
-/**
- * Greeting display content, max 10 bytes;
- * 问候语的显示内容, 开机显示问候语最大10个byte。
- */
-@property (nonatomic, strong) NSString *username_data;
-
-
-@property (nonatomic, assign) NSInteger user_height;
-
-@property (nonatomic, assign) NSInteger user_gender;
-
-@property (nonatomic, assign) NSInteger srcSbp_LB;
-
-@property (nonatomic, assign) NSInteger srcSbp_HB;
-
-@property (nonatomic, assign) NSInteger srcDbp_LB;
-
-@property (nonatomic, assign) NSInteger srcDbp_HB;
-
-@property (nonatomic, assign) NSInteger dstSbp_LB;
-
-@property (nonatomic, assign) NSInteger dstSbp_HB;
-
-@property (nonatomic, assign) NSInteger dstDbp_LB;
-
-@property (nonatomic, assign) NSInteger dstDbp_HB;
-
-/**
- * 3BYTE 备用
- */
-@property (nonatomic, strong) NSString *Reseve;
-
-- (NSString *)getSetCmdStr;
 
 @end
 

@@ -336,7 +336,6 @@ static BKSession *session;
 - (void)requestUpdateAllHealthDataCompletion:(void(^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
         [solstice getDataStoreDate];
-        [solstice syscGPSDataInfo];
     } completion:completion error:error];
 }
 
@@ -535,14 +534,14 @@ static BKSession *session;
 
 - (void)requestGPSDetails:(NSInteger) date completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
-        [solstice syscGPSDetailDataWithday:date];
+//        [solstice syscGPSDetailDataWithday:date];
     } completion:completion error:error];
 }
 
 - (void)requestWriteGPSCEPFile:(NSString *) path completion:(void (^ _Nullable)(void))completion error:(void (^ _Nullable)(NSError *error))error{
     [self safeRequest:^(BLEAutumn *manager, id<BLESolstice>solstice) {
 //        [solstice endAGPS];
-        [solstice writeGPSCEPFile:path];
+//        [solstice writeGPSCEPFile:path];
     } completion:completion error:error];
 }
 
@@ -721,7 +720,12 @@ static BKSession *session;
  */
 - (void)syscDataFinishedStateChange:(KSyscDataState)ksdState{
     AXCachedLogOBJ(NSStringFromNSInteger(ksdState));
-    NSLog(@"syscDataFinishedStateChange : %u", ksdState);
+    NSLog(@"syscDataFinishedStateChange : %ld", (long)ksdState);
+    [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+        if ([delegate respondsToSelector:@selector(deviceDidUpdateSynchronizeProgress:)]) {
+            [delegate syscDataFinishedStateChange:ksdState];
+        }
+    }];
 }
 
 /**! Simple progress in Percent<##>*/
@@ -808,14 +812,14 @@ static BKSession *session;
         }];
     }
     
-    else if ([zrhData isKindOfClass:[ZRGPSModel class]]) {
-        ZRGPSModel *gpsData = (ZRGPSModel *)zrhData;
-        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
-            if ([delegate respondsToSelector:@selector(deviceDidUpdateGPSData:)]) {
-                [delegate deviceDidUpdateGPSData:gpsData];
-            }
-        }];
-    }
+//    else if ([zrhData isKindOfClass:[ZRGPSModel class]]) {
+//        ZRGPSModel *gpsData = (ZRGPSModel *)zrhData;
+//        [self allDelegates:^(NSObject<BKSessionDelegate> *delegate) {
+//            if ([delegate respondsToSelector:@selector(deviceDidUpdateGPSData:)]) {
+//                [delegate deviceDidUpdateGPSData:gpsData];
+//            }
+//        }];
+//    }
     
 }
 
